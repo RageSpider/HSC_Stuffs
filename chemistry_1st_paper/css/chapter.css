@@ -1,0 +1,186 @@
+/* css/chapter.css */
+
+/* =========================================
+   CHAPTER HERO SECTION
+   ========================================= */
+.chapter-hero {
+    position: relative;
+    padding: 160px 20px 80px;
+    background-color: var(--chem-dark-forest);
+    background-image: radial-gradient(circle at 80% 20%, rgba(158, 210, 104, 0.1) 0%, transparent 40%);
+    color: #ffffff;
+    border-bottom: 4px solid var(--chem-bright-green);
+    overflow: hidden;
+}
+
+.chapter-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--chem-light-muted);
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+.breadcrumbs a { transition: color 0.3s; }
+.breadcrumbs a:hover { color: var(--chem-yellow); }
+.breadcrumbs .current { color: var(--chem-neon-green); font-weight: 500; }
+
+.chapter-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(158, 210, 104, 0.15);
+    color: var(--chem-neon-green);
+    border: 1px solid rgba(158, 210, 104, 0.3);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.chapter-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.chapter-subtitle {
+    font-size: 1.2rem;
+    color: var(--chem-light-olive);
+    font-weight: 400;
+}
+
+/* =========================================
+   READING / NOTE SECTION
+   ========================================= */
+.reading-section {
+    padding: 60px 20px 100px;
+    background: var(--bg-color);
+}
+
+.reading-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Toolbar */
+.reading-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--chem-bright-green);
+    background: rgba(97, 163, 31, 0.1);
+    padding: 6px 14px;
+    border-radius: 50px;
+}
+
+.tool-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    transition: all 0.3s ease;
+    margin-left: 8px;
+}
+
+.tool-btn:hover {
+    background: var(--surface-color);
+    color: var(--chem-dark-forest);
+    border-color: var(--chem-bright-green);
+}
+
+/* The Paper / Note Container */
+.note-paper {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: var(--card-shadow);
+    min-height: 400px;
+}
+
+/* Styles specifically for injected note content */
+.note-paper h2 {
+    color: var(--text-main);
+    font-size: 2rem;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(170, 192, 154, 0.3);
+}
+
+.note-paper h3 {
+    color: var(--chem-dark-forest);
+    font-size: 1.5rem;
+    margin: 30px 0 15px;
+}
+[data-theme="dark"] .note-paper h3 { color: var(--chem-neon-green); }
+
+.note-paper p {
+    font-size: 1.15rem;
+    color: var(--text-main);
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+/* Equation / Math block */
+.math-block {
+    background: var(--bg-color);
+    border-left: 4px solid var(--chem-bright-green);
+    padding: 20px;
+    border-radius: 0 12px 12px 0;
+    margin: 25px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-main);
+    overflow-x: auto;
+}
+
+/* Highlighted Terms */
+.note-term {
+    color: var(--chem-red);
+    font-weight: 600;
+}
+[data-theme="dark"] .note-term { color: #ff6b60; }
+
+.loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--text-muted);
+    gap: 15px;
+    margin-top: 50px;
+}
+.spin { animation: spin 1s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+@media (max-width: 768px) {
+    .note-paper { padding: 30px 20px; }
+    .chapter-hero { padding-top: 140px; }
+    .chapter-title { font-size: 2.2rem; }
+}

@@ -1,0 +1,234 @@
+/* --- THEME VARIABLES --- */
+body.theme-diary { 
+    --theme-primary: #10b981; /* Emerald 500 */
+    --theme-accent: #f59e0b;  /* Amber 500 */
+    --theme-bg: #ecfdf5;      /* Emerald 50 */
+    --theme-text: #064e3b;    /* Emerald 900 */
+    --theme-card-bg: #ffffff;
+    --theme-border: #a7f3d0;  /* Emerald 200 */
+    --theme-danger: #ef4444;
+    
+    /* Pattern Colors */
+    --pattern-line: rgba(16, 185, 129, 0.2);
+    --pattern-margin: rgba(245, 158, 11, 0.3);
+    
+    --bg-color: var(--theme-bg);
+    --text-dark: var(--theme-text);
+    --text-gray: #047857;     /* Emerald 700 */
+    --primary-color: var(--theme-primary);
+    --border-color: var(--theme-border);
+    --surface-color: #d1fae5; /* Emerald 100 */
+    --card-bg: var(--theme-card-bg);
+    --nav-bg: rgba(236, 253, 245, 0.9);
+    
+    background-color: var(--theme-bg);
+    color: var(--theme-text);
+}
+
+[data-theme="dark"] body.theme-diary { 
+    --theme-bg: #064e3b;      /* Emerald 900 */
+    --theme-text: #d1fae5;    /* Emerald 100 */
+    --theme-primary: #34d399; /* Emerald 400 */
+    --theme-accent: #fbbf24;  /* Amber 400 */
+    --theme-card-bg: #022c22; /* Emerald 950 */
+    --theme-border: #047857;  /* Emerald 700 */
+    
+    /* Pattern Colors Dark */
+    --pattern-line: rgba(52, 211, 153, 0.1);
+    --pattern-margin: rgba(251, 191, 36, 0.2);
+    
+    --text-gray: #a7f3d0;     /* Emerald 200 */
+    --surface-color: #065f46; /* Emerald 800 */
+    --nav-bg: rgba(6, 78, 59, 0.9);
+}
+
+/* Base Typogrpahy */
+.en-text { font-family: 'Inter', -apple-system, sans-serif; }
+.bn-text { font-family: 'Bangla', sans-serif; }
+
+.topic-main { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* --- HERO SECTION --- */
+.topic-hero {
+    position: relative; padding: 140px 20px 60px;
+    display: flex; justify-content: center; align-items: center;
+    overflow: hidden; background: var(--bg-color);
+}
+
+/* UNIQUE PATTERN: Ruled Journal Paper */
+.hero-journal-bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0; overflow: hidden;
+    background-color: var(--bg-color);
+    
+    /* Ruled paper lines and vertical margin */
+    background-image: 
+        linear-gradient(90deg, transparent 80px, var(--pattern-margin) 80px, var(--pattern-margin) 82px, transparent 82px, transparent 86px, var(--pattern-margin) 86px, var(--pattern-margin) 88px, transparent 88px),
+        repeating-linear-gradient(0deg, transparent, transparent 39px, var(--pattern-line) 39px, var(--pattern-line) 40px);
+}
+
+/* Spiral Binder Holes */
+.hero-journal-bg::before {
+    content: '';
+    position: absolute; top: 0; left: 20px; width: 40px; height: 100%;
+    background-image: radial-gradient(circle at 20px 20px, var(--surface-color) 10px, transparent 11px);
+    background-size: 100% 40px;
+    border-right: 1px solid var(--border-color);
+    box-shadow: inset -5px 0 10px rgba(0,0,0,0.03);
+}
+
+[data-theme="dark"] .hero-journal-bg::before {
+    box-shadow: inset -5px 0 10px rgba(0,0,0,0.2);
+}
+
+/* Decorative Ribbon Bookmark */
+.bookmark-shape {
+    position: absolute; top: 0; right: 18%; width: 50px; height: 140px;
+    background: var(--theme-accent);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    z-index: 1;
+}
+
+/* Faded Watermark / Date Stamp */
+.date-stamp {
+    position: absolute; bottom: -5%; right: 5%;
+    font-size: clamp(100px, 15vw, 250px); 
+    font-family: 'Times New Roman', serif; font-weight: 900;
+    line-height: 0.8; color: var(--theme-primary);
+    opacity: 0.08; user-select: none; z-index: 1;
+    transform: rotate(-10deg);
+}
+
+/* Paper Stack Card Style */
+.solid-card {
+    position: relative; z-index: 10;
+    background: var(--card-bg);
+    border: 1px solid var(--theme-border);
+    border-radius: 16px; padding: 50px; max-width: 800px;
+    text-align: center; 
+    box-shadow: 
+        5px 5px 0px var(--surface-color),
+        10px 10px 0px rgba(16, 185, 129, 0.15);
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .solid-card { 
+    box-shadow: 
+        5px 5px 0px var(--surface-color),
+        10px 10px 0px rgba(52, 211, 153, 0.1);
+}
+
+.topic-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 20px; background: var(--theme-accent);
+    color: #fff; border-radius: 50px; font-weight: 600; font-size: 1.1rem; margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+}
+
+.topic-hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; color: var(--text-dark); margin-bottom: 15px; }
+
+.marks-info { font-size: 1.3rem; color: var(--text-dark); background: var(--surface-color); display: inline-block; padding: 10px 25px; border-radius: 12px; margin-bottom: 15px;}
+.marks-info strong { color: var(--theme-accent); font-weight: 700; }
+.hero-desc { font-size: 1.15rem; color: var(--text-gray); margin-bottom: 20px; line-height: 1.6; }
+
+.pages-container { position: relative; width: 100%; min-height: 500px; flex-grow: 1; padding: 40px 20px; margin: 0 auto; max-width: 1000px; }
+.pseudo-page { display: none; padding-top: 20px; }
+.pseudo-page.active { display: block; }
+
+/* --- SMART TOOLBAR --- */
+.smart-toolbar {
+    background: var(--card-bg); border: 1px solid var(--border-color);
+    border-radius: 20px; padding: 20px; margin-bottom: 40px;
+    display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.search-box { position: relative; flex: 1; min-width: 280px; }
+.search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--primary-color); width: 22px; height: 22px; }
+.search-box input {
+    width: 100%; padding: 16px 45px 16px 50px; border-radius: 14px;
+    border: 2px solid var(--surface-color); background: var(--surface-color);
+    color: var(--text-dark); font-size: 1.15rem; outline: none; transition: all 0.3s ease;
+}
+.search-box input:focus { border-color: var(--primary-color); background: var(--card-bg); box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1); }
+.clear-btn { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-gray); cursor: pointer; display: none; padding: 4px; border-radius: 50%; }
+.clear-btn:hover { background: var(--surface-color); color: var(--text-dark); }
+
+.filter-group { display: flex; flex-wrap: wrap; gap: 15px; }
+.filter-item { display: flex; align-items: center; gap: 10px; background: var(--surface-color); padding: 8px 16px; border-radius: 12px; border: 1px solid var(--border-color); }
+.filter-item i { color: var(--text-gray); width: 18px; height: 18px; }
+.filter-item select { background: transparent; border: none; color: var(--text-dark); font-size: 1.05rem; outline: none; cursor: pointer; font-weight: 500; }
+.filter-item select option { background: var(--card-bg); color: var(--text-dark); }
+
+.btn-favorite-filter {
+    display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 12px;
+    border: 1px solid var(--theme-border); background: var(--surface-color); color: var(--text-dark);
+    cursor: pointer; font-weight: 600; font-size: 1.05rem; transition: all 0.3s ease;
+}
+.btn-favorite-filter.active { background: rgba(239, 68, 68, 0.1); color: var(--theme-danger); border-color: var(--theme-danger); }
+.btn-favorite-filter.active i { fill: var(--theme-danger); color: var(--theme-danger);}
+
+/* --- DIARY LIST --- */
+.diary-grid { display: flex; flex-direction: column; gap: 25px; }
+
+.diary-item {
+    background: var(--card-bg); border: 2px solid var(--border-color); border-radius: 16px; 
+    transition: all 0.3s ease; box-shadow: 6px 6px 0px var(--surface-color);
+    display: flex; flex-direction: column; opacity: 0; margin-bottom: 10px;
+}
+.diary-item:hover, .diary-item.expanded { 
+    transform: translate(-3px, -3px); 
+    border-color: var(--primary-color); 
+    box-shadow: 9px 9px 0px rgba(16, 185, 129, 0.2); 
+}
+
+.diary-header-clickable {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 25px; cursor: pointer; gap: 20px;
+}
+
+.diary-title-area { flex: 1; }
+
+.diary-question { font-size: 1.35rem; font-weight: 600; color: var(--text-dark); margin-bottom: 10px; line-height: 1.5; }
+
+.diary-meta { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.board-tag { background: var(--surface-color); color: var(--text-gray); padding: 5px 12px; border-radius: 8px; font-size: 0.95rem; font-weight: 600; border: 1px solid var(--border-color);}
+
+.diary-controls { display: flex; align-items: center; gap: 15px; }
+
+.btn-fav { background: transparent; border: none; cursor: pointer; color: var(--border-color); transition: all 0.3s; padding: 5px; display: flex; align-items: center; justify-content: center;}
+.btn-fav:hover { color: var(--theme-danger); transform: scale(1.1); }
+.btn-fav.active { color: var(--theme-danger); }
+.btn-fav.active i { fill: var(--theme-danger); }
+
+.chevron-icon { color: var(--text-gray); transition: transform 0.3s ease; width: 24px; height: 24px; }
+.diary-item.expanded .chevron-icon { transform: rotate(180deg); color: var(--primary-color); }
+
+.diary-answer-wrapper {
+    display: none; padding: 0 25px 25px 25px;
+}
+
+.diary-answer { font-size: 1.15rem; line-height: 1.9; color: var(--text-dark); padding-top: 20px; border-top: 1px dashed var(--border-color);}
+.diary-answer p { margin-bottom: 18px; }
+.diary-answer p:last-child { margin-bottom: 0; }
+.diary-answer strong { color: var(--primary-color); font-weight: 600; }
+
+.loading-state, .empty-state { text-align: center; padding: 60px 20px; color: var(--text-gray); background: var(--surface-color); border-radius: 16px; border: 2px dashed var(--border-color); }
+.empty-state i { width: 48px; height: 48px; color: var(--primary-color); margin-bottom: 15px; opacity: 0.5;}
+.spin { animation: spin 2s linear infinite; margin: 0 auto; display: block; width: 40px; height: 40px; color: var(--primary-color);}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* Mobile */
+@media (max-width: 768px) {
+    .solid-card { padding: 30px 20px; box-shadow: 6px 6px 0px var(--surface-color); }
+    .hero-journal-bg::before { width: 30px; left: 10px; }
+    
+    .smart-toolbar { flex-direction: column; align-items: stretch; padding: 15px;}
+    .filter-group { flex-direction: column; }
+    .hide-mobile { display: none; }
+    
+    .diary-header-clickable { padding: 20px; flex-direction: column; align-items: flex-start; }
+    .diary-controls { width: 100%; justify-content: space-between; border-top: 1px solid var(--surface-color); padding-top: 15px;}
+    .diary-answer-wrapper { padding: 0 20px 20px 20px; }
+}

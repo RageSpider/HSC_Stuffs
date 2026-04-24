@@ -1,0 +1,113 @@
+/* css/footer.css */
+
+.site-footer {
+    /* Uses dynamically mapped page colors instead of hardcoded default colors */
+    background-color: var(--surface-color);
+    color: var(--text-dark);
+    padding: 70px 20px 20px;
+    font-family: 'Poppins', sans-serif;
+    margin-top: auto; 
+    border-top: 4px solid var(--primary-color);
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+.site-footer .bn-text { font-family: 'Bangla', sans-serif; }
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+.footer-col h4 {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+    font-weight: 600;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 50px; height: 3px;
+    background: var(--accent-color);
+    border-radius: 2px;
+}
+
+.footer-col ul { list-style: none; padding: 0; margin: 0; }
+.footer-col ul li { margin-bottom: 15px; }
+
+.footer-col ul a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: inline-block;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-col ul a:hover {
+    color: var(--primary-color);
+    transform: translateX(6px);
+}
+
+.brand-col p {
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-links a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.contact-links a i { width: 18px; height: 18px; color: var(--primary-color); transition: all 0.3s ease;}
+
+.contact-links a:hover { background: var(--primary-color); color: #fff; border-color: var(--primary-color); transform: translateY(-2px); }
+.contact-links a:hover i { color: #fff; }
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 25px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-gray);
+    font-size: 1.05rem;
+}
+
+.managed-by {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    font-weight: 400;
+}
+
+.managed-by a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.managed-by a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}

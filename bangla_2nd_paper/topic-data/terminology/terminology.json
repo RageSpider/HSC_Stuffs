@@ -1,0 +1,2172 @@
+[
+  {
+    "en": "Ability",
+    "bn": "সামর্থ্য, সক্ষমতা",
+    "boards": "ম. বো. '২৩"
+  },
+  {
+    "en": "Academic",
+    "bn": "প্রাতিষ্ঠানিক, বিদ্যাবিষয়ক, শিক্ষায়তনিক",
+    "boards": ""
+  },
+  {
+    "en": "Academic Year",
+    "bn": "শিক্ষাবর্ষ",
+    "boards": ""
+  },
+  {
+    "en": "Academy",
+    "bn": "একাডেমি, বিদ্যায়তন, পরিষদ",
+    "boards": "ঢা. বো. '২৪; কু. বো. '১৬"
+  },
+  {
+    "en": "Acid",
+    "bn": "অম্ল",
+    "boards": ""
+  },
+  {
+    "en": "Acknowledgment",
+    "bn": "প্রাপ্তিস্বীকার",
+    "boards": ""
+  },
+  {
+    "en": "Act",
+    "bn": "আইন",
+    "boards": ""
+  },
+  {
+    "en": "Acting",
+    "bn": "ভারপ্রাপ্ত",
+    "boards": ""
+  },
+  {
+    "en": "Adaptation",
+    "bn": "প্রতিযোজন, অভিযোজন",
+    "boards": ""
+  },
+  {
+    "en": "Adhoc",
+    "bn": "অনানুষ্ঠানিক, তদর্থক",
+    "boards": ""
+  },
+  {
+    "en": "Adjust",
+    "bn": "সমন্বয় করা",
+    "boards": ""
+  },
+  {
+    "en": "Administrative",
+    "bn": "প্রশাসনিক, প্রশাসন",
+    "boards": ""
+  },
+  {
+    "en": "Admission",
+    "bn": "ভর্তি, প্রবেশ",
+    "boards": ""
+  },
+  {
+    "en": "Adviser",
+    "bn": "উপদেষ্টা",
+    "boards": "ম. বো. '২৫"
+  },
+  {
+    "en": "Affidavit",
+    "bn": "শপথপত্র, হলফনামা",
+    "boards": ""
+  },
+  {
+    "en": "Agenda",
+    "bn": "আলোচ্যসূচি",
+    "boards": "রা. বো. '২৫, '১৬; য. বো. '০৮"
+  },
+  {
+    "en": "Agent",
+    "bn": "নিযুক্তক, প্রতিনিধি",
+    "boards": "সি. বো. '১৬"
+  },
+  {
+    "en": "Aid",
+    "bn": "সাহায্য, সহায়ক",
+    "boards": "ঢা. বো. '১৩; য. বো. '১৭; সি. বো. '২৫"
+  },
+  {
+    "en": "Air-conditioned",
+    "bn": "শীতাতপ নিয়ন্ত্রিত",
+    "boards": "বা. বো. '০৬"
+  },
+  {
+    "en": "Allegation",
+    "bn": "অভিযোগ",
+    "boards": "ঢা. বো. '১৭; ব. বো. '১৩"
+  },
+  {
+    "en": "Allotment",
+    "bn": "বরাদ্দ, অংশ বণ্টন",
+    "boards": "রা. '১৫; য. বো. '১১"
+  },
+  {
+    "en": "Alphabet",
+    "bn": "বর্ণমালা",
+    "boards": ""
+  },
+  {
+    "en": "Analysis",
+    "bn": "বিশ্লেষণ",
+    "boards": "দি. বো. '১৭"
+  },
+  {
+    "en": "Anatomy",
+    "bn": "শব ব্যবচ্ছেদ বিদ্যা, শারীরবিদ্যা",
+    "boards": "রা. বো. '১৩"
+  },
+  {
+    "en": "Annexation",
+    "bn": "সংযোজন, সংযোজিত",
+    "boards": "রা. বো. '১৯; কু. বো. '১৭"
+  },
+  {
+    "en": "Anti-corruption",
+    "bn": "দুর্নীতি দমন",
+    "boards": "ব. বো. '০৮"
+  },
+  {
+    "en": "Appearance",
+    "bn": "দৃষ্টিগোচরতা, উপস্থিতি",
+    "boards": ""
+  },
+  {
+    "en": "Appendix",
+    "bn": "পরিশিষ্ট",
+    "boards": "য. বো. '১১"
+  },
+  {
+    "en": "Architecture",
+    "bn": "স্থাপত্যবিদ্যা",
+    "boards": "ঢা. বো. '২৪"
+  },
+  {
+    "en": "Art",
+    "bn": "কারুশিল্প",
+    "boards": ""
+  },
+  {
+    "en": "Assembly",
+    "bn": "সমাগম",
+    "boards": ""
+  },
+  {
+    "en": "Attestation",
+    "bn": "প্রত্যয়ন",
+    "boards": ""
+  },
+  {
+    "en": "Auction",
+    "bn": "নিলাম",
+    "boards": ""
+  },
+  {
+    "en": "Audio",
+    "bn": "শ্রবণ-বিষয়ক, শ্রুত্য",
+    "boards": ""
+  },
+  {
+    "en": "Auditor",
+    "bn": "নিরীক্ষক, আয়ব্যয়-পরীক্ষক",
+    "boards": ""
+  },
+  {
+    "en": "Author",
+    "bn": "লেখক, প্রণেতা",
+    "boards": ""
+  },
+  {
+    "en": "Autograph",
+    "bn": "স্বাক্ষর, স্বলেখন, স্বহস্তলিপি",
+    "boards": ""
+  },
+  {
+    "en": "Autonomous",
+    "bn": "স্বায়ত্তশাসিত",
+    "boards": ""
+  },
+  {
+    "en": "Axis",
+    "bn": "অক্ষ",
+    "boards": ""
+  },
+  {
+    "en": "Bacteria",
+    "bn": "জীবাণু",
+    "boards": ""
+  },
+  {
+    "en": "Bail",
+    "bn": "জামিন",
+    "boards": ""
+  },
+  {
+    "en": "Balcony",
+    "bn": "বারান্দা",
+    "boards": ""
+  },
+  {
+    "en": "Ballot",
+    "bn": "গুপ্তভোট, গুপ্তমত",
+    "boards": ""
+  },
+  {
+    "en": "Ballot Paper",
+    "bn": "ভোটপত্র, মতপত্রী",
+    "boards": ""
+  },
+  {
+    "en": "Banker",
+    "bn": "ব্যাংকের অংশীদার, ব্যাংকের মালিক",
+    "boards": ""
+  },
+  {
+    "en": "Bankrupt",
+    "bn": "দেউলিয়া",
+    "boards": ""
+  },
+  {
+    "en": "Banquet",
+    "bn": "ভোজসভা",
+    "boards": ""
+  },
+  {
+    "en": "Basic Pay",
+    "bn": "মূল বেতন",
+    "boards": ""
+  },
+  {
+    "en": "Bench",
+    "bn": "বিচারপীঠ, ন্যায়াসন",
+    "boards": ""
+  },
+  {
+    "en": "Bibliography",
+    "bn": "উৎসনির্দেশক, গ্রন্থপঞ্জি",
+    "boards": ""
+  },
+  {
+    "en": "Bidder",
+    "bn": "নিলাম ডাকিয়ে",
+    "boards": "ব. বো. '২৫, '১৫"
+  },
+  {
+    "en": "Bilingual",
+    "bn": "দ্বিভাষিক",
+    "boards": "দি. বো. '১৯"
+  },
+  {
+    "en": "Bio-data",
+    "bn": "জীবন-বৃত্তান্ত",
+    "boards": "ঢা. বো. '১২, '০৮; রা. বো. '১২"
+  },
+  {
+    "en": "Biography",
+    "bn": "জীবনচরিত",
+    "boards": "ঢা. বো. '২৩; রা. বো. '১৭"
+  },
+  {
+    "en": "Black out",
+    "bn": "নিষ্প্রদীপ",
+    "boards": "কু. বো. '১৯, '০৮"
+  },
+  {
+    "en": "Blueprint",
+    "bn": "নীলনকশা",
+    "boards": ""
+  },
+  {
+    "en": "Bond",
+    "bn": "মুচলেকা, প্রতিজ্ঞাপত্র",
+    "boards": ""
+  },
+  {
+    "en": "Book Post",
+    "bn": "খোলা ডাক",
+    "boards": ""
+  },
+  {
+    "en": "Booklet",
+    "bn": "পুস্তিকা",
+    "boards": ""
+  },
+  {
+    "en": "Boycott",
+    "bn": "বর্জন",
+    "boards": "সকল বোর্ড '১৮"
+  },
+  {
+    "en": "Boyscout",
+    "bn": "ব্রতীবালক",
+    "boards": ""
+  },
+  {
+    "en": "Brand",
+    "bn": "ছাপ, মার্কা",
+    "boards": ""
+  },
+  {
+    "en": "Broadcast",
+    "bn": "সম্প্রচার",
+    "boards": ""
+  },
+  {
+    "en": "Broker",
+    "bn": "দালাল",
+    "boards": ""
+  },
+  {
+    "en": "Bulletin",
+    "bn": "জ্ঞাপনপত্র, ইশতেহার",
+    "boards": ""
+  },
+  {
+    "en": "Bureaucracy",
+    "bn": "আমলাতন্ত্র",
+    "boards": ""
+  },
+  {
+    "en": "By-election",
+    "bn": "উপনির্বাচন",
+    "boards": ""
+  },
+  {
+    "en": "By-law",
+    "bn": "উপবিধি",
+    "boards": ""
+  },
+  {
+    "en": "Cabinet",
+    "bn": "মন্ত্রিপরিষদ",
+    "boards": ""
+  },
+  {
+    "en": "Campus",
+    "bn": "অঙ্গন, শিক্ষায়তন",
+    "boards": "রা. বো. '১৪; দি. বো. '১৭"
+  },
+  {
+    "en": "Capital",
+    "bn": "মূলধন, পুঁজি, রাজধানী",
+    "boards": "ব. বো. '২৪; ম. বো. '২৩"
+  },
+  {
+    "en": "Capitalist",
+    "bn": "ধনিক, পুঁজিপতি",
+    "boards": "ব. বো. '১১"
+  },
+  {
+    "en": "Caption",
+    "bn": "শিরোনাম",
+    "boards": "চ. বো. '২২; ব. বো. '১৯"
+  },
+  {
+    "en": "Carbon di-oxide",
+    "bn": "অঙ্গারাম্লজান",
+    "boards": ""
+  },
+  {
+    "en": "Cargo",
+    "bn": "জাহাজি মাল",
+    "boards": "ঢা. বো. '২২; দি. বো. '২৫"
+  },
+  {
+    "en": "Cartoon",
+    "bn": "ব্যঙ্গচিত্র",
+    "boards": "ঢা. বো. '২২; রা. বো. '১৫"
+  },
+  {
+    "en": "Catalogue",
+    "bn": "গ্রন্থতালিকা",
+    "boards": ""
+  },
+  {
+    "en": "Ceiling",
+    "bn": "চালের নিচের পিঠ, মেঘের তল, স্তর",
+    "boards": ""
+  },
+  {
+    "en": "Census",
+    "bn": "আদমশুমারি, লোকগণনা",
+    "boards": ""
+  },
+  {
+    "en": "Chancellor",
+    "bn": "আচার্য",
+    "boards": "রা. বো. '২৫; চ. বো. '০৬"
+  },
+  {
+    "en": "Cheque",
+    "bn": "চেক, হুন্ডি",
+    "boards": "সি. বো. '০৮"
+  },
+  {
+    "en": "Chief",
+    "bn": "মুখ্য, প্রধান",
+    "boards": "সি. বো. '০৮"
+  },
+  {
+    "en": "Chief Whip",
+    "bn": "মুখ্য সচেতক, চিফ হুইপ",
+    "boards": ""
+  },
+  {
+    "en": "Circle",
+    "bn": "বৃত্ত, মণ্ডলাচ",
+    "boards": ""
+  },
+  {
+    "en": "Civil",
+    "bn": "বেসামরিক, মানবসমাজ বিষয়ক, দেওয়ানি",
+    "boards": "সকল বোর্ড '১৮"
+  },
+  {
+    "en": "Civil War",
+    "bn": "গৃহযুদ্ধ",
+    "boards": ""
+  },
+  {
+    "en": "Client",
+    "bn": "মক্কেল, খরিদ্দার",
+    "boards": ""
+  },
+  {
+    "en": "Code",
+    "bn": "সংকেত",
+    "boards": ""
+  },
+  {
+    "en": "Cold War",
+    "bn": "স্নায়ুযুদ্ধ",
+    "boards": ""
+  },
+  {
+    "en": "Colony",
+    "bn": "সংঘ, উপনিবেশ",
+    "boards": ""
+  },
+  {
+    "en": "Comet",
+    "bn": "ধূমকেতু",
+    "boards": ""
+  },
+  {
+    "en": "Concession",
+    "bn": "রেয়াত, ছাড়",
+    "boards": ""
+  },
+  {
+    "en": "Conduct",
+    "bn": "পরিবহণ করা, পরিচালনা, আচরণ",
+    "boards": ""
+  },
+  {
+    "en": "Consequence",
+    "bn": "ফলাফল, পরিণাম",
+    "boards": ""
+  },
+  {
+    "en": "Constitution",
+    "bn": "শাসনতন্ত্র, সংবিধান",
+    "boards": ""
+  },
+  {
+    "en": "Controller",
+    "bn": "নিয়ন্ত্রক",
+    "boards": ""
+  },
+  {
+    "en": "Copy",
+    "bn": "প্রতিলিপি, প্রতিলেখ, অনুলিপি",
+    "boards": ""
+  },
+  {
+    "en": "Copyright",
+    "bn": "লেখস্বত্ব, লেখক-স্বত্ব",
+    "boards": ""
+  },
+  {
+    "en": "Correspondent",
+    "bn": "সংবাদদাতা",
+    "boards": ""
+  },
+  {
+    "en": "Corruption",
+    "bn": "অপচার, দুর্নীতি",
+    "boards": ""
+  },
+  {
+    "en": "Council",
+    "bn": "পরিষদ",
+    "boards": ""
+  },
+  {
+    "en": "Credit",
+    "bn": "আকলন, জমা",
+    "boards": ""
+  },
+  {
+    "en": "Crown",
+    "bn": "মুকুট",
+    "boards": ""
+  },
+  {
+    "en": "Curfew",
+    "bn": "সান্ধ্য আইন",
+    "boards": "ঢা. বো. '২৪"
+  },
+  {
+    "en": "Current Account",
+    "bn": "চলিত হিসাব",
+    "boards": ""
+  },
+  {
+    "en": "Custom",
+    "bn": "শুল্ক",
+    "boards": "ঢা. বো. '১৯"
+  },
+  {
+    "en": "Data",
+    "bn": "উপাত্ত",
+    "boards": "রা. বো. '২৫; য. বো. '১৬"
+  },
+  {
+    "en": "Deadlock",
+    "bn": "অচলাবস্থা",
+    "boards": "য. বো. '১৪"
+  },
+  {
+    "en": "Death Certificate",
+    "bn": "মৃত্যু সনদ",
+    "boards": "চ. বো. '১৪"
+  },
+  {
+    "en": "Death Penalty",
+    "bn": "মৃত্যুদণ্ড",
+    "boards": ""
+  },
+  {
+    "en": "Debate",
+    "bn": "বিতর্ক",
+    "boards": ""
+  },
+  {
+    "en": "Debit",
+    "bn": "খরচ, বিকলন",
+    "boards": ""
+  },
+  {
+    "en": "Debt",
+    "bn": "ঋণ, দেনা",
+    "boards": ""
+  },
+  {
+    "en": "Decimal",
+    "bn": "দশমিক",
+    "boards": ""
+  },
+  {
+    "en": "Deed",
+    "bn": "দলিল, লেখপ্রমাণ, চুক্তিনামা",
+    "boards": ""
+  },
+  {
+    "en": "Deed of gift",
+    "bn": "দানপত্র",
+    "boards": "রা. বো. '২৫; কু. বো. '২৪"
+  },
+  {
+    "en": "Delta",
+    "bn": "ব-দ্বীপ",
+    "boards": ""
+  },
+  {
+    "en": "Democracy",
+    "bn": "গণতন্ত্র, গণতান্ত্রিক দেশ",
+    "boards": "বো. '১২"
+  },
+  {
+    "en": "Deposit",
+    "bn": "আমানত",
+    "boards": "ব. বো. '১৩, '০৮"
+  },
+  {
+    "en": "Deputation",
+    "bn": "প্রেষণ, প্রতিনিধিত্ব",
+    "boards": "ঢা. বো. '১৪, '০৮"
+  },
+  {
+    "en": "Deputy",
+    "bn": "উপ",
+    "boards": ""
+  },
+  {
+    "en": "Design",
+    "bn": "নকশা",
+    "boards": ""
+  },
+  {
+    "en": "Dialect",
+    "bn": "উপভাষা",
+    "boards": "ঢা. বো. '১৯; রা. বো. '২৫"
+  },
+  {
+    "en": "Dialogue",
+    "bn": "সংলাপ, কথোপকথন",
+    "boards": ""
+  },
+  {
+    "en": "Diplomacy",
+    "bn": "কূটনীতি",
+    "boards": ""
+  },
+  {
+    "en": "Diplomat",
+    "bn": "কূটনীতিক",
+    "boards": ""
+  },
+  {
+    "en": "Diplomatic",
+    "bn": "কূটনৈতিক",
+    "boards": ""
+  },
+  {
+    "en": "Documentary",
+    "bn": "প্রামাণ্য",
+    "boards": ""
+  },
+  {
+    "en": "Donation",
+    "bn": "অনুদান, চাঁদা",
+    "boards": ""
+  },
+  {
+    "en": "Dowry",
+    "bn": "যৌতুক, বরপণ",
+    "boards": ""
+  },
+  {
+    "en": "Duel",
+    "bn": "দ্বন্দ্বযুদ্ধ",
+    "boards": ""
+  },
+  {
+    "en": "Dynamic",
+    "bn": "গতিশীল, প্রাণবন্ত",
+    "boards": ""
+  },
+  {
+    "en": "E-mail",
+    "bn": "ই-মেইল, বৈদ্যুতিন চিঠি",
+    "boards": ""
+  },
+  {
+    "en": "Edition",
+    "bn": "সংস্করণ",
+    "boards": ""
+  },
+  {
+    "en": "Editor",
+    "bn": "সম্পাদক",
+    "boards": ""
+  },
+  {
+    "en": "Embargo",
+    "bn": "নিষেধাজ্ঞা, অবরোধ",
+    "boards": ""
+  },
+  {
+    "en": "Encyclopedia",
+    "bn": "বিশ্বকোষ, জ্ঞানকোষ",
+    "boards": "ঢা. বো. '১২, '১০"
+  },
+  {
+    "en": "Endorsement",
+    "bn": "পৃষ্ঠাঙ্কন, সত্যায়ন",
+    "boards": ""
+  },
+  {
+    "en": "Epitaph",
+    "bn": "সমাধিলিপি",
+    "boards": "ঢা. বো. '১৭; সি. বো. '১৯"
+  },
+  {
+    "en": "Equality",
+    "bn": "সমতা",
+    "boards": "রা. বো. '২৪; ব. বো. '১২"
+  },
+  {
+    "en": "Equation",
+    "bn": "সমীকরণ",
+    "boards": ""
+  },
+  {
+    "en": "Era",
+    "bn": "যুগ",
+    "boards": ""
+  },
+  {
+    "en": "Estimate",
+    "bn": "মূল্যানুমান, প্রাক্কলন",
+    "boards": ""
+  },
+  {
+    "en": "Ethics",
+    "bn": "নীতিবিদ্যা",
+    "boards": ""
+  },
+  {
+    "en": "Evaluation",
+    "bn": "মূল্যায়ন",
+    "boards": ""
+  },
+  {
+    "en": "Exchange",
+    "bn": "পরিবর্তন, বিনিময়",
+    "boards": ""
+  },
+  {
+    "en": "Excuse",
+    "bn": "কৈফিয়ত, ক্ষমা করা",
+    "boards": ""
+  },
+  {
+    "en": "Executive",
+    "bn": "পরিচালক, নির্বাহী, নির্বাহিক",
+    "boards": ""
+  },
+  {
+    "en": "Existentialism",
+    "bn": "অস্তিত্ববাদ",
+    "boards": ""
+  },
+  {
+    "en": "Exit",
+    "bn": "প্রস্থান",
+    "boards": ""
+  },
+  {
+    "en": "Expert",
+    "bn": "দক্ষ, বিশেষজ্ঞ",
+    "boards": ""
+  },
+  {
+    "en": "External",
+    "bn": "বহিঃস্থ",
+    "boards": ""
+  },
+  {
+    "en": "Eye-wash",
+    "bn": "ধোঁকা",
+    "boards": ""
+  },
+  {
+    "en": "Eye-witness",
+    "bn": "প্রত্যক্ষদর্শী",
+    "boards": ""
+  },
+  {
+    "en": "Face Value",
+    "bn": "অভিহিত মূল্য",
+    "boards": ""
+  },
+  {
+    "en": "Fact",
+    "bn": "ঘটনা",
+    "boards": ""
+  },
+  {
+    "en": "Faculty",
+    "bn": "অনুষদ",
+    "boards": ""
+  },
+  {
+    "en": "Famine",
+    "bn": "দুর্ভিক্ষ",
+    "boards": ""
+  },
+  {
+    "en": "Farce",
+    "bn": "প্রহসন",
+    "boards": ""
+  },
+  {
+    "en": "Fascism",
+    "bn": "ফ্যাসিবাদ",
+    "boards": ""
+  },
+  {
+    "en": "Feudal",
+    "bn": "সামন্ত",
+    "boards": ""
+  },
+  {
+    "en": "Fiction",
+    "bn": "রূপকথা, কল্পকাহিনি",
+    "boards": ""
+  },
+  {
+    "en": "File",
+    "bn": "নথি",
+    "boards": ""
+  },
+  {
+    "en": "Fine Arts",
+    "bn": "ললিতকলা, চারুকলা",
+    "boards": ""
+  },
+  {
+    "en": "Fire-Brigade",
+    "bn": "দমকল বাহিনী",
+    "boards": "ব. বো. '১২; দি. বো. '১৯"
+  },
+  {
+    "en": "First Aid",
+    "bn": "প্রাথমিক চিকিৎসা",
+    "boards": ""
+  },
+  {
+    "en": "Fitness",
+    "bn": "সুস্থতা",
+    "boards": ""
+  },
+  {
+    "en": "Flat Rate",
+    "bn": "সাধারণ মূল্য, একদর",
+    "boards": ""
+  },
+  {
+    "en": "Forecast",
+    "bn": "পূর্বাভাস, পূর্বানুমান",
+    "boards": "ঢা. বো. '১৭, '১৬"
+  },
+  {
+    "en": "Foreign Aid",
+    "bn": "বৈদেশিক সাহায্য",
+    "boards": "দি. বো. '২৪"
+  },
+  {
+    "en": "Free Market",
+    "bn": "খোলাবাজার, মুক্তবাজার",
+    "boards": ""
+  },
+  {
+    "en": "Fundamental",
+    "bn": "প্রধান, মৌলিক",
+    "boards": "য. বো. '২৪; কু. বো. '২৫"
+  },
+  {
+    "en": "Fundamental principle",
+    "bn": "মূলতত্ত্ব",
+    "boards": ""
+  },
+  {
+    "en": "Gain",
+    "bn": "লাভ, অর্জন",
+    "boards": ""
+  },
+  {
+    "en": "Galaxy",
+    "bn": "(জ্যোতিষ্ক) ছায়াপথ",
+    "boards": ""
+  },
+  {
+    "en": "Generation",
+    "bn": "প্রজন্ম",
+    "boards": ""
+  },
+  {
+    "en": "Geography",
+    "bn": "ভূগোলবিদ্যা",
+    "boards": ""
+  },
+  {
+    "en": "Geology",
+    "bn": "ভূবিদ্যা",
+    "boards": ""
+  },
+  {
+    "en": "Get up",
+    "bn": "অঙ্গসজ্জা",
+    "boards": ""
+  },
+  {
+    "en": "Gist",
+    "bn": "সারমর্ম, সারকথা",
+    "boards": ""
+  },
+  {
+    "en": "Global",
+    "bn": "বিশ্বব্যাপী, বৈশ্বিক",
+    "boards": "ঢা. বো. '২৫, '১৭"
+  },
+  {
+    "en": "Globalization",
+    "bn": "বিশ্বায়ন",
+    "boards": ""
+  },
+  {
+    "en": "Goods",
+    "bn": "মালামাল, পণ্য",
+    "boards": "কু. বো. '২৩"
+  },
+  {
+    "en": "Goodwill",
+    "bn": "প্রতিষ্ঠাধিকার, শুভেচ্ছা, ব্যবসায়িক সুনাম",
+    "boards": ""
+  },
+  {
+    "en": "Governing Body",
+    "bn": "শাসকবর্গ, পরিচালকবর্গ",
+    "boards": ""
+  },
+  {
+    "en": "Grade",
+    "bn": "পর্যায়, মাত্রা",
+    "boards": ""
+  },
+  {
+    "en": "Graduate",
+    "bn": "স্নাতক",
+    "boards": ""
+  },
+  {
+    "en": "Grand",
+    "bn": "মহা, মহান",
+    "boards": ""
+  },
+  {
+    "en": "Grant",
+    "bn": "অনুদান, অনুমোদন",
+    "boards": ""
+  },
+  {
+    "en": "Gratuity",
+    "bn": "পারিতোষিক ভাতা (অবসর গ্রহণকালে এককালীন পুরস্কার)",
+    "boards": ""
+  },
+  {
+    "en": "Green House",
+    "bn": "সবুজ বলয়",
+    "boards": ""
+  },
+  {
+    "en": "Green Room",
+    "bn": "সাজঘর",
+    "boards": ""
+  },
+  {
+    "en": "Guard",
+    "bn": "রক্ষী",
+    "boards": ""
+  },
+  {
+    "en": "Guilty",
+    "bn": "অপরাধী",
+    "boards": ""
+  },
+  {
+    "en": "Gunny",
+    "bn": "চট",
+    "boards": ""
+  },
+  {
+    "en": "Hand-bill",
+    "bn": "প্রচারপত্র, ইশতাহার",
+    "boards": ""
+  },
+  {
+    "en": "Handicraft",
+    "bn": "হস্তশিল্প",
+    "boards": ""
+  },
+  {
+    "en": "Headline",
+    "bn": "শিরোনাম",
+    "boards": ""
+  },
+  {
+    "en": "Highway",
+    "bn": "মহাসড়ক",
+    "boards": ""
+  },
+  {
+    "en": "Hoarder",
+    "bn": "মজুতদার",
+    "boards": ""
+  },
+  {
+    "en": "Home Ministry",
+    "bn": "স্বরাষ্ট্র মন্ত্রণালয়",
+    "boards": ""
+  },
+  {
+    "en": "Honorarium",
+    "bn": "সম্মানী, পারিতোষিক, দক্ষিণা",
+    "boards": ""
+  },
+  {
+    "en": "Honorary",
+    "bn": "অবৃত্তিক, অবৈতনিক, সম্মানসূচক",
+    "boards": ""
+  },
+  {
+    "en": "Hood",
+    "bn": "বোরকা, ঢাকনা",
+    "boards": ""
+  },
+  {
+    "en": "Horticulture",
+    "bn": "উদ্যানবিদ্যা",
+    "boards": ""
+  },
+  {
+    "en": "Hostage",
+    "bn": "জিম্মি, শরীরবন্ধক",
+    "boards": "ঢা. বো. '২৪, '১৫"
+  },
+  {
+    "en": "Hostile",
+    "bn": "শত্রুভাবাপন্ন, বৈরী",
+    "boards": ""
+  },
+  {
+    "en": "Humanity",
+    "bn": "মানবতা",
+    "boards": ""
+  },
+  {
+    "en": "Hybrid",
+    "bn": "সংকর, দোঁ-আশলা",
+    "boards": ""
+  },
+  {
+    "en": "Hygiene",
+    "bn": "স্বাস্থ্যবিজ্ঞান, স্বাস্থ্যবিধি",
+    "boards": "সকল বোর্ড '১৮"
+  },
+  {
+    "en": "Idealism",
+    "bn": "ভাববাদ, আদর্শবাদ",
+    "boards": ""
+  },
+  {
+    "en": "Idiom",
+    "bn": "বাগধারা",
+    "boards": ""
+  },
+  {
+    "en": "Immigrant",
+    "bn": "অভিবাসী",
+    "boards": ""
+  },
+  {
+    "en": "Immigration",
+    "bn": "অভিবাসন",
+    "boards": ""
+  },
+  {
+    "en": "Impeachment",
+    "bn": "অভিশংসন",
+    "boards": ""
+  },
+  {
+    "en": "Index",
+    "bn": "নির্দেশক, নির্ঘণ্ট, সূচক",
+    "boards": "ঢা. বো. '২৩"
+  },
+  {
+    "en": "Initial",
+    "bn": "প্রারম্ভিক, আদি",
+    "boards": ""
+  },
+  {
+    "en": "Instalment",
+    "bn": "স্কন্দ্ব, কিস্তি",
+    "boards": ""
+  },
+  {
+    "en": "Interim",
+    "bn": "মধ্যকালীন, অন্তর্বর্তী",
+    "boards": ""
+  },
+  {
+    "en": "Interpreter",
+    "bn": "দোভাষী",
+    "boards": ""
+  },
+  {
+    "en": "Interview",
+    "bn": "সাক্ষাৎকার",
+    "boards": ""
+  },
+  {
+    "en": "Investigation",
+    "bn": "অনুসন্ধান, তদন্ত",
+    "boards": ""
+  },
+  {
+    "en": "Invitation card",
+    "bn": "আমন্ত্রণপত্র",
+    "boards": ""
+  },
+  {
+    "en": "Irrigation",
+    "bn": "জলসেচ, সেচন, সেচ",
+    "boards": ""
+  },
+  {
+    "en": "Isolation",
+    "bn": "সঙ্গনিরোধ, বিচ্ছিন্নতা",
+    "boards": ""
+  },
+  {
+    "en": "Jail",
+    "bn": "কারাগার, জেলখানা",
+    "boards": ""
+  },
+  {
+    "en": "Jail-code",
+    "bn": "কারাবিধি",
+    "boards": ""
+  },
+  {
+    "en": "Journal",
+    "bn": "পত্রিকা",
+    "boards": ""
+  },
+  {
+    "en": "Judgement",
+    "bn": "রায়, বিচার",
+    "boards": ""
+  },
+  {
+    "en": "Justice",
+    "bn": "ন্যায়বিচার",
+    "boards": ""
+  },
+  {
+    "en": "Key word",
+    "bn": "মূল শব্দ",
+    "boards": ""
+  },
+  {
+    "en": "Kindergarten",
+    "bn": "শিশুশালা",
+    "boards": ""
+  },
+  {
+    "en": "Kingdom",
+    "bn": "রাজ্য",
+    "boards": ""
+  },
+  {
+    "en": "Landscape",
+    "bn": "ভূ-দৃশ্য",
+    "boards": ""
+  },
+  {
+    "en": "Latitude",
+    "bn": "অক্ষাংশ",
+    "boards": ""
+  },
+  {
+    "en": "Leaflet",
+    "bn": "প্রচারপত্র",
+    "boards": ""
+  },
+  {
+    "en": "Leap-year",
+    "bn": "অধিবর্ষ",
+    "boards": ""
+  },
+  {
+    "en": "Lease",
+    "bn": "ইজারা",
+    "boards": ""
+  },
+  {
+    "en": "Legend",
+    "bn": "কিংবদন্তি",
+    "boards": "ঢা. বো. '২৫, '১৬"
+  },
+  {
+    "en": "Lender",
+    "bn": "মহাজন, ঋণদাতা",
+    "boards": ""
+  },
+  {
+    "en": "Liberal",
+    "bn": "উদার",
+    "boards": ""
+  },
+  {
+    "en": "Lien",
+    "bn": "পূর্বস্বত্ব",
+    "boards": ""
+  },
+  {
+    "en": "Light year",
+    "bn": "আলোকবর্ষ",
+    "boards": ""
+  },
+  {
+    "en": "List",
+    "bn": "তালিকা",
+    "boards": ""
+  },
+  {
+    "en": "Literal",
+    "bn": "আক্ষরিক",
+    "boards": ""
+  },
+  {
+    "en": "Lock-up",
+    "bn": "সংরোধগৃহ, বন্দিখানা, হাজত",
+    "boards": ""
+  },
+  {
+    "en": "Mail",
+    "bn": "ডাক",
+    "boards": ""
+  },
+  {
+    "en": "Manifesto",
+    "bn": "ইশতেহার",
+    "boards": "ঢা. বো. '১১, '০৮"
+  },
+  {
+    "en": "Manpower",
+    "bn": "জনশক্তি",
+    "boards": ""
+  },
+  {
+    "en": "Manuscript",
+    "bn": "পাণ্ডুলিপি",
+    "boards": ""
+  },
+  {
+    "en": "Marketing",
+    "bn": "বিপণন",
+    "boards": ""
+  },
+  {
+    "en": "Mass education",
+    "bn": "গণশিক্ষা",
+    "boards": ""
+  },
+  {
+    "en": "Masure",
+    "bn": "কুঁড়েঘর",
+    "boards": ""
+  },
+  {
+    "en": "Mayor",
+    "bn": "নগরপাল, নগরপিতা",
+    "boards": ""
+  },
+  {
+    "en": "Memorandum",
+    "bn": "স্মারকলিপি",
+    "boards": ""
+  },
+  {
+    "en": "Migration",
+    "bn": "অভিবাসন, প্রব্রজন",
+    "boards": ""
+  },
+  {
+    "en": "Millennium",
+    "bn": "সহস্রাব্দ, সহস্রবার্ষিক",
+    "boards": ""
+  },
+  {
+    "en": "Mineral",
+    "bn": "খনিজ, খনিজ-দ্রব্য, ঔপল, মণিক",
+    "boards": ""
+  },
+  {
+    "en": "Misconduct",
+    "bn": "অসদাচারণ",
+    "boards": ""
+  },
+  {
+    "en": "Miscreant",
+    "bn": "দুষ্কৃতকারী",
+    "boards": ""
+  },
+  {
+    "en": "Monarchy",
+    "bn": "রাজতন্ত্র",
+    "boards": ""
+  },
+  {
+    "en": "Motion",
+    "bn": "গতি",
+    "boards": ""
+  },
+  {
+    "en": "Museum",
+    "bn": "জাদুঘর",
+    "boards": ""
+  },
+  {
+    "en": "Myth",
+    "bn": "পুরাণকথা, রূপকথা",
+    "boards": ""
+  },
+  {
+    "en": "Mythology",
+    "bn": "পৌরাণিক কাহিনি, পুরাণ",
+    "boards": ""
+  },
+  {
+    "en": "National Assembly",
+    "bn": "জাতীয় পরিষদ",
+    "boards": ""
+  },
+  {
+    "en": "Nationalism",
+    "bn": "জাতীয়তাবাদ",
+    "boards": ""
+  },
+  {
+    "en": "Nebula",
+    "bn": "নীহারিকা",
+    "boards": ""
+  },
+  {
+    "en": "Neutral",
+    "bn": "নিরপেক্ষ",
+    "boards": ""
+  },
+  {
+    "en": "Newspaper",
+    "bn": "সংবাদপত্র",
+    "boards": ""
+  },
+  {
+    "en": "Nomination",
+    "bn": "মনোনয়ন",
+    "boards": ""
+  },
+  {
+    "en": "Non-aligned",
+    "bn": "জোটনিরপেক্ষ",
+    "boards": ""
+  },
+  {
+    "en": "Note",
+    "bn": "মন্তব্য, সংক্ষিপ্ত বিবরণ, টোকা",
+    "boards": ""
+  },
+  {
+    "en": "Notice board",
+    "bn": "বিজ্ঞপ্তি ফলক",
+    "boards": ""
+  },
+  {
+    "en": "Notification",
+    "bn": "অধিসূচনা, প্রজ্ঞাপন",
+    "boards": ""
+  },
+  {
+    "en": "Nursery",
+    "bn": "শিশুশালা, তত্ত্বশালা",
+    "boards": ""
+  },
+  {
+    "en": "Nutrition",
+    "bn": "পুষ্টি, পুষ্টিবিজ্ঞান",
+    "boards": ""
+  },
+  {
+    "en": "Oath",
+    "bn": "শপথ",
+    "boards": "ব. বো. '২২"
+  },
+  {
+    "en": "Obligatory",
+    "bn": "বাধ্যতামূলক",
+    "boards": ""
+  },
+  {
+    "en": "Octave",
+    "bn": "অষ্টক (ছন্দ), সনেটের প্রথম আটচরণ",
+    "boards": ""
+  },
+  {
+    "en": "Option",
+    "bn": "ইচ্ছা, পছন্দ করা বা বেছে নেওয়ার ক্ষমতা",
+    "boards": ""
+  },
+  {
+    "en": "Optional",
+    "bn": "ঐচ্ছিক",
+    "boards": ""
+  },
+  {
+    "en": "Orbit",
+    "bn": "কক্ষপথ",
+    "boards": ""
+  },
+  {
+    "en": "Ordinance",
+    "bn": "অধ্যাদেশ",
+    "boards": ""
+  },
+  {
+    "en": "Organization",
+    "bn": "সংগঠন, ব্যবস্থা সংগঠন",
+    "boards": ""
+  },
+  {
+    "en": "Para",
+    "bn": "অনুচ্ছেদ",
+    "boards": ""
+  },
+  {
+    "en": "Parade",
+    "bn": "কুচকাওয়াজ",
+    "boards": ""
+  },
+  {
+    "en": "Paradox",
+    "bn": "কূটাভাস, কূট",
+    "boards": ""
+  },
+  {
+    "en": "Parole",
+    "bn": "বচন, সংগর, না পালানোর শর্তে বন্দিমুক্তি",
+    "boards": ""
+  },
+  {
+    "en": "Pass-Word",
+    "bn": "সংকেত, গুপ্ত শব্দ",
+    "boards": ""
+  },
+  {
+    "en": "Passport",
+    "bn": "ছাড়পত্র",
+    "boards": ""
+  },
+  {
+    "en": "Pay Bill",
+    "bn": "বেতন বিষয়ক হিসাব",
+    "boards": ""
+  },
+  {
+    "en": "Pay Order",
+    "bn": "পাওনা দেওয়ার নির্দেশ",
+    "boards": ""
+  },
+  {
+    "en": "Pay-slip",
+    "bn": "বেতনের হিসাবপত্র",
+    "boards": ""
+  },
+  {
+    "en": "Payee",
+    "bn": "পাওনাদার",
+    "boards": ""
+  },
+  {
+    "en": "Pen-friend",
+    "bn": "পত্র-মিতা",
+    "boards": ""
+  },
+  {
+    "en": "Penal Code",
+    "bn": "শাস্তিদানের বিধি",
+    "boards": ""
+  },
+  {
+    "en": "Pension",
+    "bn": "অবসর ভাতা",
+    "boards": ""
+  },
+  {
+    "en": "Phonetics",
+    "bn": "ধ্বনিবিজ্ঞান, ধ্বনিতত্ত্ব",
+    "boards": ""
+  },
+  {
+    "en": "Pioneer",
+    "bn": "পথিকৃৎ",
+    "boards": ""
+  },
+  {
+    "en": "Plant",
+    "bn": "উদ্ভিদ, পাদপ, জনিত্র",
+    "boards": ""
+  },
+  {
+    "en": "Plosive",
+    "bn": "স্পষ্ট ধ্বনি, স্পৃষ্ট ধ্বনি",
+    "boards": ""
+  },
+  {
+    "en": "Pole",
+    "bn": "মেরু",
+    "boards": ""
+  },
+  {
+    "en": "Pollution",
+    "bn": "দূষণ",
+    "boards": ""
+  },
+  {
+    "en": "Portal",
+    "bn": "সিংহদ্বার, তোরণ, ফটক",
+    "boards": ""
+  },
+  {
+    "en": "Postmark",
+    "bn": "ডাকঘরের ছাপ",
+    "boards": ""
+  },
+  {
+    "en": "Postpaid",
+    "bn": "পরে প্রদত্ত",
+    "boards": ""
+  },
+  {
+    "en": "Power House",
+    "bn": "বিদ্যুৎকেন্দ্র",
+    "boards": ""
+  },
+  {
+    "en": "Prefix",
+    "bn": "উপসর্গ",
+    "boards": ""
+  },
+  {
+    "en": "Prepaid",
+    "bn": "আগাম প্রদত্ত",
+    "boards": ""
+  },
+  {
+    "en": "Prescription",
+    "bn": "ব্যবস্থাপত্র",
+    "boards": ""
+  },
+  {
+    "en": "President",
+    "bn": "রাষ্ট্রপতি, সভাপতি",
+    "boards": ""
+  },
+  {
+    "en": "Prime",
+    "bn": "মৌলিক, মুখ্য, প্রধান",
+    "boards": ""
+  },
+  {
+    "en": "Primitive",
+    "bn": "আদিম, প্রাক্কালীন",
+    "boards": ""
+  },
+  {
+    "en": "Principle",
+    "bn": "তত্ত্ব, নীতি, মূলসূত্র",
+    "boards": "য. বো. '১৯"
+  },
+  {
+    "en": "Proctor",
+    "bn": "প্ররক্ষক",
+    "boards": ""
+  },
+  {
+    "en": "Provost",
+    "bn": "প্রাধ্যক্ষ",
+    "boards": "কু. বো. '২২"
+  },
+  {
+    "en": "Public",
+    "bn": "জনসাধারণ",
+    "boards": ""
+  },
+  {
+    "en": "Public Fund",
+    "bn": "সরকারি তহবিল",
+    "boards": ""
+  },
+  {
+    "en": "Public Opinion",
+    "bn": "জনমত",
+    "boards": ""
+  },
+  {
+    "en": "Public Service",
+    "bn": "জনসেবা",
+    "boards": ""
+  },
+  {
+    "en": "Public Works",
+    "bn": "গণপূর্ত",
+    "boards": ""
+  },
+  {
+    "en": "Publication",
+    "bn": "প্রকাশনা, প্রকাশ",
+    "boards": ""
+  },
+  {
+    "en": "Publicity",
+    "bn": "প্রচার",
+    "boards": ""
+  },
+  {
+    "en": "Quack",
+    "bn": "হাতুড়ে",
+    "boards": ""
+  },
+  {
+    "en": "Quality",
+    "bn": "গুণ",
+    "boards": ""
+  },
+  {
+    "en": "Quantity",
+    "bn": "পরিমাণ, রাশি মাত্রা",
+    "boards": ""
+  },
+  {
+    "en": "Quarantine",
+    "bn": "সঙ্গরোধ",
+    "boards": ""
+  },
+  {
+    "en": "Quarter",
+    "bn": "এক-চতুর্থাংশ, পাদ",
+    "boards": ""
+  },
+  {
+    "en": "Quarterly",
+    "bn": "ত্রৈমাসিক",
+    "boards": ""
+  },
+  {
+    "en": "Query",
+    "bn": "জিজ্ঞাসা, প্রশ্ন",
+    "boards": ""
+  },
+  {
+    "en": "Queue",
+    "bn": "সারি",
+    "boards": ""
+  },
+  {
+    "en": "Quota",
+    "bn": "যথাংশ, বরাদ্দ, নির্দিষ্ট, নির্ধারিত অংশ",
+    "boards": ""
+  },
+  {
+    "en": "Racism",
+    "bn": "জাত্যভিমান",
+    "boards": ""
+  },
+  {
+    "en": "Radio",
+    "bn": "বেতারযন্ত্র",
+    "boards": ""
+  },
+  {
+    "en": "Range",
+    "bn": "পাল্লা",
+    "boards": ""
+  },
+  {
+    "en": "Rank",
+    "bn": "পদমর্যাদা",
+    "boards": ""
+  },
+  {
+    "en": "Ratio",
+    "bn": "অনুপাত",
+    "boards": ""
+  },
+  {
+    "en": "Rational",
+    "bn": "যৌক্তিক, বিচারক্ষম",
+    "boards": ""
+  },
+  {
+    "en": "Realism",
+    "bn": "বাস্তববাদ",
+    "boards": ""
+  },
+  {
+    "en": "Reality",
+    "bn": "বাস্তব, বাস্তবতা",
+    "boards": ""
+  },
+  {
+    "en": "Recommend",
+    "bn": "সুপারিশ করা",
+    "boards": ""
+  },
+  {
+    "en": "Record room",
+    "bn": "লেখ্যাগার, মহাফেজখানা",
+    "boards": ""
+  },
+  {
+    "en": "Referendum",
+    "bn": "জনমত গ্রহণ, প্রত্যক্ষ ভোটে",
+    "boards": ""
+  },
+  {
+    "en": "Reform",
+    "bn": "সংস্কার, সংস্কার করা",
+    "boards": ""
+  },
+  {
+    "en": "Refugee",
+    "bn": "উদ্বাস্তু, বাস্তুহারা",
+    "boards": ""
+  },
+  {
+    "en": "Regiment",
+    "bn": "সৈন্যদল",
+    "boards": ""
+  },
+  {
+    "en": "Registration",
+    "bn": "নিবন্ধন, নথিভূক্তি",
+    "boards": ""
+  },
+  {
+    "en": "Relationship",
+    "bn": "সম্পর্ক",
+    "boards": ""
+  },
+  {
+    "en": "Remark",
+    "bn": "মন্তব্য",
+    "boards": ""
+  },
+  {
+    "en": "Renew",
+    "bn": "নবায়ন",
+    "boards": ""
+  },
+  {
+    "en": "Republic",
+    "bn": "প্রজাতন্ত্র",
+    "boards": ""
+  },
+  {
+    "en": "Retirement",
+    "bn": "অবসর",
+    "boards": ""
+  },
+  {
+    "en": "Revenue",
+    "bn": "রাজস্ব",
+    "boards": ""
+  },
+  {
+    "en": "Rotation",
+    "bn": "আবর্তন",
+    "boards": ""
+  },
+  {
+    "en": "Sabotage",
+    "bn": "অন্তর্ঘাত, কূটাঘাত, অন্তর্ঘাতী বা কূটাঘাতী কার্য",
+    "boards": ""
+  },
+  {
+    "en": "Salary",
+    "bn": "বেতন",
+    "boards": ""
+  },
+  {
+    "en": "Sanction",
+    "bn": "অনুমোদন, মঞ্জুরি",
+    "boards": ""
+  },
+  {
+    "en": "Saving certificate",
+    "bn": "সঞ্চয়পত্র",
+    "boards": ""
+  },
+  {
+    "en": "Scale",
+    "bn": "মাপদণ্ড, মান, ক্রম, তুলাদণ্ড, শল্ক",
+    "boards": ""
+  },
+  {
+    "en": "Secondary",
+    "bn": "মাধ্যমিক, অপ্রধান, গৌণ, অনু, অনুসম্ভূত",
+    "boards": ""
+  },
+  {
+    "en": "Secretary",
+    "bn": "সচিব",
+    "boards": ""
+  },
+  {
+    "en": "Secular",
+    "bn": "ধর্মনিরপেক্ষ",
+    "boards": ""
+  },
+  {
+    "en": "Session",
+    "bn": "অধিবেশন",
+    "boards": ""
+  },
+  {
+    "en": "Sestet",
+    "bn": "ষট্ক (ছন্দ)",
+    "boards": ""
+  },
+  {
+    "en": "Settlement",
+    "bn": "নিষ্পত্তি",
+    "boards": ""
+  },
+  {
+    "en": "Signal",
+    "bn": "সংকেত",
+    "boards": ""
+  },
+  {
+    "en": "Significant",
+    "bn": "সার্থক, গুরুত্বপূর্ণ",
+    "boards": ""
+  },
+  {
+    "en": "Skill",
+    "bn": "দক্ষতা, পটুতা",
+    "boards": ""
+  },
+  {
+    "en": "Skull",
+    "bn": "করোটি",
+    "boards": ""
+  },
+  {
+    "en": "Specialist",
+    "bn": "বিশেষজ্ঞ",
+    "boards": ""
+  },
+  {
+    "en": "Spokesman",
+    "bn": "মুখপাত্র",
+    "boards": ""
+  },
+  {
+    "en": "Sponsor",
+    "bn": "পোষক, প্রতিপালক",
+    "boards": ""
+  },
+  {
+    "en": "Stamp",
+    "bn": "পদাঘাত, ডাকটিকেট, সিলমোহর",
+    "boards": ""
+  },
+  {
+    "en": "Stock-market",
+    "bn": "শেয়ারবাজার",
+    "boards": ""
+  },
+  {
+    "en": "Study",
+    "bn": "শিক্ষা, অধ্যয়ন",
+    "boards": ""
+  },
+  {
+    "en": "Subsidy",
+    "bn": "ভর্তুকি",
+    "boards": ""
+  },
+  {
+    "en": "Superintendent",
+    "bn": "অধীক্ষক",
+    "boards": ""
+  },
+  {
+    "en": "Surety",
+    "bn": "জামানত",
+    "boards": ""
+  },
+  {
+    "en": "Surplus",
+    "bn": "আধিক্য, বাড়তি, উদ্বৃত্ত",
+    "boards": ""
+  },
+  {
+    "en": "Symbol",
+    "bn": "সংকেত, চিহ্ন, প্রতীক",
+    "boards": ""
+  },
+  {
+    "en": "Syntax",
+    "bn": "বাক্যতত্ত্ব",
+    "boards": ""
+  },
+  {
+    "en": "Tally",
+    "bn": "মিল, হিসাব, গণনা",
+    "boards": ""
+  },
+  {
+    "en": "Tax",
+    "bn": "কর",
+    "boards": ""
+  },
+  {
+    "en": "Termination",
+    "bn": "অবসান, সমাপ্তি",
+    "boards": ""
+  },
+  {
+    "en": "Terminology",
+    "bn": "পরিভাষা",
+    "boards": ""
+  },
+  {
+    "en": "Theory",
+    "bn": "সিদ্ধান্ত, বাদ, মত, তত্ত্ব",
+    "boards": ""
+  },
+  {
+    "en": "Thesis",
+    "bn": "গবেষণা সার, অভিসন্দর্ভ",
+    "boards": ""
+  },
+  {
+    "en": "Token",
+    "bn": "নিদর্শন, প্রতীক",
+    "boards": ""
+  },
+  {
+    "en": "Tradition",
+    "bn": "ঐতিহ্য",
+    "boards": ""
+  },
+  {
+    "en": "Training",
+    "bn": "প্রশিক্ষণ",
+    "boards": ""
+  },
+  {
+    "en": "Transparency",
+    "bn": "স্বচ্ছতা",
+    "boards": ""
+  },
+  {
+    "en": "Transport",
+    "bn": "পরিবহণ, চালান",
+    "boards": ""
+  },
+  {
+    "en": "Trial",
+    "bn": "বিচার",
+    "boards": ""
+  },
+  {
+    "en": "Tribunal",
+    "bn": "ন্যায়পীঠ",
+    "boards": ""
+  },
+  {
+    "en": "Undertaking",
+    "bn": "অঙ্গীকার, প্রতিশ্রুতি",
+    "boards": ""
+  },
+  {
+    "en": "Uniform",
+    "bn": "উর্দি, একরূপ",
+    "boards": ""
+  },
+  {
+    "en": "Union",
+    "bn": "সংঘ",
+    "boards": ""
+  },
+  {
+    "en": "Unskilled",
+    "bn": "অদক্ষ",
+    "boards": ""
+  },
+  {
+    "en": "Up-to-date",
+    "bn": "হালনাগাদ",
+    "boards": ""
+  },
+  {
+    "en": "Urban",
+    "bn": "পৌর, নগর",
+    "boards": ""
+  },
+  {
+    "en": "Urbanization",
+    "bn": "নগরায়ণ",
+    "boards": ""
+  },
+  {
+    "en": "Vacation",
+    "bn": "অবকাশ, ছুটি",
+    "boards": ""
+  },
+  {
+    "en": "Vaccine",
+    "bn": "টিকা",
+    "boards": ""
+  },
+  {
+    "en": "Valid",
+    "bn": "সিদ্ধ, বৈধ",
+    "boards": ""
+  },
+  {
+    "en": "Validity",
+    "bn": "বৈধতা",
+    "boards": ""
+  },
+  {
+    "en": "Vehicle",
+    "bn": "যান, যানবাহন",
+    "boards": ""
+  },
+  {
+    "en": "Venue",
+    "bn": "স্থান, নির্দিষ্ট স্থান",
+    "boards": ""
+  },
+  {
+    "en": "Vice-versa",
+    "bn": "তদ্বিপরীত",
+    "boards": ""
+  },
+  {
+    "en": "Violation",
+    "bn": "অতিক্রমণ, লঙ্ঘন",
+    "boards": ""
+  },
+  {
+    "en": "Virus",
+    "bn": "ভাইরাস",
+    "boards": ""
+  },
+  {
+    "en": "Vision",
+    "bn": "দৃষ্টি, দর্শন",
+    "boards": ""
+  },
+  {
+    "en": "Viva-voce",
+    "bn": "মৌখিক পরীক্ষা",
+    "boards": ""
+  },
+  {
+    "en": "Vocabulary",
+    "bn": "শব্দসংখ্যা, শব্দভাণ্ডার",
+    "boards": ""
+  },
+  {
+    "en": "Vocation",
+    "bn": "বৃত্তি",
+    "boards": ""
+  },
+  {
+    "en": "Walk",
+    "bn": "হাঁটাচলা",
+    "boards": ""
+  },
+  {
+    "en": "Walkout",
+    "bn": "সভাবর্জন",
+    "boards": ""
+  },
+  {
+    "en": "War Crime",
+    "bn": "যুদ্ধাপরাধ",
+    "boards": ""
+  },
+  {
+    "en": "War Criminal",
+    "bn": "যুদ্ধাপরাধী",
+    "boards": ""
+  },
+  {
+    "en": "Weekend",
+    "bn": "সাপ্তাহিক কাল",
+    "boards": ""
+  },
+  {
+    "en": "White Paper",
+    "bn": "শ্বেতপত্র",
+    "boards": ""
+  },
+  {
+    "en": "Will",
+    "bn": "সংকল্প, ইষ্টিপত্র, অভিলাষ, ইচ্ছাশক্তি",
+    "boards": ""
+  },
+  {
+    "en": "Wit",
+    "bn": "বুদ্ধি, রসিকতা",
+    "boards": ""
+  },
+  {
+    "en": "Witness",
+    "bn": "সাক্ষী",
+    "boards": ""
+  },
+  {
+    "en": "Works",
+    "bn": "কারখানা",
+    "boards": ""
+  },
+  {
+    "en": "Workshop",
+    "bn": "কারখানা, কর্মশালা",
+    "boards": ""
+  },
+  {
+    "en": "Worship",
+    "bn": "পূজা",
+    "boards": ""
+  },
+  {
+    "en": "Wrist Watch",
+    "bn": "হাতঘড়ি",
+    "boards": ""
+  },
+  {
+    "en": "X-ray",
+    "bn": "রঞ্জনরশ্মি",
+    "boards": ""
+  },
+  {
+    "en": "Year book",
+    "bn": "বর্ষপঞ্জি",
+    "boards": ""
+  },
+  {
+    "en": "Zodiac",
+    "bn": "রাশিচক্র",
+    "boards": ""
+  },
+  {
+    "en": "Zonal Office",
+    "bn": "আঞ্চলিক কার্যালয়",
+    "boards": ""
+  },
+  {
+    "en": "Zone",
+    "bn": "স্থান, অঞ্চল, বলয়, মণ্ডল, মেখলা",
+    "boards": ""
+  },
+  {
+    "en": "Zoom",
+    "bn": "বিমানের খাড়া উড্ডয়ন বা গুরুগম্ভীর বোঁ বোঁ শব্দ",
+    "boards": ""
+  }
+]

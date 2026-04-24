@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বাক্যতত্ত্ব | বাংলা ২য় পত্র</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.maateen.me/bangla/font.css" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../topic-css/syntax.css">
+</head>
+<body class="theme-syntax">
+    
+    <div id="navbar-placeholder"></div>
+
+    <main class="topic-main">
+        <header class="topic-hero">
+            <div class="hero-wave-bg"></div>
+            
+            <div class="hero-content glass-card">
+                <span class="topic-badge bn-text"><i data-lucide="wrap-text"></i> ব্যাকরণ: প্রশ্ন ৫</span>
+                <h1 class="bn-text">বাক্যতত্ত্ব</h1>
+                <p class="bn-text marks-info">এই অংশে মোট <strong>৫ নম্বর</strong> বরাদ্দ রয়েছে।</p>
+                <p class="bn-text hero-desc">সার্থক বাক্যের গুণ, গঠন অনুযায়ী বাক্যের প্রকারভেদ এবং নির্দেশ অনুসারে বাক্য রূপান্তরের নিয়মাবলি অনুশীলন করুন।</p>
+                
+                <div class="page-tabs bn-text">
+                    <button class="tab-btn bn-text active" data-target="rules-page">
+                        <i data-lucide="book-open"></i> (ক) নিয়মাবলি
+                    </button>
+                    <button class="tab-btn bn-text" data-target="practice-page">
+                        <i data-lucide="repeat"></i> (খ) বাক্য রূপান্তর
+                    </button>
+                </div>
+            </div>
+            <div class="hero-glow shape-1"></div>
+            <div class="hero-glow shape-2"></div>
+        </header>
+
+        <div class="pages-container">
+
+            <section id="rules-page" class="pseudo-page active">
+                <div class="container">
+                    <div class="section-header-inline">
+                        <h2 class="bn-text"><i data-lucide="book-open"></i> বাক্যতত্ত্বের নিয়মাবলি</h2>
+                        <p class="bn-text subtitle">বর্ণনামূলক প্রশ্ন: বাক্যের গঠন, গুণ ও প্রকারভেদ সম্পর্কিত প্রশ্ন</p>
+                    </div>
+                    
+                    <div class="rules-container">
+                        <div class="loading-state">
+                            <i data-lucide="loader-2" class="spin"></i>
+                            <p class="bn-text">তথ্য লোড হচ্ছে...</p>
+                        </div>
+                    </div>
+
+                    <div class="page-nav bottom-nav">
+                        <div></div> 
+                        <button class="nav-arrow bn-text" onclick="switchTab('practice-page')">
+                            পরবর্তী: বাক্য রূপান্তর <i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="practice-page" class="pseudo-page">
+                <div class="container">
+                    <div class="section-header-inline">
+                        <h2 class="bn-text"><i data-lucide="repeat"></i> বাক্য রূপান্তর</h2>
+                        <p class="bn-text subtitle">নির্দেশ অনুসারে প্রদত্ত বাক্যগুলোর রূপান্তর</p>
+                    </div>
+
+                    <div class="smart-toolbar">
+                        <div class="search-box">
+                            <i data-lucide="search" class="search-icon"></i>
+                            <input type="text" id="wordSearch" class="bn-text" placeholder="বাক্য বা নির্দেশ খুঁজুন...">
+                            <button id="clearSearch" class="clear-btn" aria-label="Clear Search"><i data-lucide="x"></i></button>
+                        </div>
+                        
+                        <div class="filter-group bn-text">
+                            <div class="filter-item">
+                                <i data-lucide="repeat"></i>
+                                <select id="typeFilter" class="bn-text">
+                                    <option value="all">সব নির্দেশ</option>
+                                    </select>
+                            </div>
+                            
+                            <div class="filter-item">
+                                <i data-lucide="building-2"></i>
+                                <select id="boardFilter" class="bn-text">
+                                    <option value="all">সব বোর্ড</option>
+                                    </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="word-grid" id="practice-grid">
+                         <div class="loading-state">
+                            <i data-lucide="loader-2" class="spin"></i>
+                            <p class="bn-text">অনুশীলন লোড হচ্ছে...</p>
+                        </div>
+                    </div>
+
+                    <div class="page-nav bottom-nav">
+                        <button class="nav-arrow bn-text" onclick="switchTab('rules-page')">
+                            <i data-lucide="arrow-left"></i> পূর্ববর্তী: নিয়মাবলি
+                        </button>
+                        <div></div> 
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script src="../js/include-navbar.js"></script>
+    <script src="../js/include-footer.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../topic-js/syntax.js"></script>
+</body>
+</html>

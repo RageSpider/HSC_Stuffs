@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অপপ্রয়োগ ও শুদ্ধ প্রয়োগ | বাংলা ২য় পত্র</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.maateen.me/bangla/font.css" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../topic-css/correction.css">
+</head>
+<body class="theme-correction">
+    
+    <div id="navbar-placeholder"></div>
+
+    <main class="topic-main">
+        <header class="topic-hero">
+            <div class="hero-paper-bg"></div>
+            
+            <div class="hero-content glass-card">
+                <span class="topic-badge bn-text"><i data-lucide="file-edit"></i> ব্যাকরণ: প্রশ্ন ৬</span>
+                <h1 class="bn-text">অপপ্রয়োগ ও শুদ্ধ প্রয়োগ</h1>
+                <p class="bn-text marks-info">এই অংশে মোট <strong>৫ নম্বর</strong> বরাদ্দ রয়েছে।</p>
+                <p class="bn-text hero-desc">বাক্যে পদের, পদবিন্যাসের বা বানানের অপপ্রয়োগগুলো চিহ্নিত করে সেগুলোর শুদ্ধ রূপ অনুশীলন করুন।</p>
+                
+                <div class="page-tabs bn-text">
+                    <button class="tab-btn bn-text active" data-target="sentence-page">
+                        <i data-lucide="text-cursor-input"></i> (ক) বাক্য শুদ্ধিকরণ
+                    </button>
+                    <button class="tab-btn bn-text" data-target="passage-page">
+                        <i data-lucide="align-left"></i> (খ) অনুচ্ছেদ শুদ্ধিকরণ
+                    </button>
+                </div>
+            </div>
+            <div class="hero-glow shape-1"></div>
+            <div class="hero-glow shape-2"></div>
+        </header>
+
+        <div class="pages-container">
+
+            <section id="sentence-page" class="pseudo-page active">
+                <div class="container">
+                    <div class="section-header-inline">
+                        <h2 class="bn-text"><i data-lucide="text-cursor-input"></i> বাক্য শুদ্ধিকরণ</h2>
+                        <p class="bn-text subtitle">প্রদত্ত অশুদ্ধ বাক্যগুলোর শুদ্ধ রূপ নির্দেশ</p>
+                    </div>
+
+                    <div class="smart-toolbar">
+                        <div class="search-box">
+                            <i data-lucide="search" class="search-icon"></i>
+                            <input type="text" id="sentenceSearch" class="bn-text" placeholder="অশুদ্ধ বা শুদ্ধ বাক্য খুঁজুন...">
+                            <button id="sentenceClearSearch" class="clear-btn" aria-label="Clear Search"><i data-lucide="x"></i></button>
+                        </div>
+                        
+                        <div class="filter-group bn-text">
+                            <div class="filter-item">
+                                <i data-lucide="building-2"></i>
+                                <select id="sentenceBoardFilter" class="bn-text">
+                                    <option value="all">সব বোর্ড</option>
+                                </select>
+                            </div>
+                            <div class="filter-item">
+                                <i data-lucide="calendar"></i>
+                                <select id="sentenceYearFilter" class="bn-text">
+                                    <option value="all">সব সাল</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="word-grid" id="sentence-grid">
+                         <div class="loading-state">
+                            <i data-lucide="loader-2" class="spin"></i>
+                            <p class="bn-text">তথ্য লোড হচ্ছে...</p>
+                        </div>
+                    </div>
+
+                    <div class="page-nav bottom-nav">
+                        <div></div> 
+                        <button class="nav-arrow bn-text" onclick="switchTab('passage-page')">
+                            পরবর্তী: অনুচ্ছেদ শুদ্ধিকরণ <i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="passage-page" class="pseudo-page">
+                <div class="container">
+                    <div class="section-header-inline">
+                        <h2 class="bn-text"><i data-lucide="align-left"></i> অনুচ্ছেদ শুদ্ধিকরণ</h2>
+                        <p class="bn-text subtitle">ভুল বানান ও অপপ্রয়োগযুক্ত অনুচ্ছেদ সংশোধন</p>
+                    </div>
+
+                    <div class="smart-toolbar">
+                        <div class="search-box">
+                            <i data-lucide="search" class="search-icon"></i>
+                            <input type="text" id="passageSearch" class="bn-text" placeholder="অনুচ্ছেদের যেকোনো শব্দ খুঁজুন...">
+                            <button id="passageClearSearch" class="clear-btn" aria-label="Clear Search"><i data-lucide="x"></i></button>
+                        </div>
+                        
+                        <div class="filter-group bn-text">
+                            <div class="filter-item">
+                                <i data-lucide="building-2"></i>
+                                <select id="passageBoardFilter" class="bn-text">
+                                    <option value="all">সব বোর্ড</option>
+                                </select>
+                            </div>
+                            <div class="filter-item">
+                                <i data-lucide="calendar"></i>
+                                <select id="passageYearFilter" class="bn-text">
+                                    <option value="all">সব সাল</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="passage-grid" id="passage-grid">
+                         <div class="loading-state">
+                            <i data-lucide="loader-2" class="spin"></i>
+                            <p class="bn-text">অনুচ্ছেদ লোড হচ্ছে...</p>
+                        </div>
+                    </div>
+
+                    <div class="page-nav bottom-nav">
+                        <button class="nav-arrow bn-text" onclick="switchTab('sentence-page')">
+                            <i data-lucide="arrow-left"></i> পূর্ববর্তী: বাক্য শুদ্ধিকরণ
+                        </button>
+                        <div></div> 
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script src="../js/include-navbar.js"></script>
+    <script src="../js/include-footer.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../topic-js/correction.js"></script>
+</body>
+</html>

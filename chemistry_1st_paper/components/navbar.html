@@ -1,0 +1,44 @@
+<!-- components/navbar.html -->
+<nav class="navbar-modern top-state" id="main-nav">
+    <!-- THE FIX: Mobile Overlay Backdrop required by navbar.js -->
+    <div class="nav-overlay"></div>
+
+    <div class="nav-container">
+        <a href="index.html" class="nav-brand">
+            <i data-lucide="hexagon"></i>
+            <span>রসায়ন ১ম পত্র</span>
+        </a>
+
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-item">হোম</a></li>
+            <li class="nav-dropdown-wrapper">
+                <a href="javascript:void(0)" class="nav-item">
+                    অধ্যায়সমূহ <i data-lucide="chevron-down" style="width:16px;"></i>
+                </a>
+                <div class="mega-menu-modern">
+                    <div class="mega-grid">
+                        <a href="chapter/1-safety.html" class="mega-link"><span class="en-text">01.</span> ল্যাবরেটরির নিরাপদ ব্যবহার</a>
+                        <a href="chapter/2-qualitative.html" class="mega-link"><span class="en-text">02.</span> গুণগত রসায়ন</a>
+                        <a href="chapter/3-periodic.html" class="mega-link"><span class="en-text">03.</span> পর্যায়বৃত্ত ধর্ম ও বন্ধন</a>
+                        <a href="chapter/4-changes.html" class="mega-link"><span class="en-text">04.</span> রাসায়নিক পরিবর্তন</a>
+                        <a href="chapter/5-working.html" class="mega-link"><span class="en-text">05.</span> কর্মমুখী রসায়ন</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="topic/practical.html" class="nav-item">ব্যবহারিক খাতা</a></li>
+            <li><a href="topic/board-questions.html" class="nav-item">বোর্ড প্রশ্ন</a></li>
+        </ul>
+
+        <div class="nav-controls" style="display: flex; gap: 10px; align-items: center;">
+            <button class="theme-btn" id="theme-toggle" aria-label="Toggle Dark Mode">
+                <i data-lucide="moon" class="moon-icon" style="width: 18px; height: 18px;"></i>
+                <i data-lucide="sun" class="sun-icon" style="display:none; width: 18px; height: 18px;"></i>
+            </button>
+            
+            <!-- THE FIX: Proper Hamburger Button required by navbar.js -->
+            <button class="hamburger-btn mobile-toggle" aria-label="Menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </div>
+</nav>

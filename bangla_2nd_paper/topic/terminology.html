@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পারিভাষিক শব্দ | বাংলা ২য় পত্র</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.maateen.me/bangla/font.css" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../topic-css/terminology.css">
+</head>
+<body class="theme-terminology"> 
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="topic-main">
+        <header class="topic-hero">
+            
+            <!-- Sharp, Static Diagonal Background -->
+            <div class="hero-static-bg">
+                <div class="static-panel panel-left">
+                    <div class="panel-content">
+                        <span class="giant-char char-en">A</span>
+                        <span class="panel-word en-text">LEXICON</span>
+                    </div>
+                </div>
+                <div class="static-panel panel-right">
+                    <div class="panel-content">
+                        <span class="giant-char char-bn">অ</span>
+                        <span class="panel-word bn-text">শব্দকোষ</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-content solid-card">
+                <span class="topic-badge bn-text"><i data-lucide="languages"></i> ব্যাকরণ: প্রশ্ন ৭(ক)</span>
+                <h1 class="bn-text">পারিভাষিক শব্দকোষ</h1>
+                <p class="bn-text marks-info">এই অংশে মোট <strong>১০ নম্বর</strong> বরাদ্দ রয়েছে।</p>
+                <p class="bn-text hero-desc">এইচএসসি সিলেবাসভুক্ত গুরুত্বপূর্ণ ইংরেজি শব্দের যথাযথ বাংলা অর্থ ও বিগত সালের বোর্ড প্রশ্নোত্তর।</p>
+                
+                <div class="page-tabs bn-text">
+                    <button class="tab-btn bn-text active" onclick="switchTab('section-dict')" data-target="section-dict">
+                        <i data-lucide="book-open"></i> ডিকশনারি
+                    </button>
+                    <button class="tab-btn bn-text" onclick="switchTab('section-flashcards')" data-target="section-flashcards">
+                        <i data-lucide="layers"></i> ফ্ল্যাশকার্ড
+                    </button>
+                </div>
+            </div>
+            
+        </header>
+
+        <div class="pages-container container">
+            
+            <div class="smart-toolbar">
+                <div class="search-box">
+                    <i data-lucide="search" class="search-icon"></i>
+                    <input type="text" id="global-search" class="bn-text" placeholder="ইংরেজি, বাংলা বা বাংলিশ দিয়ে খুঁজুন...">
+                    <button id="clearSearch" class="clear-btn" aria-label="Clear Search"><i data-lucide="x"></i></button>
+                </div>
+                
+                <div class="filter-group bn-text">
+                    <div class="filter-item">
+                        <i data-lucide="building-2"></i>
+                        <select id="filter-board" class="bn-text">
+                            <option value="all">সব বোর্ড</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <i data-lucide="calendar"></i>
+                        <select id="filter-year" class="bn-text">
+                            <option value="all">সব সাল</option>
+                        </select>
+                    </div>
+                    <button id="toggle-favorites" class="btn-favorite-filter bn-text">
+                        <i data-lucide="heart"></i> <span class="hide-mobile">পছন্দ</span>
+                    </button>
+                </div>
+            </div>
+
+            <section id="section-dict" class="pseudo-page active">
+                <div class="word-grid" id="word-grid">
+                    <div class="loading-state">
+                        <i data-lucide="loader-2" class="spin"></i>
+                        <p class="bn-text">শব্দকোষ লোড হচ্ছে...</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-flashcards" class="pseudo-page" style="display: none;">
+                <div class="flashcard-wrapper">
+                    <div class="flashcard-container">
+                        <div class="flashcard" id="flashcard">
+                            <div class="card-face card-front">
+                                <button class="fc-fav-btn" id="fc-fav-btn" title="পছন্দ তালিকায় যুক্ত করুন">
+                                    <i data-lucide="heart"></i>
+                                </button>
+                                <h2 id="fc-front-text" class="en-text">Loading...</h2>
+                                <p class="bn-text instruction"><i data-lucide="rotate-cw"></i> উত্তর দেখতে কার্ডে ক্লিক করুন</p>
+                            </div>
+                            <div class="card-face card-back">
+                                <h2 class="bn-text" id="fc-back-text">...</h2>
+                                <div class="fc-boards bn-text" id="fc-boards-text"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="fc-controls">
+                        <button class="fc-btn" id="fc-prev"><i data-lucide="arrow-left"></i></button>
+                        <span class="fc-counter bn-text" id="fc-counter">0 / 0</span>
+                        <button class="fc-btn" id="fc-next"><i data-lucide="arrow-right"></i></button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="../js/include-navbar.js"></script>
+    <script src="../js/include-footer.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../topic-js/terminology.js"></script>
+
+</body>
+</html>

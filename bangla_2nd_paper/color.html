@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSC Bangla Guide | All 20 Theme Palettes</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.maateen.me/bangla/font.css" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* =========================================
+           GLOBAL RESET & BASE VARIABLES
+           ========================================= */
+        :root {
+            --global-bg: #f8fafc;
+            --global-text: #0f172a;
+            --global-border: #e2e8f0;
+        }
+
+        [data-theme="dark"] {
+            --global-bg: #020617;
+            --global-text: #f8fafc;
+            --global-border: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .bn-text { font-family: 'Bangla', sans-serif; }
+
+        body {
+            background-color: var(--global-bg);
+            color: var(--global-text);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            padding: 40px 20px;
+        }
+
+        header {
+            max-width: 1400px;
+            margin: 0 auto 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--global-border);
+            padding-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .theme-toggle {
+            background: var(--global-text);
+            color: var(--global-bg);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        /* =========================================
+           THEME DEFINITIONS (Standardized for Preview)
+           ========================================= */
+        
+        /* -- GRAMMAR THEMES (01 to 06) -- */
+        .theme-pronunciation { --theme-primary: #d21820; --theme-accent: #f6d10d; --theme-bg: #fffaf5; --theme-text: #813c2c; }
+        [data-theme="dark"] .theme-pronunciation { --theme-bg: #2b140f; --theme-text: #f8d6a6; }
+
+        .theme-spelling { --theme-primary: #0d9488; --theme-accent: #0284c7; --theme-bg: #f0fdfa; --theme-text: #134e4a; }
+        [data-theme="dark"] .theme-spelling { --theme-bg: #042f2e; --theme-text: #ccfbf1; }
+
+        .theme-grammar { --theme-primary: #6366f1; --theme-accent: #ec4899; --theme-bg: #eef2ff; --theme-text: #312e81; }
+        [data-theme="dark"] .theme-grammar { --theme-bg: #1e1b4b; --theme-text: #e0e7ff; }
+
+        .theme-word-form { --theme-primary: #f59e0b; --theme-accent: #ef4444; --theme-bg: #fffbeb; --theme-text: #78350f; }
+        [data-theme="dark"] .theme-word-form { --theme-bg: #451a03; --theme-text: #fef3c7; }
+
+        .theme-syntax { --theme-primary: #3b82f6; --theme-accent: #06b6d4; --theme-bg: #eff6ff; --theme-text: #1e3a8a; }
+        [data-theme="dark"] .theme-syntax { --theme-bg: #172554; --theme-text: #dbeafe; }
+
+        .theme-correction { --theme-primary: #e11d48; --theme-accent: #f59e0b; --theme-bg: #fff1f2; --theme-text: #881337; }
+        [data-theme="dark"] .theme-correction { --theme-bg: #4c0519; --theme-text: #ffe4e6; }
+
+
+        /* -- COMPOSITION THEMES (07 to 12) -- */
+        .theme-terminology { --theme-primary: #475569; --theme-accent: #3b82f6; --theme-bg: #f8fafc; --theme-text: #0f172a; }
+        [data-theme="dark"] .theme-terminology { --theme-bg: #0f172a; --theme-text: #f1f5f9; }
+
+        .theme-translation { --theme-primary: #8b5cf6; --theme-accent: #d946ef; --theme-bg: #f5f3ff; --theme-text: #4c1d95; }
+        [data-theme="dark"] .theme-translation { --theme-bg: #2e1065; --theme-text: #ede9fe; }
+
+        .theme-diary { --theme-primary: #10b981; --theme-accent: #f59e0b; --theme-bg: #ecfdf5; --theme-text: #064e3b; }
+        [data-theme="dark"] .theme-diary { --theme-bg: #064e3b; --theme-text: #d1fae5; }
+
+        .theme-experience { --theme-primary: #06b6d4; --theme-accent: #8b5cf6; --theme-bg: #ecfeff; --theme-text: #164e63; }
+        [data-theme="dark"] .theme-experience { --theme-bg: #083344; --theme-text: #cffafe; }
+
+        .theme-report { --theme-primary: #991b1b; --theme-accent: #d97706; --theme-bg: #fef2f2; --theme-text: #450a0a; }
+        [data-theme="dark"] .theme-report { --theme-bg: #450a0a; --theme-text: #fecaca; }
+
+        .theme-speech { --theme-primary: #f97316; --theme-accent: #e11d48; --theme-bg: #fff7ed; --theme-text: #7c2d12; }
+        [data-theme="dark"] .theme-speech { --theme-bg: #431407; --theme-text: #ffedd5; }
+
+        .theme-email { --theme-primary: #0ea5e9; --theme-accent: #6366f1; --theme-bg: #f0f9ff; --theme-text: #0c4a6e; }
+        [data-theme="dark"] .theme-email { --theme-bg: #082f49; --theme-text: #e0f2fe; }
+
+        .theme-sms { --theme-primary: #be185d; --theme-accent: #0f766e; --theme-bg: #fdf2f8; --theme-text: #831843; }
+        [data-theme="dark"] .theme-sms { --theme-bg: #500724; --theme-text: #fbcfe8; }
+
+        .theme-letter { --theme-primary: #78716c; --theme-accent: #b45309; --theme-bg: #fafaf9; --theme-text: #292524; }
+        [data-theme="dark"] .theme-letter { --theme-bg: #1c1917; --theme-text: #e7e5e4; }
+
+        .theme-summary { --theme-primary: #84cc16; --theme-accent: #06b6d4; --theme-bg: #f7fee7; --theme-text: #365314; }
+        [data-theme="dark"] .theme-summary { --theme-bg: #1a2e05; --theme-text: #ecfccb; }
+
+        .theme-amplification { --theme-primary: #d946ef; --theme-accent: #f59e0b; --theme-bg: #fdf4ff; --theme-text: #701a75; }
+        [data-theme="dark"] .theme-amplification { --theme-bg: #4a044e; --theme-text: #fae8ff; }
+
+        .theme-dialogue { --theme-primary: #ec4899; --theme-accent: #8b5cf6; --theme-bg: #fdf2f8; --theme-text: #831843; }
+        [data-theme="dark"] .theme-dialogue { --theme-bg: #500724; --theme-text: #fce7f3; }
+
+        .theme-story { --theme-primary: #eab308; --theme-accent: #ef4444; --theme-bg: #fefce8; --theme-text: #713f12; }
+        [data-theme="dark"] .theme-story { --theme-bg: #422006; --theme-text: #fef08a; }
+
+        .theme-essay { --theme-primary: #64748b; --theme-accent: #10b981; --theme-bg: #f8fafc; --theme-text: #0f172a; }
+        [data-theme="dark"] .theme-essay { --theme-bg: #020617; --theme-text: #f8fafc; }
+
+
+        /* =========================================
+           CARD LAYOUT & DESIGN
+           ========================================= */
+        .grid-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .section-divider {
+            grid-column: 1 / -1;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 40px 0 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--global-border);
+            color: var(--global-text);
+        }
+
+        .preview-card {
+            background-color: var(--theme-bg);
+            color: var(--theme-text);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid color-mix(in srgb, var(--theme-primary) 20%, transparent);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        [data-theme="dark"] .preview-card {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 1px solid color-mix(in srgb, var(--theme-primary) 30%, transparent);
+        }
+
+        .preview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px color-mix(in srgb, var(--theme-primary) 15%, transparent);
+        }
+
+        /* Swatches Top Bar */
+        .swatch-bar {
+            display: flex;
+            height: 12px;
+        }
+        .swatch-primary { width: 60%; background-color: var(--theme-primary); }
+        .swatch-accent { width: 40%; background-color: var(--theme-accent); }
+
+        /* Card Header */
+        .card-header {
+            padding: 25px 25px 15px;
+            border-bottom: 1px dashed color-mix(in srgb, var(--theme-primary) 20%, transparent);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .card-subtitle {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .card-icon {
+            width: 45px;
+            height: 45px;
+            background-color: color-mix(in srgb, var(--theme-primary) 15%, transparent);
+            color: var(--theme-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Card Content Area */
+        .card-body {
+            padding: 25px;
+            flex-grow: 1;
+        }
+
+        .mock-text {
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .mock-highlight {
+            color: var(--theme-primary);
+            font-weight: 600;
+        }
+
+        .mock-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: color-mix(in srgb, var(--theme-accent) 15%, transparent);
+            color: var(--theme-accent);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Card Footer */
+        .card-footer {
+            padding: 0 25px 25px;
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background-color: var(--theme-primary);
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.2s ease;
+        }
+
+        .action-btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="bn-text">All 20 Topic Palettes Preview</h1>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <i data-lucide="moon"></i> Dark Mode
+        </button>
+    </header>
+
+    <div class="grid-container" id="grid">
+        <!-- Rendered via JS -->
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Theme Toggle Logic
+        let isDark = false;
+        function toggleTheme() {
+            isDark = !isDark;
+            document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            const btn = document.querySelector('.theme-toggle');
+            btn.innerHTML = isDark 
+                ? '<i data-lucide="sun"></i> Light Mode' 
+                : '<i data-lucide="moon"></i> Dark Mode';
+            lucide.createIcons();
+        }
+
+        // Palette Data
+        const grammarPalettes = [
+            { id: "pronunciation", title: "উচ্চারণের নিয়ম", sub: "Topic 01", icon: "mic", desc: "অ-ধ্বনি, এ-ধ্বনি এবং ফলার উচ্চারণ ও বোর্ড প্রশ্ন।" },
+            { id: "spelling", title: "বানানের নিয়ম", sub: "Topic 02", icon: "spell-check", desc: "বাংলা একাডেমি প্রমিত বানানের নিয়ম ও শুদ্ধিকরণ।" },
+            { id: "grammar", title: "শব্দশ্রেণি", sub: "Topic 03", icon: "layers", desc: "বিশেষ্য, বিশেষণ, সর্বনাম, ক্রিয়া ও অন্যান্য পদের চেনা।" },
+            { id: "word-form", title: "শব্দ গঠন", sub: "Topic 04", icon: "puzzle", desc: "সমাস, উপসর্গ এবং প্রত্যয়ের সাহায্যে শব্দ গঠন।" },
+            { id: "syntax", title: "বাক্যতত্ত্ব", sub: "Topic 05", icon: "wrap-text", desc: "সার্থক বাক্যের গুণ, গঠন অনুযায়ী বাক্যের প্রকারভেদ।" },
+            { id: "correction", title: "অপপ্রয়োগ ও শুদ্ধ প্রয়োগ", sub: "Topic 06", icon: "check-circle-2", desc: "বাক্যে শব্দের অপপ্রয়োগ ও শুদ্ধ বাক্য গঠন।" }
+        ];
+
+        const compositionPalettes = [
+            { id: "terminology", title: "পারিভাষিক শব্দ", sub: "Topic 07(ক)", icon: "book-a", desc: "ইংরেজি শব্দের বাংলা পরিভাষা।" },
+            { id: "translation", title: "অনুবাদ", sub: "Topic 07(খ)", icon: "languages", desc: "ইংরেজি থেকে বাংলা বঙ্গানুবাদ।" },
+            { id: "diary", title: "দিনলিপি", sub: "Topic 08(ক)", icon: "book", desc: "দৈনন্দিন জীবনের গুরুত্বপূর্ণ ঘটনা লিখন।" },
+            { id: "experience", title: "অভিজ্ঞতা বর্ণন", sub: "Topic 08(ক)", icon: "camera", desc: "ভ্রমণ বা বিশেষ ঘটনার বর্ণনা।" },
+            { id: "report", title: "প্রতিবেদন রচনা", sub: "Topic 08(খ)", icon: "clipboard-list", desc: "সংবাদপত্র বা প্রাতিষ্ঠানিক প্রতিবেদন।" },
+            { id: "speech", title: "ভাষণ লিখন", sub: "Topic 08(খ)", icon: "mic-2", desc: "বিভিন্ন অনুষ্ঠানে দেওয়ার জন্য বক্তব্য।" },
+            { id: "email", title: "বৈদ্যুতিন চিঠি (ই-মেইল)", sub: "Topic 09(ক)", icon: "mail", desc: "আধুনিক যোগাযোগ মাধ্যমের পত্র।" },
+            { id: "sms", title: "ক্ষুদেবার্তা", sub: "Topic 09(ক)", icon: "smartphone", desc: "মোবাইল ফোনে যোগাযোগের জন্য বার্তা লিখন।" },
+            { id: "letter", title: "পত্রলিখন ও আবেদনপত্র", sub: "Topic 09(খ)", icon: "file-signature", desc: "প্রাতিষ্ঠানিক ও ব্যক্তিগত পত্র।" },
+            { id: "summary", title: "সারাংশ/সারমর্ম", sub: "Topic 10(ক)", icon: "minimize-2", desc: "বড় লেখার মূলভাব সংক্ষেপে লিখন।" },
+            { id: "amplification", title: "ভাব-সম্প্রসারণ", sub: "Topic 10(খ)", icon: "maximize-2", desc: "ছোট বাক্যের গভীর অর্থ বিশ্লেষণ।" },
+            { id: "dialogue", title: "সংলাপ রচনা", sub: "Topic 11(ক)", icon: "message-square", desc: "দুই বা ততোধিক ব্যক্তির কথোপকথন।" },
+            { id: "story", title: "খুদে গল্প লিখন", sub: "Topic 11(খ)", icon: "feather", desc: "উদ্দীপক বা সংকেত নির্ভর গল্প লিখন।" },
+            { id: "essay", title: "প্রবন্ধ-নিবন্ধ রচনা", sub: "Topic 12", icon: "file-text", desc: "বিভিন্ন বিষয়ের ওপর প্রবন্ধ রচনা।" }
+        ];
+
+        const grid = document.getElementById('grid');
+
+        // Render Cards Function
+        function renderCards(palettes, sectionTitle) {
+            grid.insertAdjacentHTML('beforeend', `<div class="section-divider bn-text">${sectionTitle}</div>`);
+            
+            palettes.forEach(p => {
+                const cardHTML = `
+                    <div class="preview-card theme-${p.id}">
+                        <div class="swatch-bar">
+                            <div class="swatch-primary"></div>
+                            <div class="swatch-accent"></div>
+                        </div>
+                        <div class="card-header">
+                            <div>
+                                <div class="card-subtitle bn-text">${p.sub}</div>
+                                <h2 class="card-title bn-text">${p.title}</h2>
+                            </div>
+                            <div class="card-icon">
+                                <i data-lucide="${p.icon}"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="mock-badge">Accent View</div>
+                            <p class="mock-text bn-text">
+                                ${p.desc}
+                            </p>
+                            <p class="mock-text">
+                                Paragraph text contrast preview against <span class="mock-highlight">background color</span>.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="action-btn">
+                                <span class="bn-text">বিস্তারিত</span> <i data-lucide="arrow-right" style="width: 18px;"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.insertAdjacentHTML('beforeend', cardHTML);
+            });
+        }
+
+        renderCards(grammarPalettes, "অংশ ক: ব্যাকরণ (Grammar Themes)");
+        renderCards(compositionPalettes, "অংশ খ: নির্মিতি (Composition Themes)");
+
+        // Re-initialize icons for generated cards
+        lucide.createIcons();
+    </script>
+</body>
+</html>

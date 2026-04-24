@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শব্দ গঠন (উপসর্গ, প্রত্যয়, সমাস) | বাংলা ২য় পত্র</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.maateen.me/bangla/font.css" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../topic-css/word-formation.css">
+</head>
+<body class="theme-word-form">
+    
+    <div id="navbar-placeholder"></div>
+
+    <main class="topic-main">
+        <header class="topic-hero">
+            <div class="hero-rings-bg"></div>
+            
+            <div class="hero-content glass-card">
+                <span class="topic-badge bn-text"><i data-lucide="puzzle"></i> ব্যাকরণ: প্রশ্ন ৪</span>
+                <h1 class="bn-text">শব্দ গঠন</h1>
+                <p class="bn-text marks-info">এই অংশে মোট <strong>৫ নম্বর</strong> বরাদ্দ রয়েছে।</p>
+                <p class="bn-text hero-desc">পরীক্ষায় সাধারণত নিচের ৩টি অংশের যেকোনো ২টি থেকে প্রশ্ন আসে। ট্যাবগুলো ব্যবহার করে সম্পূর্ণ সিলেবাসটি অনুশীলন করুন।</p>
+                
+                <div class="page-tabs bn-text">
+                    <button class="tab-btn bn-text active" data-target="rules-page">
+                        <i data-lucide="book-open"></i> (ক) নিয়মাবলি
+                    </button>
+                    <button class="tab-btn bn-text" data-target="practice-page">
+                        <i data-lucide="blocks"></i> (খ) প্রকৃতি ও প্রত্যয়
+                    </button>
+                    <button class="tab-btn bn-text" data-target="samas-page">
+                        <i data-lucide="layout-grid"></i> (গ) সমাস নির্ণয়
+                    </button>
+                </div>
+            </div>
+            <div class="hero-glow shape-1"></div>
+            <div class="hero-glow shape-2"></div>
+        </header>
+
+        <div class="pages-container">
+
+            <section id="rules-page" class="pseudo-page active">
+                <div class="container">
+                    <div class="section-header-inline">
+                        <h2 class="bn-text"><i data-lucide="book-open"></i> শব্দ গঠনের নিয়মাবলি</h2>
+                        <p class="bn-text subtitle">বর্ণনামূলক প্রশ্ন: উপসর্গ, প্রত্যয় ও সমাস সম্পর্কিত গুরুত্বপূর্ণ প্রশ্ন</p>
+                    </div>
+                    
+                    <div class="rules-container">
+                        <div class="loading-state">
+                            <i data-lucide="loader-2" class="spin"></i>
+                            <p class="bn-text">তথ্য লোড হচ্ছে...</p>
+                        </div>
+                    </div>
+
+                    <div class="page-nav bottom-nav">
+                        <div></div> 
+                        <button class="nav-arrow bn-text" onclick="switchTab('practice-page')">
+                            পরবর্তী: প্রকৃতি ও প্রত্যয় <i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="practice-page" class="pseudo-page">
+                <div class="container">
+                    <div class="section-header-inline">
+                        <h2 class="bn-text"><i data-lucide="blocks"></i> প্রকৃতি ও প্রত্যয় নির্ণয়</h2>
+                        <p class="bn-text subtitle">প্রদত্ত শব্দগুলোর প্রকৃতি ও প্রত্যয় বিশ্লেষণ</p>
+                    </div>
+
+                    <div class="smart-toolbar">
+                        <div class="search-box">
+                            <i data-lucide="search" class="search-icon"></i>
+                            <input type="text" id="wordSearch" class="bn-text" placeholder="শব্দ, প্রকৃতি বা প্রত্যয় খুঁজুন...">
+                            <button id="clearSearch" class="clear-btn" aria-label="Clear Search"><i data-lucide="x"></i></button>
+                        </div>
+                        
+                        <div class="filter-group bn-text">
+                            <div class="filter-item">
+                                <i data-lucide="git-merge"></i>
+                                <select id="typeFilter" class="bn-text">
+                                    <option value="all">সব প্রত্যয়</option>
+                                    </select>
+                            </div>
+                            
+                            <div class="filter-item">
+                                <i data-lucide="building-2"></i>
+                                <select id="boardFilter" class="bn-text">
+                                    <option value="all">সব বোর্ড</option>
+                                    </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="word-grid" id="prottoy-grid">
+                         <div class="loading-state">
+                            <i data-lucide="loader-2" class="spin"></i>
+                            <p class="bn-text">অনুশীলন লোড হচ্ছে...</p>
+                        </div>
+                    </div>
+
+                    <div class="page-nav bottom-nav">
+                        <button class="nav-arrow bn-text" onclick="switchTab('rules-page')">
+                            <i data-lucide="arrow-left"></i> পূর্ববর্তী: নিয়মাবলি
+                        </button>
+                        <button class="nav-arrow bn-text" onclick="switchTab('samas-page')">
+                            পরবর্তী: সমাস নির্ণয় <i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="samas-page" class="pseudo-page">
+                <div class="container">
+                    <div class="section-header-inline">
+                        <h2 class="bn-text"><i data-lucide="layout-grid"></i> ব্যাসবাক্যসহ সমাস নির্ণয়</h2>
+                        <p class="bn-text subtitle">প্রদত্ত শব্দগুলোর ব্যাসবাক্য এবং সমাসের নাম নির্দেশ</p>
+                    </div>
+
+                    <div class="smart-toolbar">
+                        <div class="search-box">
+                            <i data-lucide="search" class="search-icon"></i>
+                            <input type="text" id="samasSearch" class="bn-text" placeholder="সমস্তপদ বা ব্যাসবাক্য খুঁজুন...">
+                            <button id="samasClearSearch" class="clear-btn" aria-label="Clear Search"><i data-lucide="x"></i></button>
+                        </div>
+                        
+                        <div class="filter-group bn-text">
+                            <div class="filter-item">
+                                <i data-lucide="git-merge"></i>
+                                <select id="samasTypeFilter" class="bn-text">
+                                    <option value="all">সব সমাস</option>
+                                    </select>
+                            </div>
+                            
+                            <div class="filter-item">
+                                <i data-lucide="building-2"></i>
+                                <select id="samasBoardFilter" class="bn-text">
+                                    <option value="all">সব বোর্ড</option>
+                                    </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="word-grid" id="samas-grid">
+                         <div class="loading-state">
+                            <i data-lucide="loader-2" class="spin"></i>
+                            <p class="bn-text">সমাস লোড হচ্ছে...</p>
+                        </div>
+                    </div>
+
+                    <div class="page-nav bottom-nav">
+                        <button class="nav-arrow bn-text" onclick="switchTab('practice-page')">
+                            <i data-lucide="arrow-left"></i> পূর্ববর্তী: প্রকৃতি ও প্রত্যয়
+                        </button>
+                        <div></div> 
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script src="../js/include-navbar.js"></script>
+    <script src="../js/include-footer.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../topic-js/word-formation.js"></script>
+</body>
+</html>

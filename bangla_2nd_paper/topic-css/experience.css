@@ -1,0 +1,281 @@
+/* --- THEME VARIABLES --- */
+body.theme-experience { 
+    --theme-primary: #06b6d4; /* Cyan 500 */
+    --theme-accent: #8b5cf6;  /* Purple 500 */
+    --theme-bg: #ecfeff;      /* Cyan 50 */
+    --theme-text: #164e63;    /* Cyan 900 */
+    --theme-card-bg: #ffffff;
+    --theme-border: #a5f3fc;  /* Cyan 200 */
+    --theme-danger: #ef4444;
+    
+    --bg-color: var(--theme-bg);
+    --text-dark: var(--theme-text);
+    --text-gray: #0891b2;     /* Cyan 600 */
+    --primary-color: var(--theme-primary);
+    --border-color: var(--theme-border);
+    --surface-color: #cffafe; /* Cyan 100 */
+    --card-bg: var(--theme-card-bg);
+    --nav-bg: rgba(236, 254, 255, 0.9);
+    
+    background-color: var(--theme-bg);
+    color: var(--theme-text);
+}
+
+[data-theme="dark"] body.theme-experience { 
+    --theme-bg: #083344;      /* Cyan 950 */
+    --theme-text: #cffafe;    /* Cyan 100 */
+    --theme-primary: #22d3ee; /* Cyan 400 */
+    --theme-accent: #a78bfa;  /* Purple 400 */
+    --theme-card-bg: #164e63; /* Cyan 900 */
+    --theme-border: #155e75;  /* Cyan 800 */
+    
+    --text-gray: #67e8f9;     /* Cyan 300 */
+    --surface-color: #0e7490; /* Cyan 700 */
+    --nav-bg: rgba(8, 51, 68, 0.9);
+}
+
+/* Base Typogrpahy */
+.en-text { font-family: 'Inter', -apple-system, sans-serif; }
+.bn-text { font-family: 'Bangla', sans-serif; }
+
+.topic-main { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* --- UNIQUE HERO SECTION: TOPOGRAPHIC JOURNEY MAP --- */
+.topic-hero {
+    position: relative; padding: 140px 20px 60px;
+    display: flex; justify-content: center; align-items: center;
+    overflow: hidden; background: var(--bg-color);
+}
+
+.hero-topo-bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--bg-color);
+    /* Topographic contour lines using offset radial gradients */
+    background-image: 
+        repeating-radial-gradient(circle at 0% 50%, transparent 0, transparent 40px, rgba(6, 182, 212, 0.08) 40px, rgba(6, 182, 212, 0.08) 42px),
+        repeating-radial-gradient(circle at 100% 50%, transparent 0, transparent 40px, rgba(139, 92, 246, 0.06) 40px, rgba(139, 92, 246, 0.06) 42px);
+    z-index: 0;
+}
+
+[data-theme="dark"] .hero-topo-bg {
+    background-image: 
+        repeating-radial-gradient(circle at 0% 50%, transparent 0, transparent 40px, rgba(34, 211, 238, 0.05) 40px, rgba(34, 211, 238, 0.05) 42px),
+        repeating-radial-gradient(circle at 100% 50%, transparent 0, transparent 40px, rgba(167, 139, 250, 0.04) 40px, rgba(167, 139, 250, 0.04) 42px);
+}
+
+/* Clean Floating Journey Card */
+.journey-hero-card {
+    position: relative; z-index: 10;
+    background: var(--card-bg);
+    border-radius: 20px; padding: 50px; max-width: 800px;
+    text-align: center; 
+    border: 1px solid var(--border-color);
+    box-shadow: 0 20px 40px -10px rgba(6, 182, 212, 0.15), 
+                0 0 0 8px rgba(255, 255, 255, 0.4) inset;
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .journey-hero-card { 
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4), 
+                0 0 0 8px rgba(22, 78, 99, 0.3) inset;
+}
+
+.topic-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 20px; background: var(--theme-accent);
+    color: #fff; border-radius: 50px; font-weight: 600; font-size: 1.1rem; margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.topic-hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; color: var(--text-dark); margin-bottom: 15px; }
+
+.marks-info { font-size: 1.3rem; color: var(--text-dark); background: var(--surface-color); display: inline-block; padding: 10px 25px; border-radius: 12px; margin-bottom: 15px;}
+.marks-info strong { color: var(--theme-accent); font-weight: 700; }
+.hero-desc { font-size: 1.15rem; color: var(--text-gray); margin-bottom: 10px; line-height: 1.6; }
+
+.pages-container { position: relative; width: 100%; min-height: 500px; flex-grow: 1; padding: 40px 20px; margin: 0 auto; max-width: 1000px; }
+.pseudo-page { display: none; padding-top: 20px; }
+.pseudo-page.active { display: block; }
+
+/* --- SMART TOOLBAR (Kept exactly as requested) --- */
+.smart-toolbar {
+    background: var(--card-bg); border: 1px solid var(--border-color);
+    border-radius: 20px; padding: 20px; margin-bottom: 50px;
+    display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.search-box { position: relative; flex: 1; min-width: 280px; }
+.search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--primary-color); width: 22px; height: 22px; }
+.search-box input {
+    width: 100%; padding: 16px 45px 16px 50px; border-radius: 14px;
+    border: 2px solid var(--surface-color); background: var(--surface-color);
+    color: var(--text-dark); font-size: 1.15rem; outline: none; transition: all 0.3s ease;
+}
+.search-box input:focus { border-color: var(--primary-color); background: var(--card-bg); box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.1); }
+.clear-btn { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-gray); cursor: pointer; display: none; padding: 4px; border-radius: 50%; }
+.clear-btn:hover { background: var(--surface-color); color: var(--text-dark); }
+
+.filter-group { display: flex; flex-wrap: wrap; gap: 15px; }
+.filter-item { display: flex; align-items: center; gap: 10px; background: var(--surface-color); padding: 8px 16px; border-radius: 12px; border: 1px solid var(--border-color); }
+.filter-item i { color: var(--text-gray); width: 18px; height: 18px; }
+.filter-item select { background: transparent; border: none; color: var(--text-dark); font-size: 1.05rem; outline: none; cursor: pointer; font-weight: 500; }
+.filter-item select option { background: var(--card-bg); color: var(--text-dark); }
+
+.btn-favorite-filter {
+    display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 12px;
+    border: 1px solid var(--theme-border); background: var(--surface-color); color: var(--text-dark);
+    cursor: pointer; font-weight: 600; font-size: 1.05rem; transition: all 0.3s ease;
+}
+.btn-favorite-filter.active { background: rgba(239, 68, 68, 0.1); color: var(--theme-danger); border-color: var(--theme-danger); }
+.btn-favorite-filter.active i { fill: var(--theme-danger); color: var(--theme-danger);}
+
+/* --- UNIQUE CARD DESIGN: JOURNEY TIMELINE --- */
+.experience-grid { 
+    display: flex; flex-direction: column; gap: 30px; 
+    position: relative;
+    padding-left: 50px; /* Space for the timeline line */
+}
+
+/* The Continuous Timeline Line */
+.experience-grid::before {
+    content: '';
+    position: absolute;
+    left: 24px; top: 20px; bottom: 20px;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--theme-primary) 0%, var(--theme-accent) 100%);
+    border-radius: 3px;
+    opacity: 0.4;
+}
+
+.experience-card {
+    position: relative;
+    background: var(--card-bg); 
+    border: 1px solid var(--border-color);
+    border-radius: 16px; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    display: flex; flex-direction: column; opacity: 0;
+}
+
+/* The Timeline Node (Connecting Dot) */
+.experience-card::before {
+    content: '';
+    position: absolute;
+    left: -31.5px; /* Centers the dot exactly on the vertical line */
+    top: 35px; 
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--bg-color);
+    border: 3px solid var(--theme-primary);
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.experience-card:hover { 
+    transform: translateX(6px); 
+    border-color: var(--theme-primary);
+    box-shadow: 0 15px 30px rgba(6, 182, 212, 0.1);
+}
+
+.experience-card.expanded {
+    border-color: var(--theme-primary);
+}
+
+.experience-card:hover::before, .experience-card.expanded::before {
+    background: var(--theme-primary);
+    box-shadow: 0 0 10px var(--theme-primary);
+    transform: scale(1.2);
+}
+
+.experience-header-clickable {
+    padding: 30px; cursor: pointer;
+    display: flex; flex-direction: column;
+}
+
+/* Log Entry Badge */
+.log-entry-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--theme-accent); margin-bottom: 15px;
+}
+.log-entry-badge i { width: 16px; height: 16px; }
+
+.experience-question { 
+    font-size: 1.4rem; font-weight: 600; color: var(--text-dark); 
+    margin-bottom: 25px; line-height: 1.5; 
+}
+
+/* Card Footer (Tags and Controls) */
+.card-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+}
+
+.experience-meta { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.board-tag { background: var(--surface-color); color: var(--text-gray); padding: 6px 14px; border-radius: 8px; font-size: 0.95rem; font-weight: 600; border: 1px solid var(--border-color); }
+
+.experience-controls { 
+    display: flex; align-items: center; gap: 15px;
+}
+
+.btn-fav { 
+    background: transparent; border: none; cursor: pointer; color: var(--border-color); 
+    transition: all 0.3s; padding: 5px; display: flex; align-items: center; justify-content: center;
+}
+.btn-fav:hover { color: var(--theme-danger); transform: scale(1.1); }
+.btn-fav.active { color: var(--theme-danger); }
+.btn-fav.active i { fill: var(--theme-danger); }
+
+/* Stylish Expand Button */
+.toggle-btn {
+    background: var(--surface-color); border-radius: 50%;
+    width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s ease; border: 1px solid transparent;
+}
+.chevron-icon { color: var(--text-gray); transition: transform 0.3s ease; width: 20px; height: 20px; }
+
+.experience-card:hover .toggle-btn { border-color: var(--theme-primary); }
+.experience-card.expanded .toggle-btn { background: var(--theme-primary); border-color: var(--theme-primary); }
+.experience-card.expanded .chevron-icon { transform: rotate(180deg); color: #fff; }
+
+.experience-answer-wrapper {
+    display: none; padding: 0 30px 30px 30px;
+}
+
+.experience-answer { 
+    font-size: 1.15rem; line-height: 1.9; color: var(--text-dark); 
+    background: var(--surface-color);
+    padding: 25px 30px;
+    border-radius: 12px;
+}
+.experience-answer p { margin-bottom: 18px; }
+.experience-answer p:last-child { margin-bottom: 0; }
+.experience-answer strong { color: var(--theme-primary); font-weight: 600; }
+
+.loading-state, .empty-state { text-align: center; padding: 60px 20px; color: var(--text-gray); background: var(--surface-color); border-radius: 16px; border: 2px dashed var(--border-color); }
+.empty-state i { width: 48px; height: 48px; color: var(--primary-color); margin-bottom: 15px; opacity: 0.5;}
+.spin { animation: spin 2s linear infinite; margin: 0 auto; display: block; width: 40px; height: 40px; color: var(--primary-color);}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* Mobile */
+@media (max-width: 768px) {
+    .journey-hero-card { padding: 30px 20px; box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.15); }
+    
+    .smart-toolbar { flex-direction: column; align-items: stretch; padding: 15px;}
+    .filter-group { flex-direction: column; }
+    .hide-mobile { display: none; }
+    
+    /* Adjust timeline layout for mobile */
+    .experience-grid { padding-left: 25px; gap: 20px; }
+    .experience-grid::before { left: 10px; }
+    .experience-card::before { left: -21px; width: 12px; height: 12px; top: 32px; border-width: 2px; }
+    
+    .experience-header-clickable { padding: 25px 20px; }
+    .card-footer { flex-direction: column; align-items: flex-start; gap: 15px; }
+    .experience-controls { width: 100%; justify-content: space-between; flex-direction: row-reverse; }
+    
+    .experience-answer-wrapper { padding: 0 20px 20px 20px; }
+    .experience-answer { padding: 20px; }
+}

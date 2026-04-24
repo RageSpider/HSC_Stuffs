@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অভিজ্ঞতা বর্ণন | বাংলা ২য় পত্র</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.maateen.me/bangla/font.css" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../topic-css/experience.css">
+</head>
+<body class="theme-experience"> 
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="topic-main">
+        <header class="topic-hero">
+            
+            <!-- Unique Map / Topographic Background -->
+            <div class="hero-topo-bg"></div>
+
+            <div class="hero-content journey-hero-card">
+                <span class="topic-badge bn-text"><i data-lucide="compass"></i> নির্মিতি: প্রশ্ন ৮(খ)</span>
+                <h1 class="bn-text">অভিজ্ঞতা বর্ণন</h1>
+                <p class="bn-text marks-info">এই অংশে মোট <strong>১০ নম্বর</strong> বরাদ্দ রয়েছে।</p>
+                <p class="bn-text hero-desc">পরীক্ষায় সাধারণত কোনো ভ্রমণ, বিশেষ ঘটনা, উৎসব বা স্মৃতিকাতর মুহূর্তের অভিজ্ঞতা বর্ণনা করতে বলা হয়। নিচের তালিকা থেকে গুরুত্বপূর্ণ অভিজ্ঞতাগুলো অনুশীলন করো।</p>
+            </div>
+            
+        </header>
+
+        <div class="pages-container container">
+            
+            <div class="smart-toolbar">
+                <div class="search-box">
+                    <i data-lucide="search" class="search-icon"></i>
+                    <input type="text" id="global-search" class="bn-text" placeholder="অভিজ্ঞতার বিষয় খুঁজুন...">
+                    <button id="clearSearch" class="clear-btn" aria-label="Clear Search"><i data-lucide="x"></i></button>
+                </div>
+                
+                <div class="filter-group bn-text">
+                    <div class="filter-item">
+                        <i data-lucide="building-2"></i>
+                        <select id="filter-board" class="bn-text">
+                            <option value="all">সব বোর্ড</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <i data-lucide="calendar"></i>
+                        <select id="filter-year" class="bn-text">
+                            <option value="all">সব সাল</option>
+                        </select>
+                    </div>
+                    <button id="toggle-favorites" class="btn-favorite-filter bn-text">
+                        <i data-lucide="heart"></i> <span class="hide-mobile">পছন্দ</span>
+                    </button>
+                </div>
+            </div>
+
+            <section id="section-list" class="pseudo-page active">
+                <!-- Timeline Grid Structure -->
+                <div class="experience-grid" id="experience-container">
+                    <div class="loading-state">
+                        <i data-lucide="loader-2" class="spin"></i>
+                        <p class="bn-text">অভিজ্ঞতা লোড হচ্ছে...</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="../js/include-navbar.js"></script>
+    <script src="../js/include-footer.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/footer.js"></script>
+    <!-- Use experience.js logic. (The structure handles identical JS parsing) -->
+    <script src="../topic-js/experience.js"></script>
+
+</body>
+</html>
