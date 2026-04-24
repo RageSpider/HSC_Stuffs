@@ -1,6 +1,9 @@
 // js/include-navbar.js
 document.addEventListener("DOMContentLoaded", () => {
-    const basePath = window.location.pathname.startsWith('/chem_1st_paper') ? '/chem_1st_paper' : '';
+    // Dynamically check if we are in the Netlify subfolder or local root
+    const basePath = window.location.pathname.startsWith('/chemistry_1st_paper') 
+        ? '/chemistry_1st_paper' 
+        : '';
 
     fetch(`${basePath}/components/navbar.html`)
         .then(response => {
@@ -10,16 +13,21 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             document.getElementById('navbar-placeholder').innerHTML = data;
             
+            // --- FIX LINK ROUTING FOR NETLIFY SUBFOLDER ---
             const navLinks = document.querySelectorAll('#main-nav a');
             navLinks.forEach(link => {
                 const href = link.getAttribute('href');
-                if (href && !href.startsWith('http') && !href.startsWith('javascript')) {
-                    // Ensures links resolve relative to root or subfolder
-                    link.setAttribute('href', basePath + '/' + href.replace(/^\//, ''));
+                // If it's an absolute path, prepend the dynamic base path
+                if (href && href.startsWith('/')) {
+                    link.setAttribute('href', basePath + href);
                 }
             });
 
+            // Dispatch event to initialize navbar scripts
             document.dispatchEvent(new Event('navbarLoaded'));
         })
-        .catch(error => console.error('Error loading navbar:', error));
+        .catch(error => {
+            console.error('Error loading navbar:', error);
+            document.getElementById('navbar-placeholder').innerHTML = '<p style="text-align:center; padding: 20px; color: red;">Failed to load navigation.</p>';
+        });
 });

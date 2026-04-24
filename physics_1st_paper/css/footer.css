@@ -1,0 +1,160 @@
+/* css/footer.css */
+.site-footer {
+    background-color: var(--surface-color); 
+    color: var(--text-dark);
+    padding: 80px 20px 30px; 
+    margin-top: auto; 
+    border-top: 4px solid var(--primary-color);
+    font-family: 'Poppins', sans-serif;
+}
+
+.site-footer .bn-text { font-family: 'Bangla', sans-serif; }
+
+.footer-container {
+    max-width: 1200px; 
+    margin: 0 auto; 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 50px; 
+    margin-bottom: 60px;
+}
+
+.footer-col h4 {
+    color: var(--primary-color); 
+    font-size: 1.4rem; 
+    margin-bottom: 25px;
+    position: relative; 
+    padding-bottom: 12px; 
+    font-weight: 600;
+}
+
+.footer-col h4::after {
+    content: ''; 
+    position: absolute; 
+    left: 0; bottom: 0; 
+    width: 40px; height: 3px;
+    background: var(--accent-color); 
+    border-radius: 2px;
+}
+
+.footer-col ul { list-style: none; padding: 0; margin: 0; }
+.footer-col ul li { margin-bottom: 12px; }
+
+/* 1. Enhanced, elegant link hovers replacing the jarring translate */
+.footer-col ul a { 
+    color: var(--text-gray); 
+    text-decoration: none; 
+    font-size: 1.1rem; 
+    display: inline-flex; 
+    align-items: center;
+    transition: color 0.3s ease; 
+}
+
+.footer-col ul a::before {
+    content: '';
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    margin-right: 0;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.footer-col ul a:hover { 
+    color: var(--primary-color); 
+}
+
+.footer-col ul a:hover::before {
+    width: 12px;
+    margin-right: 8px;
+}
+
+.brand-col p { 
+    color: var(--text-gray); 
+    line-height: 1.7; 
+    margin-bottom: 25px; 
+    font-size: 1.05rem; 
+}
+
+/* 2. Unique design for the 3rd row (Physics Tech/Blueprint Theme) */
+.contact-links { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+    align-items: flex-start;
+}
+
+.contact-links a {
+    display: inline-flex; 
+    align-items: center; 
+    gap: 12px; 
+    padding: 12px 24px; 
+    border-radius: 50px; /* Pill shape */
+    font-size: 1.05rem;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    text-decoration: none;
+}
+
+/* FIX: Lucide replaces <i> with <svg>, so we target both */
+.contact-links a i, 
+.contact-links a svg { 
+    width: 20px; 
+    height: 20px; 
+    transition: all 0.3s ease; 
+}
+
+/* Primary Button - Physics Tech Gradient */
+.contact-links .primary-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 6px 20px rgba(1, 142, 221, 0.25);
+}
+.contact-links .primary-btn i, 
+.contact-links .primary-btn svg { 
+    color: #ffffff; 
+}
+.contact-links .primary-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(1, 142, 221, 0.4);
+}
+
+/* Outline Secondary Buttons - Blueprint Dashed Style */
+.contact-links .outline-btn {
+    background: transparent;
+    color: var(--text-dark);
+    border: 2px dashed var(--border-color); /* Thematic dashed look */
+}
+.contact-links .outline-btn i, 
+.contact-links .outline-btn svg { 
+    color: var(--primary-color); 
+}
+.contact-links .outline-btn:hover {
+    border-style: solid;
+    border-color: var(--primary-color);
+    background: var(--surface-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* 3. Updated Footer Bottom */
+.footer-bottom { 
+    text-align: center; 
+    padding-top: 30px; 
+    border-top: 1px solid var(--border-color); 
+    color: var(--text-gray); 
+    font-size: 1.05rem; 
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-bottom a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom a:hover {
+    text-decoration: underline;
+}

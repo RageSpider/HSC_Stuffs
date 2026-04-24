@@ -1,11 +1,657 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>HSC Master Guide | Academic Archive</title>
+    
+    <!-- Premium Bangla Font -->
+    <link href="https://fonts.maateen.me/bangla/font.css" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           THEME VARIABLES (Academic & Minimal)
+           ========================================= */
+        :root {
+            /* Light Theme - Crisp, Paper-like, Formal */
+            --bg-main: #FCFCFD;
+            --bg-surface: #FFFFFF;
+            --bg-hover: #F3F4F6;
+            
+            --text-heading: #111827;
+            --text-body: #4B5563;
+            --text-muted: #9CA3AF;
+            
+            --border-color: #E5E7EB;
+            --border-hover: #D1D5DB;
+            
+            --accent-primary: #1E3A8A; /* Academic Navy */
+            --accent-secondary: #991B1B; /* Harvard Crimson */
+            
+            --nav-bg: rgba(252, 252, 253, 0.85);
+        }
+
+        [data-theme="dark"] {
+            /* Dark Theme - Sleek, Slate, Easy on eyes */
+            --bg-main: #0A0A0A;
+            --bg-surface: #121212;
+            --bg-hover: #1A1A1A;
+            
+            --text-heading: #F9FAFB;
+            --text-body: #D1D5DB;
+            --text-muted: #6B7280;
+            
+            --border-color: #262626;
+            --border-hover: #404040;
+            
+            --accent-primary: #60A5FA; /* Soft Blue */
+            --accent-secondary: #F87171; /* Soft Crimson */
+            
+            --nav-bg: rgba(10, 10, 10, 0.85);
+        }
+
+        /* =========================================
+           RESET & TYPOGRAPHY
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Bangla', ui-sans-serif, system-ui, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-body);
+            line-height: 1.6;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* =========================================
+           NAVIGATION
+           ========================================= */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 80px;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-brand svg {
+            width: 24px; height: 24px;
+            fill: none;
+            stroke: var(--accent-primary);
+            stroke-width: 2;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--text-body);
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 40px; height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-heading);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-hover);
+            border-color: var(--border-hover);
+        }
+
+        .theme-toggle svg {
+            width: 18px; height: 18px;
+            fill: currentColor;
+        }
+
+        /* =========================================
+           HERO SECTION (Editorial Header)
+           ========================================= */
+        .hero {
+            padding: 180px 0 100px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-tag {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent-secondary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            color: var(--text-heading);
+            line-height: 1.15;
+            margin-bottom: 30px;
+            max-width: 900px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-body);
+            max-width: 700px;
+            line-height: 1.8;
+        }
+
+        /* =========================================
+           CURRICULUM INDEX (The Core Concept)
+           ========================================= */
+        .curriculum {
+            padding: 80px 0 120px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--text-heading);
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+
+        .section-header span {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Index Row Layout */
+        .index-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .index-row {
+            display: grid;
+            grid-template-columns: 80px 250px 1fr auto;
+            gap: 30px;
+            align-items: center;
+            padding: 40px 20px;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .index-row:hover {
+            background-color: var(--bg-hover);
+        }
+
+        .row-num {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        .row-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+
+        .row-desc {
+            font-size: 1.1rem;
+            color: var(--text-body);
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        /* Elegant Paper Links */
+        .row-actions {
+            display: flex;
+            gap: 16px;
+        }
+
+        .paper-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-heading);
+            transition: all 0.2s ease;
+        }
+
+        .paper-link:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            background: var(--bg-main);
+        }
+
+        .paper-link svg {
+            width: 16px; height: 16px;
+            fill: none; stroke: currentColor; stroke-width: 2;
+            transition: transform 0.2s ease;
+        }
+
+        .paper-link:hover svg {
+            transform: translateX(4px);
+        }
+
+        .category-spacer {
+            height: 60px;
+        }
+
+        /* =========================================
+           FOOTER (Scholarly & Clean)
+           ========================================= */
+        .footer {
+            background-color: var(--bg-surface);
+            border-top: 1px solid var(--border-color);
+            padding: 80px 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            color: var(--text-body);
+            max-width: 350px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-heading);
+            margin-bottom: 24px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul a {
+            color: var(--text-body);
+            transition: color 0.2s ease;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--accent-primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* =========================================
+           RESPONSIVE DESIGN
+           ========================================= */
+        @media (max-width: 1024px) {
+            .index-row {
+                grid-template-columns: 60px 1fr auto;
+                gap: 20px;
+            }
+            .row-desc {
+                display: none; /* Hide desc on tablets to keep it clean */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Mobile menu needed for production */
+            }
+            .hero {
+                padding: 140px 0 80px;
+            }
+            .index-row {
+                grid-template-columns: 1fr;
+                padding: 30px 0;
+            }
+            .row-num {
+                display: none;
+            }
+            .row-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            .paper-link {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    Hello! THIS IS THE START OF THE JOURNEY!!!
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <a href="index.html" class="nav-brand">
+                <svg viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                HSC Stuffs
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#">প্রচ্ছদ</a></li>
+                <li><a href="#curriculum">সিলেবাস সূচি</a></li>
+                <li><a href="#">প্রশ্নব্যাংক</a></li>
+                <li><a href="#">আমাদের সম্পর্কে</a></li>
+            </ul>
+
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Light/Dark Theme">
+                <!-- Icon injected by JS based on theme -->
+                <svg id="theme-icon" viewBox="0 0 24 24"></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- EDITORIAL HERO -->
+    <header class="hero">
+        <div class="container">
+            <span class="hero-tag">উচ্চমাধ্যমিক ও আলিম শিক্ষাক্রম</span>
+            <h1>এইচএসসি মাস্টার গাইড</h1>
+            <p>সম্পূর্ণ সিলেবাস, অধ্যায়ভিত্তিক লেকচার এবং বোর্ড পরীক্ষার নির্ভুল প্রস্তুতি— বিজ্ঞান, মানবিক ও ব্যবসায় শিক্ষা শাখার শিক্ষার্থীদের জন্য একটি সুশৃঙ্খল এবং নির্ভরযোগ্য একাডেমিক আর্কাইভ।</p>
+        </div>
+    </header>
+
+    <!-- CURRICULUM INDEX -->
+    <main class="curriculum" id="curriculum">
+        <div class="container">
+            
+            <!-- Compulsory Subjects -->
+            <div class="section-header">
+                <h2>আবশ্যিক বিষয়সমূহ</h2>
+                <span>সকল শাখা</span>
+            </div>
+
+            <div class="index-list">
+                
+                <article class="index-row">
+                    <div class="row-num">01</div>
+                    <div class="row-title">বাংলা</div>
+                    <div class="row-desc">গল্প, কবিতা এবং নাটকের মূলভাব থেকে শুরু করে ব্যাকরণ ও নির্মিতির গঠনমূলক আলোচনা।</div>
+                    <div class="row-actions">
+                        <a href="bangla_1st_paper/index.html" class="paper-link">
+                            ১ম পত্র
+                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="bangla_2nd_paper/index.html" class="paper-link">
+                            ২য় পত্র
+                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="index-row">
+                    <div class="row-num">02</div>
+                    <div class="row-title">English</div>
+                    <div class="row-desc">টেক্সটবুক অ্যানালাইসিস, গ্রামার রুলস এবং রাইটিং স্কিলস ডেভেলপমেন্টের পূর্ণাঙ্গ দিকনির্দেশনা।</div>
+                    <div class="row-actions">
+                        <a href="english_1st_paper/index.html" class="paper-link">
+                            1st Paper
+                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="english_2nd_paper/index.html" class="paper-link">
+                            2nd Paper
+                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="index-row">
+                    <div class="row-num">03</div>
+                    <div class="row-title">আইসিটি</div>
+                    <div class="row-desc">লজিক গেট, সি-প্রোগ্রামিং এবং ডেটাবেস ম্যানেজমেন্টের তাত্ত্বিক ও ব্যবহারিক ধারণা।</div>
+                    <div class="row-actions">
+                        <a href="ict/index.html" class="paper-link">
+                            সম্পূর্ণ গাইড
+                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="category-spacer"></div>
+
+            <!-- Science Subjects -->
+            <div class="section-header">
+                <h2>বিজ্ঞান বিভাগ</h2>
+                <span>শাখাভিত্তিক সূচি</span>
+            </div>
+
+            <div class="index-list">
+
+                <article class="index-row">
+                    <div class="row-num">04</div>
+                    <div class="row-title">পদার্থবিজ্ঞান</div>
+                    <div class="row-desc">বলবিদ্যা থেকে কোয়ান্টাম ফিজিক্স— গাণিতিক সূত্রাবলি এবং সৃজনশীল সমস্যার গঠনমূলক সমাধান।</div>
+                    <div class="row-actions">
+                        <a href="physics_1st_paper/index.html" class="paper-link">
+                            ১ম পত্র
+                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="physics_2nd_paper/index.html" class="paper-link">
+                            ২য় পত্র
+                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="index-row">
+                    <div class="row-num">05</div>
+                    <div class="row-title">রসায়ন</div>
+                    <div class="row-desc">অণুর গঠন, রাসায়নিক বিক্রিয়া এবং জৈব রসায়নের (Organic Chemistry) সহজবোধ্য ব্যাখ্যা।</div>
+                    <div class="row-actions">
+                        <a href="chemistry_1st_paper/index.html" class="paper-link">
+                            ১ম পত্র
+                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="chemistry_2nd_paper/index.html" class="paper-link">
+                            ২য় পত্র
+                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="index-row">
+                    <div class="row-num">06</div>
+                    <div class="row-title">উচ্চতর গণিত</div>
+                    <div class="row-desc">ক্যালকুলাস, ত্রিকোণমিতি এবং কনিকের জটিল থিওরি ও গাণিতিক সমস্যার ধাপে ধাপে সমাধান।</div>
+                    <div class="row-actions">
+                        <a href="higher_math_1st_paper/index.html" class="paper-link">
+                            ১ম পত্র
+                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="higher_math_2nd_paper/index.html" class="paper-link">
+                            ২য় পত্র
+                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="index-row">
+                    <div class="row-num">07</div>
+                    <div class="row-title">জীববিজ্ঞান</div>
+                    <div class="row-desc">কোষীয় স্তর থেকে মানবদেহ, জেনেটিক্স এবং বিবর্তনের বিজ্ঞানসম্মত আলোচনা ও চিত্রভিত্তিক ব্যাখ্যা।</div>
+                    <div class="row-actions">
+                        <a href="biology_1st_paper/index.html" class="paper-link">
+                            ১ম পত্র (উদ্ভিদ)
+                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="biology_2nd_paper/index.html" class="paper-link">
+                            ২য় পত্র (প্রাণি)
+                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>HSC Stuffs</h3>
+                    <p>উচ্চমাধ্যমিক শিক্ষার্থীদের জন্য একটি মানসম্মত ও নির্ভরযোগ্য শিক্ষামূলক প্ল্যাটফর্ম। শিক্ষার উৎকর্ষ সাধনে আমরা নিবেদিত।</p>
+                </div>
+                <div class="footer-col">
+                    <h4>গুরুত্বপূর্ণ সূচি</h4>
+                    <ul>
+                        <li><a href="#curriculum">সিলেবাস ও লেকচার</a></li>
+                        <li><a href="#">বিগত বছরের প্রশ্ন</a></li>
+                        <li><a href="#">পরীক্ষার রুটিন</a></li>
+                        <li><a href="#">একাডেমিক গাইডলাইন</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>প্রাতিষ্ঠানিক</h4>
+                    <ul>
+                        <li><a href="#">আমাদের সম্পর্কে</a></li>
+                        <li><a href="#">যোগাযোগ করুন</a></li>
+                        <li><a href="#">ব্যবহারের শর্তাবলি</a></li>
+                        <li><a href="#">প্রাইভেসি পলিসি</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> HSC Stuffs. সর্বস্বত্ব সংরক্ষিত।</p>
+                <p>Designed for Academic Excellence.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVITY -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Setup Dynamic Year in Footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Theme Toggle Logic
+            const htmlEl = document.documentElement;
+            const themeBtn = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+
+            // SVGs for the button
+            const moonSvg = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+            const sunSvg = `<circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/><line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"/><line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"/><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"/><line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"/>`;
+
+            // Check system preference or saved preference
+            const savedTheme = localStorage.getItem('hsc-theme');
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else {
+                // Default to light for an academic site, but respect system preference if dark
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                setTheme(prefersDark ? 'dark' : 'light');
+            }
+
+            themeBtn.addEventListener('click', () => {
+                const currentTheme = htmlEl.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                setTheme(newTheme);
+            });
+
+            function setTheme(theme) {
+                htmlEl.setAttribute('data-theme', theme);
+                localStorage.setItem('hsc-theme', theme);
+                themeIcon.innerHTML = theme === 'dark' ? sunSvg : moonSvg;
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,52 @@
+/* css/footer.css */
+.site-footer {
+    background-color: var(--surface-color);
+    color: var(--text-dark);
+    padding: 80px 20px 30px;
+    font-family: 'Poppins', sans-serif;
+    margin-top: auto; 
+    border-top: 1px solid var(--border-color);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.footer-container {
+    max-width: 1250px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px;
+    margin-bottom: 60px;
+}
+
+@media (max-width: 768px) {
+    .footer-container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+    .brand-col-main { align-items: center; }
+}
+
+.brand-col-main { display: flex; flex-direction: column; align-items: flex-start; }
+.footer-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; margin-bottom: 20px; color: var(--text-dark); }
+.footer-brand i { width: 30px; height: 30px; color: var(--aurora-1); }
+.footer-brand span { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px;}
+
+.brand-col-main p { color: var(--text-gray); line-height: 1.7; font-size: 1.05rem; max-width: 400px; margin-bottom: 25px; }
+
+.social-links { display: flex; gap: 15px; }
+.social-links a {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(148, 163, 184, 0.1); color: var(--text-dark);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s ease;
+}
+.social-links a:hover { background: var(--aurora-1); color: #fff; transform: translateY(-3px); }
+.social-links a i { width: 18px; height: 18px; }
+
+.footer-col h4 {
+    color: var(--text-dark); font-family: 'Outfit', sans-serif; font-size: 1.3rem; margin-bottom: 25px; font-weight: 700;
+}
+.footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;}
+.footer-col ul a { color: var(--text-gray); text-decoration: none; font-size: 1.05rem; transition: color 0.3s ease; }
+.footer-col ul a:hover { color: var(--aurora-1); }
+
+.footer-bottom {
+    text-align: center; padding-top: 30px; border-top: 1px solid var(--border-color);
+    color: var(--text-gray); font-size: 1rem; display: flex; flex-direction: column; gap: 8px;
+}
+.managed-by a { color: var(--text-dark); text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
+.managed-by a:hover { color: var(--aurora-1); }

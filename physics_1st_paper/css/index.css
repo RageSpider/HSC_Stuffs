@@ -1,0 +1,212 @@
+/* css/index.css */
+
+:root {
+    /* Physics Theme (Light) */
+    --primary-color: #018edd; 
+    --primary-hover: #016bb5; 
+    --secondary-color: #f5e641;
+    --accent-color: #9c0c16;
+    
+    --bg-color: #f0f8ff; 
+    --surface-color: #e1f0fc; 
+    --surface-hover: #cbe4fa; 
+    --card-bg: #ffffff;
+    
+    --text-dark: #002b4d; 
+    --text-gray: #015b96; 
+    --border-color: #b3d9ff; 
+    --icon-color: #9c0c16;
+}
+
+[data-theme="dark"] {
+    /* Physics Theme (Dark) */
+    --primary-color: #018edd; 
+    --primary-hover: #33aaff;
+    --secondary-color: #f5e641;
+    --accent-color: #ff4d4d;
+    
+    --bg-color: #001122; 
+    --surface-color: #001f3f; 
+    --surface-hover: #002b5e;
+    --card-bg: #001830;
+    
+    --text-dark: #e6f2ff; 
+    --text-gray: #80bfff; 
+    --border-color: #003366; 
+    --icon-color: #f5e641;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background-color: var(--bg-color); font-family: 'Poppins', sans-serif; color: var(--text-dark); overflow-x: hidden; }
+body, .physics-card, .btn { transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease; }
+.bn-text { font-family: 'Bangla', sans-serif; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+a { text-decoration: none; color: inherit; }
+
+/* =========================================
+   UNIQUE PHYSICS HERO SECTION
+   ========================================= */
+.hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 100px 20px; overflow: hidden; }
+
+/* Grid Background */
+.hero-bg-shapes { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.physics-grid-bg {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+        linear-gradient(var(--border-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.2;
+}
+
+/* Orbit Animation System */
+.orbit-system {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px; height: 800px;
+    opacity: 0.15;
+}
+.center-core {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 60px; height: 60px; border-radius: 50%;
+    background: var(--primary-color);
+    box-shadow: 0 0 50px var(--primary-color);
+}
+.orbit-path {
+    position: absolute; top: 50%; left: 50%;
+    border-radius: 50%; border: 1px dashed var(--primary-color);
+    transform: translate(-50%, -50%);
+}
+.path-1 { width: 400px; height: 400px; animation: spinRight 30s linear infinite; border-style: dotted; border-color: var(--accent-color); }
+.path-2 { width: 600px; height: 600px; animation: spinLeft 45s linear infinite; }
+.path-3 { width: 800px; height: 800px; animation: spinRight 60s linear infinite; opacity: 0.5;}
+
+.electron {
+    position: absolute; top: -5px; left: 50%;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
+}
+.path-1 .electron { background: var(--accent-color); box-shadow: 0 0 10px var(--accent-color); }
+
+@keyframes spinRight { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes spinLeft { 100% { transform: translate(-50%, -50%) rotate(-360deg); } }
+
+/* Hero Content */
+.hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; }
+.badge {
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px;
+    background: var(--surface-color); color: var(--primary-color); border-radius: 50px;
+    font-size: 1.1rem; font-weight: 600; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.badge i { width: 18px; height: 18px; }
+.hero-content h1 { font-size: clamp(2.8rem, 7vw, 4.5rem); line-height: 1.2; margin-bottom: 25px; font-weight: 700; }
+.highlight { color: var(--primary-color); }
+.hero-content .desc { font-size: 1.25rem; color: var(--text-gray); margin-bottom: 40px; line-height: 1.6; }
+.hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+.btn {
+    display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px;
+    border-radius: 12px; font-size: 1.15rem; font-weight: 600; cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.btn-primary { background: linear-gradient(135deg, var(--primary-color), var(--primary-hover)); color: #fff; box-shadow: 0 10px 20px rgba(1, 142, 221, 0.2); border: none; }
+.btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 25px rgba(1, 142, 221, 0.3); }
+.btn-outline { background: var(--card-bg); color: var(--text-dark); border: 2px dashed var(--border-color); }
+.btn-outline:hover { border-style: solid; border-color: var(--primary-color); color: var(--primary-color); transform: translateY(-3px); }
+
+/* =========================================
+   10-ITEM ASYMMETRICAL MOSAIC GRID
+   ========================================= */
+.content-section { padding: 100px 0; }
+.section-header { text-align: center; margin-bottom: 60px; }
+.section-subtitle { display: block; font-size: 1.2rem; color: var(--primary-color); font-weight: 600; margin-bottom: 10px; }
+.section-header h2 { font-size: 2.5rem; color: var(--text-dark); font-weight: 700; }
+
+.physics-mosaic-grid { 
+    display: grid; 
+    grid-template-columns: repeat(12, 1fr); 
+    gap: 30px; 
+}
+
+/* Base Card Styling (Mobile 1 column) */
+.physics-card {
+    grid-column: span 12;
+    position: relative; 
+    background: var(--card-bg); 
+    border: 1px solid var(--border-color);
+    border-radius: 16px; 
+    padding: 30px; 
+    display: flex; 
+    flex-direction: column;
+    overflow: hidden; 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    z-index: 1;
+}
+
+/* Tablet (2 columns) */
+@media (min-width: 768px) {
+    .physics-card { grid-column: span 6; }
+}
+
+/* Desktop (The 2-3-2-3 Mosaic Pattern) */
+@media (min-width: 1024px) {
+    .physics-card:nth-child(1), .physics-card:nth-child(2) { grid-column: span 6; }
+    .physics-card:nth-child(3), .physics-card:nth-child(4), .physics-card:nth-child(5) { grid-column: span 4; }
+    .physics-card:nth-child(6), .physics-card:nth-child(7) { grid-column: span 6; }
+    .physics-card:nth-child(8), .physics-card:nth-child(9), .physics-card:nth-child(10) { grid-column: span 4; }
+}
+
+/* Card Internals */
+.card-glow {
+    position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 3;
+}
+
+.card-bg-watermark {
+    position: absolute; bottom: -20px; right: -10px;
+    font-size: 8rem; font-weight: 800; color: var(--surface-color);
+    opacity: 0.5; z-index: 0; transition: all 0.5s ease;
+    pointer-events: none; line-height: 1;
+}
+
+.card-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 25px; z-index: 2; position: relative;
+}
+
+.card-icon {
+    width: 55px; height: 55px; background: var(--surface-color); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.4s ease;
+}
+.card-icon i, .card-icon svg { width: 26px; height: 26px; color: var(--primary-color); transition: all 0.4s ease; }
+
+.ch-badge {
+    background: var(--surface-hover); color: var(--primary-color);
+    padding: 6px 12px; border-radius: 6px; font-size: 0.95rem; font-weight: 600;
+}
+
+.card-body { z-index: 2; position: relative; flex-grow: 1; }
+.card-body h3 { font-size: 1.45rem; font-weight: 600; color: var(--text-dark); margin-bottom: 12px; }
+.card-body p { font-size: 1.05rem; color: var(--text-gray); line-height: 1.6; }
+
+.card-footer {
+    z-index: 2; position: relative; margin-top: 25px;
+    display: flex; align-items: center; gap: 8px; color: var(--primary-color);
+    font-weight: 600; font-size: 1.05rem;
+}
+.card-footer i, .card-footer svg { width: 18px; height: 18px; transition: transform 0.3s ease; }
+
+/* Physics Card Hover Effects */
+.physics-card:hover { 
+    transform: translateY(-8px); 
+    border-color: var(--primary-color); 
+    box-shadow: 0 15px 35px rgba(1, 142, 221, 0.08); 
+}
+.physics-card:hover .card-glow { transform: scaleX(1); }
+.physics-card:hover .card-bg-watermark { color: var(--primary-color); opacity: 0.08; transform: scale(1.1) translate(-10px, -10px); }
+.physics-card:hover .card-icon { background: var(--primary-color); box-shadow: 0 8px 20px rgba(1, 142, 221, 0.3); }
+.physics-card:hover .card-icon i, .physics-card:hover .card-icon svg { color: #fff; }
+.physics-card:hover .card-footer i, .physics-card:hover .card-footer svg { transform: translateX(5px); }

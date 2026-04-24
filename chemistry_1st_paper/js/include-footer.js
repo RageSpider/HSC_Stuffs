@@ -1,6 +1,9 @@
 // js/include-footer.js
 document.addEventListener("DOMContentLoaded", () => {
-    const basePath = window.location.pathname.startsWith('/chem_1st_paper') ? '/chem_1st_paper' : '';
+    // Dynamically check if we are in the Netlify subfolder or local root
+    const basePath = window.location.pathname.startsWith('/chemistry_1st_paper') 
+        ? '/chemistry_1st_paper' 
+        : '';
 
     fetch(`${basePath}/components/footer.html`)
         .then(response => {
@@ -9,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(data => {
             document.getElementById('footer-placeholder').innerHTML = data;
+            // Dispatch event to initialize footer scripts
             document.dispatchEvent(new Event('footerLoaded'));
         })
         .catch(error => console.error('Error loading footer:', error));

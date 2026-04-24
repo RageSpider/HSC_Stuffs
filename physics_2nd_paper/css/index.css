@@ -1,0 +1,234 @@
+/* css/index.css */
+
+:root {
+    /* Physics 2nd Paper Theme (Light) */
+    --primary-color: #a81e1c; 
+    --primary-hover: #851715; 
+    --secondary-color: #ffa500;
+    --accent-color: #ffa500;
+    
+    --bg-color: #fef2f2; 
+    --surface-color: #fad4d4; 
+    --surface-hover: #f5baba; 
+    --card-bg: #ffffff;
+    
+    --text-dark: #3f0a09; 
+    --text-gray: #752522; 
+    --border-color: #f7c6c5; 
+    
+    --nav-bg: rgba(254, 242, 242, 0.85);
+}
+
+[data-theme="dark"] {
+    /* Physics 2nd Paper Theme (Dark) */
+    --primary-color: #a81e1c; 
+    --primary-hover: #cc2522;
+    --secondary-color: #ffa500;
+    --accent-color: #ffa500;
+    
+    --bg-color: #1a0505; 
+    --surface-color: #330a0a; 
+    --surface-hover: #4a1010;
+    --card-bg: #260707;
+    
+    --text-dark: #f3fff2; 
+    --text-gray: #e0e8df; 
+    --border-color: #4a1010; 
+    
+    --nav-bg: rgba(26, 5, 5, 0.85);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background-color: var(--bg-color); font-family: 'Poppins', sans-serif; color: var(--text-dark); overflow-x: hidden; }
+body, .p2-card, .btn { transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease; }
+.bn-text { font-family: 'Bangla', sans-serif; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+a { text-decoration: none; color: inherit; }
+
+/* =========================================
+   UNIQUE HERO SECTION: ELECTROMAGNETIC CORE
+   ========================================= */
+.hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 100px 20px; overflow: hidden; }
+
+.hero-bg-shapes { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+
+/* Concentric Magnetic Grid */
+.magnetic-grid {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        radial-gradient(circle at center, transparent 15%, var(--border-color) 16%, transparent 17%),
+        radial-gradient(circle at center, transparent 35%, var(--border-color) 36%, transparent 37%),
+        radial-gradient(circle at center, transparent 55%, var(--border-color) 56%, transparent 57%),
+        radial-gradient(circle at center, transparent 75%, var(--border-color) 76%, transparent 77%);
+    opacity: 0.15;
+}
+
+/* Electromagnetic Core CSS Art */
+.electromagnetic-core {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw; height: 100vh;
+    perspective: 1200px;
+    overflow: hidden; opacity: 0.25;
+}
+
+/* Pulsing Plasma Center */
+.core-center {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 90px; height: 90px; border-radius: 50%;
+    background: radial-gradient(circle, var(--secondary-color), var(--primary-color));
+    box-shadow: 0 0 50px var(--secondary-color), 0 0 100px var(--primary-color);
+    animation: pulseCore 3s ease-in-out infinite alternate;
+    z-index: 5;
+}
+
+/* 3D Rotating Flux Rings */
+.ring-wrapper {
+    position: absolute; top: 50%; left: 50%;
+    transform-style: preserve-3d;
+}
+.rw-1 { transform: translate(-50%, -50%) rotateX(70deg) rotateY(25deg); }
+.rw-2 { transform: translate(-50%, -50%) rotateX(60deg) rotateY(-45deg); }
+.rw-3 { transform: translate(-50%, -50%) rotateX(80deg) rotateY(80deg); }
+
+.flux-ring {
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    border-left-color: var(--primary-color);
+    border-right-color: var(--secondary-color);
+    animation: spinFlat 8s linear infinite;
+}
+.rw-3 .flux-ring {
+    width: 1000px; height: 1000px;
+    border: 2px dashed var(--accent-color);
+    animation: spinFlat 20s linear infinite reverse;
+}
+
+/* Floating Quantum Particles */
+.particles { 
+    position: absolute; top: 50%; left: 50%; 
+    transform: translate(-50%, -50%); width: 100%; height: 100%; 
+    animation: spinFlat 30s linear infinite; 
+}
+.particle {
+    position: absolute; 
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--secondary-color);
+    transform: translate(-50%, -50%);
+}
+.p-1 { top: 20%; left: 50%; animation: pulseParticle 2s infinite alternate; }
+.p-2 { top: 70%; left: 80%; animation: pulseParticle 2.5s infinite alternate; }
+.p-3 { top: 80%; left: 20%; animation: pulseParticle 3s infinite alternate; }
+
+/* Animations */
+@keyframes pulseCore { 
+    0% { opacity: 0.7; transform: translate(-50%, -50%) scale(0.8); } 
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 80px var(--secondary-color), 0 0 150px var(--primary-color); } 
+}
+@keyframes spinFlat { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes pulseParticle { 
+    0% { opacity: 0.4; box-shadow: 0 0 10px var(--secondary-color); } 
+    100% { opacity: 1; box-shadow: 0 0 30px var(--secondary-color), 0 0 60px var(--primary-color); } 
+}
+
+/* Hero Content */
+.hero-content { position: relative; z-index: 2; text-align: center; max-width: 850px; }
+.badge {
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px;
+    background: var(--surface-color); color: var(--primary-color); border-radius: 50px;
+    font-size: 1.1rem; font-weight: 600; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.badge i { width: 18px; height: 18px; }
+.hero-content h1 { font-size: clamp(2.8rem, 7vw, 4.5rem); line-height: 1.2; margin-bottom: 25px; font-weight: 700; }
+.highlight { color: var(--primary-color); }
+.hero-content .desc { font-size: 1.25rem; color: var(--text-gray); margin-bottom: 40px; line-height: 1.6; }
+.hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+.btn {
+    display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px;
+    border-radius: 50px; font-size: 1.15rem; font-weight: 600; cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.btn-primary { background: linear-gradient(135deg, var(--primary-color), var(--primary-hover)); color: #fff; box-shadow: 0 10px 25px rgba(168, 30, 28, 0.25); border: none; }
+.btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 30px rgba(168, 30, 28, 0.35); }
+.btn-outline { background: var(--card-bg); color: var(--text-dark); border: 2px solid var(--border-color); }
+.btn-outline:hover { border-color: var(--primary-color); color: var(--primary-color); transform: translateY(-3px); }
+
+/* =========================================
+   11-ITEM HIGH-TECH GRID LAYOUT
+   ========================================= */
+.content-section { padding: 100px 0; }
+.section-header { text-align: center; margin-bottom: 60px; }
+.section-subtitle { display: block; font-size: 1.2rem; color: var(--primary-color); font-weight: 600; margin-bottom: 10px; }
+.section-header h2 { font-size: 2.5rem; color: var(--text-dark); font-weight: 700; }
+
+.physics2-grid { 
+    display: grid; 
+    grid-template-columns: repeat(12, 1fr); 
+    gap: 25px; 
+}
+
+/* Base Mobile */
+.p2-card {
+    grid-column: span 12;
+    position: relative; 
+    background: var(--card-bg); 
+    border: 1px solid var(--border-color);
+    border-radius: 12px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    z-index: 1;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .p2-card { grid-column: span 6; }
+}
+
+/* Unique 11-Item Desktop Asymmetry (2-3-2-2-2) */
+@media (min-width: 1024px) {
+    .p2-card:nth-child(1), .p2-card:nth-child(2) { grid-column: span 6; }
+    .p2-card:nth-child(3), .p2-card:nth-child(4), .p2-card:nth-child(5) { grid-column: span 4; }
+    .p2-card:nth-child(6) { grid-column: span 7; }
+    .p2-card:nth-child(7) { grid-column: span 5; }
+    .p2-card:nth-child(8) { grid-column: span 5; }
+    .p2-card:nth-child(9) { grid-column: span 7; }
+    .p2-card:nth-child(10), .p2-card:nth-child(11) { grid-column: span 6; }
+}
+
+/* Card Internals */
+.circuit-trace {
+    position: absolute; top: 0; left: 0; width: 0; height: 3px;
+    background: var(--secondary-color);
+    transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 3;
+}
+
+.p2-card-inner {
+    padding: 30px;
+    display: flex; gap: 20px; align-items: flex-start;
+    height: 100%;
+}
+
+.p2-icon {
+    flex-shrink: 0; width: 50px; height: 50px; 
+    background: var(--surface-color); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.4s ease;
+}
+.p2-icon i, .p2-icon svg { width: 24px; height: 24px; color: var(--primary-color); transition: all 0.4s ease; }
+
+.p2-content { flex-grow: 1; }
+.ch-num { display: inline-block; color: var(--secondary-color); font-weight: 600; font-size: 0.95rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;}
+.p2-content h3 { font-size: 1.4rem; font-weight: 600; color: var(--text-dark); margin-bottom: 10px; }
+.p2-content p { font-size: 1.05rem; color: var(--text-gray); line-height: 1.6; margin: 0; }
+
+/* Physics 2 Card Hover Effects */
+.p2-card:hover { 
+    transform: translateY(-5px); 
+    border-color: var(--primary-color); 
+    box-shadow: 0 15px 30px rgba(168, 30, 28, 0.08); 
+}
+.p2-card:hover .circuit-trace { width: 100%; }
+.p2-card:hover .p2-icon { background: var(--primary-color); }
+.p2-card:hover .p2-icon i, .p2-card:hover .p2-icon svg { color: #fff; }

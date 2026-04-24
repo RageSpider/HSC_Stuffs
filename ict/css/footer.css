@@ -1,0 +1,142 @@
+/* css/footer.css */
+.site-footer {
+    background-color: var(--surface-color); 
+    color: var(--text-dark);
+    padding: 80px 20px 30px; 
+    margin-top: auto; 
+    border-top: 4px solid var(--primary-color);
+    font-family: 'Poppins', sans-serif;
+}
+
+.site-footer .bn-text { font-family: 'Bangla', sans-serif; }
+
+.footer-container {
+    max-width: 1200px; 
+    margin: 0 auto; 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 50px; 
+    margin-bottom: 60px;
+}
+
+.footer-col h4 {
+    color: var(--primary-color); 
+    font-size: 1.4rem; 
+    margin-bottom: 25px;
+    position: relative; 
+    padding-bottom: 12px; 
+    font-weight: 600;
+}
+
+.footer-col h4::after {
+    content: ''; 
+    position: absolute; 
+    left: 0; bottom: 0; 
+    width: 40px; height: 3px;
+    background: var(--accent-color); 
+    border-radius: 2px;
+}
+
+.footer-col ul { list-style: none; padding: 0; margin: 0; }
+.footer-col ul li { margin-bottom: 12px; }
+
+.footer-col ul a { 
+    color: var(--text-gray); 
+    text-decoration: none; 
+    font-size: 1.1rem; 
+    display: inline-flex; 
+    align-items: center;
+    transition: color 0.3s ease; 
+}
+
+.footer-col ul a::before {
+    content: '>';
+    font-family: 'Fira Code', monospace;
+    font-weight: bold;
+    color: transparent;
+    width: 0;
+    margin-right: 0;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.footer-col ul a:hover { 
+    color: var(--primary-color); 
+}
+
+.footer-col ul a:hover::before {
+    color: var(--primary-color);
+    width: 15px;
+    margin-right: 5px;
+}
+
+.brand-col p { 
+    color: var(--text-gray); 
+    line-height: 1.7; 
+    margin-bottom: 25px; 
+    font-size: 1.05rem; 
+}
+
+/* ICT specific footer buttons */
+.contact-links { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
+    align-items: flex-start; 
+}
+
+.contact-links a {
+    display: inline-flex; 
+    align-items: center; 
+    padding: 10px 20px; 
+    border-radius: 8px; /* Techy square corners */
+    font-size: 1.05rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.contact-links .primary-btn {
+    background: var(--primary-color);
+    color: var(--card-bg);
+    border: 1px solid var(--primary-color);
+}
+.contact-links .primary-btn:hover {
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(69, 175, 40, 0.2);
+}
+
+.contact-links .outline-btn {
+    background: transparent;
+    color: var(--text-dark);
+    border: 1px dashed var(--border-color); /* Dashed border for tech look */
+}
+.contact-links .outline-btn:hover {
+    border-style: solid;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background: var(--card-bg);
+    transform: translateY(-2px);
+}
+
+.footer-bottom { 
+    text-align: center; 
+    padding-top: 30px; 
+    border-top: 1px solid var(--border-color); 
+    color: var(--text-gray); 
+    font-size: 1.05rem; 
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-bottom a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom a:hover {
+    text-decoration: underline;
+}

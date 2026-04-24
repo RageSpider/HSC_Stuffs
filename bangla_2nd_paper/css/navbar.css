@@ -97,7 +97,8 @@
     gap: 6px;
 }
 
-.nav-item:hover, .nav-item.active {
+/* Fix: Active class removed entirely to only show on hover */
+.nav-item:hover {
     background: var(--surface-hover);
     color: var(--primary-color);
 }

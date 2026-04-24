@@ -71,12 +71,30 @@
 
 .nav-item:hover { color: var(--chem-bright-green); }
 
-/* Desktop Dropdown (Mega Menu Style) */
-.nav-dropdown-wrapper { position: relative; }
+/* =========================================
+   THE FIX: Desktop Dropdown Bridge
+   ========================================= */
+.nav-dropdown-wrapper { 
+    position: relative; 
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* Invisible bridge prevents menu from closing when moving mouse down */
+.nav-dropdown-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 30px; 
+}
 
 .mega-menu-modern {
     position: absolute;
-    top: 150%;
+    top: 100%; /* Fixed: Was 150%, which created a massive gap */
+    margin-top: 15px;
     left: 50%;
     transform: translateX(-50%) translateY(15px);
     background: var(--surface-color);
@@ -123,8 +141,9 @@
 }
 .theme-btn:hover { background: var(--chem-light-muted); color: var(--chem-dark-forest); }
 
+
 /* =========================================
-   THE FIX: MOBILE NAVBAR STYLES
+   MOBILE NAVBAR STYLES
    ========================================= */
 .mobile-toggle { display: none; background: none; border: none; color: var(--text-main); cursor: pointer; padding: 5px; }
 .nav-overlay { display: none; }
@@ -170,7 +189,6 @@
         box-shadow: none; border: none; background: transparent;
         padding: 0 0 0 15px; margin: 0; min-width: auto;
         
-        /* Hidden by default in mobile via JS classes */
         max-height: 0; opacity: 0; visibility: hidden; overflow: hidden;
         transition: all 0.4s ease;
     }
