@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ০৮: পর্যাবৃত্ত গতি | Physics Master Guide</title>
+    
+    <link href="https://fonts.maateen.me/bangla/font.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- MathJax Configuration for LaTeX Rendering -->
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Base Styles + Chapter Override -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../topic-css/ch8.css">
+</head>
+<body class="bn-text">
+    
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <section class="ch8-hero">
+            <div class="wave-bg"></div>
+            <div class="container relative z-10">
+                <div class="ch8-subtitle bn-text"><i data-lucide="activity"></i> অধ্যায় ০৮</div>
+                <h1 class="ch8-title bn-text">পর্যাবৃত্ত গতি</h1>
+                <p class="bn-text ch8-hero-desc">
+                    সরল ছন্দিত স্পন্দনের সমীকরণ, দোলক এবং স্প্রিংয়ের সম্পূর্ণ গাণিতিক রূপরেখা ও গতিশীল বিশ্লেষণ।
+                </p>
+            </div>
+        </section>
+
+        <section class="container" style="min-height: 60vh;">
+            <div class="tab-container">
+                <div class="tabs">
+                    <button class="tab-btn active bn-text" data-tab="tab-formulas">
+                        <i data-lucide="sigma"></i> প্রয়োজনীয় সূত্রাবলি
+                    </button>
+                    <button class="tab-btn bn-text" data-tab="tab-mcq">
+                        <i data-lucide="check-square"></i> ডাইনামিক MCQ
+                    </button>
+                    <button class="tab-btn bn-text" data-tab="tab-cq">
+                        <i data-lucide="pen-tool"></i> সৃজনশীল প্রশ্ন (CQ)
+                    </button>
+                </div>
+
+                <!-- TAB 1: FORMULAS -->
+                <div id="tab-formulas" class="tab-content active">
+                    <div id="formula-container" class="formula-grid">
+                        <!-- Loaded via ch8.js from equation.json -->
+                        <div style="text-align:center; padding: 20px; width: 100%;">লোড হচ্ছে...</div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: DYNAMIC MCQ -->
+                <div id="tab-mcq" class="tab-content">
+                    
+                    <div class="mcq-settings-panel">
+                        <div class="settings-grid">
+                            <!-- New Search Bar -->
+                            <div class="setting-group" style="grid-column: 1 / -1;">
+                                <label><i data-lucide="search"></i> অনুসন্ধান (Search)</label>
+                                <input type="text" id="mcq-search" class="search-input" placeholder="সার্চ করুন (বাংলা, English, বা Banglish এ)...">
+                            </div>
+
+                            <!-- Intersection Filters -->
+                            <div class="setting-group">
+                                <label><i data-lucide="filter"></i> বোর্ড ফিল্টার</label>
+                                <select id="mcq-board-filter">
+                                    <option value="all">সকল বোর্ড</option>
+                                </select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="calendar"></i> সাল ফিল্টার</label>
+                                <select id="mcq-year-filter">
+                                    <option value="all">সকল সাল</option>
+                                </select>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label><i data-lucide="layers"></i> প্রশ্নের ধরন</label>
+                                <select id="mcq-type-filter">
+                                    <option value="all">সকল প্রশ্ন</option>
+                                    <option value="static">বইয়ের প্রশ্ন (Static)</option>
+                                    <option value="dynamic">মান পরিবর্তনশীল (Dynamic)</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Display Features -->
+                            <div class="setting-group">
+                                <label><i data-lucide="book-open"></i> লার্নিং মোড</label>
+                                <select id="mcq-mode-select">
+                                    <option value="practice">প্র্যাকটিস মোড (নিজে চেষ্টা করুন)</option>
+                                    <option value="teach">টিচিং মোড (ব্যাখ্যা সহ শিখুন)</option>
+                                </select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="list-ordered"></i> প্রশ্নের সিরিয়াল</label>
+                                <select id="mcq-serial-select">
+                                    <option value="json">বইয়ের সিরিয়াল (Serial)</option>
+                                    <option value="random">এলোমেলো (Random)</option>
+                                </select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="eye"></i> উত্তর প্রদর্শন</label>
+                                <select id="mcq-answer-select">
+                                    <option value="hide">ক্লিক করার পর দেখান</option>
+                                    <option value="show">সব উত্তর আগেই দেখান</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mcq-controls">
+                            <div class="bn-text" style="color: var(--text-gray); font-size: 0.95rem;">
+                                <strong>স্মার্ট ফিল্টার:</strong> বোর্ড এবং সাল সিলেক্ট করে নির্দিষ্ট প্রশ্ন খুঁজে বের করুন।
+                            </div>
+                            <button id="regen-mcq-btn" class="action-btn bn-text">
+                                <i data-lucide="refresh-cw"></i> নতুন সেট তৈরি করুন
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="dynamic-mcq-container">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <!-- TAB 3: CQ -->
+                <div id="tab-cq" class="tab-content">
+                    
+                    <div class="cq-sub-tabs">
+                        <button class="cq-sub-tab-btn active bn-text" data-cq="ka">জ্ঞানমূলক (ক)</button>
+                        <button class="cq-sub-tab-btn bn-text" data-cq="kha">অনুধাবনমূলক (খ)</button>
+                        <button class="cq-sub-tab-btn bn-text" data-cq="ga-gha">প্রয়োগ ও উচ্চতর (গ, ঘ)</button>
+                    </div>
+
+                    <div class="mcq-settings-panel">
+                        <div class="settings-grid">
+                            <!-- Search -->
+                            <div class="setting-group" style="grid-column: 1 / -1;">
+                                <label><i data-lucide="search"></i> অনুসন্ধান (Search)</label>
+                                <input type="text" id="cq-search" class="search-input" placeholder="সার্চ করুন (বাংলা, English, বা Banglish এ)...">
+                            </div>
+
+                            <!-- Intersectional Filters -->
+                            <div class="setting-group">
+                                <label><i data-lucide="filter"></i> বোর্ড ফিল্টার</label>
+                                <select id="cq-board-filter">
+                                    <option value="all">সকল বোর্ড</option>
+                                </select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="calendar"></i> সাল ফিল্টার</label>
+                                <select id="cq-year-filter">
+                                    <option value="all">সকল সাল</option>
+                                </select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="tag"></i> টপিক ফিল্টার (Topic Type)</label>
+                                <select id="cq-type-filter">
+                                    <option value="all">সকল টপিক</option>
+                                    <!-- Populated dynamically based on json type -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="cq-container">
+                        <!-- Filled by JS -->
+                        <div style="text-align:center; padding: 20px;">লোড হচ্ছে...</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Scroll Controls -->
+    <div class="scroll-fab-container" id="scroll-controls">
+        <button class="scroll-fab" id="scroll-top-btn" title="উপরে যান"><i data-lucide="arrow-up"></i></button>
+        <button class="scroll-fab" id="scroll-bottom-btn" title="নিচে যান"><i data-lucide="arrow-down"></i></button>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script src="../js/include-navbar.js"></script>
+    <script src="../js/include-footer.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/footer.js"></script>
+
+    <script src="../topic-js/ch8.js"></script>
+    <script src="../topic-data/ch8/scripts/mcq-generator.js"></script>
+    <script src="../topic-data/ch8/scripts/mcq-function.js"></script>
+    <script src="../topic-data/ch8/scripts/cq-function.js"></script>
+
+</body>
+</html>

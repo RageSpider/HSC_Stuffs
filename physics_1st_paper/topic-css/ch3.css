@@ -1,0 +1,214 @@
+/* topic-css/ch3.css */
+/* Chapter 3 Unique Theme: Cyber Cyan & Amber / Kinematics */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body.bn-text,
+.bn-text, 
+h1, h2, h3, h4, p, span, button, a, div, select, label, input {
+    font-family: 'Bangla', 'Inter', sans-serif;
+}
+
+:root {
+    /* Cyber Cyan Light Palette */
+    --primary-color: #0891b2; /* Cyan 600 */
+    --primary-hover: #0e7490; 
+    --secondary-color: #06b6d4; 
+    --accent-color: #f59e0b; /* Amber 500 */
+    
+    --bg-color: #ecfeff; /* Cyan 50 - Very soft */
+    --surface-color: #ffffff; 
+    --surface-hover: #cffafe; 
+    --card-bg: #ffffff;
+    
+    --text-dark: #164e63; /* Cyan 950 */
+    --text-gray: #0891b2; 
+    --border-color: #a5f3fc; 
+    --icon-color: #0891b2;
+}
+
+[data-theme="dark"] {
+    /* Deep Void Cyan Dark Mode - Re-engineered for zero eye-strain */
+    --primary-color: #22d3ee; /* Brighter Cyan */
+    --primary-hover: #67e8f9; 
+    --secondary-color: #0891b2; 
+    --accent-color: #fbbf24; /* Warm Amber */
+    
+    /* Using an ultra-deep "Ocean Void" to prevent blinding */
+    --bg-color: #041d26; 
+    --surface-color: #083344; /* User requested bg color used for card elevation */
+    --surface-hover: #0e4e63; 
+    --card-bg: #083344; 
+    
+    --text-dark: #cffafe; 
+    --text-gray: #67e8f9; 
+    --border-color: #0e4e63; 
+    --icon-color: #22d3ee;
+}
+
+/* Kinematics Hero Background */
+.ch3-hero {
+    padding: 120px 20px 60px;
+    background: linear-gradient(135deg, var(--surface-color), var(--bg-color));
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* --- KINETIC RADAR TRACE ANIMATION --- */
+.projectile-radar {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.25;
+}
+[data-theme="dark"] .projectile-radar {
+    opacity: 0.5;
+}
+
+.trace-path {
+    stroke-linecap: round;
+    animation: drawTrajectory 4s linear infinite;
+}
+.trace-path.p2 { animation-delay: 2s; }
+
+.node {
+    animation: nodePulse 4s step-end infinite;
+}
+.p2-node { animation-delay: 2s; }
+
+@keyframes drawTrajectory {
+    0% { stroke-dashoffset: 600; opacity: 0; }
+    10% { opacity: 1; }
+    50% { stroke-dashoffset: 0; }
+    60% { opacity: 1; }
+    80%, 100% { opacity: 0; }
+}
+
+@keyframes nodePulse {
+    0%, 24% { opacity: 0; transform: scale(0.5); }
+    25% { opacity: 1; transform: scale(1.2); }
+    26% { transform: scale(1); }
+    50% { opacity: 0.5; }
+    60%, 100% { opacity: 0; }
+}
+
+.ch3-title { font-size: 3rem; color: var(--text-dark); margin-bottom: 10px; font-weight: 700; }
+.ch3-subtitle { font-size: 1.2rem; color: var(--primary-color); font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.ch3-hero-desc { color: var(--text-gray); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+/* Tabs System */
+.tab-container { margin: 40px auto; max-width: 1000px; }
+.tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
+.tab-btn {
+    padding: 12px 25px; border: 2px solid var(--border-color);
+    background: var(--card-bg); color: var(--text-dark);
+    border-radius: 30px; font-size: 1.1rem; font-weight: 600; cursor: pointer;
+    transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;
+}
+.tab-btn svg { width: 18px; height: 18px; }
+.tab-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
+.tab-btn.active { background: var(--primary-color); color: #fff; border-color: var(--primary-color); box-shadow: 0 8px 20px rgba(8, 145, 178, 0.3); }
+
+/* CQ Sub-Tabs */
+.cq-sub-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;}
+.cq-sub-tab-btn {
+    padding: 8px 20px; border: 1px dashed var(--primary-color);
+    background: var(--surface-color); color: var(--text-dark);
+    border-radius: 20px; font-size: 1rem; font-weight: 600; cursor: pointer;
+    transition: all 0.2s ease;
+}
+.cq-sub-tab-btn:hover { background: var(--surface-hover); border-color: var(--primary-color); }
+.cq-sub-tab-btn.active { background: var(--primary-color); color: #fff; border-style: solid; }
+
+/* Action Button */
+.action-btn {
+    padding: 10px 20px; border: 1px solid var(--primary-color);
+    background: var(--primary-color); color: #fff;
+    border-radius: 8px; font-size: 1.05rem; font-weight: 600; cursor: pointer;
+    transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;
+}
+.action-btn:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(8, 145, 178, 0.2); }
+.action-btn svg { width: 18px; height: 18px; }
+
+.tab-content { display: none; animation: fadeIn 0.4s ease-out forwards; }
+.tab-content.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Modern Formula Grid */
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+.formula-card-modern {
+    background: var(--card-bg); border: 1px solid var(--border-color);
+    border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    transition: transform 0.3s ease, border-color 0.3s ease; display: flex; flex-direction: column;
+}
+.formula-card-modern:hover { transform: translateY(-5px); border-color: var(--primary-color); }
+
+.fc-header {
+    background: var(--surface-color); padding: 15px 20px;
+    display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border-color);
+}
+.fc-header h4 { color: var(--primary-color); font-size: 1.15rem; font-weight: 600; margin: 0; }
+.fc-icon { 
+    width: 34px; height: 34px; background: var(--primary-color); color: #fff; 
+    border-radius: 8px; display: flex; align-items: center; justify-content: center; 
+}
+.fc-icon svg { width: 18px; height: 18px; }
+
+.fc-body { padding: 20px; display: flex; flex-direction: column; gap: 20px; flex-grow: 1; }
+.fc-math {
+    font-size: 1.1rem; text-align: center; padding: 10px;
+    background: var(--bg-color); border-radius: 10px; border: 1px dashed var(--border-color);
+    color: var(--text-dark); overflow-x: auto;
+}
+.fc-desc ul { list-style: none; padding: 0; margin: 0; }
+.fc-desc li { 
+    margin-bottom: 12px; font-size: 1.05rem; color: var(--text-gray); 
+    display: grid; grid-template-columns: max-content 1fr; align-items: start; gap: 12px; line-height: 1.6; 
+}
+.fc-desc li:last-child { margin-bottom: 0; }
+
+.math-var {
+    font-weight: 600; color: var(--primary-color); background: var(--surface-hover);
+    padding: 4px 10px; border-radius: 6px; font-family: 'Bangla', 'Inter', sans-serif;
+    min-width: 35px; text-align: center; display: inline-block;
+}
+
+/* =========================================
+   MCQ & CQ CARDS
+   ========================================= */
+.mcq-settings-panel {
+    background: var(--surface-color); padding: 20px; border-radius: 12px; 
+    margin-bottom: 25px; border: 1px solid var(--border-color);
+}
+.settings-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 20px;
+}
+.setting-group { display: flex; flex-direction: column; gap: 8px; }
+.setting-group label { font-size: 0.95rem; font-weight: 600; color: var(--text-dark); display: flex; align-items: center; gap: 6px;}
+
+.setting-group select, .search-input {
+    padding: 10px; border-radius: 8px; border: 1px solid var(--border-color);
+    background: var(--card-bg); color: var(--text-dark);
+    font-family: 'Bangla', 'Inter', sans-serif; font-size: 1rem;
+    outline: none; transition: border-color 0.2s; width: 100%; box-sizing: border-box;
+}
+.setting-group select:focus, .search-input:focus { border-color: var(--primary-color); box-shadow: 0 0 0 2px rgba(8, 145, 178, 0.1); }
+
+.mcq-card {
+    background: var(--card-bg); border: 1px solid var(--border-color); border-left: 5px solid var(--primary-color);
+    border-radius: 12px; padding: 25px; margin-bottom: 20px;
+}
+.mcq-question { font-size: 1.2rem; font-weight: 600; color: var(--text-dark); margin-bottom: 20px; }
+.mcq-option {
+    padding: 12px 15px; background: var(--surface-color); border: 1px solid var(--border-color);
+    border-radius: 8px; cursor: pointer; transition: all 0.2s ease; margin-bottom: 10px;
+}
+.mcq-option:hover { background: var(--surface-hover); border-color: var(--primary-color); }
+
+/* Scroll FABs */
+.scroll-fab-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 10px; z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.scroll-fab-container.visible { opacity: 1; pointer-events: auto; }
+.scroll-fab { width: 45px; height: 45px; border-radius: 50%; background: var(--primary-color); color: white; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 12px rgba(8, 145, 178, 0.4); }

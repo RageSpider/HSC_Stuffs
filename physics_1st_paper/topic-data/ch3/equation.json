@@ -1,0 +1,56 @@
+[
+    {
+        "id": "eq_motion",
+        "icon": "move",
+        "title": "১. সরণ ও গতির সমীকরণ",
+        "equations": [
+            "x = A \\sin(\\omega t + \\delta)",
+            "\\frac{d^2x}{dt^2} + \\omega^2 x = 0"
+        ],
+        "variables": [
+            { "sym": "A", "desc": "বিস্তার (Amplitude)" },
+            { "sym": "\\omega", "desc": "কৌণিক কম্পাঙ্ক" },
+            { "sym": "\\delta", "desc": "আদি দশা (Initial Phase)" }
+        ]
+    },
+    {
+        "id": "eq_velocity",
+        "icon": "zap",
+        "title": "২. বেগ ও ত্বরণ",
+        "equations": [
+            "v = \\omega \\sqrt{A^2 - x^2}",
+            "a = -\\omega^2 x"
+        ],
+        "variables": [
+            { "sym": "V_{max}", "desc": "$\\omega A$ (সাম্যাবস্থায় সর্বোচ্চ বেগ)" },
+            { "sym": "a_{max}", "desc": "$\\omega^2 A$ (প্রান্তিক অবস্থানে সর্বোচ্চ ত্বরণ)" }
+        ]
+    },
+    {
+        "id": "eq_pendulum",
+        "icon": "clock",
+        "title": "৩. সরল দোলকের দোলনকাল",
+        "equations": [
+            "T = 2\\pi\\sqrt{\\frac{L}{g}}"
+        ],
+        "variables": [
+            { "sym": "L", "desc": "কার্যকর দৈর্ঘ্য (সুতা + ববের ব্যাসার্ধ)" },
+            { "sym": "g", "desc": "অভিকর্ষজ ত্বরণ" },
+            { "sym": "T", "desc": "সেকেন্ড দোলকের দোলনকাল 2s" }
+        ]
+    },
+    {
+        "id": "eq_spring",
+        "icon": "git-pull-request",
+        "title": "৪. স্প্রিং ও শক্তি",
+        "equations": [
+            "T = 2\\pi\\sqrt{\\frac{m}{k}}",
+            "E_p = \\frac{1}{2} k x^2"
+        ],
+        "variables": [
+            { "sym": "m", "desc": "বস্তুর ভর" },
+            { "sym": "k", "desc": "স্প্রিং ধ্রুবক" },
+            { "sym": "সমবায়", "desc": "শ্রেণি: $\\frac{1}{k_s} = \\frac{1}{k_1} + \\frac{1}{k_2}$ <br> সমান্তরাল: $k_p = k_1 + k_2$" }
+        ]
+    }
+]
