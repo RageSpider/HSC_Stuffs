@@ -1,1 +1,74 @@
-/* Biology 1St Paper Footer CSS */
+/* css/footer.css */
+.site-footer {
+    background-color: var(--surface-color); 
+    color: var(--text-dark);
+    padding: 80px 20px 30px; 
+    margin-top: auto; 
+    border-top: 4px solid var(--primary-color);
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.site-footer .bn-text { font-family: 'Bangla', sans-serif; }
+
+.footer-container {
+    max-width: 1200px; 
+    margin: 0 auto; 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 50px; 
+    margin-bottom: 60px;
+}
+
+.footer-col h4 {
+    color: var(--primary-color); 
+    font-size: 1.4rem; 
+    margin-bottom: 25px;
+    position: relative; 
+    padding-bottom: 12px; 
+    font-weight: 600;
+}
+
+.footer-col h4::after {
+    content: ''; 
+    position: absolute; 
+    left: 0; bottom: 0; 
+    width: 40px; height: 3px;
+    background: var(--accent-color); 
+    border-radius: 2px;
+}
+
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.footer-col ul a {
+    color: var(--text-gray); text-decoration: none; font-size: 1.1rem;
+    display: inline-block; transition: color 0.3s ease, transform 0.3s ease;
+}
+.footer-col ul a:hover { color: var(--primary-color); transform: translateX(6px); }
+
+.brand-col p { color: var(--text-gray); line-height: 1.7; margin-bottom: 20px; font-size: 1.05rem; }
+
+.contact-links { display: flex; flex-direction: column; gap: 12px; }
+.contact-links a {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 12px 15px; border-radius: 8px; font-weight: 600;
+    transition: all 0.3s ease; text-align: center;
+}
+.contact-links a i { width: 18px; height: 18px; }
+
+.contact-links .primary-btn {
+    background: var(--primary-color); color: #ffffff;
+    box-shadow: 0 6px 15px rgba(26, 35, 126, 0.2);
+}
+.contact-links .primary-btn:hover { background: var(--primary-hover); transform: translateY(-3px); color: #fff;}
+
+.contact-links .outline-btn {
+    background: transparent; color: var(--text-dark);
+    border: 2px solid var(--border-color);
+}
+.contact-links .outline-btn:hover { border-color: var(--accent-color); color: var(--accent-color); background: var(--bg-color); }
+
+.footer-bottom {
+    max-width: 1200px; margin: 0 auto; padding-top: 25px;
+    border-top: 1px solid var(--border-color); text-align: center;
+    color: var(--text-gray); font-size: 1rem;
+}

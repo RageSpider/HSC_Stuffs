@@ -1,4 +1,4 @@
-// topic-data/ch8/scripts/cq-function.js
+// topic-data/ch2/scripts/cq-function.js
 
 document.addEventListener("DOMContentLoaded", () => {
     const subTabBtns = document.querySelectorAll('.cq-sub-tab-btn');
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             if (cachedCqData[type].length === 0) {
                 // Removed nocache query to boost loading speed after first pull
-                const response = await fetch(`../topic-data/ch8/cq/${type}.json`);
+                const response = await fetch(`../topic-data/ch2/cq/${type}.json`);
                 if(response.ok) {
                     cachedCqData[type] = await response.json();
                 } else {

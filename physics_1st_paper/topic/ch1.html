@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ০১: ভৌত জগৎ ও পরিমাপ | Physics Master Guide</title>
+    
+    <link href="https://fonts.maateen.me/bangla/font.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- MathJax Configuration for LaTeX Rendering -->
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Base Styles + Chapter Override -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../topic-css/ch1.css">
+</head>
+<body class="bn-text">
+    
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <section class="ch1-hero">
+            <!-- Precision Calibration HUD Background -->
+            <div class="measurement-hud-bg">
+                <svg width="100%" height="100%" viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- Glowing Filter -->
+                        <filter id="blue-glow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="4" result="blur" />
+                            <feMerge>
+                                <feMergeNode in="blur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                        <!-- Fine Blueprint Grid -->
+                        <pattern id="millimeter-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="var(--primary-color)" stroke-width="0.5" opacity="0.2"/>
+                        </pattern>
+                    </defs>
+
+                    <!-- Background Grid -->
+                    <rect width="100%" height="100%" fill="url(#millimeter-grid)" />
+
+                    <!-- Center Object (The Particle being measured) -->
+                    <circle cx="500" cy="200" r="40" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="4 4" class="spinning-orb" />
+                    <circle cx="500" cy="200" r="30" fill="var(--accent-color)" filter="url(#blue-glow)" opacity="0.15" class="pulsing-core" />
+                    <circle cx="500" cy="200" r="4" fill="var(--accent-color)" />
+
+                    <!-- Base Reference Line -->
+                    <line x1="0" y1="200" x2="1000" y2="200" stroke="var(--primary-color)" stroke-width="1" opacity="0.3" />
+
+                    <!-- LEFT CALIPER JAW -->
+                    <g class="caliper-left">
+                        <rect x="350" y="80" width="20" height="240" fill="var(--primary-color)" opacity="0.8" rx="2" />
+                        <polygon points="370,180 390,195 390,205 370,220" fill="var(--primary-color)" opacity="0.9" />
+                        <!-- Measurement Laser -->
+                        <line x1="390" y1="200" x2="1000" y2="200" stroke="var(--accent-color)" stroke-width="1" class="laser-beam" />
+                    </g>
+
+                    <!-- RIGHT CALIPER JAW -->
+                    <g class="caliper-right">
+                        <rect x="630" y="80" width="20" height="240" fill="var(--primary-color)" opacity="0.8" rx="2" />
+                        <polygon points="630,180 610,195 610,205 630,220" fill="var(--primary-color)" opacity="0.9" />
+                    </g>
+
+                    <!-- DYNAMIC MEASUREMENT READOUT -->
+                    <g class="measurement-readout">
+                        <line x1="460" y1="120" x2="540" y2="120" stroke="var(--accent-color)" stroke-width="2" />
+                        <line x1="460" y1="115" x2="460" y2="125" stroke="var(--accent-color)" stroke-width="2" />
+                        <line x1="540" y1="115" x2="540" y2="125" stroke="var(--accent-color)" stroke-width="2" />
+                        
+                        <rect x="470" y="90" width="60" height="20" fill="var(--surface-color)" rx="3" stroke="var(--primary-color)" stroke-width="1" />
+                        <text x="500" y="104" fill="var(--accent-color)" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">Δx = 8.00</text>
+                    </g>
+
+                </svg>
+            </div>
+
+            <div class="container relative z-10">
+                <div class="ch1-subtitle bn-text"><i data-lucide="microscope"></i> অধ্যায় ০১</div>
+                <h1 class="ch1-title bn-text">ভৌত জগৎ ও পরিমাপ</h1>
+                <p class="bn-text ch1-hero-desc">
+                    ভৌত জগৎ, পরিমাপের যন্ত্রপাতি, ভার্নিয়ার ধ্রুবক, স্ক্রুগজ, ত্রুটি নির্ণয় এবং মাত্রিক বিশ্লেষণের গাণিতিক ও তাত্ত্বিক ধারণা।
+                </p>
+            </div>
+        </section>
+
+        <section class="container" style="min-height: 60vh;">
+            <div class="tab-container">
+                <!-- Modified Tabs: Only MCQ and CQ -->
+                <div class="tabs">
+                    <button class="tab-btn active bn-text" data-tab="tab-mcq">
+                        <i data-lucide="check-square"></i> ডাইনামিক MCQ
+                    </button>
+                    <button class="tab-btn bn-text" data-tab="tab-cq">
+                        <i data-lucide="pen-tool"></i> সৃজনশীল প্রশ্ন (CQ)
+                    </button>
+                </div>
+
+                <!-- TAB: DYNAMIC MCQ (Default Active) -->
+                <div id="tab-mcq" class="tab-content active">
+                    <div class="mcq-settings-panel">
+                        <div class="settings-grid">
+                            <div class="setting-group" style="grid-column: 1 / -1;">
+                                <label><i data-lucide="search"></i> অনুসন্ধান (Search)</label>
+                                <input type="text" id="mcq-search" class="search-input" placeholder="সার্চ করুন (বাংলা, English, বা Banglish এ)...">
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="filter"></i> বোর্ড ফিল্টার</label>
+                                <select id="mcq-board-filter"><option value="all">সকল বোর্ড</option></select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="calendar"></i> সাল ফিল্টার</label>
+                                <select id="mcq-year-filter"><option value="all">সকল সাল</option></select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="layers"></i> প্রশ্নের ধরন</label>
+                                <select id="mcq-type-filter">
+                                    <option value="all">সকল প্রশ্ন</option>
+                                    <option value="static">বইয়ের প্রশ্ন</option>
+                                    <option value="dynamic">মান পরিবর্তনশীল</option>
+                                </select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="book-open"></i> লার্নিং মোড</label>
+                                <select id="mcq-mode-select">
+                                    <option value="practice">প্র্যাকটিস মোড</option>
+                                    <option value="teach">টিচিং মোড</option>
+                                </select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="list-ordered"></i> প্রশ্নের সিরিয়াল</label>
+                                <select id="mcq-serial-select">
+                                    <option value="json">বইয়ের সিরিয়াল</option>
+                                    <option value="random">এলোমেলো</option>
+                                </select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="eye"></i> উত্তর প্রদর্শন</label>
+                                <select id="mcq-answer-select">
+                                    <option value="hide">ক্লিক করার পর দেখান</option>
+                                    <option value="show">সব উত্তর আগেই দেখান</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mcq-controls">
+                            <div class="bn-text" style="color: var(--text-gray); font-size: 0.95rem;">
+                                <strong>স্মার্ট ফিল্টার:</strong> নির্দিষ্ট প্রশ্ন খুঁজে বের করতে ব্যবহার করুন।
+                            </div>
+                            <button id="regen-mcq-btn" class="action-btn bn-text">
+                                <i data-lucide="refresh-cw"></i> নতুন সেট তৈরি করুন
+                            </button>
+                        </div>
+                    </div>
+                    <div id="dynamic-mcq-container"></div>
+                </div>
+
+                <!-- TAB: CQ -->
+                <div id="tab-cq" class="tab-content">
+                    <!-- Modified Sub-tabs: Only Ka and Kha -->
+                    <div class="cq-sub-tabs">
+                        <button class="cq-sub-tab-btn active bn-text" data-cq="ka">জ্ঞানমূলক (ক)</button>
+                        <button class="cq-sub-tab-btn bn-text" data-cq="kha">অনুধাবনমূলক (খ)</button>
+                    </div>
+                    
+                    <div class="mcq-settings-panel">
+                        <div class="settings-grid">
+                            <div class="setting-group" style="grid-column: 1 / -1;">
+                                <label><i data-lucide="search"></i> অনুসন্ধান (Search)</label>
+                                <input type="text" id="cq-search" class="search-input" placeholder="সার্চ করুন (বাংলা, English, বা Banglish এ)...">
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="filter"></i> বোর্ড ফিল্টার</label>
+                                <select id="cq-board-filter"><option value="all">সকল বোর্ড</option></select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="calendar"></i> সাল ফিল্টার</label>
+                                <select id="cq-year-filter"><option value="all">সকল সাল</option></select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="tag"></i> টপিক ফিল্টার (Topic Type)</label>
+                                <select id="cq-type-filter"><option value="all">সকল টপিক</option></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="cq-container">
+                        <div style="text-align:center; padding: 20px;">লোড হচ্ছে...</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <div class="scroll-fab-container" id="scroll-controls">
+        <button class="scroll-fab" id="scroll-top-btn" title="উপরে যান"><i data-lucide="arrow-up"></i></button>
+        <button class="scroll-fab" id="scroll-bottom-btn" title="নিচে যান"><i data-lucide="arrow-down"></i></button>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="../js/include-navbar.js"></script>
+    <script src="../js/include-footer.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/footer.js"></script>
+    
+    <script src="../topic-js/topic-main.js"></script>
+    <script src="../topic-data/ch1/scripts/mcq-generator.js"></script>
+    <script src="../topic-data/shared/mcq-function.js"></script>
+    <script src="../topic-data/shared/cq-function.js"></script>
+</body>
+</html>

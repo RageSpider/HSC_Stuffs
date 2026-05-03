@@ -46,31 +46,41 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // 2. Load Equations dynamically
+    // 2. Load Equations dynamically (Updated for new intuitive structure)
     const loadEquations = async () => {
         const container = document.getElementById('formula-container');
         if (!container) return;
 
         try {
-            // Removed nocache to boost reloading speed 
             const response = await fetch('../topic-data/ch8/equation.json');
             if (!response.ok) throw new Error("Equations fetch failed");
             
             const data = await response.json();
             container.innerHTML = '';
 
-            // Render equations utilizing DocumentFragment to optimize DOM performance
             const fragment = document.createDocumentFragment();
 
             data.forEach(eq => {
                 const card = document.createElement('div');
                 card.className = 'formula-card-modern';
                 
-                // Wrap EACH equation in block math delimiters ($$)
-                let equationsHTML = eq.equations.map(e => `$$${e}$$`).join('');
+                // Construct the structured formulas list
+                let formulasHTML = eq.formulas.map(f => `
+                    <div class="formula-item">
+                        <div class="formula-info">
+                            <div class="formula-name">${f.name}</div>
+                            ${f.note ? `<div class="formula-note">${f.note}</div>` : ''}
+                        </div>
+                        <div class="formula-math">$$${f.eq}$$</div>
+                    </div>
+                `).join('');
 
+                // Construct modern pills for variables
                 let variablesHTML = eq.variables.map(v => `
-                    <li><span class="math-var">$${v.sym}$</span> ${v.desc}</li>
+                    <div class="var-pill">
+                        <span class="math-var">$${v.sym}$</span>
+                        <span class="var-desc">${v.desc}</span>
+                    </div>
                 `).join('');
 
                 card.innerHTML = `
@@ -79,9 +89,15 @@ document.addEventListener("DOMContentLoaded", () => {
                         <h4 class="bn-text">${eq.title}</h4>
                     </div>
                     <div class="fc-body">
-                        <div class="fc-math">${equationsHTML}</div>
+                        <div class="formulas-container">
+                            ${formulasHTML}
+                        </div>
+                        <div class="fc-divider"></div>
                         <div class="fc-desc bn-text">
-                            <ul>${variablesHTML}</ul>
+                            <h5 class="var-title"><i data-lucide="book-open"></i> চলক পরিচিতি (Variables)</h5>
+                            <div class="var-pill-container">
+                                ${variablesHTML}
+                            </div>
                         </div>
                     </div>
                 `;
@@ -95,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } catch (error) {
             console.error(error);
-            container.innerHTML = '<div class="bn-text" style="color:red;">সূত্রাবলি লোড করতে সমস্যা হয়েছে।</div>';
+            container.innerHTML = '<div class="bn-text" style="color:red; text-align: center;">সূত্রাবলি লোড করতে সমস্যা হয়েছে।</div>';
         }
     };
 

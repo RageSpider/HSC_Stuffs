@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ১০: আদর্শ গ্যাস ও গতিতত্ত্ব | Physics Master Guide</title>
+    
+    <link href="https://fonts.maateen.me/bangla/font.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- MathJax Configuration for LaTeX Rendering -->
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Base Styles + Chapter Override -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../topic-css/ch10.css">
+</head>
+<body class="bn-text">
+    
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <section class="ch10-hero">
+            <!-- Kinetic Theory Gas Chamber Background -->
+            <div class="gas-chamber-bg">
+                <svg width="100%" height="100%" viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- Heat Glow Filter -->
+                        <filter id="heat-glow">
+                            <feGaussianBlur stdDeviation="5" result="blur" />
+                            <feMerge>
+                                <feMergeNode in="blur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                        
+                        <!-- Molecule Trajectories (Hidden, only for animation) -->
+                        <path id="path1" d="M 100 100 L 400 350 L 800 50 L 950 250 L 600 380 L 200 50 L 100 100" fill="none" />
+                        <path id="path2" d="M 900 300 L 500 100 L 200 350 L 50 150 L 450 380 L 800 100 L 900 300" fill="none" />
+                        <path id="path3" d="M 500 200 L 100 380 L 300 50 L 900 80 L 700 350 L 500 200" fill="none" />
+                        <path id="path4" d="M 300 200 L 800 350 L 950 50 L 400 150 L 100 250 L 300 200" fill="none" />
+                    </defs>
+
+                    <!-- Ambient Bottom Heat Glow -->
+                    <rect x="0" y="300" width="1000" height="100" fill="var(--primary-color)" opacity="0.05" filter="url(#heat-glow)" />
+
+                    <!-- Gas Molecules with Brownian Motion -->
+                    <g fill="var(--accent-color)" filter="url(#heat-glow)">
+                        <!-- Molecule 1 -->
+                        <circle r="8">
+                            <animateMotion dur="15s" repeatCount="indefinite" calcMode="linear"><mpath href="#path1" /></animateMotion>
+                        </circle>
+                        <!-- Molecule 2 -->
+                        <circle r="6" fill="var(--primary-color)">
+                            <animateMotion dur="18s" repeatCount="indefinite" calcMode="linear"><mpath href="#path2" /></animateMotion>
+                        </circle>
+                        <!-- Molecule 3 -->
+                        <circle r="10">
+                            <animateMotion dur="22s" repeatCount="indefinite" calcMode="linear"><mpath href="#path3" /></animateMotion>
+                        </circle>
+                        <!-- Molecule 4 -->
+                        <circle r="7" fill="var(--primary-color)">
+                            <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear"><mpath href="#path4" /></animateMotion>
+                        </circle>
+                    </g>
+                    
+                    <!-- Faint connecting collision lines that pulse to show pressure -->
+                    <line x1="400" y1="350" x2="800" y2="50" stroke="var(--primary-color)" stroke-width="1" class="collision-line" />
+                    <line x1="500" y1="100" x2="200" y2="350" stroke="var(--accent-color)" stroke-width="1" class="collision-line delay-1" />
+                </svg>
+            </div>
+
+            <div class="container relative z-10">
+                <div class="ch10-subtitle bn-text"><i data-lucide="flame"></i> অধ্যায় ১০</div>
+                <h1 class="ch10-title bn-text">আদর্শ গ্যাস ও গতিতত্ত্ব</h1>
+                <p class="bn-text ch10-hero-desc">
+                    বয়েল ও চার্লসের সূত্র, আদর্শ গ্যাস সমীকরণ, মূল গড় বর্গবেগ (RMS), স্বাধীনতার মাত্রা এবং আপেক্ষিক আর্দ্রতার গাণিতিক বিশ্লেষণ।
+                </p>
+            </div>
+        </section>
+
+        <section class="container" style="min-height: 60vh;">
+            <div class="tab-container">
+                <div class="tabs">
+                    <button class="tab-btn active bn-text" data-tab="tab-formulas">
+                        <i data-lucide="sigma"></i> প্রয়োজনীয় সূত্রাবলি
+                    </button>
+                    <button class="tab-btn bn-text" data-tab="tab-mcq">
+                        <i data-lucide="check-square"></i> ডাইনামিক MCQ
+                    </button>
+                    <button class="tab-btn bn-text" data-tab="tab-cq">
+                        <i data-lucide="pen-tool"></i> সৃজনশীল প্রশ্ন (CQ)
+                    </button>
+                </div>
+
+                <!-- TAB 1: FORMULAS -->
+                <div id="tab-formulas" class="tab-content active">
+                    <div id="formula-container" class="formula-grid">
+                        <div style="text-align:center; padding: 20px; width: 100%;">লোড হচ্ছে...</div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: DYNAMIC MCQ -->
+                <div id="tab-mcq" class="tab-content">
+                    <div class="mcq-settings-panel">
+                        <div class="settings-grid">
+                            <div class="setting-group" style="grid-column: 1 / -1;">
+                                <label><i data-lucide="search"></i> অনুসন্ধান</label>
+                                <input type="text" id="mcq-search" class="search-input" placeholder="সার্চ করুন...">
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="filter"></i> বোর্ড ফিল্টার</label>
+                                <select id="mcq-board-filter"><option value="all">সকল বোর্ড</option></select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="calendar"></i> সাল ফিল্টার</label>
+                                <select id="mcq-year-filter"><option value="all">সকল সাল</option></select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="layers"></i> প্রশ্নের ধরন</label>
+                                <select id="mcq-type-filter">
+                                    <option value="all">সকল প্রশ্ন</option>
+                                    <option value="static">বইয়ের প্রশ্ন</option>
+                                    <option value="dynamic">মান পরিবর্তনশীল</option>
+                                </select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="book-open"></i> লার্নিং মোড</label>
+                                <select id="mcq-mode-select">
+                                    <option value="practice">প্র্যাকটিস মোড</option>
+                                    <option value="teach">টিচিং মোড</option>
+                                </select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="list-ordered"></i> প্রশ্নের সিরিয়াল</label>
+                                <select id="mcq-serial-select">
+                                    <option value="json">বইয়ের সিরিয়াল</option>
+                                    <option value="random">এলোমেলো</option>
+                                </select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="eye"></i> উত্তর প্রদর্শন</label>
+                                <select id="mcq-answer-select">
+                                    <option value="hide">ক্লিক করার পর দেখান</option>
+                                    <option value="show">সব উত্তর আগেই দেখান</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mcq-controls">
+                            <button id="regen-mcq-btn" class="action-btn bn-text">
+                                <i data-lucide="refresh-cw"></i> নতুন সেট তৈরি করুন
+                            </button>
+                        </div>
+                    </div>
+                    <div id="dynamic-mcq-container"></div>
+                </div>
+
+                <!-- TAB 3: CQ -->
+                <div id="tab-cq" class="tab-content">
+                    <div class="cq-sub-tabs">
+                        <button class="cq-sub-tab-btn active bn-text" data-cq="ka">জ্ঞানমূলক (ক)</button>
+                        <button class="cq-sub-tab-btn bn-text" data-cq="kha">অনুধাবনমূলক (খ)</button>
+                        <button class="cq-sub-tab-btn bn-text" data-cq="ga-gha">প্রয়োগ ও উচ্চতর (গ, ঘ)</button>
+                    </div>
+                    <div class="mcq-settings-panel">
+                        <div class="settings-grid">
+                            <div class="setting-group" style="grid-column: 1 / -1;">
+                                <label><i data-lucide="search"></i> অনুসন্ধান</label>
+                                <input type="text" id="cq-search" class="search-input" placeholder="সার্চ করুন...">
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="filter"></i> বোর্ড ফিল্টার</label>
+                                <select id="cq-board-filter"><option value="all">সকল বোর্ড</option></select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="calendar"></i> সাল ফিল্টার</label>
+                                <select id="cq-year-filter"><option value="all">সকল সাল</option></select>
+                            </div>
+                            <div class="setting-group">
+                                <label><i data-lucide="tag"></i> টপিক ফিল্টার</label>
+                                <select id="cq-type-filter"><option value="all">সকল টপিক</option></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="cq-container">
+                        <div style="text-align:center; padding: 20px;">লোড হচ্ছে...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="scroll-fab-container" id="scroll-controls">
+        <button class="scroll-fab" id="scroll-top-btn" title="উপরে যান"><i data-lucide="arrow-up"></i></button>
+        <button class="scroll-fab" id="scroll-bottom-btn" title="নিচে যান"><i data-lucide="arrow-down"></i></button>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="../js/include-navbar.js"></script>
+    <script src="../js/include-footer.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/footer.js"></script>
+    
+    <script src="../topic-js/topic-main.js"></script>
+    <script src="../topic-data/ch10/scripts/mcq-generator.js"></script>
+    <script src="../topic-data/shared/mcq-function.js"></script>
+    <script src="../topic-data/shared/cq-function.js"></script>
+</body>
+</html>

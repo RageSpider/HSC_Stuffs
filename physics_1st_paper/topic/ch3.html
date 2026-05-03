@@ -31,27 +31,69 @@
 
     <main>
         <section class="ch3-hero">
-            <!-- Projectile Radar Background -->
-            <div class="projectile-radar">
-                <svg width="100%" height="100%" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
+            <!-- Cyber Kinematics HUD Background -->
+            <div class="kinematics-hud-bg">
+                <svg width="100%" height="100%" viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                        <linearGradient id="grad-cyan" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" style="stop-color:var(--primary-color);stop-opacity:0" />
-                            <stop offset="100%" style="stop-color:var(--primary-color);stop-opacity:0.6" />
-                        </linearGradient>
+                        <!-- Glowing Filter -->
+                        <filter id="neon-glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        <!-- HUD Grid Pattern -->
+                        <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--primary-color)" stroke-width="1" opacity="0.15"/>
+                        </pattern>
+                        <!-- Vector Arrowhead -->
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="var(--accent-color)" />
+                        </marker>
                     </defs>
-                    <!-- Plotting Grids -->
-                    <g class="radar-grid">
-                        <line x1="50" y1="350" x2="750" y2="350" stroke="var(--primary-color)" stroke-opacity="0.2" />
-                        <line x1="50" y1="50" x2="50" y2="350" stroke="var(--primary-color)" stroke-opacity="0.2" />
+
+                    <!-- Animated Background Grid -->
+                    <rect width="100%" height="100%" fill="url(#grid-pattern)" class="hud-grid" />
+
+                    <!-- X Axis -->
+                    <line x1="0" y1="300" x2="1000" y2="300" stroke="var(--primary-color)" stroke-width="2" stroke-opacity="0.4" stroke-dasharray="15 5" />
+
+                    <!-- The Mathematical Path (Complex Kinematic Curve) -->
+                    <path id="motion-path" d="M -100 350 C 150 -100, 350 500, 650 150 S 900 -50, 1100 300" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-opacity="0.3" />
+
+                    <!-- The Tracker Crosshairs (Translates to follow the path perfectly) -->
+                    <g>
+                        <!-- Vertical and Horizontal Laser Scanners -->
+                        <line x1="-2000" y1="0" x2="2000" y2="0" stroke="var(--primary-color)" stroke-width="1" stroke-opacity="0.4" />
+                        <line x1="0" y1="-2000" x2="0" y2="2000" stroke="var(--primary-color)" stroke-width="1" stroke-opacity="0.4" />
+                        
+                        <!-- Target Lock Box -->
+                        <rect x="-15" y="-15" width="30" height="30" fill="none" stroke="var(--accent-color)" stroke-width="1" stroke-opacity="0.6" stroke-dasharray="4 2" />
+                        
+                        <!-- Center Tracking Node -->
+                        <circle cx="0" cy="0" r="6" fill="var(--bg-color)" stroke="var(--accent-color)" stroke-width="3" filter="url(#neon-glow)" />
+
+                        <!-- HUD Data Label -->
+                        <rect x="20" y="-40" width="95" height="26" rx="4" fill="var(--surface-color)" stroke="var(--primary-color)" stroke-opacity="0.6" />
+                        <text x="28" y="-22" fill="var(--text-dark)" font-family="monospace" font-size="13" font-weight="bold">v = dx/dt</text>
+
+                        <animateMotion dur="10s" repeatCount="indefinite" calcMode="linear">
+                            <mpath href="#motion-path" />
+                        </animateMotion>
                     </g>
-                    <!-- Projectile Path 1 -->
-                    <path class="trace-path p1" d="M 50 350 Q 200 50 350 350" fill="none" stroke="url(#grad-cyan)" stroke-width="2" stroke-dasharray="600" stroke-dashoffset="600" />
-                    <circle class="node p1-node" cx="200" cy="50" r="4" fill="var(--accent-color)" opacity="0" />
-                    
-                    <!-- Projectile Path 2 -->
-                    <path class="trace-path p2" d="M 150 350 Q 400 150 650 350" fill="none" stroke="url(#grad-cyan)" stroke-width="2" stroke-dasharray="600" stroke-dashoffset="600" />
-                    <circle class="node p2-node" cx="400" cy="150" r="4" fill="var(--accent-color)" opacity="0" />
+
+                    <!-- Tangent Velocity Vector (Rotates dynamically to hug the curve) -->
+                    <g>
+                        <!-- Velocity Arrow -->
+                        <line x1="0" y1="0" x2="70" y2="0" stroke="var(--accent-color)" stroke-width="3" marker-end="url(#arrowhead)" filter="url(#neon-glow)" />
+                        <!-- Velocity Label -->
+                        <text x="75" y="-10" fill="var(--accent-color)" font-family="monospace" font-size="16" font-weight="bold">v(t)</text>
+
+                        <animateMotion dur="10s" repeatCount="indefinite" calcMode="linear" rotate="auto">
+                            <mpath href="#motion-path" />
+                        </animateMotion>
+                    </g>
                 </svg>
             </div>
 
@@ -59,7 +101,7 @@
                 <div class="ch3-subtitle bn-text"><i data-lucide="navigation"></i> অধ্যায় ০৩</div>
                 <h1 class="ch3-title bn-text">গতিবিদ্যা</h1>
                 <p class="bn-text ch3-hero-desc">
-                    প্রাস, গড় দ্রুতি, তাৎক্ষণিক বেগ, ত্বরণ এবং পরন্ত বস্তুর গতির গাণিতিক বিশ্লেষণ।
+                    প্রাস (Projectile), তাৎক্ষণিক বেগ, ত্বরণ এবং পরন্ত বস্তুর গতির গাণিতিক বিশ্লেষণ।
                 </p>
             </div>
         </section>
@@ -91,7 +133,6 @@
                                 <label><i data-lucide="search"></i> অনুসন্ধান</label>
                                 <input type="text" id="mcq-search" class="search-input" placeholder="সার্চ করুন...">
                             </div>
-                            <!-- Standard Filters -->
                             <div class="setting-group">
                                 <label><i data-lucide="filter"></i> বোর্ড ফিল্টার</label>
                                 <select id="mcq-board-filter"><option value="all">সকল বোর্ড</option></select>
@@ -186,9 +227,10 @@
     <script src="../js/include-footer.js"></script>
     <script src="../js/navbar.js"></script>
     <script src="../js/footer.js"></script>
-    <script src="../topic-js/ch3.js"></script>
+    
+    <script src="../topic-js/topic-main.js"></script>
     <script src="../topic-data/ch3/scripts/mcq-generator.js"></script>
-    <script src="../topic-data/ch3/scripts/mcq-function.js"></script>
-    <script src="../topic-data/ch3/scripts/cq-function.js"></script>
+    <script src="../topic-data/shared/mcq-function.js"></script>
+    <script src="../topic-data/shared/cq-function.js"></script>
 </body>
 </html>

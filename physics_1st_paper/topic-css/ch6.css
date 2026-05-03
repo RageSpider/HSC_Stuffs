@@ -3,7 +3,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-/* Aggressively force Bangla and Inter Font across all text elements */
 body.bn-text,
 .bn-text, 
 h1, h2, h3, h4, p, span, button, a, div, select, label, input {
@@ -65,7 +64,6 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
     pointer-events: none;
     z-index: 0;
     overflow: hidden;
-    /* Subtle deep space starfield */
     background-image: 
         radial-gradient(1.5px 1.5px at 10% 20%, rgba(16, 185, 129, 0.4), transparent),
         radial-gradient(2px 2px at 80% 40%, rgba(99, 102, 241, 0.3), transparent),
@@ -74,7 +72,6 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
     background-size: 400px 400px;
 }
 [data-theme="dark"] .gravity-bg {
-    /* Stars glow slightly brighter in dark mode */
     background-image: 
         radial-gradient(1.5px 1.5px at 10% 20%, rgba(52, 211, 153, 0.7), transparent),
         radial-gradient(2px 2px at 80% 40%, rgba(129, 140, 248, 0.6), transparent),
@@ -84,7 +81,7 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
 
 .orbital-system {
     position: absolute;
-    top: 50%; right: 2%; /* Positioned dynamically */
+    top: 50%; right: 2%; 
     transform: translateY(-50%);
     width: 600px; height: 600px;
     opacity: 0.25; 
@@ -92,57 +89,34 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
 }
 [data-theme="dark"] .orbital-system { opacity: 0.6; }
 
-/* 1. Outer Orbit Path & The Moon */
 .orbit-path {
     position: absolute;
     top: 50%; left: 50%;
-    /* Fixed: Centering with margins instead of transform to not conflict with the rotate animation */
     width: 520px; height: 520px;
     margin-top: -260px; margin-left: -260px;
     border: 1px dashed var(--primary-color);
     border-radius: 50%;
-    /* Moon's orbital revolution */
     animation: orbitSpin 35s linear infinite;
 }
-/* The Moon itself, orbiting on the path */
 .orbit-path::before {
-    content: '';
-    position: absolute;
-    top: -12px; left: 248px; /* Centered on the ring */
-    width: 24px; height: 24px;
-    background: #94a3b8; /* Slate/Silver Moon */
-    border-radius: 50%;
-    /* 3D shading for the moon with crater details */
-    box-shadow: 
-        inset -6px -6px 10px rgba(0,0,0,0.6), 
-        inset 2px 2px 5px rgba(255,255,255,0.4),
-        0 0 15px rgba(148, 163, 184, 0.4);
+    content: ''; position: absolute;
+    top: -12px; left: 248px; width: 24px; height: 24px;
+    background: #94a3b8; border-radius: 50%;
+    box-shadow: inset -6px -6px 10px rgba(0,0,0,0.6), inset 2px 2px 5px rgba(255,255,255,0.4), 0 0 15px rgba(148, 163, 184, 0.4);
 }
 
-/* 2. Rotating 3D Earth */
 .earth-container {
-    position: absolute;
-    top: 50%; left: 50%;
-    /* Earth can keep transform translate since it doesn't rotate via CSS transform */
+    position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     width: 150px; height: 150px;
-    background: var(--primary-color);
-    border-radius: 50%;
+    background: var(--primary-color); border-radius: 50%;
     overflow: hidden;
-    /* Deep 3D atmospheric glow and day/night terminator line */
-    box-shadow: 
-        0 0 40px rgba(16, 185, 129, 0.3),
-        inset -25px -25px 40px rgba(0,0,0,0.6), 
-        inset 5px 5px 15px rgba(255,255,255,0.3);
+    box-shadow: 0 0 40px rgba(16, 185, 129, 0.3), inset -25px -25px 40px rgba(0,0,0,0.6), inset 5px 5px 15px rgba(255,255,255,0.3);
 }
 [data-theme="dark"] .earth-container {
-    box-shadow: 
-        0 0 60px rgba(52, 211, 153, 0.25),
-        inset -30px -30px 50px rgba(0,0,0,0.8), 
-        inset 5px 5px 20px rgba(255,255,255,0.15);
+    box-shadow: 0 0 60px rgba(52, 211, 153, 0.25), inset -30px -30px 50px rgba(0,0,0,0.8), inset 5px 5px 20px rgba(255,255,255,0.15);
 }
 
-/* Earth Continents - Panning smoothly across the sphere */
 .earth-map {
     width: 400px; height: 100%;
     background: url("data:image/svg+xml,%3Csvg width='200' height='150' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10,40 Q40,10 70,30 T130,50 T190,40 L190,150 L10,150 Z' fill='%2310b981' opacity='0.85'/%3E%3Cpath d='M0,80 Q50,50 90,90 T180,80 L180,150 L0,150 Z' fill='%2310b981' opacity='0.6'/%3E%3Ccircle cx='150' cy='30' r='12' fill='%2310b981' opacity='0.7'/%3E%3Ccircle cx='40' cy='90' r='8' fill='%2310b981' opacity='0.5'/%3E%3C/svg%3E") repeat-x;
@@ -150,63 +124,30 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
     animation: earthSpin 25s linear infinite;
 }
 
-/* 3. Orbiting Satellite */
 .satellite-wrapper {
-    position: absolute;
-    top: 50%; left: 50%;
-    width: 320px; height: 320px; /* Inner orbit for satellite */
-    margin-top: -160px; margin-left: -160px;
-    border: 1px solid rgba(67, 56, 202, 0.15);
-    border-radius: 50%;
-    /* Faster inner orbit */
+    position: absolute; top: 50%; left: 50%;
+    width: 320px; height: 320px; margin-top: -160px; margin-left: -160px;
+    border: 1px solid rgba(67, 56, 202, 0.15); border-radius: 50%;
     animation: orbitSpin 12s linear infinite;
 }
-/* Satellite Core */
 .satellite {
-    position: absolute;
-    top: -10px; left: 150px; 
-    width: 20px; height: 20px;
-    background: #cbd5e1;
-    border-radius: 50%;
-    /* Pulsing communication signal */
-    animation: signalPulse 2s ease-in-out infinite;
-    z-index: 2;
+    position: absolute; top: -10px; left: 150px; 
+    width: 20px; height: 20px; background: #cbd5e1; border-radius: 50%;
+    animation: signalPulse 2s ease-in-out infinite; z-index: 2;
 }
-/* Solar Panels */
 .satellite::before, .satellite::after {
-    content: '';
-    position: absolute;
-    top: 4px; width: 30px; height: 12px;
-    /* Grid texture for solar cells */
-    background: repeating-linear-gradient(
-        to right,
-        rgba(255,255,255,0.1),
-        rgba(255,255,255,0.1) 2px,
-        transparent 2px,
-        transparent 4px
-    ), var(--primary-color);
-    border: 1px solid var(--accent-color);
-    border-radius: 2px;
+    content: ''; position: absolute; top: 4px; width: 30px; height: 12px;
+    background: repeating-linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0.1) 2px, transparent 2px, transparent 4px), var(--primary-color);
+    border: 1px solid var(--accent-color); border-radius: 2px;
     box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
 }
 .satellite::before { left: -32px; }
 .satellite::after { right: -32px; }
 
-/* Animations */
-@keyframes earthSpin {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-200px); }
-}
-@keyframes orbitSpin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-@keyframes signalPulse {
-    0%, 100% { box-shadow: 0 0 5px var(--accent-color), 0 0 0 0 rgba(16, 185, 129, 0.4); }
-    50% { box-shadow: 0 0 15px var(--accent-color), 0 0 0 10px rgba(16, 185, 129, 0); }
-}
+@keyframes earthSpin { 0% { transform: translateX(0); } 100% { transform: translateX(-200px); } }
+@keyframes orbitSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes signalPulse { 0%, 100% { box-shadow: 0 0 5px var(--accent-color), 0 0 0 0 rgba(16, 185, 129, 0.4); } 50% { box-shadow: 0 0 15px var(--accent-color), 0 0 0 10px rgba(16, 185, 129, 0); } }
 
-/* Responsive adjustment for Hero Background */
 @media (max-width: 768px) {
     .orbital-system { right: -100px; width: 400px; height: 400px; }
     .orbit-path { width: 380px; height: 380px; margin-top: -190px; margin-left: -190px; }
@@ -228,10 +169,24 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
     background: var(--card-bg); color: var(--text-dark);
     border-radius: 30px; font-size: 1.1rem; font-weight: 600; cursor: pointer;
     transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;
+    position: relative;
 }
 .tab-btn svg { width: 18px; height: 18px; }
 .tab-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
-.tab-btn.active { background: var(--primary-color); color: #fff; border-color: var(--primary-color); box-shadow: 0 8px 20px rgba(67, 56, 202, 0.3); }
+
+/* UNIQUE TOUCH 1: Orbiting Tab Indicator */
+.tab-btn.active { 
+    background: var(--primary-color); color: #fff; border-color: var(--primary-color); 
+    box-shadow: 0 8px 20px rgba(67, 56, 202, 0.3); 
+    padding-left: 35px;
+}
+.tab-btn.active::before {
+    content: ''; position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
+    width: 12px; height: 12px; border-radius: 50%;
+    border: 2px dotted var(--accent-color);
+    animation: spinOrbit 4s linear infinite;
+}
+@keyframes spinOrbit { 100% { transform: translateY(-50%) rotate(360deg); } }
 
 /* CQ Sub-Tabs */
 .cq-sub-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;}
@@ -258,15 +213,27 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
 .tab-content.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* Modern Formula Grid */
-.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-.formula-card-modern {
-    background: var(--card-bg); border: 1px solid var(--border-color);
-    border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-    transition: transform 0.3s ease, border-color 0.3s ease; display: flex; flex-direction: column;
+/* =========================================
+   UNIQUE TOUCH 2: Double Gravity Borders 
+   ========================================= */
+.formula-card-modern, .mcq-card, .cq-card {
+    background: var(--card-bg); 
+    border: 1px solid var(--border-color); 
+    border-radius: 12px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    /* Reflecting elliptical orbit paths */
+    border-left: 5px double var(--primary-color);
+    transition: transform 0.3s ease, border-left-color 0.3s ease; 
 }
-.formula-card-modern:hover { transform: translateY(-5px); border-color: var(--primary-color); }
+.formula-card-modern:hover, .mcq-card:hover, .cq-card:hover { 
+    transform: translateY(-3px); 
+    border-left-color: var(--accent-color); 
+}
 
+/* Specific structural resets */
+.formula-card-modern { padding: 0; margin-bottom: 20px; display: flex; flex-direction: column; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
 .fc-header {
     background: var(--surface-color); padding: 15px 20px;
     display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border-color);
@@ -297,9 +264,7 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
     min-width: 35px; text-align: center; display: inline-block;
 }
 
-/* =========================================
-   DYNAMIC MCQ & CQ SYSTEM & FILTERS
-   ========================================= */
+/* MCQ & CQ Panels */
 .mcq-settings-panel {
     background: var(--surface-color); padding: 20px; border-radius: 12px; 
     margin-bottom: 25px; border: 1px solid var(--border-color);
@@ -327,20 +292,25 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
 }
 [data-theme="dark"] .board-tag { background: rgba(67, 56, 202, 0.15); }
 
-/* MCQ Cards */
-.mcq-card {
-    background: var(--card-bg); border: 1px solid var(--border-color); border-left: 5px solid var(--primary-color);
-    border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-}
+.mcq-card { padding: 25px; margin-bottom: 20px; }
 .mcq-question { font-size: 1.2rem; font-weight: 600; color: var(--text-dark); margin-bottom: 20px; line-height: 1.6; }
 .mcq-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;}
 @media (max-width: 600px) { .mcq-options { grid-template-columns: 1fr; } }
+
+/* UNIQUE TOUCH 3: Gravitational Pull MCQ Option Hover */
 .mcq-option {
     padding: 12px 15px; background: var(--surface-color); border: 1px solid var(--border-color);
-    border-radius: 8px; cursor: pointer; transition: all 0.2s ease;
+    border-radius: 8px; cursor: pointer; 
+    transition: all 0.3s ease-out;
     font-size: 1.05rem; color: var(--text-dark); text-align: left;
 }
-.mcq-option:hover:not(.selected) { background: var(--surface-hover); border-color: var(--primary-color); }
+.mcq-option:hover:not(.selected) { 
+    background: var(--surface-hover); 
+    border-color: var(--primary-color); 
+    /* Pulled horizontally into the gravity well */
+    transform: translateX(6px);
+    border-right: 4px solid var(--accent-color);
+}
 
 /* Selected States */
 .mcq-option.selected { pointer-events: none; }
@@ -362,10 +332,7 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
 [data-theme="dark"] .mcq-feedback.teach-mode { background: #0b0a1d; border-color: var(--accent-color); color: #d1fae5; }
 
 /* CQ Cards */
-.cq-card {
-    background: var(--card-bg); border: 1px solid var(--border-color); 
-    border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-}
+.cq-card { padding: 25px; margin-bottom: 20px; }
 .cq-stem { font-size: 1.15rem; color: var(--text-dark); line-height: 1.7; margin-bottom: 20px; padding: 15px; background: var(--surface-color); border-radius: 8px; border: 1px dashed var(--border-color); }
 .cq-question { font-size: 1.2rem; font-weight: 600; color: var(--primary-color); margin-bottom: 15px; line-height: 1.6; display: flex; gap: 10px; align-items: flex-start;}
 .cq-q-badge { background: var(--primary-color); color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem; flex-shrink:0;}

@@ -156,10 +156,27 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
     background: var(--card-bg); color: var(--text-dark);
     border-radius: 30px; font-size: 1.1rem; font-weight: 600; cursor: pointer;
     transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;
+    position: relative;
 }
 .tab-btn svg { width: 18px; height: 18px; }
 .tab-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
-.tab-btn.active { background: var(--primary-color); color: #fff; border-color: var(--primary-color); box-shadow: 0 8px 20px rgba(180, 83, 9, 0.3); }
+
+/* UNIQUE TOUCH 1: Pendulum Swing Tab Indicator */
+.tab-btn.active { 
+    background: var(--primary-color); color: #fff; border-color: var(--primary-color); 
+    box-shadow: 0 8px 20px rgba(180, 83, 9, 0.3); 
+    padding-bottom: 25px; /* Give room for the pendulum */
+}
+.tab-btn.active::after {
+    content: ''; position: absolute; bottom: 8px; left: 50%; 
+    width: 10px; height: 10px; background: var(--accent-color); border-radius: 50%;
+    transform-origin: center -15px; /* Swing origin */
+    animation: tabPendulum 1.5s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+@keyframes tabPendulum { 
+    0% { transform: translateX(-50%) rotate(30deg); } 
+    100% { transform: translateX(-50%) rotate(-30deg); } 
+}
 
 /* CQ Sub-Tabs */
 .cq-sub-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;}
@@ -188,15 +205,141 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
 .tab-content.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* Modern Formula Grid */
-.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-.formula-card-modern {
-    background: var(--card-bg); border: 1px solid var(--border-color);
-    border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-    transition: transform 0.3s ease, border-color 0.3s ease; display: flex; flex-direction: column;
-}
-.formula-card-modern:hover { transform: translateY(-5px); border-color: var(--primary-color); }
+/* =========================================
+   UNIQUE TOUCH 2: Heavy Hydraulic Press & Blueprints
+   ========================================= */
 
+/* Unified Heavy Animation for all cards */
+.formula-card-mech, .mcq-card, .cq-card {
+    background: var(--card-bg); 
+    border: 1px solid var(--border-color); 
+    border-radius: 12px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    /* Thick heavy beam top */
+    border-top: 6px solid var(--primary-color);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s, border-top-color 0.2s; 
+    margin-bottom: 25px;
+}
+
+.formula-card-mech:hover, .mcq-card:hover, .cq-card:hover { 
+    /* Pressing DOWN simulating extreme mass/gravity */
+    transform: translateY(6px); 
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15); /* Shadow compresses deeply */
+    border-top-color: var(--accent-color); 
+}
+
+[data-theme="dark"] .formula-card-mech:hover, 
+[data-theme="dark"] .mcq-card:hover, 
+[data-theme="dark"] .cq-card:hover {
+    box-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
+
+/* --- Formula Card Complete Redesign --- */
+.fc-header-mech {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    background: var(--surface-hover);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.fc-icon-mech {
+    width: 42px; height: 42px;
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    /* Chunky, embossed mechanical button look */
+    box-shadow: inset 0 -3px 0 rgba(0,0,0,0.2), 0 2px 4px rgba(180, 83, 9, 0.3); 
+}
+
+.fc-header-mech h3 { 
+    margin: 0; 
+    color: var(--text-dark); 
+    font-size: 1.25rem; 
+    font-weight: 700; 
+}
+
+/* The Blueprint Math Board */
+.fc-math-board {
+    background: #0f172a; /* Slate 900 */
+    color: #f8fafc; /* Slate 50 - makes MathJax render bright white/gray */
+    margin: 20px;
+    padding: 25px 15px;
+    border-radius: 8px;
+    border: 2px solid #334155;
+    box-shadow: inset 0 6px 15px rgba(0,0,0,0.6);
+    text-align: center;
+    overflow-x: auto;
+    font-size: 1.25rem;
+    /* Subtle grid pattern resembling blueprints */
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.formula-item { margin-bottom: 15px; }
+.formula-item:last-child { margin-bottom: 0; }
+.formula-name { font-size: 0.9rem; color: #94a3b8; margin-bottom: 5px; font-weight: 600;}
+
+/* Variables Grid System */
+.fc-var-section {
+    padding: 0 20px 20px;
+}
+
+.fc-var-section .var-title {
+    color: var(--primary-color);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: flex; align-items: center; gap: 8px;
+}
+
+.var-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.var-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    padding: 10px 12px;
+    border-radius: 8px;
+    transition: border-color 0.2s;
+}
+
+.var-item:hover {
+    border-color: var(--primary-color);
+}
+
+.var-sym {
+    font-weight: 600;
+    color: var(--primary-color);
+    background: var(--surface-hover);
+    padding: 6px 10px;
+    border-radius: 6px;
+    min-width: 45px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    font-family: 'Inter', sans-serif;
+}
+
+.var-desc {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    line-height: 1.4;
+}
+
+/* Specific structural resets */
+.formula-card-modern { padding: 0; margin-bottom: 20px; display: flex; flex-direction: column; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
 .fc-header {
     background: var(--surface-color); padding: 15px 20px;
     display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border-color);
@@ -227,9 +370,7 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
     min-width: 35px; text-align: center; display: inline-block;
 }
 
-/* =========================================
-   DYNAMIC MCQ & CQ SYSTEM & FILTERS
-   ========================================= */
+/* MCQ & CQ Panels */
 .mcq-settings-panel {
     background: var(--surface-color); padding: 20px; border-radius: 12px; 
     margin-bottom: 25px; border: 1px solid var(--border-color);
@@ -257,28 +398,32 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
 }
 [data-theme="dark"] .board-tag { background: rgba(180, 83, 9, 0.15); }
 
-/* MCQ Cards */
-.mcq-card {
-    background: var(--card-bg); border: 1px solid var(--border-color); border-left: 5px solid var(--primary-color);
-    border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-}
+.mcq-card { padding: 25px; margin-bottom: 20px; }
 .mcq-question { font-size: 1.2rem; font-weight: 600; color: var(--text-dark); margin-bottom: 20px; line-height: 1.6; }
 .mcq-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;}
 @media (max-width: 600px) { .mcq-options { grid-template-columns: 1fr; } }
+
+/* UNIQUE TOUCH 3: Inertial Compression MCQ Option Hover */
 .mcq-option {
     padding: 12px 15px; background: var(--surface-color); border: 1px solid var(--border-color);
-    border-radius: 8px; cursor: pointer; transition: all 0.2s ease;
+    border-radius: 8px; cursor: pointer; 
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out;
     font-size: 1.05rem; color: var(--text-dark); text-align: left;
 }
-.mcq-option:hover:not(.selected) { background: var(--surface-hover); border-color: var(--primary-color); }
+.mcq-option:hover:not(.selected) { 
+    /* Inelastic collision feel - compresses inward */
+    transform: scale(0.98); 
+    box-shadow: inset 0 3px 8px rgba(180, 83, 9, 0.15); /* Internal pressure shadow */
+    border-color: var(--primary-color);
+}
 
 /* Selected States */
 .mcq-option.selected { pointer-events: none; }
-.mcq-option.selected.correct { background: #dcfce7; border-color: #22c55e; color: #166534; }
-.mcq-option.selected.wrong { background: #fecdd3; border-color: #e11d48; color: #9f1239; }
+.mcq-option.selected.correct { background: #dcfce7; border-color: #22c55e; color: #166534; transform: scale(1); box-shadow: none; }
+.mcq-option.selected.wrong { background: #fecdd3; border-color: #e11d48; color: #9f1239; transform: scale(1); }
 .mcq-option.reveal-correct { background: rgba(180, 83, 9, 0.1); border-color: var(--accent-color); color: var(--text-dark); }
-[data-theme="dark"] .mcq-option.selected.correct { background: #064e3b; border-color: #10b981; color: #f5f5f4; }
-[data-theme="dark"] .mcq-option.selected.wrong { background: #4c0519; border-color: #e11d48; color: #ffe4e6; }
+[data-theme="dark"] .mcq-option.selected.correct { background: #064e3b; border-color: #10b981; color: #f5f5f4; transform: scale(1); box-shadow: none;}
+[data-theme="dark"] .mcq-option.selected.wrong { background: #4c0519; border-color: #e11d48; color: #ffe4e6; transform: scale(1); }
 [data-theme="dark"] .mcq-option.reveal-correct { background: rgba(45, 212, 191, 0.15); border-color: var(--accent-color); color: var(--text-dark); }
 
 /* Feedback & Hints */
@@ -292,10 +437,7 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
 [data-theme="dark"] .mcq-feedback.teach-mode { background: #1c1917; border-color: var(--accent-color); color: #f5f5f4; }
 
 /* CQ Cards */
-.cq-card {
-    background: var(--card-bg); border: 1px solid var(--border-color); 
-    border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-}
+.cq-card { padding: 25px; margin-bottom: 20px; }
 .cq-stem { font-size: 1.15rem; color: var(--text-dark); line-height: 1.7; margin-bottom: 20px; padding: 15px; background: var(--surface-color); border-radius: 8px; border: 1px dashed var(--border-color); }
 .cq-question { font-size: 1.2rem; font-weight: 600; color: var(--primary-color); margin-bottom: 15px; line-height: 1.6; display: flex; gap: 10px; align-items: flex-start;}
 .cq-q-badge { background: var(--primary-color); color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem; flex-shrink:0;}

@@ -1,1 +1,144 @@
-<nav id="main-nav"><h3>Biology 1St Paper Nav</h3><a href="/">Back to Main</a></nav>
+<!-- components/navbar.html -->
+<nav class="navbar-modern top-state" id="main-nav">
+    <!-- Mobile Overlay Backdrop -->
+    <div class="nav-overlay"></div>
+
+    <div class="nav-wrapper">
+        <!-- Grid Column 1: Brand -->
+        <a href="/index.html" class="nav-brand">
+            <div class="brand-icon"><i data-lucide="leaf"></i></div>
+            <span class="bn-text brand-text">জীববিজ্ঞান ১ম পত্র</span>
+        </a>
+        
+        <!-- Grid Column 2: Center 5 Menus (Mathematically Centered) -->
+        <ul class="nav-menu">
+            <li class="pc-only">
+                <a href="../" class="nav-item">
+                    <span class="bn-text">মূল ওয়েবসাইট</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/index.html" class="nav-item">
+                    <span class="bn-text">হোম</span>
+                </a>
+            </li>
+
+            <li class="nav-dropdown-wrapper pc-only">
+                <a href="javascript:void(0)" class="nav-item pc-dropdown-trigger">
+                    <span class="bn-text">অধ্যায়সমূহ</span> 
+                    <i data-lucide="chevron-down" class="drop-icon"></i>
+                </a>
+                
+                <!-- 4 Column Dropdown -->
+                <div class="mega-menu-modern four-col">
+                    <div class="mega-column">
+                        <h4 class="bn-text column-title">কোষ বিজ্ঞান</h4>
+                        <div class="mega-link-list">
+                            <a href="/topic/ch1.html" class="mega-link"><i data-lucide="hexagon"></i> <span class="bn-text">১ম: কোষ ও এর গঠন</span></a>
+                            <a href="/topic/ch2.html" class="mega-link"><i data-lucide="split-square-horizontal"></i> <span class="bn-text">২য়: কোষ বিভাজন</span></a>
+                            <a href="/topic/ch3.html" class="mega-link"><i data-lucide="flask-conical"></i> <span class="bn-text">৩য়: কোষ রসায়ন</span></a>
+                        </div>
+                    </div>
+
+                    <div class="mega-column">
+                        <h4 class="bn-text column-title">অণুজীব ও শৈবাল</h4>
+                        <div class="mega-link-list">
+                            <a href="/topic/ch4.html" class="mega-link"><i data-lucide="bug"></i> <span class="bn-text">৪র্থ: অণুজীব</span></a>
+                            <a href="/topic/ch5.html" class="mega-link"><i data-lucide="sprout"></i> <span class="bn-text">৫ম: শৈবাল ও ছত্রাক</span></a>
+                            <a href="/topic/ch6.html" class="mega-link"><i data-lucide="leaf"></i> <span class="bn-text">৬ষ্ঠ: ব্রায়োফাইটা...</span></a>
+                        </div>
+                    </div>
+
+                    <div class="mega-column">
+                        <h4 class="bn-text column-title">উদ্ভিদ বিজ্ঞান</h4>
+                        <div class="mega-link-list">
+                            <a href="/topic/ch7.html" class="mega-link"><i data-lucide="tree-pine"></i> <span class="bn-text">৭ম: নগ্নবীজী ও আবৃতবীজী</span></a>
+                            <a href="/topic/ch8.html" class="mega-link"><i data-lucide="layers"></i> <span class="bn-text">৮ম: টিস্যু ও টিস্যুতন্ত্র</span></a>
+                            <a href="/topic/ch9.html" class="mega-link"><i data-lucide="activity"></i> <span class="bn-text">৯ম: শারীরতত্ত্ব</span></a>
+                        </div>
+                    </div>
+
+                    <div class="mega-column">
+                        <h4 class="bn-text column-title">প্রজনন ও প্রযুক্তি</h4>
+                        <div class="mega-link-list">
+                            <a href="/topic/ch10.html" class="mega-link"><i data-lucide="flower-2"></i> <span class="bn-text">১০ম: প্রজনন</span></a>
+                            <a href="/topic/ch11.html" class="mega-link"><i data-lucide="dna"></i> <span class="bn-text">১১শ: জীবপ্রযুক্তি</span></a>
+                            <a href="/topic/ch12.html" class="mega-link"><i data-lucide="footprints"></i> <span class="bn-text">১২শ: অভিব্যক্তি</span></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="pc-only">
+                <a href="/topic/practical.html" class="nav-item">
+                    <span class="bn-text">ব্যবহারিক</span>
+                </a>
+            </li>
+            
+            <li class="pc-only">
+                <a href="/topic/board-questions.html" class="nav-item">
+                    <span class="bn-text">বোর্ড প্রশ্ন</span>
+                </a>
+            </li>
+        </ul>
+
+        <!-- Grid Column 3: Controls -->
+        <div class="nav-controls">
+            <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+                <i data-lucide="moon" class="moon-icon"></i>
+                <i data-lucide="sun" class="sun-icon" style="display:none;"></i>
+            </button>
+            <button class="hamburger-btn mobile-toggle" id="mobile-menu-btn" aria-label="Menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- FULL SCREEN MOBILE OVERLAY MENU -->
+    <div class="mobile-fullscreen-nav" id="mobile-nav">
+        <div class="mobile-nav-header">
+            <span class="bn-text" style="font-size: 1.5rem; font-weight: 700; color: var(--theme-leaf);">জীববিজ্ঞান ১ম পত্র</span>
+            <button class="mobile-close-btn" id="close-mobile-nav">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+        
+        <div class="mobile-nav-content">
+            <a href="../" class="mob-main-link bn-text">মূল ওয়েবসাইট</a>
+            <a href="/index.html" class="mob-main-link bn-text">হোমপেজ</a>
+            
+            <div class="mob-accordion">
+                <button class="mob-acc-trigger bn-text">অধ্যায় (১-৬) <i data-lucide="chevron-down"></i></button>
+                <div class="mob-acc-content">
+                    <a href="/topic/ch1.html" class="bn-text">১ম: কোষ ও এর গঠন</a>
+                    <a href="/topic/ch2.html" class="bn-text">২য়: কোষ বিভাজন</a>
+                    <a href="/topic/ch3.html" class="bn-text">৩য়: কোষ রসায়ন</a>
+                    <a href="/topic/ch4.html" class="bn-text">৪র্থ: অণুজীব</a>
+                    <a href="/topic/ch5.html" class="bn-text">৫ম: শৈবাল ও ছত্রাক</a>
+                    <a href="/topic/ch6.html" class="bn-text">৬ষ্ঠ: ব্রায়োফাইটা ও টেরেডোফাইটা</a>
+                </div>
+            </div>
+
+            <div class="mob-accordion">
+                <button class="mob-acc-trigger bn-text">অধ্যায় (৭-১২) <i data-lucide="chevron-down"></i></button>
+                <div class="mob-acc-content">
+                    <a href="/topic/ch7.html" class="bn-text">৭ম: নগ্নবীজী ও আবৃতবীজী উদ্ভিদ</a>
+                    <a href="/topic/ch8.html" class="bn-text">৮ম: টিস্যু ও টিস্যুতন্ত্র</a>
+                    <a href="/topic/ch9.html" class="bn-text">৯ম: উদ্ভিদের শারীরতত্ত্ব</a>
+                    <a href="/topic/ch10.html" class="bn-text">১০ম: উদ্ভিদের প্রজনন</a>
+                    <a href="/topic/ch11.html" class="bn-text">১১শ: জীবপ্রযুক্তি</a>
+                    <a href="/topic/ch12.html" class="bn-text">১২শ: উপকল্পন ও অভিব্যক্তি</a>
+                </div>
+            </div>
+
+            <div class="mob-accordion">
+                <button class="mob-acc-trigger bn-text" style="color: var(--theme-wood);">গুরুত্বপূর্ণ <i data-lucide="chevron-down"></i></button>
+                <div class="mob-acc-content">
+                    <a href="/topic/practical.html" class="bn-text">ব্যবহারিক খাতা</a>
+                    <a href="/topic/board-questions.html" class="bn-text">বোর্ড প্রশ্ন বিশ্লেষণ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

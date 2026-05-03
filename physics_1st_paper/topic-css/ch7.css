@@ -3,7 +3,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-/* Aggressively force Bangla and Inter Font across all text elements */
 body.bn-text,
 .bn-text, 
 h1, h2, h3, h4, p, span, button, a, div, select, label, input {
@@ -37,11 +36,11 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
     
     /* Using an ultra-deep emerald base so the UI isn't glaring */
     --bg-color: #022c22; 
-    --surface-color: #064e3b; /* User's original dark bg used as floating surface */
+    --surface-color: #064e3b; 
     --surface-hover: #065f46; 
     --card-bg: #064e3b; 
     
-    --text-dark: #d1fae5; /* User defined */
+    --text-dark: #d1fae5; 
     --text-gray: #a7f3d0; 
     --border-color: #047857; 
     --icon-color: #10b981;
@@ -61,13 +60,11 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
 .elastic-bg {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    /* Beautiful static SVG of multiple wires twisting and tangling into each other */
     background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 100 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke-width='1.5' stroke-linecap='round'%3E%3Cpath d='M-10 20 C 30 20, 40 80, 50 50 C 60 20, 70 80, 110 80' stroke='%23059669' stroke-opacity='0.3'/%3E%3Cpath d='M-10 80 C 30 80, 40 20, 50 50 C 60 80, 70 20, 110 20' stroke='%23059669' stroke-opacity='0.25'/%3E%3Cpath d='M-10 50 C 20 80, 80 20, 110 50' stroke='%23059669' stroke-opacity='0.15'/%3E%3Cpath d='M-10 50 C 20 20, 80 80, 110 50' stroke='%23059669' stroke-opacity='0.2'/%3E%3Cpath d='M-10 10 C 40 10, 60 90, 110 90' stroke='%23059669' stroke-opacity='0.1'/%3E%3Cpath d='M-10 90 C 40 90, 60 10, 110 10' stroke='%23059669' stroke-opacity='0.1'/%3E%3C/g%3E%3C/svg%3E");
     background-size: 100% 100%;
     pointer-events: none;
 }
 [data-theme="dark"] .elastic-bg {
-    /* Adjusted opacity/color for dark mode */
     background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 100 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke-width='1.5' stroke-linecap='round'%3E%3Cpath d='M-10 20 C 30 20, 40 80, 50 50 C 60 20, 70 80, 110 80' stroke='%2310b981' stroke-opacity='0.15'/%3E%3Cpath d='M-10 80 C 30 80, 40 20, 50 50 C 60 80, 70 20, 110 20' stroke='%2310b981' stroke-opacity='0.12'/%3E%3Cpath d='M-10 50 C 20 80, 80 20, 110 50' stroke='%2310b981' stroke-opacity='0.08'/%3E%3Cpath d='M-10 50 C 20 20, 80 80, 110 50' stroke='%2310b981' stroke-opacity='0.1'/%3E%3Cpath d='M-10 10 C 40 10, 60 90, 110 90' stroke='%2310b981' stroke-opacity='0.05'/%3E%3Cpath d='M-10 90 C 40 90, 60 10, 110 10' stroke='%2310b981' stroke-opacity='0.05'/%3E%3C/g%3E%3C/svg%3E");
 }
 
@@ -83,10 +80,26 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
     background: var(--card-bg); color: var(--text-dark);
     border-radius: 30px; font-size: 1.1rem; font-weight: 600; cursor: pointer;
     transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;
+    position: relative;
 }
 .tab-btn svg { width: 18px; height: 18px; }
 .tab-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
-.tab-btn.active { background: var(--primary-color); color: #fff; border-color: var(--primary-color); box-shadow: 0 8px 20px rgba(5, 150, 105, 0.3); }
+
+/* UNIQUE TOUCH 1: Elastic Stretch Tab Indicator */
+.tab-btn.active { 
+    background: var(--primary-color); color: #fff; border-color: var(--primary-color); 
+    box-shadow: 0 8px 20px rgba(5, 150, 105, 0.3); 
+}
+.tab-btn.active::after {
+    content: ''; position: absolute; left: 50%; bottom: 4px;
+    transform: translateX(-50%); height: 3px; width: 10px;
+    background: var(--accent-color); border-radius: 2px;
+    animation: elasticStretch 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate;
+}
+@keyframes elasticStretch {
+    0% { width: 10px; opacity: 0.8; }
+    100% { width: 60%; opacity: 1; }
+}
 
 /* CQ Sub-Tabs */
 .cq-sub-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;}
@@ -99,7 +112,7 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
 .cq-sub-tab-btn:hover { background: var(--surface-hover); border-color: var(--primary-color); }
 .cq-sub-tab-btn.active { background: var(--primary-color); color: #fff; border-style: solid; }
 
-/* The new Action Button to replace Tab Button for standard actions */
+/* Action Button */
 .action-btn {
     padding: 10px 20px; border: 1px solid var(--primary-color);
     background: var(--primary-color); color: #fff;
@@ -108,22 +121,33 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
 }
 .action-btn:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(5, 150, 105, 0.2); }
 .action-btn svg { width: 18px; height: 18px; }
-.action-btn.outline { background: transparent; color: var(--primary-color); }
-.action-btn.outline:hover { background: var(--primary-color); color: #fff; }
 
 .tab-content { display: none; animation: fadeIn 0.4s ease-out forwards; }
 .tab-content.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* Modern Formula Grid */
-.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-.formula-card-modern {
-    background: var(--card-bg); border: 1px solid var(--border-color);
-    border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-    transition: transform 0.3s ease, border-color 0.3s ease; display: flex; flex-direction: column;
+/* =========================================
+   UNIQUE TOUCH 2: Tension/Strain Expanding Borders 
+   ========================================= */
+.formula-card-modern, .mcq-card, .cq-card {
+    background: var(--card-bg); 
+    border: 1px solid var(--border-color); 
+    border-radius: 12px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    /* Top tension wire border */
+    border-top: 3px solid var(--primary-color);
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), border-top-width 0.2s, border-top-color 0.2s; 
 }
-.formula-card-modern:hover { transform: translateY(-5px); border-color: var(--primary-color); }
+.formula-card-modern:hover, .mcq-card:hover, .cq-card:hover { 
+    transform: translateY(-4px); 
+    border-top-width: 6px; /* Simulating strain/thickening */
+    border-top-color: var(--accent-color); 
+}
 
+/* Specific structural resets */
+.formula-card-modern { padding: 0; margin-bottom: 20px; display: flex; flex-direction: column; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
 .fc-header {
     background: var(--surface-color); padding: 15px 20px;
     display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border-color);
@@ -142,16 +166,9 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
     color: var(--text-dark); overflow-x: auto;
 }
 .fc-desc ul { list-style: none; padding: 0; margin: 0; }
-
 .fc-desc li { 
-    margin-bottom: 12px; 
-    font-size: 1.05rem; 
-    color: var(--text-gray); 
-    display: grid; 
-    grid-template-columns: max-content 1fr; 
-    align-items: start;
-    gap: 12px; 
-    line-height: 1.6; 
+    margin-bottom: 12px; font-size: 1.05rem; color: var(--text-gray); 
+    display: grid; grid-template-columns: max-content 1fr; align-items: start; gap: 12px; line-height: 1.6; 
 }
 .fc-desc li:last-child { margin-bottom: 0; }
 
@@ -161,9 +178,7 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
     min-width: 35px; text-align: center; display: inline-block;
 }
 
-/* =========================================
-   DYNAMIC MCQ & CQ SYSTEM & FILTERS
-   ========================================= */
+/* MCQ & CQ Panels */
 .mcq-settings-panel {
     background: var(--surface-color); padding: 20px; border-radius: 12px; 
     margin-bottom: 25px; border: 1px solid var(--border-color);
@@ -180,12 +195,10 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
     font-family: 'Bangla', 'Inter', sans-serif; font-size: 1rem;
     outline: none; transition: border-color 0.2s; width: 100%; box-sizing: border-box;
 }
-.setting-group select { cursor: pointer; }
 .setting-group select:focus, .search-input:focus { border-color: var(--primary-color); box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.1); }
 
 .mcq-controls { display: flex; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px dashed var(--border-color); flex-wrap: wrap; gap: 10px;}
 
-/* Board Tags */
 .board-tag {
     display: inline-block; padding: 4px 10px; background: var(--surface-hover); 
     color: var(--primary-color); font-size: 0.85rem; border-radius: 4px; 
@@ -193,28 +206,32 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
 }
 [data-theme="dark"] .board-tag { background: rgba(16, 185, 129, 0.15); }
 
-/* MCQ Cards */
-.mcq-card {
-    background: var(--card-bg); border: 1px solid var(--border-color); border-left: 5px solid var(--primary-color);
-    border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-}
+.mcq-card { padding: 25px; margin-bottom: 20px; }
 .mcq-question { font-size: 1.2rem; font-weight: 600; color: var(--text-dark); margin-bottom: 20px; line-height: 1.6; }
 .mcq-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;}
 @media (max-width: 600px) { .mcq-options { grid-template-columns: 1fr; } }
+
+/* UNIQUE TOUCH 3: Elastic Squash & Stretch MCQ Option Hover */
 .mcq-option {
     padding: 12px 15px; background: var(--surface-color); border: 1px solid var(--border-color);
-    border-radius: 8px; cursor: pointer; transition: all 0.2s ease;
+    border-radius: 8px; cursor: pointer; 
+    /* Bouncy elastic curve */
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), background 0.2s, border-color 0.2s;
     font-size: 1.05rem; color: var(--text-dark); text-align: left;
 }
-.mcq-option:hover:not(.selected) { background: var(--surface-hover); border-color: var(--primary-color); }
+.mcq-option:hover:not(.selected) { 
+    background: var(--surface-hover); 
+    border-color: var(--primary-color); 
+    /* Squashing and stretching effect */
+    transform: scaleX(1.02) scaleY(0.96);
+}
 
 /* Selected States */
 .mcq-option.selected { pointer-events: none; }
-/* Standard Correct/Wrong Colors */
-.mcq-option.selected.correct { background: #dcfce7; border-color: #22c55e; color: #166534; }
+.mcq-option.selected.correct { background: #dcfce7; border-color: #22c55e; color: #166534; transform: scaleX(1) scaleY(1); }
 .mcq-option.selected.wrong { background: #fee2e2; border-color: #ef4444; color: #991b1b; }
 .mcq-option.reveal-correct { background: rgba(34, 197, 94, 0.1); border-color: var(--accent-color); color: var(--text-dark); }
-[data-theme="dark"] .mcq-option.selected.correct { background: #064e3b; border-color: #10b981; color: #d1fae5; }
+[data-theme="dark"] .mcq-option.selected.correct { background: #064e3b; border-color: #10b981; color: #d1fae5; transform: scaleX(1) scaleY(1); }
 [data-theme="dark"] .mcq-option.selected.wrong { background: #7f1d1d; border-color: #ef4444; color: #fee2e2; }
 [data-theme="dark"] .mcq-option.reveal-correct { background: rgba(16, 185, 129, 0.15); border-color: var(--accent-color); color: var(--text-dark); }
 
@@ -229,10 +246,7 @@ h1, h2, h3, h4, p, span, button, a, div, select, label, input {
 [data-theme="dark"] .mcq-feedback.teach-mode { background: #022c22; border-color: var(--accent-color); color: #d1fae5; }
 
 /* CQ Cards */
-.cq-card {
-    background: var(--card-bg); border: 1px solid var(--border-color); 
-    border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-}
+.cq-card { padding: 25px; margin-bottom: 20px; }
 .cq-stem { font-size: 1.15rem; color: var(--text-dark); line-height: 1.7; margin-bottom: 20px; padding: 15px; background: var(--surface-color); border-radius: 8px; border: 1px dashed var(--border-color); }
 .cq-question { font-size: 1.2rem; font-weight: 600; color: var(--primary-color); margin-bottom: 15px; line-height: 1.6; display: flex; gap: 10px; align-items: flex-start;}
 .cq-q-badge { background: var(--primary-color); color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem; flex-shrink:0;}

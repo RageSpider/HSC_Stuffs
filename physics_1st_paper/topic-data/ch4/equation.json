@@ -1,56 +1,166 @@
 [
-    {
-        "id": "eq_motion",
-        "icon": "move",
-        "title": "১. সরণ ও গতির সমীকরণ",
-        "equations": [
-            "x = A \\sin(\\omega t + \\delta)",
-            "\\frac{d^2x}{dt^2} + \\omega^2 x = 0"
-        ],
-        "variables": [
-            { "sym": "A", "desc": "বিস্তার (Amplitude)" },
-            { "sym": "\\omega", "desc": "কৌণিক কম্পাঙ্ক" },
-            { "sym": "\\delta", "desc": "আদি দশা (Initial Phase)" }
-        ]
-    },
-    {
-        "id": "eq_velocity",
-        "icon": "zap",
-        "title": "২. বেগ ও ত্বরণ",
-        "equations": [
-            "v = \\omega \\sqrt{A^2 - x^2}",
-            "a = -\\omega^2 x"
-        ],
-        "variables": [
-            { "sym": "V_{max}", "desc": "$\\omega A$ (সাম্যাবস্থায় সর্বোচ্চ বেগ)" },
-            { "sym": "a_{max}", "desc": "$\\omega^2 A$ (প্রান্তিক অবস্থানে সর্বোচ্চ ত্বরণ)" }
-        ]
-    },
-    {
-        "id": "eq_pendulum",
-        "icon": "clock",
-        "title": "৩. সরল দোলকের দোলনকাল",
-        "equations": [
-            "T = 2\\pi\\sqrt{\\frac{L}{g}}"
-        ],
-        "variables": [
-            { "sym": "L", "desc": "কার্যকর দৈর্ঘ্য (সুতা + ববের ব্যাসার্ধ)" },
-            { "sym": "g", "desc": "অভিকর্ষজ ত্বরণ" },
-            { "sym": "T", "desc": "সেকেন্ড দোলকের দোলনকাল 2s" }
-        ]
-    },
-    {
-        "id": "eq_spring",
-        "icon": "git-pull-request",
-        "title": "৪. স্প্রিং ও শক্তি",
-        "equations": [
-            "T = 2\\pi\\sqrt{\\frac{m}{k}}",
-            "E_p = \\frac{1}{2} k x^2"
-        ],
-        "variables": [
-            { "sym": "m", "desc": "বস্তুর ভর" },
-            { "sym": "k", "desc": "স্প্রিং ধ্রুবক" },
-            { "sym": "সমবায়", "desc": "শ্রেণি: $\\frac{1}{k_s} = \\frac{1}{k_1} + \\frac{1}{k_2}$ <br> সমান্তরাল: $k_p = k_1 + k_2$" }
-        ]
-    }
+  {
+    "id": "eq_force_momentum",
+    "icon": "zap",
+    "title": "১. বল, ভরবেগ ও বলের ঘাত (Force, Momentum & Impulse)",
+    "formulas": [
+      { "name": "নিউটনের ২য় সূত্র", "eq": "\\vec{F} = m\\vec{a} = \\frac{d\\vec{p}}{dt}" },
+      { "name": "রৈখিক ভরবেগ", "eq": "\\vec{p} = m\\vec{v}" },
+      { "name": "বলের ঘাত (Impulse)", "eq": "\\vec{J} = \\vec{F} \\Delta t = \\Delta\\vec{p} = m\\vec{v} - m\\vec{u}" },
+      { "name": "ঘাত বল (Impulsive Force)", "eq": "F = \\frac{m(v-u)}{t}" }
+    ],
+    "variables": [
+      { "sym": "F", "desc": "প্রযুক্ত বল (Applied Force) [একক: N]" },
+      { "sym": "p", "desc": "ভরবেগ (Momentum) [একক: kg·m/s]" },
+      { "sym": "J", "desc": "বলের ঘাত [একক: N·s]" },
+      { "sym": "\\Delta t", "desc": "বল প্রয়োগের সময়কাল [একক: s]" }
+    ]
+  },
+  {
+    "id": "eq_conservation_collision",
+    "icon": "minimize-2",
+    "title": "২. ভরবেগের সংরক্ষণ ও সংঘর্ষ (Conservation & Collisions)",
+    "formulas": [
+      { "name": "ভরবেগের সংরক্ষণ সূত্র", "eq": "m_1u_1 + m_2u_2 = m_1v_1 + m_2v_2" },
+      { "name": "অস্থিতিস্থাপক সংঘর্ষে মিলিত বেগ", "eq": "v = \\frac{m_1u_1 + m_2u_2}{m_1 + m_2}" },
+      { "name": "স্থিতিস্থাপক সংঘর্ষে ১ম বস্তুর শেষবেগ", "eq": "v_1 = \\frac{m_1 - m_2}{m_1 + m_2}u_1 + \\frac{2m_2}{m_1 + m_2}u_2" },
+      { "name": "স্থিতিস্থাপক সংঘর্ষে ২য় বস্তুর শেষবেগ", "eq": "v_2 = \\frac{m_2 - m_1}{m_1 + m_2}u_2 + \\frac{2m_1}{m_1 + m_2}u_1" }
+    ],
+    "variables": [
+      { "sym": "u_1, u_2", "desc": "বস্তুদ্বয়ের আদিবেগ [একক: m/s]" },
+      { "sym": "v_1, v_2", "desc": "বস্তুদ্বয়ের শেষবেগ [একক: m/s]" },
+      { "sym": "v", "desc": "মিলিত বস্তুর শেষবেগ [একক: m/s]" }
+    ]
+  },
+  {
+    "id": "eq_rocket_motion",
+    "icon": "navigation",
+    "title": "৩. রকেটের গতি (Rocket Propulsion)",
+    "formulas": [
+      { "name": "রকেটের ঊর্ধ্বমুখী ধাক্কা (Thrust)", "eq": "F_{thrust} = v_r \\frac{dm}{dt}" },
+      { "name": "রকেটের লব্ধি ত্বরণ", "eq": "a = \\frac{v_r}{M} \\frac{dm}{dt} - g" }
+    ],
+    "variables": [
+      { "sym": "F_{thrust}", "desc": "ঊর্ধ্বমুখী ধাক্কা [একক: N]" },
+      { "sym": "v_r", "desc": "নির্গত গ্যাসের আপেক্ষিক বেগ [একক: m/s]" },
+      { "sym": "\\frac{dm}{dt}", "desc": "জ্বালানি নির্গমনের হার [একক: kg/s]" },
+      { "sym": "M", "desc": "রকেটের তাৎক্ষণিক ভর [একক: kg]" }
+    ]
+  },
+  {
+    "id": "eq_friction",
+    "icon": "bar-chart-2",
+    "title": "৪. ঘর্ষণ বল (Friction)",
+    "formulas": [
+      { "name": "স্থিতি ঘর্ষণ বল", "eq": "f_s \\le \\mu_s R" },
+      { "name": "গতীয় ঘর্ষণ বল", "eq": "f_k = \\mu_k R" },
+      { "name": "ঘর্ষণ কোণ বা নিশ্চল কোণ", "eq": "\\mu_s = \\tan \\theta_s" }
+    ],
+    "variables": [
+      { "sym": "f_s, f_k", "desc": "স্থিতি ও গতীয় ঘর্ষণ বল [একক: N]" },
+      { "sym": "\\mu_s, \\mu_k", "desc": "স্থিতি ও গতীয় ঘর্ষণ গুণাঙ্ক [একক নেই]" },
+      { "sym": "R", "desc": "অভিলম্বিক প্রতিক্রিয়া (R = mg) [একক: N]" },
+      { "sym": "\\theta_s", "desc": "ঘর্ষণ কোণ বা আনতি কোণ [Degree]" }
+    ]
+  },
+  {
+    "id": "eq_circular_banking",
+    "icon": "corner-up-right",
+    "title": "৫. বৃত্তাকার গতি ও রাস্তার ব্যাংকিং (Circular Motion & Banking)",
+    "formulas": [
+      { "name": "কেন্দ্রমুখী বল (Centripetal Force)", "eq": "F_c = \\frac{mv^2}{r} = m\\omega^2 r" },
+      { "name": "কেন্দ্রমুখী ত্বরণ", "eq": "a_c = \\frac{v^2}{r} = \\omega^2 r" },
+      { "name": "রাস্তার ব্যাংকিং কোণ", "eq": "\\tan\\theta = \\frac{v^2}{rg}" },
+      { "name": "রাস্তার দুই প্রান্তের উচ্চতার পার্থক্য", "eq": "h = d \\sin\\theta" },
+      { "name": "ব্যাংকিংহীন রাস্তায় ঘর্ষণের সাহায্যে সর্বোচ্চ নিরাপদ বেগ", "eq": "v_{max} = \\sqrt{\\mu_s rg}" }
+    ],
+    "variables": [
+      { "sym": "F_c", "desc": "কেন্দ্রমুখী বল [একক: N]" },
+      { "sym": "\\omega", "desc": "কৌণিক বেগ [একক: rad/s]" },
+      { "sym": "r", "desc": "বাঁকের ব্যাসার্ধ [একক: m]" },
+      { "sym": "\\theta", "desc": "ব্যাংকিং কোণ [Degree]" },
+      { "sym": "h", "desc": "উচ্চতার পার্থক্য [m]" },
+      { "sym": "d", "desc": "রাস্তার প্রস্থ [m]" }
+    ]
+  },
+  {
+    "id": "eq_vertical_circular",
+    "icon": "loader",
+    "title": "৬. উল্লম্ব বৃত্তাকার পথে সুতার টান (Vertical Circular Tension)",
+    "formulas": [
+      { "name": "সর্বোচ্চ বিন্দুতে সুতার টান", "eq": "T_{top} = \\frac{mv^2}{r} - mg" },
+      { "name": "সর্বনিম্ন বিন্দুতে সুতার টান", "eq": "T_{bottom} = \\frac{mv^2}{r} + mg" },
+      { "name": "যেকোনো বিন্দুতে সুতার টান", "eq": "T_{\\theta} = \\frac{mv^2}{r} + mg\\cos\\theta" }
+    ],
+    "variables": [
+      { "sym": "T", "desc": "সুতার টান (Tension) [একক: N]" },
+      { "sym": "\\theta", "desc": "সর্বনিম্ন বিন্দু হতে উলম্বের সাথে উৎপন্ন কোণ [Degree]" }
+    ]
+  },
+  {
+    "id": "eq_torque_angular_momentum",
+    "icon": "rotate-cw",
+    "title": "৭. টর্ক ও কৌণিক ভরবেগ (Torque & Angular Momentum)",
+    "formulas": [
+      { "name": "টর্ক (ভেক্টর রূপ)", "eq": "\\vec{\\tau} = \\vec{r} \\times \\vec{F}" },
+      { "name": "টর্কের মান", "eq": "\\tau = rF\\sin\\theta = I\\alpha" },
+      { "name": "কৌণিক ভরবেগ (ভেক্টর রূপ)", "eq": "\\vec{L} = \\vec{r} \\times \\vec{p}" },
+      { "name": "কৌণিক ভরবেগের মান", "eq": "L = mvr\\sin\\theta = I\\omega" },
+      { "name": "কৌণিক ভরবেগের সংরক্ষণ সূত্র", "eq": "I_1\\omega_1 = I_2\\omega_2" },
+      { "name": "ঘূর্ণন গতিশক্তি", "eq": "E_k = \\frac{1}{2} I \\omega^2 = \\frac{L^2}{2I}" }
+    ],
+    "variables": [
+      { "sym": "\\tau", "desc": "টর্ক [একক: N·m]" },
+      { "sym": "L", "desc": "কৌণিক ভরবেগ [একক: kg·m²/s]" },
+      { "sym": "\\alpha", "desc": "কৌণিক ত্বরণ [একক: rad/s²]" },
+      { "sym": "I", "desc": "জড়তার ভ্রামক [একক: kg·m²]" }
+    ]
+  },
+  {
+    "id": "eq_moment_of_inertia_basic",
+    "icon": "disc",
+    "title": "৮. জড়তার ভ্রামক ও চক্রগতির ব্যাসার্ধ (Inertia & Gyration)",
+    "formulas": [
+      { "name": "জড়তার ভ্রামক (সাধারণ সূত্র)", "eq": "I = \\sum mr^2 = MK^2" },
+      { "name": "চক্রগতির ব্যাসার্ধ (Radius of Gyration)", "eq": "K = \\sqrt{\\frac{I}{M}}" }
+    ],
+    "variables": [
+      { "sym": "I", "desc": "জড়তার ভ্রামক [একক: kg·m²]" },
+      { "sym": "K", "desc": "চক্রগতির ব্যাসার্ধ [একক: m]" }
+    ]
+  },
+  {
+    "id": "eq_moment_of_inertia_objects",
+    "icon": "layers",
+    "title": "৯. বিভিন্ন বস্তুর জড়তার ভ্রামক (Moments of Inertia of Shapes)",
+    "formulas": [
+      { "name": "সরু দণ্ডের মধ্যবিন্দুগামী লম্ব অক্ষ", "eq": "I = \\frac{1}{12}ML^2" },
+      { "name": "সরু দণ্ডের এক প্রান্তগামী লম্ব অক্ষ", "eq": "I = \\frac{1}{3}ML^2" },
+      { "name": "নিরেট চাকতি বা সিলিন্ডারের কেন্দ্রগামী লম্ব অক্ষ", "eq": "I = \\frac{1}{2}MR^2" },
+      { "name": "চাকতির ব্যাস বরাবর অক্ষ", "eq": "I = \\frac{1}{4}MR^2" },
+      { "name": "নিরেট গোলকের কেন্দ্রগামী অক্ষ", "eq": "I = \\frac{2}{5}MR^2" },
+      { "name": "ফাঁপা গোলকের কেন্দ্রগামী অক্ষ", "eq": "I = \\frac{2}{3}MR^2" },
+      { "name": "পাতলা রিং এর কেন্দ্রগামী লম্ব অক্ষ", "eq": "I = MR^2" },
+      { "name": "আয়তাকার পাতের ভারকেন্দ্রগামী লম্ব অক্ষ", "eq": "I = \\frac{1}{12}M(l^2 + b^2)" }
+    ],
+    "variables": [
+      { "sym": "M", "desc": "বস্তুর মোট ভর [একক: kg]" },
+      { "sym": "L", "desc": "দণ্ডের দৈর্ঘ্য [একক: m]" },
+      { "sym": "R", "desc": "ব্যাসার্ধ [একক: m]" },
+      { "sym": "l, b", "desc": "আয়তাকার পাতের দৈর্ঘ্য ও প্রস্থ [একক: m]" }
+    ]
+  },
+  {
+    "id": "eq_inertia_theorems",
+    "icon": "layout",
+    "title": "১০. জড়তার ভ্রামকের উপপাদ্য (Theorems of Inertia)",
+    "formulas": [
+      { "name": "সমান্তরাল অক্ষ উপপাদ্য", "eq": "I = I_G + Mh^2" },
+      { "name": "লম্ব অক্ষ উপপাদ্য", "eq": "I_z = I_x + I_y" }
+    ],
+    "variables": [
+      { "sym": "I_G", "desc": "ভারকেন্দ্রগামী অক্ষের সাপেক্ষে জড়তার ভ্রামক [একক: kg·m²]" },
+      { "sym": "h", "desc": "সমান্তরাল দুটি অক্ষের মধ্যবর্তী লম্ব দূরত্ব [একক: m]" }
+    ]
+  }
 ]

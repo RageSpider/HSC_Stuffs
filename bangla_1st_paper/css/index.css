@@ -1,1 +1,229 @@
-/* Bangla 1St Paper Index CSS */
+/* css/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.maateen.me/bangla/font.css');
+
+:root {
+    /* Sahityapath Book Cover Theme (Light) */
+    --primary-color: #6a2a1a; /* Deep Wood/Burgundy from title */
+    --primary-hover: #4a1d12;
+    --accent-color: #0073a8;  /* Cerulean Blue from subtitle */
+    
+    --bg-color: #f7f4ec; /* Vintage Paper Background */
+    --bg-alt: #ebdcd0;   /* Slightly darker parchment */
+    --surface-color: #ffffff; 
+    --surface-hover: #fcfbf8; 
+    
+    --text-dark: #2a1e1a; /* Dark espresso ink */
+    --text-gray: #7a665b; 
+    --border-color: #d6c7b8; 
+    --card-shadow: 0 10px 25px rgba(106, 42, 26, 0.08);
+}
+
+[data-theme="dark"] {
+    /* Cozy Library Dark Theme */
+    --primary-color: #d86a52; /* Lighter terracotta for visibility */
+    --primary-hover: #eb8773;
+    --accent-color: #4da6d4;
+    
+    --bg-color: #1a1412; /* Deep Espresso */
+    --bg-alt: #261d19; 
+    --surface-color: #2b211d; 
+    --surface-hover: #362a25; 
+    
+    --text-dark: #eee5da; /* Warm off-white */
+    --text-gray: #a8988d; 
+    --border-color: #42352f; 
+    --card-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+}
+
+.bn-text { font-family: 'Bangla', sans-serif; }
+a { text-decoration: none; color: inherit; }
+
+/* =========================================
+   REDESIGNED HERO SECTION (Vintage Book Cover Style)
+   ========================================= */
+.hero {
+    position: relative;
+    padding: 180px 20px 100px;
+    background: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 50l50-50h-100z" fill="rgba(106, 42, 26, 0.02)"/><path d="M50 50l-50 50h100z" fill="rgba(106, 42, 26, 0.01)"/></svg>') repeat,
+                linear-gradient(135deg, var(--bg-color) 0%, var(--bg-alt) 100%);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border-bottom: 5px solid var(--primary-color);
+}
+
+.hero-cover-frame {
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    padding: 60px 40px;
+    border: 2px solid var(--primary-color);
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(5px);
+    box-shadow: inset 0 0 0 6px var(--bg-color), inset 0 0 0 8px var(--primary-color), 0 20px 50px rgba(0,0,0,0.05);
+}
+
+[data-theme="dark"] .hero-cover-frame { background: rgba(0, 0, 0, 0.2); box-shadow: inset 0 0 0 6px var(--bg-color), inset 0 0 0 8px var(--primary-color), 0 20px 50px rgba(0,0,0,0.3); }
+
+.hero-ornament {
+    margin: 0 auto 30px;
+    width: 80px;
+    height: auto;
+    color: var(--primary-color);
+    opacity: 0.8;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 20px;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 50px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    background: transparent;
+}
+
+.hero-title {
+    font-size: 5.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1.1;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+}
+[data-theme="dark"] .hero-title { text-shadow: 2px 2px 0px rgba(0,0,0,0.5); }
+
+.hero-subtitle-blue {
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.hero-buttons { margin-top: 40px; }
+
+.btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--primary-color); color: #fff;
+    padding: 16px 40px; border-radius: 5px; /* Boxier for vintage feel */
+    font-size: 1.2rem; font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(106, 42, 26, 0.2);
+    border: 2px solid var(--primary-color);
+}
+.btn-primary:hover {
+    transform: translateY(-3px);
+    background: var(--bg-color);
+    color: var(--primary-color);
+}
+
+/* SECTIONS & GRIDS */
+.lit-section { padding: 100px 20px; }
+.bg-alt { background-color: var(--bg-alt); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);}
+
+.section-header { text-align: center; margin-bottom: 60px; position: relative; }
+.section-header h2 { font-size: 2.8rem; color: var(--primary-color); margin-bottom: 15px; font-weight: 700; }
+.divider { 
+    width: 100px; height: 3px; background: var(--accent-color); 
+    margin: 0 auto; position: relative;
+}
+.divider::after {
+    content: '♦'; position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-color); color: var(--accent-color);
+    padding: 0 10px; font-size: 1.2rem;
+}
+.bg-alt .divider::after { background: var(--bg-alt); }
+
+.lit-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px;
+}
+
+.sahopath-grid {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px;
+}
+
+/* =========================================
+   UPDATED BOOK-STYLE CARDS
+   ========================================= */
+.lit-card {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px 16px 16px 8px; /* Book shape */
+    position: relative;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    box-shadow: var(--card-shadow);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 0;
+}
+
+/* The Book Spine */
+.card-spine {
+    position: absolute;
+    top: 0; left: 0; width: 15px; height: 100%;
+    background: linear-gradient(to right, var(--primary-hover), var(--primary-color));
+    z-index: 10;
+    border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+.card-inner { padding: 35px 30px 30px 45px; display: flex; flex-direction: column; flex-grow: 1; }
+
+.lit-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--primary-color);
+    box-shadow: 0 20px 40px rgba(106, 42, 26, 0.15);
+}
+
+.card-header-flex {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 20px; border-bottom: 1px dashed var(--border-color); padding-bottom: 15px;
+}
+
+.card-num {
+    font-size: 2.5rem; font-weight: 700; color: var(--accent-color);
+    line-height: 1; opacity: 0.8; font-family: 'Bangla', serif;
+}
+
+.card-icon {
+    width: 45px; height: 45px; background: var(--bg-alt); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--primary-color); transition: all 0.4s ease;
+}
+.lit-card:hover .card-icon { background: var(--accent-color); color: #fff; transform: rotate(10deg); }
+
+.card-content { flex-grow: 1; }
+.card-content h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; color: var(--text-dark); }
+.card-content .author { font-size: 1.1rem; color: var(--text-gray); font-style: italic; }
+
+.card-action {
+    margin-top: 25px;
+    display: flex; align-items: center; justify-content: space-between;
+    color: var(--primary-color); font-weight: 600;
+}
+.action-text { transition: color 0.3s ease; }
+.card-action i { transition: transform 0.3s ease; }
+.lit-card:hover .card-action .action-text { color: var(--accent-color); }
+.lit-card:hover .card-action i { transform: translateX(5px); color: var(--accent-color); }
+
+@media (max-width: 768px) {
+    .hero-title { font-size: 3.5rem; }
+    .hero-cover-frame { padding: 40px 20px; }
+    .sahopath-grid { grid-template-columns: 1fr; }
+}

@@ -1,5 +1,19 @@
 // topic-js/ch4.js
 
+// Global Utility: Automatically extract Bangla \text{} outside MathJax blocks to fix SVG rendering
+window.fixBanglaMathJax = function(text) {
+    if (!text || typeof text !== 'string') return text;
+    // Find everything inside $...$
+    let processed = text.replace(/\$([^$]+)\$/g, (match, content) => {
+        // Replace \text{Bangla} with $ Bangla $ to push it out of the math block
+        let newContent = content.replace(/\\text\s*\{([^{}]+)\}/g, '$$ $1 $$');
+        return '$' + newContent + '$';
+    });
+    // Clean up empty math blocks (e.g., $$) created by adjacent text
+    processed = processed.replace(/\$\s*\$/g, '');
+    return processed;
+};
+
 document.addEventListener("DOMContentLoaded", () => {
     
     // 1. Tab Persistence and Switching
@@ -52,25 +66,24 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!container) return;
 
         try {
-            // Removed nocache to boost reloading speed 
             const response = await fetch('../topic-data/ch4/equation.json');
             if (!response.ok) throw new Error("Equations fetch failed");
             
             const data = await response.json();
             container.innerHTML = '';
 
-            // Render equations utilizing DocumentFragment to optimize DOM performance
             const fragment = document.createDocumentFragment();
 
             data.forEach(eq => {
                 const card = document.createElement('div');
                 card.className = 'formula-card-modern';
                 
-                let equationsHTML = eq.equations.map(e => `${e}<br><br>`).join('');
+                // Apply the fixBanglaMathJax utility here
+                let equationsHTML = eq.equations.map(e => `${window.fixBanglaMathJax(e)}<br><br>`).join('');
                 equationsHTML = equationsHTML.slice(0, -8); // remove last <br><br>
 
                 let variablesHTML = eq.variables.map(v => `
-                    <li><span class="math-var">$${v.sym}$</span> ${v.desc}</li>
+                    <li><span class="math-var">$${window.fixBanglaMathJax(v.sym)}$</span> ${window.fixBanglaMathJax(v.desc)}</li>
                 `).join('');
 
                 card.innerHTML = `

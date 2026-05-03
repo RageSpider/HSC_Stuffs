@@ -1,4 +1,4 @@
-// topic-data/ch8/scripts/cq-function.js
+// topic-data/ch4/scripts/cq-function.js
 
 document.addEventListener("DOMContentLoaded", () => {
     const subTabBtns = document.querySelectorAll('.cq-sub-tab-btn');
@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
             'a': 'া', 'i': 'ি', 'u': 'ু', 'e': 'ে', 'o': 'ো', 'ou': 'ৌ', 'oi': 'ৈ'
         };
         let out = text.toLowerCase();
-        // Sort keys by length descending so multicharacter matches (e.g. 'kh') evaluate before single (e.g. 'k')
         const sortedKeys = Object.keys(map).sort((a, b) => b.length - a.length);
         for (let key of sortedKeys) {
             out = out.split(key).join(map[key]);
@@ -63,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (item.type) allTopics.add(item.type);
         });
 
-        // Retain selection
         const currBoard = boardFilterSelect.value;
         const currYear = yearFilterSelect.value;
         const currTopic = typeFilterSelect.value;
@@ -100,8 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         try {
             if (cachedCqData[type].length === 0) {
-                // Removed nocache query to boost loading speed after first pull
-                const response = await fetch(`../topic-data/ch8/cq/${type}.json`);
+                const response = await fetch(`../topic-data/ch4/cq/${type}.json`);
                 if(response.ok) {
                     cachedCqData[type] = await response.json();
                 } else {
@@ -122,16 +119,10 @@ document.addEventListener("DOMContentLoaded", () => {
             let displayData = data.filter(item => {
                 const { boards, years } = extractBoardAndYear(item.board);
                 
-                // 1. Board
                 if (selectedBoard !== 'all' && !boards.includes(selectedBoard)) return false;
-                
-                // 2. Year
                 if (selectedYear !== 'all' && !years.includes(selectedYear)) return false;
-                
-                // 3. Topic Type
                 if (selectedTopic !== 'all' && item.type !== selectedTopic) return false;
 
-                // 4. Search
                 if (searchTextRaw !== '') {
                     let contentStr = '';
                     if (type === 'ka' || type === 'kha') {
@@ -146,7 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         return false;
                     }
                 }
-
                 return true;
             });
 
@@ -157,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // Using DocumentFragment to optimize performance and stop lag
             const fragment = document.createDocumentFragment();
 
             displayData.forEach((item) => {
@@ -174,37 +163,37 @@ document.addEventListener("DOMContentLoaded", () => {
                     tagsHTML += `<span class="board-tag" style="background:var(--accent-color);color:#fff;">টপিক: ${item.type}</span>`;
                 }
 
+                // Apply the MathJax Fixer Utility to questions, answers, and stems
                 if (type === 'ka' || type === 'kha') {
                     card.innerHTML = `
                         ${tagsHTML ? `<div style="margin-bottom: 10px;">${tagsHTML}</div>` : ''}
-                        <div class="cq-question bn-text"><span class="cq-q-badge">${type === 'ka' ? 'ক' : 'খ'}</span> ${item.question}</div>
+                        <div class="cq-question bn-text"><span class="cq-q-badge">${type === 'ka' ? 'ক' : 'খ'}</span> ${window.fixBanglaMathJax(item.question)}</div>
                         <button class="action-btn outline bn-text cq-show-btn">
                             <i data-lucide="eye"></i> উত্তর দেখুন
                         </button>
-                        <div class="cq-answer bn-text">${item.answer}</div>
+                        <div class="cq-answer bn-text">${window.fixBanglaMathJax(item.answer)}</div>
                     `;
                 } else if (type === 'ga-gha') {
                     let subQHTML = '';
                     item.questions.forEach(q => {
                         subQHTML += `
                             <div style="margin-top: 20px; border-top: 1px dashed var(--border-color); padding-top: 15px;">
-                                <div class="cq-question bn-text"><span class="cq-q-badge">${q.type === 'ga' ? 'গ' : 'ঘ'}</span> ${q.question}</div>
+                                <div class="cq-question bn-text"><span class="cq-q-badge">${q.type === 'ga' ? 'গ' : 'ঘ'}</span> ${window.fixBanglaMathJax(q.question)}</div>
                                 <button class="action-btn outline bn-text cq-show-btn">
                                     <i data-lucide="eye"></i> সমাধান দেখুন
                                 </button>
-                                <div class="cq-answer bn-text">${q.answer.replace(/\n/g, '<br>')}</div>
+                                <div class="cq-answer bn-text">${window.fixBanglaMathJax(q.answer).replace(/\n/g, '<br>')}</div>
                             </div>
                         `;
                     });
 
                     card.innerHTML = `
                         ${tagsHTML ? `<div style="margin-bottom: 10px;">${tagsHTML}</div>` : ''}
-                        <div class="cq-stem bn-text"><strong>উদ্দীপক:</strong><br>${item.stem}</div>
+                        <div class="cq-stem bn-text"><strong>উদ্দীপক:</strong><br>${window.fixBanglaMathJax(item.stem)}</div>
                         ${subQHTML}
                     `;
                 }
 
-                // Add listeners
                 const showBtns = card.querySelectorAll('.cq-show-btn');
                 showBtns.forEach(btn => {
                     btn.addEventListener('click', function() {
@@ -244,7 +233,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Debounce for search
     let searchTimeout;
     searchInput.addEventListener('input', () => {
         clearTimeout(searchTimeout);
@@ -255,6 +243,5 @@ document.addEventListener("DOMContentLoaded", () => {
         if(el) el.addEventListener('change', () => renderCQs(currentCqType));
     });
 
-    // Initial Load
     renderCQs('ka');
 });
