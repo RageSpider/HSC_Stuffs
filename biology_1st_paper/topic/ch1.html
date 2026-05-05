@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>অধ্যায় ১: কোষ ও এর গঠন | জীববিজ্ঞান ১ম পত্র</title>
+    
+    <!-- Fonts: Elegant Academic English + Bangla -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.maateen.me/bangla/font.css" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../topic-css/ch1.css">
+</head>
+<body>
+    
+    <div id="navbar-placeholder"></div>
+
+    <main class="chapter-main">
+        <!-- Cellular Themed Hero Section -->
+        <header class="ch-hero">
+            <div class="ch-hero-overlay"></div>
+            <div class="ch-hero-content">
+                <div class="ch-badge bn-text"><i data-lucide="microscope"></i> সাইটোলজি গাইড</div>
+                <h1 class="ch-title bn-text">কোষ ও এর গঠন</h1>
+                <p class="ch-subtitle bn-text">
+                    জীবদেহের গঠন ও কাজের একক কোষ, এর অঙ্গাণুসমূহ এবং ক্রোমোজোম ও ডিএনএ-এর সম্পূর্ণ বিশ্লেষণ।
+                </p>
+            </div>
+        </header>
+
+        <!-- Cell/Pill Shaped Tabs Navigation -->
+        <section class="ch-nav-section">
+            <div class="tabs-wrapper">
+                <button class="tab-btn active bn-text" data-tab="lecture"><i data-lucide="book-open"></i> লেকচার</button>
+                <button class="tab-btn bn-text" data-tab="mcq"><i data-lucide="check-circle"></i> বহুনির্বাচনি</button>
+                <button class="tab-btn bn-text" data-tab="cq"><i data-lucide="pen-tool"></i> সৃজনশীল</button>
+            </div>
+        </section>
+
+        <section class="ch-content-section">
+            
+            <!-- 1. LECTURE TAB -->
+            <div class="tab-content active" id="lecture-tab">
+                
+                <!-- TOP Pagination -->
+                <div class="lecture-pagination bn-text" style="margin-top: 0; margin-bottom: 20px;">
+                    <button class="page-btn btn-prev bn-text" disabled><i data-lucide="arrow-left"></i> পূর্ববর্তী পাতা</button>
+                    <div class="page-indicator">পাতা <span class="current-page-num en-text">1</span> / <span class="total-page-num en-text">--</span></div>
+                    <button class="page-btn btn-next bn-text">পরবর্তী পাতা <i data-lucide="arrow-right"></i></button>
+                </div>
+
+                <div class="academic-card">
+                    <div class="lecture-header">
+                        <h3 id="lecture-page-title" class="bn-text">লোডিং...</h3>
+                    </div>
+                    <div class="lecture-viewer bn-text" id="lecture-viewer">
+                        <div class="loader"><i data-lucide="loader-2" class="spin"></i> তথ্য লোড হচ্ছে...</div>
+                    </div>
+                </div>
+                
+                <!-- BOTTOM Pagination -->
+                <div class="lecture-pagination bn-text">
+                    <button class="page-btn btn-prev bn-text" disabled><i data-lucide="arrow-left"></i> পূর্ববর্তী পাতা</button>
+                    <div class="page-indicator">পাতা <span class="current-page-num en-text">1</span> / <span class="total-page-num en-text">--</span></div>
+                    <button class="page-btn btn-next bn-text">পরবর্তী পাতা <i data-lucide="arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- 2. MCQ TAB -->
+            <div class="tab-content" id="mcq-tab">
+                <!-- Smart Responsive Filter Toolbar -->
+                <div class="filter-toolbar">
+                    <div class="search-box">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="mcq-search" class="bn-text" placeholder="MCQ খুঁজুন (Banglish সাপোর্ট)...">
+                    </div>
+                    <div class="filters-grid">
+                        <select id="mcq-board-filter" class="bn-text"><option value="all">সব বোর্ড</option></select>
+                        <select id="mcq-year-filter" class="bn-text"><option value="all">সব সাল</option></select>
+                        <select id="mcq-type-filter" class="bn-text"><option value="all">সব টপিক</option></select>
+                        <select id="mcq-mode-select" class="bn-text">
+                            <option value="study">স্টাডি মোড (উত্তর দৃশ্যমান)</option>
+                            <option value="exam">এক্সাম মোড (উত্তর লুকানো)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="dynamic-mcq-container" class="bn-text"></div>
+            </div>
+
+            <!-- 3. CQ TAB -->
+            <div class="tab-content" id="cq-tab">
+                <!-- Sub Tabs for CQ -->
+                <div class="cq-sub-tabs-wrapper">
+                    <button class="cq-sub-tab-btn active bn-text" data-cq="ka">জ্ঞানমূলক (ক)</button>
+                    <button class="cq-sub-tab-btn bn-text" data-cq="kha">অনুধাবন (খ)</button>
+                    <button class="cq-sub-tab-btn bn-text" data-cq="ga-gha">প্রয়োগ ও উচ্চতর (গ-ঘ)</button>
+                </div>
+
+                <!-- Smart Responsive Filter Toolbar -->
+                <div class="filter-toolbar">
+                    <div class="search-box">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="cq-search" class="bn-text" placeholder="সৃজনশীল প্রশ্ন খুঁজুন...">
+                    </div>
+                    <div class="filters-grid">
+                        <select id="cq-board-filter" class="bn-text"><option value="all">সব বোর্ড</option></select>
+                        <select id="cq-year-filter" class="bn-text"><option value="all">সব সাল</option></select>
+                        <select id="cq-type-filter" class="bn-text"><option value="all">সব টপিক</option></select>
+                    </div>
+                </div>
+
+                <div id="cq-container" class="bn-text"></div>
+            </div>
+
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="../js/include-navbar.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/include-footer.js"></script>
+    <script src="../js/footer.js"></script>
+    
+    <script src="../topic-js/ch1.js"></script>
+    <script src="../topic-data/ch1/scripts/mcq-function.js"></script>
+    <script src="../topic-data/ch1/scripts/cq-function.js"></script>
+</body>
+</html>

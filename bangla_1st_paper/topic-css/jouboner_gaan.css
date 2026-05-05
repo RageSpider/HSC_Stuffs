@@ -1,0 +1,213 @@
+/* topic-css/jouboner_gaan.css */
+
+/* Global Box Sizing Reset */
+*, *::before, *::after { box-sizing: border-box; }
+body { overflow-x: hidden; max-width: 100vw; }
+
+:root {
+    /* Muted Elegant Literary Palette */
+    --ch-primary: #8b2a2a;       /* Deep muted crimson */
+    --ch-primary-hover: #631b1b; 
+    --ch-accent: #d4a373;        /* Vintage gold */
+    --ch-bg-soft: #fcf6f5;       /* Very soft warm tint */
+    
+    --bg-main: #f4f1ea;          /* Vintage paper white */
+    --surface-color: #ffffff;    
+    
+    --text-dark: #332b2b;        
+    --text-muted: #736565;       
+    --border-color: #e8deda; 
+    --border-focus: #8b2a2a;
+    
+    /* Dedicated Success/Error Colors for MCQ */
+    --success-color: #2e7d32;
+    --success-bg: #e8f5e9;
+    --error-color: #c62828;
+    --error-bg: #ffebee;
+    
+    --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.04);
+    --shadow-hover: 0 8px 25px rgba(139, 42, 42, 0.08);
+}
+
+[data-theme="dark"] {
+    --ch-primary: #a84242;       
+    --ch-primary-hover: #c45656; 
+    --ch-accent: #e5b98a;        
+    --ch-bg-soft: #261a1a;       
+    
+    --bg-main: #171413;          
+    --surface-color: #211c1b;    
+    
+    --text-dark: #f0e6e6;        
+    --text-muted: #a89a9a;       
+    --border-color: #3b302e; 
+    --border-focus: #a84242;
+
+    --success-color: #4caf50;
+    --success-bg: rgba(76, 175, 80, 0.1);
+    --error-color: #ef5350;
+    --error-bg: rgba(239, 83, 80, 0.1);
+    
+    --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Enforce Fonts Strictly */
+.bn-text, .bn-text * { font-family: 'Bangla', sans-serif !important; }
+.en-text, .en-text * { font-family: 'Lora', Georgia, serif !important; }
+
+/* =========================================
+   REFINED HERO SECTION
+   ========================================= */
+.ch-hero {
+    position: relative;
+    padding: 110px 20px 80px; /* Reduced space */
+    background: linear-gradient(135deg, var(--ch-primary), #471111);
+    text-align: center;
+}
+[data-theme="dark"] .ch-hero { background: linear-gradient(135deg, #381212, #1a0808); }
+
+.ch-hero-overlay {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+    z-index: 1;
+}
+
+.ch-hero-content { position: relative; z-index: 3; max-width: 850px; margin: 0 auto; }
+
+/* Elegant Pill Badge */
+.ch-badge { 
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; 
+    padding: 6px 20px; border-radius: 50px;
+    background: rgba(0,0,0,0.25); backdrop-filter: blur(4px);
+    color: #fff; font-weight: 500; margin-bottom: 20px; 
+    letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.1);
+}
+.ch-badge i { width: 16px; height: 16px; color: var(--ch-accent); }
+
+.ch-title { font-size: 3.5rem; font-weight: 700; margin-bottom: 5px; color: #fff; text-shadow: 2px 2px 0px rgba(0,0,0,0.3); }
+.ch-author { color: var(--ch-accent); margin-bottom: 20px; font-size: 1.6rem; font-weight: 600;}
+.ch-subtitle { font-size: 1.15rem; color: rgba(255,255,255,0.85); line-height: 1.6; max-width: 700px; margin: 0 auto;}
+
+/* =========================================
+   UNIFIED WORKSPACE (MERGED TABS & CARDS)
+   ========================================= */
+.unified-workspace {
+    max-width: 950px; 
+    margin: -45px auto 80px; /* Overlaps the hero section */
+    background: var(--surface-color); 
+    border-radius: 12px; 
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08); 
+    padding: 30px; 
+    position: relative; 
+    z-index: 10;
+    border: 1px solid var(--border-color);
+}
+
+.tabs-wrapper { 
+    display: flex; gap: 15px; 
+    border-bottom: 2px solid var(--bg-main); 
+    margin-bottom: 30px; 
+    overflow-x: auto; scrollbar-width: none;
+}
+.tabs-wrapper::-webkit-scrollbar { display: none; }
+
+.tab-btn { 
+    display: flex; align-items: center; justify-content: center; gap: 8px; 
+    padding: 12px 20px; font-size: 1.05rem; font-weight: 600; 
+    color: var(--text-muted); background: transparent;
+    border: none; border-bottom: 3px solid transparent;
+    cursor: pointer; transition: all 0.3s; white-space: nowrap;
+}
+
+.tab-btn.active { 
+    color: var(--ch-primary);
+    border-bottom-color: var(--ch-primary);
+}
+.tab-btn:hover:not(.active) { color: var(--ch-primary); }
+
+.tab-content { display: none; opacity: 0; transform: translateY(10px); transition: all 0.4s ease; }
+.tab-content.active { display: block; opacity: 1; transform: translateY(0); }
+
+/* Clean, Minimalist Cards */
+.academic-card { 
+    padding: 30px; margin-bottom: 25px; background: var(--surface-color);
+    border: 1px solid var(--border-color); border-radius: 8px; box-shadow: var(--shadow-soft); transition: 0.3s;
+}
+.academic-card:hover { box-shadow: var(--shadow-hover); border-color: var(--ch-primary); }
+
+/* CQ Sub-tabs */
+.cq-sub-tabs-wrapper { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; }
+.cq-sub-tab-btn { padding: 8px 20px; color: var(--text-muted); border-radius: 50px; font-weight: 600; font-size: 1rem; cursor: pointer; background: var(--bg-main); border: 1px solid var(--border-color); transition: 0.3s;}
+.cq-sub-tab-btn.active { background: var(--ch-primary); color: #fff; border-color: var(--ch-primary); }
+
+/* TEXTBOOK SPECIFIC TYPOGRAPHY */
+.textbook-card {
+    border-left: 4px solid var(--ch-primary);
+    background-image: linear-gradient(var(--bg-main) 1px, transparent 1px);
+    background-size: 100% 2.2rem;
+}
+.prose-header { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed var(--border-color); }
+.prose-header h3 { font-size: 1.7rem; color: var(--ch-primary); font-weight: 700; text-align: center;}
+.prose-viewer { color: var(--text-dark); font-size: 1.25rem; min-height: 400px; }
+.prose-paragraph { text-align: justify; text-indent: 2.5em; line-height: 2.2; margin-bottom: 1.5rem; font-weight: 500; }
+
+.loader { display: flex; align-items: center; justify-content: center; gap: 10px; height: 300px; color: var(--ch-primary); font-weight: 600; font-size: 1.2rem; }
+.pulse-flame { animation: pulse 1s infinite alternate; }
+@keyframes pulse { 0% { transform: scale(1); opacity: 0.7;} 100% { transform: scale(1.2); opacity: 1;} }
+
+/* Pagination */
+.prose-pagination { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding: 10px 0; }
+.page-btn { 
+    display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 6px;
+    color: #fff; background: var(--ch-primary); font-weight: 600; cursor: pointer; border: none; transition: 0.3s; 
+}
+.page-btn:hover:not(:disabled) { background: var(--ch-primary-hover); transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+.page-btn:disabled { opacity: 0.5; background: var(--bg-main); color: var(--text-muted); cursor: not-allowed; }
+.page-indicator { font-weight: 600; color: var(--ch-primary); padding: 8px 20px; border-radius: 6px; background: var(--ch-bg-soft); }
+
+/* =========================================
+   CLEAN FILTER TOOLBAR & MCQ UI
+   ========================================= */
+.filter-toolbar { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; padding: 20px; background: var(--bg-main); border-radius: 8px; border: 1px solid var(--border-color); }
+@media (min-width: 800px) { .filter-toolbar { flex-direction: row; align-items: center; } }
+.search-box { flex: 1 1 auto; width: 100%; position: relative; }
+.search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted); width: 18px; }
+.search-box input { width: 100%; padding: 12px 15px 12px 40px; border-radius: 6px; color: var(--text-dark); font-size: 1.05rem; background: var(--surface-color); border: 1px solid var(--border-color); transition: 0.3s; }
+.search-box input:focus { outline: none; border-color: var(--ch-primary); box-shadow: 0 0 0 3px rgba(139, 42, 42, 0.1);}
+
+.filters-grid { display: flex; flex-wrap: wrap; gap: 10px; flex: 2 1 auto; width: 100%; }
+.filters-grid select { flex: 1 1 140px; padding: 12px; border-radius: 6px; cursor: pointer; color: var(--text-dark); font-size: 1rem; background: var(--surface-color); border: 1px solid var(--border-color); transition: 0.3s; }
+.filters-grid select:focus { outline: none; border-color: var(--ch-primary); }
+
+.card-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+.card-badge-item { padding: 4px 12px; border-radius: 4px; color: var(--ch-primary); background: var(--ch-bg-soft); font-weight: 600; font-size: 0.85rem; }
+
+.mcq-question { font-size: 1.2rem; font-weight: 600; color: var(--text-dark); margin-bottom: 15px; line-height: 1.6; }
+.mcq-option-label { display: flex; align-items: center; padding: 12px 16px; margin-top: 10px; border-radius: 6px; cursor: pointer; color: var(--text-dark); font-weight: 500; background: var(--bg-main); border: 1px solid var(--border-color); transition: 0.2s; word-break: break-word; }
+.mcq-option-label:hover { background: var(--ch-bg-soft); border-color: var(--ch-primary); }
+
+/* MCQ Distinct Correct/Wrong States */
+.mcq-option-label.correct { border-color: var(--success-color) !important; background: var(--success-bg) !important; color: var(--success-color); }
+.mcq-option-label.wrong { border-color: var(--error-color) !important; background: var(--error-bg) !important; color: var(--error-color); }
+
+.check-ans-btn { margin-top: 20px; padding: 12px 25px; border-radius: 6px; color: #fff; background: var(--ch-primary); cursor: pointer; border: none; font-weight: 600; font-size: 1rem; transition: 0.3s; }
+.check-ans-btn:hover { background: var(--ch-primary-hover); }
+.feedback-box { margin-top: 15px; padding: 15px; border-radius: 6px; font-size: 1.05rem; background: var(--ch-bg-soft); color: var(--text-dark); display: none; line-height: 1.6; border: 1px dashed var(--border-color); }
+
+/* Accordion */
+.accordion-item { margin-bottom: 12px; border-radius: 8px; background: var(--surface-color); border: 1px solid var(--border-color); overflow: hidden; }
+.accordion-header { padding: 15px 20px; background: var(--bg-main); cursor: pointer; font-weight: 600; color: var(--text-dark); display: flex; justify-content: space-between; align-items: center; transition: 0.3s ease; }
+.accordion-header:hover { color: var(--ch-primary); background: var(--ch-bg-soft); }
+.accordion-body { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+.search-highlight { background-color: rgba(212, 163, 115, 0.4); color: var(--text-dark); border-radius: 3px; padding: 0 2px;}
+
+@media (max-width: 768px) {
+    .ch-hero { padding: 100px 15px 60px; }
+    .ch-title { font-size: 2.8rem; }
+    .unified-workspace { margin: -30px 15px 60px; padding: 20px; }
+    .tabs-wrapper { padding-bottom: 5px; }
+    .academic-card { padding: 20px; }
+    .prose-pagination { flex-direction: column; gap: 15px; }
+    .page-btn { width: 100%; justify-content: center; }
+}

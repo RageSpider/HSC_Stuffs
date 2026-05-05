@@ -1,37 +1,48 @@
 /* topic-css/ch6.css */
 
+/* Global Box Sizing Reset to prevent clipping/overflow */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden; /* Prevents mobile horizontal scroll clipping */
+    max-width: 100vw;
+}
+
 :root {
-    /* Academic Botany Palette - Clean, highly readable */
-    --ch-primary: #1e5631;       /* Professional deep green */
-    --ch-primary-hover: #143d22; 
-    --ch-accent: #d89f3c;        /* Soft gold */
-    --ch-bg-soft: #f4f8f5;       /* Very soft green tint */
+    /* Academic Botany Palette */
+    --ch-primary: #1b5e20;       /* Deep moss green */
+    --ch-primary-hover: #144016; 
+    --ch-accent: #c0ca33;        /* Bright fern spore green/gold */
+    --ch-bg-soft: #f1f8e9;       /* Very soft moss tint */
     
-    --bg-main: #fbfdfc;          /* Almost pure white background */
-    --surface-color: #ffffff;    /* Pure white for cards */
+    --bg-main: #fafcf8;          
+    --surface-color: #ffffff;    
     
-    --text-dark: #121c16;        /* High contrast dark green-black */
-    --text-muted: #4e6354;       /* Readable gray-green */
-    --border-color: #dbe5dd; 
-    --border-focus: #1e5631;
+    --text-dark: #121c16;        
+    --text-muted: #4e6354;       
+    --border-color: #dcedc8; 
+    --border-focus: #1b5e20;
     
-    --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.04);
-    --shadow-hover: 0 8px 25px rgba(30, 86, 49, 0.08);
+    --shadow-soft: 0 4px 15px rgba(27, 94, 32, 0.05);
+    --shadow-hover: 0 8px 25px rgba(27, 94, 32, 0.12);
 }
 
 [data-theme="dark"] {
-    --ch-primary: #52a870;       
-    --ch-primary-hover: #74c48f; 
-    --ch-accent: #e5b35c;        
-    --ch-bg-soft: #0f1c14;       
+    /* Deep Bioluminescent Forest Theme */
+    --ch-primary: #4caf50;       
+    --ch-primary-hover: #81c784; 
+    --ch-accent: #d4e157;        
+    --ch-bg-soft: #0a140c;       
     
-    --bg-main: #070d09;          
-    --surface-color: #0b140f;    
+    --bg-main: #050a06;          
+    --surface-color: #0d1a10;    
     
-    --text-dark: #edf2ee;        
-    --text-muted: #8ea395;       
-    --border-color: #1a2e22; 
-    --border-focus: #52a870;
+    --text-dark: #e8f5e9;        
+    --text-muted: #81c784;       
+    --border-color: #1b5e20; 
+    --border-focus: #4caf50;
     
     --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.4);
     --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.6);
@@ -45,13 +56,27 @@ p, span, div, h1, h2, h3, h4, h5, h6, button, input, select {
 }
 
 /* =========================================
-   HERO SECTION
+   BOTANICAL HERO SECTION
    ========================================= */
 .ch-hero {
     position: relative;
     padding: 150px 20px 70px;
-    background: linear-gradient(135deg, var(--ch-primary) 0%, var(--ch-primary-hover) 100%);
+    background-color: var(--ch-primary);
+    /* Unique Fern Pattern Overlay */
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.83-2.69 2.691c-1.444-1.397-3.41-2.261-5.567-2.261H0v47.2c0 2.157.864 4.123 2.261 5.567l-2.69 2.69.83.83 59.598-59.598V0h-5.372zM52.46 2.26a5.952 5.952 0 0 1 4.218 1.742L54.628 6.05a3.974 3.974 0 0 0-2.812-1.163h-1.353l1.996-2.627zm-14.885 0h1.866l2.124 2.801-1.782 1.78-1.57-2.071h-.638V2.26zm-3.321 0h1.493v3.714l-1.493 1.493V2.26zm-3.321 0h1.493v6.71l-1.493 1.493V2.26zm-3.321 0h1.493v9.706l-1.493 1.493V2.26zm-3.321 0h1.493v12.702l-1.493 1.493V2.26zm-3.321 0h1.493v15.698l-1.493 1.493V2.26zm-3.321 0h1.493v18.694l-1.493 1.493V2.26zm-3.321 0h1.493v21.69l-1.493 1.493V2.26zm-3.321 0h1.493v24.686l-1.493 1.493V2.26zm-3.321 0h1.493v27.682l-1.493 1.493V2.26zM2.26 2.26h2.24v29.544l-2.24 2.24V2.26zM0 6.136v1.493h2.26v-1.493H0zM0 9.457v1.493h3.754L2.26 9.457H0zm0 3.321v1.493h6.75l-1.493-1.493H0zm0 3.321v1.493h9.746l-1.493-1.493H0zm0 3.321v1.493h12.742l-1.493-1.493H0zm0 3.321v1.493h15.738l-1.493-1.493H0zm0 3.321v1.493h18.734l-1.493-1.493H0zm0 3.321v1.493h21.73l-1.493-1.493H0zm0 3.321v1.493h24.726l-1.493-1.493H0zm0 3.321v1.493h27.722l-1.493-1.493H0zm0 3.321v1.493h30.718l-1.493-1.493H0zm0 3.321v1.493h33.714l-1.493-1.493H0zm0 3.321v1.493h36.71l-1.493-1.493H0z' fill='%23ffffff' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E");
     text-align: center;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .ch-hero {
+    background-color: #061208; /* Super dark, moody base */
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.83-2.69 2.691c-1.444-1.397-3.41-2.261-5.567-2.261H0v47.2c0 2.157.864 4.123 2.261 5.567l-2.69 2.69.83.83 59.598-59.598V0h-5.372zM52.46 2.26a5.952 5.952 0 0 1 4.218 1.742L54.628 6.05a3.974 3.974 0 0 0-2.812-1.163h-1.353l1.996-2.627zm-14.885 0h1.866l2.124 2.801-1.782 1.78-1.57-2.071h-.638V2.26zm-3.321 0h1.493v3.714l-1.493 1.493V2.26zm-3.321 0h1.493v6.71l-1.493 1.493V2.26zm-3.321 0h1.493v9.706l-1.493 1.493V2.26zm-3.321 0h1.493v12.702l-1.493 1.493V2.26zm-3.321 0h1.493v15.698l-1.493 1.493V2.26zm-3.321 0h1.493v18.694l-1.493 1.493V2.26zm-3.321 0h1.493v21.69l-1.493 1.493V2.26zm-3.321 0h1.493v24.686l-1.493 1.493V2.26zm-3.321 0h1.493v27.682l-1.493 1.493V2.26zM2.26 2.26h2.24v29.544l-2.24 2.24V2.26zM0 6.136v1.493h2.26v-1.493H0zM0 9.457v1.493h3.754L2.26 9.457H0zm0 3.321v1.493h6.75l-1.493-1.493H0zm0 3.321v1.493h9.746l-1.493-1.493H0zm0 3.321v1.493h12.742l-1.493-1.493H0zm0 3.321v1.493h15.738l-1.493-1.493H0zm0 3.321v1.493h18.734l-1.493-1.493H0zm0 3.321v1.493h21.73l-1.493-1.493H0zm0 3.321v1.493h24.726l-1.493-1.493H0zm0 3.321v1.493h27.722l-1.493-1.493H0zm0 3.321v1.493h30.718l-1.493-1.493H0zm0 3.321v1.493h33.714l-1.493-1.493H0zm0 3.321v1.493h36.71l-1.493-1.493H0z' fill='%234caf50' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+.ch-hero-overlay {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+    z-index: 1;
 }
 
 .ch-hero-content { position: relative; z-index: 3; max-width: 850px; margin: 0 auto; }
@@ -59,8 +84,9 @@ p, span, div, h1, h2, h3, h4, h5, h6, button, input, select {
 .ch-badge { 
     display: inline-flex; align-items: center; gap: 8px; 
     padding: 6px 18px; 
-    background: rgba(255,255,255,0.1); 
-    border: 1px solid rgba(255,255,255,0.25); 
+    background: rgba(255,255,255,0.15); 
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.3); 
     border-radius: 6px; 
     color: #ffffff; 
     font-size: 1rem;
@@ -73,77 +99,121 @@ p, span, div, h1, h2, h3, h4, h5, h6, button, input, select {
     font-weight: 700; 
     margin-bottom: 15px; 
     color: #ffffff; 
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 .ch-subtitle { 
     font-size: 1.25rem; 
-    color: rgba(255,255,255,0.85); 
+    color: rgba(255,255,255,0.9); 
     line-height: 1.6; 
 }
 
 /* =========================================
-   CLEAN PILL TABS NAVIGATION
+   ORGANIC TABS NAVIGATION (Unstuck)
    ========================================= */
 .ch-nav-section { 
     background: var(--bg-main); 
-    padding: 20px 0; 
-    position: sticky; top: 60px; z-index: 900; 
-    border-bottom: 1px solid var(--border-color);
+    padding-top: 20px; 
+    border-bottom: 2px solid var(--border-color);
 }
 
 .tabs-wrapper { 
-    display: flex; justify-content: center; gap: 15px; 
+    display: flex; justify-content: center; gap: 10px; 
     max-width: 800px; margin: 0 auto; padding: 0 20px; 
     overflow-x: auto; scrollbar-width: none;
+    align-items: flex-end; /* Align tabs to bottom */
 }
 .tabs-wrapper::-webkit-scrollbar { display: none; }
 
+/* Redesigned Main Tabs (Folder/Leaf Style) */
 .tab-btn { 
     display: flex; align-items: center; justify-content: center; gap: 8px; 
-    padding: 10px 25px; 
-    background: var(--surface-color); 
-    border: 1px solid var(--border-color); 
-    border-radius: 50px; 
+    padding: 12px 25px; 
+    background: transparent; 
+    border: 2px solid transparent; 
+    border-bottom: none;
+    border-radius: 12px 12px 0 0; /* Flat bottom, rounded top */
     font-size: 1.05rem; font-weight: 600; 
     color: var(--text-muted); 
     cursor: pointer; transition: all 0.3s ease; 
-    white-space: nowrap; box-shadow: var(--shadow-soft);
+    white-space: nowrap; 
+    position: relative;
+    top: 2px; /* Pull down to cover border */
 }
 .tab-btn i { width: 18px; height: 18px; }
 .tab-btn.active { 
-    background: var(--ch-primary); 
-    color: #ffffff; 
-    border-color: var(--ch-primary); 
-    box-shadow: 0 4px 12px rgba(30, 86, 49, 0.3); 
+    background: var(--surface-color); 
+    color: var(--ch-primary); 
+    border-color: var(--border-color); 
+    border-top: 4px solid var(--ch-primary);
 }
-.tab-btn:hover:not(.active) { color: var(--ch-primary); border-color: var(--ch-primary); }
+.tab-btn:hover:not(.active) { color: var(--ch-primary); background: var(--ch-bg-soft); }
+
+/* Redesigned Sub Tabs (90% Similar, slightly squarer) */
+.cq-sub-tabs-wrapper { 
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; 
+    margin-bottom: 25px; 
+}
+.cq-sub-tab-btn { 
+    padding: 10px 22px; 
+    background: var(--bg-main); 
+    border: 1px solid var(--border-color); 
+    border-radius: 8px 8px 8px 8px; /* Slightly different */
+    color: var(--text-muted); font-weight: 600; font-size: 1.05rem; 
+    cursor: pointer; transition: 0.3s;
+}
+.cq-sub-tab-btn.active { 
+    background: var(--surface-color); color: var(--ch-primary); 
+    border-color: var(--ch-primary); 
+    border-left: 4px solid var(--ch-primary); /* Side accent instead of top */
+    box-shadow: var(--shadow-soft);
+}
 
 /* =========================================
-   CONTENT SECTION & ACADEMIC CARDS
+   CONTENT SECTION & BOTANICAL CARDS
    ========================================= */
 .ch-content-section { max-width: 950px; margin: 0 auto; padding: 40px 20px 80px; min-height: 60vh; }
 .tab-content { display: none; opacity: 0; transform: translateY(10px); transition: all 0.4s ease; }
 .tab-content.active { display: block; opacity: 1; transform: translateY(0); }
 
-/* Beautiful Academic Textbook Card */
+/* Unique Botanical Card Pattern */
 .academic-card { 
     background: var(--surface-color); 
     border: 1px solid var(--border-color); 
-    border-left: 5px solid var(--ch-primary); 
-    border-radius: 8px; 
+    border-left: 6px solid var(--ch-primary); 
+    /* Organic, asymmetric border-radius to look like a leaf */
+    border-radius: 16px 4px 16px 4px; 
     padding: 25px 30px; 
     box-shadow: var(--shadow-soft); 
     margin-bottom: 25px; 
     transition: transform 0.3s, box-shadow 0.3s; 
     position: relative;
+    
+    /* Strict Mobile Wraps */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    
+    /* Subtle watermark */
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 90 Q 50 10 90 10 Q 50 90 10 90 Z' fill='%231b5e20' fill-opacity='0.02'/%3E%3C/svg%3E");
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-size: 150px;
 }
+/* Ensure mobile images don't overflow */
+.academic-card img, .academic-card video, .academic-card iframe {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 8px;
+}
+
 .academic-card:hover { 
     transform: translateY(-3px); 
     box-shadow: var(--shadow-hover); 
 }
 
 /* Lecture Specifc */
-.lecture-header { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
+.lecture-header { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px dashed var(--border-color); }
 .lecture-header h3 { font-size: 1.6rem; color: var(--ch-primary); font-weight: 700; }
 .lecture-viewer { line-height: 1.8; color: var(--text-dark); font-size: 1.15rem; min-height: 400px; }
 
@@ -151,12 +221,12 @@ p, span, div, h1, h2, h3, h4, h5, h6, button, input, select {
 .spin { animation: spin 1s linear infinite; }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
-/* Pagination */
+/* Pagination (Now applied top & bottom) */
 .lecture-pagination { 
     display: flex; justify-content: space-between; align-items: center; 
     margin-top: 30px; padding: 15px 25px; 
     background: var(--surface-color); 
-    border-radius: 8px; 
+    border-radius: 12px; 
     border: 1px solid var(--border-color); 
 }
 .page-btn { 
@@ -178,12 +248,11 @@ p, span, div, h1, h2, h3, h4, h5, h6, button, input, select {
     display: flex; flex-direction: column; gap: 15px; 
     margin-bottom: 30px; padding: 20px; 
     background: var(--surface-color); 
-    border-radius: 8px; 
+    border-radius: 12px; 
     border: 1px solid var(--border-color); 
     box-shadow: var(--shadow-soft); 
 }
 
-/* Flexbox implementation ensures it breaks smoothly */
 @media (min-width: 800px) {
     .filter-toolbar { flex-direction: row; align-items: center; }
 }
@@ -200,13 +269,13 @@ p, span, div, h1, h2, h3, h4, h5, h6, button, input, select {
     font-size: 1.05rem; 
     transition: 0.3s; 
 }
-.search-box input:focus { outline: none; border-color: var(--border-focus); box-shadow: 0 0 0 3px rgba(30, 86, 49, 0.1); }
+.search-box input:focus { outline: none; border-color: var(--border-focus); box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.1); }
 
 .filters-grid {
     display: flex; flex-wrap: wrap; gap: 10px; flex: 2 1 auto; width: 100%;
 }
 .filters-grid select { 
-    flex: 1 1 140px; /* Allows dropdowns to grow/shrink gracefully */
+    flex: 1 1 140px; 
     padding: 12px; 
     border: 1px solid var(--border-color); 
     border-radius: 6px; 
@@ -215,25 +284,11 @@ p, span, div, h1, h2, h3, h4, h5, h6, button, input, select {
     font-size: 1rem; 
     cursor: pointer; 
     transition: 0.3s; 
+    /* Fix for mobile select overflow */
+    max-width: 100%;
+    text-overflow: ellipsis;
 }
 .filters-grid select:focus { outline: none; border-color: var(--border-focus); }
-
-/* CQ Sub Tabs */
-.cq-sub-tabs-wrapper { 
-    display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; 
-    margin-bottom: 25px; 
-}
-.cq-sub-tab-btn { 
-    padding: 10px 25px; 
-    background: var(--surface-color); border: 1px solid var(--border-color); 
-    border-radius: 50px; 
-    color: var(--text-muted); font-weight: 600; font-size: 1.05rem; 
-    cursor: pointer; transition: 0.3s; box-shadow: var(--shadow-soft);
-}
-.cq-sub-tab-btn.active { 
-    background: var(--ch-primary); color: #fff; 
-    border-color: var(--ch-primary); 
-}
 
 /* Academic Card Specifics (MCQ & CQ) */
 .card-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
@@ -253,6 +308,8 @@ p, span, div, h1, h2, h3, h4, h5, h6, button, input, select {
     border: 1px solid var(--border-color); border-radius: 6px;
     cursor: pointer; transition: 0.2s; background: var(--bg-main);
     color: var(--text-dark); font-weight: 500;
+    /* Mobile fix for long options */
+    word-break: break-word;
 }
 .mcq-option-label:hover { background: var(--ch-bg-soft); border-color: var(--ch-primary); }
 
@@ -267,14 +324,14 @@ p, span, div, h1, h2, h3, h4, h5, h6, button, input, select {
 .feedback-box {
     margin-top: 15px; padding: 15px; border-radius: 6px; 
     font-size: 1.05rem; background: var(--ch-bg-soft); 
-    border: 1px solid var(--border-color); color: var(--text-dark);
+    border: 1px dashed var(--border-color); color: var(--text-dark);
     display: none; line-height: 1.6;
 }
 
 /* Academic Accordion */
 .accordion-item {
     margin-bottom: 12px; border: 1px solid var(--border-color);
-    border-radius: 6px; overflow: hidden; background: var(--surface-color);
+    border-radius: 8px; overflow: hidden; background: var(--surface-color);
 }
 .accordion-header {
     padding: 15px 20px; background: var(--bg-main); cursor: pointer;
@@ -287,15 +344,22 @@ p, span, div, h1, h2, h3, h4, h5, h6, button, input, select {
     transition: max-height 0.3s ease, padding 0.3s ease;
 }
 
-.search-highlight { background-color: rgba(216, 159, 60, 0.3); color: var(--text-dark); border-radius: 3px; padding: 0 2px; }
+.search-highlight { background-color: rgba(192, 202, 51, 0.4); color: var(--text-dark); border-radius: 3px; padding: 0 2px; }
 
 @media (max-width: 768px) {
-    .ch-title { font-size: 2.6rem; }
-    .tabs-wrapper { justify-content: flex-start; padding: 0 10px; }
-    .tab-btn { padding: 8px 16px; font-size: 1rem; }
+    .ch-hero { padding: 120px 15px 50px; }
+    .ch-title { font-size: 2.4rem; }
     
-    .academic-card { padding: 20px; border-left-width: 4px; }
-    .lecture-pagination { flex-direction: column; gap: 15px; }
+    .tabs-wrapper { justify-content: flex-start; padding: 0 10px; }
+    .tab-btn { padding: 10px 18px; font-size: 1rem; border-radius: 8px 8px 0 0; }
+    
+    .academic-card { 
+        padding: 20px 15px; 
+        border-left-width: 4px; 
+        border-radius: 12px 4px 12px 4px;
+    }
+    
+    .lecture-pagination { flex-direction: column; gap: 15px; padding: 15px; }
     .page-btn { width: 100%; justify-content: center; }
     .cq-sub-tab-btn { flex: 1 1 auto; text-align: center; }
 }

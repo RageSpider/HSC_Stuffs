@@ -2,7 +2,7 @@
 <html lang="bn" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>অধ্যায় ৬: ব্রায়োফাইটা ও টেরেডোফাইটা | জীববিজ্ঞান ১ম পত্র</title>
     
     <!-- Fonts: Elegant Academic English + Bangla -->
@@ -25,18 +25,19 @@
     <div id="navbar-placeholder"></div>
 
     <main class="chapter-main">
-        <!-- Academic Botanical Hero Section -->
+        <!-- Botanical Themed Hero Section -->
         <header class="ch-hero">
+            <div class="ch-hero-overlay"></div>
             <div class="ch-hero-content">
                 <div class="ch-badge bn-text"><i data-lucide="leaf"></i> উদ্ভিদবিজ্ঞান গাইড</div>
-                <h1 class="ch-title bn-text">ব্রায়োফাইটা ও টেরেডোফাইটা</h1>
+                <h1 class="ch-title bn-text">ব্রায়োফাইটা ও টেরিডোফাইটা</h1>
                 <p class="ch-subtitle bn-text">
                     উভচর উদ্ভিদ এবং ফার্নবর্গীয় উদ্ভিদের বৈশিষ্ট্য, গঠন, জীবনচক্র ও অর্থনৈতিক গুরুত্বের পূর্ণাঙ্গ গাইডলাইন।
                 </p>
             </div>
         </header>
 
-        <!-- Clean Pill Tabs Navigation -->
+        <!-- Organic Tabs Navigation (Not Sticky) -->
         <section class="ch-nav-section">
             <div class="tabs-wrapper">
                 <button class="tab-btn active bn-text" data-tab="lecture"><i data-lucide="book-open"></i> লেকচার</button>
@@ -49,6 +50,14 @@
             
             <!-- 1. LECTURE TAB -->
             <div class="tab-content active" id="lecture-tab">
+                
+                <!-- TOP Pagination -->
+                <div class="lecture-pagination bn-text" style="margin-top: 0; margin-bottom: 20px;">
+                    <button class="page-btn btn-prev bn-text" disabled><i data-lucide="arrow-left"></i> পূর্ববর্তী পাতা</button>
+                    <div class="page-indicator">পাতা <span class="current-page-num en-text">1</span> / <span class="total-page-num en-text">--</span></div>
+                    <button class="page-btn btn-next bn-text">পরবর্তী পাতা <i data-lucide="arrow-right"></i></button>
+                </div>
+
                 <div class="academic-card">
                     <div class="lecture-header">
                         <h3 id="lecture-page-title" class="bn-text">লোডিং...</h3>
@@ -58,10 +67,11 @@
                     </div>
                 </div>
                 
+                <!-- BOTTOM Pagination -->
                 <div class="lecture-pagination bn-text">
-                    <button class="page-btn bn-text" id="btn-prev" disabled><i data-lucide="arrow-left"></i> পূর্ববর্তী পাতা</button>
-                    <div class="page-indicator">পাতা <span id="current-page-num" class="en-text">1</span> / <span id="total-page-num" class="en-text">--</span></div>
-                    <button class="page-btn bn-text" id="btn-next">পরবর্তী পাতা <i data-lucide="arrow-right"></i></button>
+                    <button class="page-btn btn-prev bn-text" disabled><i data-lucide="arrow-left"></i> পূর্ববর্তী পাতা</button>
+                    <div class="page-indicator">পাতা <span class="current-page-num en-text">1</span> / <span class="total-page-num en-text">--</span></div>
+                    <button class="page-btn btn-next bn-text">পরবর্তী পাতা <i data-lucide="arrow-right"></i></button>
                 </div>
             </div>
 

@@ -1,0 +1,398 @@
+/* topic-css/ch1.css */
+
+/* Global Box Sizing Reset to prevent clipping/overflow */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden; 
+    max-width: 100vw;
+}
+
+:root {
+    /* Cytology / Clinical Lab Palette */
+    --ch-primary: #01579b;       /* Deep Clinical Blue */
+    --ch-primary-hover: #0277bd; 
+    --ch-accent: #d81b60;        /* H&E Stain Pink/Magenta */
+    --ch-bg-soft: #f0f8ff;       /* Alice Blue / Lab clean white */
+    
+    --bg-main: #f8fbff;          
+    --surface-color: #ffffff;    
+    
+    --text-dark: #0f1c26;        
+    --text-muted: #4e6375;       
+    --border-color: #b3e5fc; 
+    --border-focus: #01579b;
+    
+    --shadow-soft: 0 4px 15px rgba(1, 87, 155, 0.05);
+    --shadow-hover: 0 8px 25px rgba(1, 87, 155, 0.12);
+}
+
+[data-theme="dark"] {
+    /* Fluorescence Microscopy Theme */
+    --ch-primary: #29b6f6;       /* Neon Cyan */
+    --ch-primary-hover: #4fc3f7; 
+    --ch-accent: #ff4081;        /* Fluorescent Pink */
+    --ch-bg-soft: #0d1624;       
+    
+    --bg-main: #050a11;          
+    --surface-color: #0a111c;    
+    
+    --text-dark: #e1f5fe;        
+    --text-muted: #81d4fa;       
+    --border-color: #0277bd; 
+    --border-focus: #29b6f6;
+    
+    --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.4);
+    --shadow-hover: 0 8px 25px rgba(41, 182, 246, 0.15);
+}
+
+/* Enforce Fonts Strictly */
+.bn-text, .bn-text * { font-family: 'Bangla', sans-serif !important; }
+.en-text, .en-text * { font-family: 'Lora', Georgia, serif !important; }
+p, span, div, h1, h2, h3, h4, h5, h6, button, input, select {
+    font-family: 'Bangla', 'Lora', Georgia, serif;
+}
+
+/* =========================================
+   CELLULAR HERO SECTION
+   ========================================= */
+.ch-hero {
+    position: relative;
+    padding: 150px 20px 70px;
+    background-color: var(--ch-primary);
+    /* Hexagon / Plant Cell Structure Pattern */
+    background-image: url("data:image/svg+xml,%3Csvg width='56' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%23ffffff' stroke-width='2' stroke-opacity='0.1'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%23ffffff' stroke-width='2' stroke-opacity='0.1'/%3E%3C/svg%3E");
+    text-align: center;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .ch-hero {
+    background-color: #03080e; /* Abyss black/blue */
+    background-image: url("data:image/svg+xml,%3Csvg width='56' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%2329b6f6' stroke-width='2' stroke-opacity='0.15'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%2329b6f6' stroke-width='2' stroke-opacity='0.15'/%3E%3C/svg%3E");
+}
+
+.ch-hero-overlay {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
+    z-index: 1;
+}
+
+.ch-hero-content { position: relative; z-index: 3; max-width: 850px; margin: 0 auto; }
+
+.ch-badge { 
+    display: inline-flex; align-items: center; gap: 8px; 
+    padding: 6px 18px; 
+    background: rgba(255,255,255,0.15); 
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.3); 
+    border-radius: 4px; /* Removed pill shape */
+    border-left: 4px solid var(--ch-accent); /* Added sharp geometric accent */
+    color: #ffffff; 
+    font-size: 1rem;
+    margin-bottom: 20px; 
+}
+.ch-badge i { width: 16px; height: 16px; color: var(--ch-accent); }
+
+.ch-title { 
+    font-size: 3.5rem; 
+    font-weight: 700; 
+    margin-bottom: 15px; 
+    color: #ffffff; 
+    text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.ch-subtitle { 
+    font-size: 1.25rem; 
+    color: rgba(255,255,255,0.9); 
+    line-height: 1.6; 
+}
+
+/* =========================================
+   GEOMETRIC LAB TABS NAVIGATION
+   ========================================= */
+.ch-nav-section { 
+    background: var(--bg-main); 
+    padding-top: 25px; 
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tabs-wrapper { 
+    display: flex; justify-content: center; gap: 15px; 
+    max-width: 800px; margin: 0 auto; padding: 0 20px; 
+    overflow-x: auto; scrollbar-width: none;
+    align-items: flex-end; /* Align slide tabs to bottom */
+}
+.tabs-wrapper::-webkit-scrollbar { display: none; }
+
+/* Redesigned Main Tabs (Microscope Slide Style) */
+.tab-btn { 
+    display: flex; align-items: center; justify-content: center; gap: 8px; 
+    padding: 12px 28px; 
+    background: var(--surface-color); 
+    border: 1px solid var(--border-color); 
+    border-bottom: none;
+    border-radius: 6px 6px 0 0; /* Flat bottom, sharp top */
+    font-size: 1.05rem; font-weight: 600; 
+    color: var(--text-muted); 
+    cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    white-space: nowrap; 
+    box-shadow: inset 0 -4px 10px rgba(0,0,0,0.02);
+    position: relative;
+    top: 1px;
+}
+.tab-btn i { width: 18px; height: 18px; }
+
+.tab-btn.active { 
+    background: var(--surface-color); 
+    color: var(--ch-primary); 
+    border-top: 4px solid var(--ch-primary); 
+    box-shadow: 0 -4px 12px rgba(1, 87, 155, 0.1);
+    z-index: 2;
+}
+[data-theme="dark"] .tab-btn.active {
+    color: var(--ch-primary);
+    box-shadow: 0 -4px 15px rgba(41, 182, 246, 0.15);
+    background: var(--surface-color);
+}
+
+.tab-btn:hover:not(.active) { 
+    border-color: var(--ch-primary); 
+    color: var(--ch-primary); 
+    background: var(--ch-bg-soft);
+}
+
+/* Redesigned Sub Tabs (Sharp Lab Labels) */
+.cq-sub-tabs-wrapper { 
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; 
+    margin-bottom: 30px; 
+}
+.cq-sub-tab-btn { 
+    padding: 8px 24px; 
+    background: transparent; 
+    border: 1px solid var(--border-color); 
+    border-radius: 4px; /* Removed pill */
+    border-left: 3px solid var(--border-color);
+    color: var(--text-muted); font-weight: 600; font-size: 1.05rem; 
+    cursor: pointer; transition: 0.3s;
+}
+.cq-sub-tab-btn.active { 
+    background: var(--ch-bg-soft); 
+    color: var(--ch-primary); 
+    border-color: var(--ch-primary); 
+    border-left: 3px solid var(--ch-primary);
+}
+
+/* =========================================
+   CONTENT SECTION & CLINICAL CARDS
+   ========================================= */
+.ch-content-section { max-width: 950px; margin: 0 auto; padding: 40px 20px 80px; min-height: 60vh; }
+.tab-content { display: none; opacity: 0; transform: translateY(10px); transition: all 0.4s ease; }
+.tab-content.active { display: block; opacity: 1; transform: translateY(0); }
+
+/* Unique Clinical Lab Card Pattern (Rigid Cell Wall aesthetic) */
+.academic-card { 
+    background: var(--surface-color); 
+    border: 1px solid var(--border-color); 
+    border-radius: 2px; /* Rigid corners */
+    padding: 30px; 
+    box-shadow: 4px 4px 0px rgba(1, 87, 155, 0.08); /* Structural shadow */
+    margin-bottom: 25px; 
+    transition: transform 0.2s, box-shadow 0.2s; 
+    position: relative;
+    
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    
+    /* Hexagon/Molecule subtle watermark */
+    background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60 20L95 40V80L60 100L25 80V40L60 20Z' fill='none' stroke='%2301579b' stroke-width='2' stroke-opacity='0.03'/%3E%3Ccircle cx='60' cy='60' r='10' fill='%2301579b' fill-opacity='0.03'/%3E%3C/svg%3E");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.academic-card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 35px; height: 35px;
+    border-top: 4px solid var(--ch-primary);
+    border-left: 4px solid var(--ch-primary);
+    z-index: 1;
+}
+[data-theme="dark"] .academic-card {
+    background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60 20L95 40V80L60 100L25 80V40L60 20Z' fill='none' stroke='%2329b6f6' stroke-width='2' stroke-opacity='0.05'/%3E%3Ccircle cx='60' cy='60' r='10' fill='%2329b6f6' fill-opacity='0.05'/%3E%3C/svg%3E");
+    box-shadow: 4px 4px 0px rgba(41, 182, 246, 0.12);
+}
+
+.academic-card img, .academic-card video, .academic-card iframe {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 4px;
+}
+
+.academic-card:hover { 
+    transform: translate(-2px, -2px); 
+    box-shadow: 6px 6px 0px rgba(1, 87, 155, 0.15); 
+}
+[data-theme="dark"] .academic-card:hover {
+    box-shadow: 6px 6px 0px rgba(41, 182, 246, 0.22);
+}
+
+/* Lecture Specifc */
+.lecture-header { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed var(--border-color); text-align: center; }
+.lecture-header h3 { font-size: 1.8rem; color: var(--ch-primary); font-weight: 700; }
+.lecture-viewer { line-height: 1.8; color: var(--text-dark); font-size: 1.15rem; min-height: 400px; }
+
+.loader { display: flex; align-items: center; justify-content: center; gap: 10px; height: 300px; color: var(--ch-primary); font-weight: 600; font-size: 1.2rem; }
+.spin { animation: spin 1s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* Pagination */
+.lecture-pagination { 
+    display: flex; justify-content: space-between; align-items: center; 
+    margin-top: 30px; padding: 15px 0; 
+    background: transparent; 
+}
+.page-btn { 
+    display: flex; align-items: center; gap: 8px; 
+    padding: 10px 22px; 
+    background: var(--surface-color); 
+    color: var(--ch-primary); 
+    border: 2px solid var(--ch-primary); 
+    border-radius: 4px; /* Removed pill */
+    font-weight: 600; cursor: pointer; transition: 0.2s; 
+    box-shadow: 3px 3px 0px rgba(1, 87, 155, 0.1);
+}
+.page-btn:hover:not(:disabled) { 
+    background: var(--ch-primary); color: #fff; 
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px rgba(1, 87, 155, 0.2);
+}
+[data-theme="dark"] .page-btn:hover:not(:disabled) { 
+    color: #000; 
+    box-shadow: 4px 4px 0px rgba(41, 182, 246, 0.3); 
+}
+.page-btn:disabled { 
+    opacity: 0.5; border-color: var(--text-muted); color: var(--text-muted); 
+    cursor: not-allowed; box-shadow: none; transform: none;
+}
+.page-indicator { font-weight: 600; color: var(--text-muted); background: var(--surface-color); padding: 8px 20px; border-radius: 4px; border: 1px solid var(--border-color); }
+
+/* =========================================
+   SMART FILTER TOOLBAR
+   ========================================= */
+.filter-toolbar { 
+    display: flex; flex-direction: column; gap: 15px; 
+    margin-bottom: 30px; padding: 20px; 
+    background: var(--surface-color); 
+    border-radius: 4px; 
+    border: 1px solid var(--border-color); 
+    box-shadow: 4px 4px 0px rgba(1, 87, 155, 0.05); 
+}
+
+@media (min-width: 800px) {
+    .filter-toolbar { flex-direction: row; align-items: center; }
+}
+
+.search-box { flex: 1 1 auto; width: 100%; position: relative; }
+.search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted); width: 18px; }
+.search-box input { 
+    width: 100%; 
+    padding: 12px 15px 12px 40px; 
+    border: 2px solid var(--border-color); 
+    border-radius: 4px; /* Removed pill */
+    background: var(--bg-main); 
+    color: var(--text-dark); 
+    font-size: 1.05rem; 
+    transition: 0.3s; 
+}
+.search-box input:focus { outline: none; border-color: var(--ch-primary); }
+
+.filters-grid {
+    display: flex; flex-wrap: wrap; gap: 10px; flex: 2 1 auto; width: 100%;
+}
+.filters-grid select { 
+    flex: 1 1 140px; 
+    padding: 12px 15px; 
+    border: 1px solid var(--border-color); 
+    border-radius: 4px; 
+    background: var(--bg-main); 
+    color: var(--text-dark); 
+    font-size: 1rem; 
+    cursor: pointer; 
+    transition: 0.3s; 
+    max-width: 100%;
+    text-overflow: ellipsis;
+}
+.filters-grid select:focus { outline: none; border-color: var(--ch-primary); }
+
+/* Academic Card Specifics (MCQ & CQ) */
+.card-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+.card-badge-item {
+    background: var(--ch-bg-soft); color: var(--ch-primary);
+    padding: 5px 12px; border-radius: 4px; font-size: 0.9rem; /* Removed pill */
+    border: 1px solid var(--border-color); font-weight: 600;
+}
+
+.mcq-question {
+    font-size: 1.25rem; font-weight: 600; color: var(--text-dark);
+    margin-bottom: 20px; line-height: 1.6;
+}
+
+.mcq-option-label {
+    display: flex; align-items: center; padding: 12px 18px; margin-top: 10px;
+    border: 1px solid var(--border-color); border-radius: 4px;
+    cursor: pointer; transition: 0.2s; background: var(--bg-main);
+    color: var(--text-dark); font-weight: 500;
+    word-break: break-word;
+}
+.mcq-option-label:hover { background: var(--ch-bg-soft); border-color: var(--ch-primary); transform: translateX(5px); }
+
+.check-ans-btn {
+    margin-top: 20px; padding: 12px 25px; 
+    background: var(--ch-accent); color: #fff; 
+    border: none; border-radius: 4px; cursor: pointer; /* Removed pill */
+    font-weight: 600; font-size: 1rem; transition: 0.2s;
+    box-shadow: 3px 3px 0px rgba(216, 27, 96, 0.2);
+}
+.check-ans-btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0px rgba(216, 27, 96, 0.4); }
+
+.feedback-box {
+    margin-top: 15px; padding: 18px; border-radius: 4px; 
+    font-size: 1.05rem; background: var(--ch-bg-soft); 
+    border-left: 4px solid var(--ch-primary); color: var(--text-dark);
+    display: none; line-height: 1.6;
+}
+
+/* Academic Accordion */
+.accordion-item {
+    margin-bottom: 12px; border: 1px solid var(--border-color);
+    border-radius: 4px; overflow: hidden; background: var(--surface-color);
+}
+.accordion-header {
+    padding: 16px 20px; background: var(--bg-main); cursor: pointer;
+    font-weight: 600; color: var(--text-dark); display: flex; 
+    justify-content: space-between; align-items: center; transition: 0.3s;
+}
+.accordion-header:hover { background: var(--ch-bg-soft); color: var(--ch-primary); }
+.accordion-body {
+    padding: 0 20px; max-height: 0; overflow: hidden; 
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.search-highlight { background-color: rgba(216, 27, 96, 0.2); color: var(--ch-accent); border-radius: 4px; padding: 0 4px; font-weight: bold;}
+
+@media (max-width: 768px) {
+    .ch-hero { padding: 120px 15px 50px; }
+    .ch-title { font-size: 2.4rem; }
+    
+    .tabs-wrapper { justify-content: flex-start; padding: 0 10px; }
+    .tab-btn { padding: 10px 20px; font-size: 1rem; border-radius: 4px 4px 0 0; }
+    
+    .academic-card { padding: 20px 15px; }
+    
+    .lecture-pagination { flex-direction: column; gap: 15px; padding: 15px 0; }
+    .page-btn { width: 100%; justify-content: center; }
+    .cq-sub-tab-btn { flex: 1 1 auto; text-align: center; }
+}

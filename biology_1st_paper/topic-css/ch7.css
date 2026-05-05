@@ -1,0 +1,408 @@
+/* topic-css/ch7.css */
+
+/* Global Box Sizing Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden; 
+    max-width: 100vw;
+}
+
+:root {
+    /* Botanical Conservatory Palette (Lotus & Pine) */
+    --ch-primary: #1b5e20;       /* Pine/Gymnosperm Green */
+    --ch-primary-hover: #144016; 
+    --ch-accent: #e91e63;        /* Lotus/Angiosperm Pink */
+    --ch-bg-soft: #fce4ec;       /* Petal White-Pink */
+    
+    --bg-main: #f9fbf9;          /* Fresh garden white */
+    --surface-color: #ffffff;    
+    
+    --text-dark: #1b2e20;        
+    --text-muted: #5e6c62;       
+    --border-color: #c8e6c9; 
+    --border-focus: #1b5e20;
+    
+    --shadow-floral: 0 8px 25px rgba(233, 30, 99, 0.08);
+    --shadow-floral-hover: 0 12px 35px rgba(233, 30, 99, 0.15);
+}
+
+[data-theme="dark"] {
+    /* Night Garden Theme */
+    --ch-primary: #00e676;       /* Bioluminescent Fern Green */
+    --ch-primary-hover: #69f0ae; 
+    --ch-accent: #ff4081;        /* Neon Night-Blooming Pink */
+    --ch-bg-soft: #24131a;       /* Deep warm dark */
+    
+    --bg-main: #090d0a;          /* Deep Forest Night */
+    --surface-color: #121a14;    
+    
+    --text-dark: #e8f5e9;        
+    --text-muted: #a5d6a7;       
+    --border-color: #213b28; 
+    --border-focus: #00e676;
+    
+    --shadow-floral: 0 8px 25px rgba(255, 64, 129, 0.1);
+    --shadow-floral-hover: 0 12px 35px rgba(255, 64, 129, 0.2);
+}
+
+/* PERFORMANCE FIX: Hardware Accelerated Fixed Background */
+.conservatory-bg {
+    position: relative;
+    z-index: 0;
+    background-color: var(--bg-main);
+}
+
+/* Pinecone Scale / Flower Petal Overlapping Arch Pattern */
+.conservatory-bg::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0 C46.5 0 60 13.5 60 30 C60 46.5 46.5 60 30 60 C13.5 60 0 46.5 0 30 C0 13.5 13.5 0 30 0 Z' fill='none' stroke='%231b5e20' stroke-width='1.5' stroke-opacity='0.04'/%3E%3Cpath d='M0 30 C16.5 30 30 43.5 30 60 C30 76.5 16.5 90 0 90 C-16.5 90 -30 76.5 -30 60 C-30 43.5 -16.5 30 0 30 Z' fill='none' stroke='%23e91e63' stroke-width='1' stroke-opacity='0.03'/%3E%3C/svg%3E");
+    z-index: -1;
+    pointer-events: none;
+    will-change: transform;
+}
+
+[data-theme="dark"] .conservatory-bg::before { 
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0 C46.5 0 60 13.5 60 30 C60 46.5 46.5 60 30 60 C13.5 60 0 46.5 0 30 C0 13.5 13.5 0 30 0 Z' fill='none' stroke='%2300e676' stroke-width='1.5' stroke-opacity='0.05'/%3E%3Cpath d='M0 30 C16.5 30 30 43.5 30 60 C30 76.5 16.5 90 0 90 C-16.5 90 -30 76.5 -30 60 C-30 43.5 -16.5 30 0 30 Z' fill='none' stroke='%23ff4081' stroke-width='1' stroke-opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* Enforce Fonts Strictly */
+.bn-text, .bn-text * { font-family: 'Bangla', sans-serif !important; }
+.en-text, .en-text * { font-family: 'Lora', Georgia, serif !important; }
+p, span, div, h1, h2, h3, h4, h5, h6, button, input, select {
+    font-family: 'Bangla', 'Lora', Georgia, serif;
+}
+
+/* =========================================
+   FLORAL HERO SECTION
+   ========================================= */
+.ch-hero {
+    position: relative;
+    padding: 150px 20px 70px;
+    background-color: var(--ch-primary);
+    text-align: center;
+    overflow: hidden;
+    /* Lotus Arch Bottom Cut */
+    border-bottom: 8px solid var(--ch-accent);
+}
+
+.ch-hero-overlay {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at top center, rgba(233, 30, 99, 0.15) 0%, rgba(0, 0, 0, 0.4) 100%);
+    z-index: 1;
+}
+
+.ch-hero-content { position: relative; z-index: 3; max-width: 850px; margin: 0 auto; }
+
+/* The Greenhouse Arch Badge (No Pills) */
+.ch-badge { 
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; 
+    padding: 10px 28px; 
+    background: rgba(255,255,255,0.1); 
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.2); 
+    
+    /* Perfect Arch Top, Flat Bottom */
+    border-radius: 30px 30px 6px 6px; 
+    border-bottom: 3px solid var(--ch-accent);
+    
+    color: #ffffff; 
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 25px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.ch-badge i { width: 16px; height: 16px; color: var(--ch-accent); }
+
+.ch-title { 
+    font-size: 3.5rem; 
+    font-weight: 700; 
+    margin-bottom: 15px; 
+    color: #ffffff; 
+    text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.ch-subtitle { 
+    font-size: 1.25rem; 
+    color: rgba(255,255,255,0.95); 
+    line-height: 1.6; 
+}
+
+/* =========================================
+   DOME TABS NAVIGATION
+   ========================================= */
+.ch-nav-section { 
+    padding-top: 35px; 
+    position: relative;
+    z-index: 5;
+    background: transparent;
+}
+
+.tabs-wrapper { 
+    display: flex; justify-content: center; gap: 12px; 
+    max-width: 800px; margin: 0 auto; padding: 0 20px; 
+    overflow-x: auto; scrollbar-width: none;
+    align-items: flex-end; 
+    border-bottom: 2px solid var(--border-color);
+}
+.tabs-wrapper::-webkit-scrollbar { display: none; }
+
+/* Perfect Dome Tabs */
+.tab-btn { 
+    display: flex; align-items: center; justify-content: center; gap: 8px; 
+    padding: 14px 32px; 
+    font-size: 1.05rem; font-weight: 600; 
+    color: var(--text-muted); 
+    cursor: pointer; 
+    white-space: nowrap; 
+    background: var(--surface-color);
+    border: 2px solid var(--border-color);
+    border-bottom: none;
+    
+    /* The Dome */
+    border-radius: 40px 40px 0 0;
+    
+    transition: all 0.3s;
+    position: relative;
+    top: 2px; 
+}
+
+.tab-btn.active { 
+    color: var(--ch-primary); 
+    border-color: var(--border-color);
+    /* Blooming inner line */
+    box-shadow: inset 0 4px 0 var(--ch-accent);
+    z-index: 2;
+    padding-bottom: 16px; 
+}
+
+.tab-btn:hover:not(.active) { 
+    color: var(--ch-accent); 
+    background: var(--ch-bg-soft);
+}
+
+/* Sub Tabs Arch */
+.cq-sub-tabs-wrapper { 
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; 
+    margin-bottom: 30px; 
+}
+.cq-sub-tab-btn { 
+    padding: 10px 26px; 
+    color: var(--text-muted); font-weight: 600; font-size: 1.05rem; 
+    cursor: pointer;
+    background: transparent;
+    border: 2px solid var(--border-color);
+    border-radius: 20px 20px 6px 6px; /* Mini arch */
+    transition: 0.3s;
+}
+.cq-sub-tab-btn.active { 
+    background: var(--ch-bg-soft); 
+    color: var(--ch-accent); 
+    border-color: var(--ch-accent); 
+    box-shadow: var(--shadow-floral);
+}
+.cq-sub-tab-btn:hover:not(.active) {
+    border-color: var(--ch-primary);
+}
+
+/* =========================================
+   CONTENT SECTION & "CONSERVATORY ARCH" CARDS
+   ========================================= */
+.ch-content-section { max-width: 950px; margin: 0 auto; padding: 40px 20px 80px; min-height: 60vh; }
+.tab-content { display: none; opacity: 0; transform: translateY(15px); transition: all 0.4s ease; }
+.tab-content.active { display: block; opacity: 1; transform: translateY(0); }
+
+/* The Conservatory Arch Card */
+.arch-card { 
+    padding: 35px 30px; 
+    margin-bottom: 35px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    position: relative;
+    overflow-wrap: break-word;
+    
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    
+    /* Tall archway shape */
+    border-radius: 40px 40px 10px 10px;
+    border-top: 6px solid var(--ch-accent);
+    
+    box-shadow: var(--shadow-floral);
+}
+
+.arch-card:hover { 
+    transform: translateY(-5px); 
+    box-shadow: var(--shadow-floral-hover);
+}
+
+.arch-card img, .arch-card video, .arch-card iframe {
+    max-width: 100% !important;
+    height: auto !important;
+    border: 1px solid var(--border-color);
+    /* Match inner arch */
+    border-radius: 20px 20px 6px 6px;
+}
+
+/* Lecture Specifc */
+.lecture-header { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed var(--border-color); text-align: center;}
+.lecture-header h3 { font-size: 1.8rem; color: var(--ch-accent); font-weight: 700; }
+.lecture-viewer { line-height: 1.8; color: var(--text-dark); font-size: 1.15rem; min-height: 400px; }
+
+.loader { display: flex; align-items: center; justify-content: center; gap: 10px; height: 300px; color: var(--ch-primary); font-weight: 600; font-size: 1.2rem; }
+.spin { animation: spin 1s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* Arch Pagination Buttons */
+.lecture-pagination { 
+    display: flex; justify-content: space-between; align-items: center; 
+    margin-top: 30px; padding: 15px 0; 
+}
+.page-btn { 
+    display: flex; align-items: center; gap: 8px; 
+    padding: 12px 26px; 
+    color: var(--ch-primary); 
+    font-weight: 600; cursor: pointer;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 20px 20px 8px 8px; /* Button arch */
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+.page-btn:hover:not(:disabled) { 
+    background: var(--ch-primary); color: #fff;
+    border-color: var(--ch-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(27, 94, 32, 0.15);
+}
+.page-btn:disabled { 
+    opacity: 0.5; color: var(--text-muted); background: transparent; cursor: not-allowed; box-shadow: none;
+}
+.page-indicator { font-weight: 600; color: var(--text-muted); padding: 8px 24px; border: 1px dashed var(--border-color); border-radius: 12px; }
+
+/* =========================================
+   ARCHED FILTER TOOLBAR
+   ========================================= */
+.filter-toolbar { 
+    display: flex; flex-direction: column; gap: 15px; 
+    margin-bottom: 30px; padding: 25px; 
+}
+
+@media (min-width: 800px) {
+    .filter-toolbar { flex-direction: row; align-items: center; }
+}
+
+.search-box { flex: 1 1 auto; width: 100%; position: relative; }
+.search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--ch-accent); width: 18px; z-index: 2; }
+.search-box input { 
+    width: 100%; 
+    padding: 14px 15px 14px 45px; 
+    color: var(--text-dark); 
+    font-size: 1.05rem; 
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 20px 20px 8px 8px; /* Arch input */
+    transition: 0.3s;
+}
+.search-box input:focus { outline: none; border-color: var(--ch-accent); box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1); }
+
+.filters-grid {
+    display: flex; flex-wrap: wrap; gap: 10px; flex: 2 1 auto; width: 100%;
+}
+.filters-grid select { 
+    flex: 1 1 140px; 
+    padding: 14px 15px; 
+    color: var(--text-dark); 
+    font-size: 1rem; 
+    cursor: pointer; 
+    max-width: 100%;
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 16px 16px 6px 6px;
+    transition: 0.3s;
+}
+.filters-grid select:focus { outline: none; border-color: var(--ch-primary); }
+
+/* Academic Card Specifics (MCQ & CQ) */
+.card-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.card-badge-item {
+    padding: 6px 16px; 
+    color: var(--ch-primary); font-weight: 600; font-size: 0.9rem;
+    background: var(--ch-bg-soft);
+    border-radius: 12px 12px 4px 4px;
+    border: 1px solid var(--border-color);
+}
+
+.mcq-question {
+    font-size: 1.25rem; font-weight: 600; color: var(--text-dark);
+    margin-bottom: 20px; line-height: 1.6;
+}
+
+.mcq-option-label {
+    display: flex; align-items: center; padding: 14px 18px; margin-top: 10px;
+    cursor: pointer; color: var(--text-dark); font-weight: 500;
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 16px 16px 6px 6px;
+    transition: 0.3s;
+    word-break: break-word;
+}
+.mcq-option-label:hover { background: var(--ch-bg-soft); border-color: var(--ch-accent); transform: translateY(-2px); }
+
+/* Seed Button */
+.check-ans-btn {
+    margin-top: 25px; padding: 14px 35px; 
+    color: #fff; background: var(--ch-accent);
+    cursor: pointer; border: none;
+    font-weight: 600; font-size: 1rem;
+    border-radius: 20px 20px 8px 8px;
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.2);
+    transition: 0.3s;
+}
+.check-ans-btn:hover { background: #c2185b; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(233, 30, 99, 0.3); }
+
+.feedback-box {
+    margin-top: 15px; padding: 20px; 
+    font-size: 1.05rem; background: var(--ch-bg-soft);
+    color: var(--text-dark); display: none; line-height: 1.6;
+    border-radius: 20px 20px 8px 8px;
+    border-top: 4px solid var(--ch-primary);
+}
+
+/* Floral Accordion */
+.accordion-item {
+    margin-bottom: 15px; 
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 20px 20px 6px 6px;
+    overflow: hidden;
+}
+.accordion-header {
+    padding: 18px 20px; background: var(--bg-main); cursor: pointer;
+    font-weight: 600; color: var(--text-dark); display: flex; 
+    justify-content: space-between; align-items: center; transition: 0.3s ease;
+}
+.accordion-header:hover { color: var(--ch-accent); background: var(--ch-bg-soft); }
+.accordion-body {
+    padding: 0 20px; max-height: 0; overflow: hidden; 
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.search-highlight { background-color: rgba(233, 30, 99, 0.15); color: var(--ch-accent); border-radius: 4px; padding: 0 4px; font-weight: bold;}
+
+@media (max-width: 768px) {
+    .ch-hero { padding: 120px 15px 50px; }
+    .ch-title { font-size: 2.4rem; }
+    
+    .tabs-wrapper { justify-content: flex-start; padding: 0 10px; gap: 4px;}
+    .tab-btn { padding: 10px 22px; font-size: 1rem; border-radius: 24px 24px 0 0; }
+    
+    .arch-card { padding: 25px 20px; border-radius: 30px 30px 8px 8px; }
+    
+    .lecture-pagination { flex-direction: column; gap: 15px; padding: 15px 0; }
+    .page-btn { width: 100%; justify-content: center; }
+    .cq-sub-tab-btn { flex: 1 1 auto; text-align: center; }
+}

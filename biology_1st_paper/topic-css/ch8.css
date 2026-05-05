@@ -1,0 +1,394 @@
+/* topic-css/ch8.css */
+
+/* Global Box Sizing Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden; 
+    max-width: 100vw;
+}
+
+:root {
+    /* Plant Histology Palette (Lignin & Mesophyll) */
+    --ch-primary: #d84315;       /* Xylem Lignin Orange-Red */
+    --ch-primary-hover: #bf360c; 
+    --ch-accent: #2e7d32;        /* Chlorophyll Green */
+    --ch-bg-soft: #fff8e1;       /* Pith Amber-White */
+    
+    --bg-main: #fffdf9;          
+    --surface-color: #ffffff;    
+    
+    --text-dark: #3e2723;        
+    --text-muted: #5d4037;       
+    --border-color: #ffccbc; 
+    --border-focus: #d84315;
+    
+    --shadow-tissue: 0 4px 15px rgba(216, 67, 21, 0.08);
+}
+
+[data-theme="dark"] {
+    /* Premium AMOLED Histology Theme (Completely Reworked) */
+    --ch-primary: #ff5722;       /* Vibrant Deep Orange */
+    --ch-primary-hover: #ff7043; 
+    --ch-accent: #00bfa5;        /* Mint/Emerald Green */
+    --ch-bg-soft: #1f1411;       /* Very subtle warm dark tint */
+    
+    --bg-main: #0a0a0a;          /* Deep AMOLED Black */
+    --surface-color: #141414;    /* Slightly elevated black for cards */
+    
+    --text-dark: #f5f5f5;        /* Clean off-white */
+    --text-muted: #bcaaa4;       /* Muted earthy text */
+    --border-color: #33221c;     /* Dark structural border */
+    --border-focus: #ff5722;
+    
+    --shadow-tissue: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+/* PERFORMANCE FIX: Hardware Accelerated Fixed Background */
+/* Removed background-attachment: fixed which causes massive scroll lag */
+.histology-bg {
+    position: relative;
+    z-index: 0;
+    background-color: var(--bg-main);
+}
+
+.histology-bg::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='40' viewBox='0 0 60 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h30v20H0V0zm30 20h30v20H30V20z' fill='none' stroke='%23d84315' stroke-width='1' stroke-opacity='0.05'/%3E%3C/svg%3E");
+    z-index: -1;
+    pointer-events: none;
+    will-change: transform;
+}
+
+[data-theme="dark"] .histology-bg::before { 
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='40' viewBox='0 0 60 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h30v20H0V0zm30 20h30v20H30V20z' fill='none' stroke='%23ff5722' stroke-width='1' stroke-opacity='0.08'/%3E%3C/svg%3E");
+}
+
+/* Enforce Fonts Strictly */
+.bn-text, .bn-text * { font-family: 'Bangla', sans-serif !important; }
+.en-text, .en-text * { font-family: 'Lora', Georgia, serif !important; }
+p, span, div, h1, h2, h3, h4, h5, h6, button, input, select {
+    font-family: 'Bangla', 'Lora', Georgia, serif;
+}
+
+/* =========================================
+   HISTOLOGY HERO SECTION
+   ========================================= */
+.ch-hero {
+    position: relative;
+    padding: 150px 20px 70px;
+    background: radial-gradient(circle at bottom right, var(--ch-primary), var(--ch-accent));
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 6px solid var(--ch-primary-hover);
+}
+
+.ch-hero-overlay {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    /* Concentric Circles to mimic a stem cross-section */
+    background-image: repeating-radial-gradient(circle at center, transparent 0, transparent 20px, rgba(255,255,255,0.05) 20px, rgba(255,255,255,0.05) 40px);
+    z-index: 1;
+}
+
+.ch-hero-content { position: relative; z-index: 3; max-width: 850px; margin: 0 auto; }
+
+/* =========================================
+   THE "CELL WALL" DOUBLE-BORDER SYSTEM
+   ========================================= */
+.cell-wall-border {
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    position: relative;
+    background: var(--surface-color);
+    transition: all 0.3s ease;
+}
+/* Inner secondary border (The Plasma Membrane) */
+.cell-wall-border::after {
+    content: ''; position: absolute;
+    top: 2px; left: 2px; right: 2px; bottom: 2px;
+    border: 1px dashed var(--ch-primary);
+    border-radius: 4px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+.cell-wall-border:hover {
+    border-color: var(--ch-primary);
+}
+.cell-wall-border:hover::after {
+    border-color: var(--ch-accent);
+    border-style: solid;
+}
+
+/* Hero Badge specific tuning */
+.ch-badge { 
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; 
+    padding: 8px 24px; 
+    background: rgba(255,255,255,0.1); 
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    color: #ffffff; 
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 25px; 
+}
+.ch-badge::after { border-color: rgba(255,255,255,0.5); }
+.ch-badge i { width: 16px; height: 16px; color: #ffffff; }
+
+.ch-title { 
+    font-size: 3.5rem; 
+    font-weight: 700; 
+    margin-bottom: 15px; 
+    color: #ffffff; 
+    text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.ch-subtitle { 
+    font-size: 1.25rem; 
+    color: rgba(255,255,255,0.95); 
+    line-height: 1.6; 
+}
+
+/* =========================================
+   EPIDERMAL TABS NAVIGATION
+   ========================================= */
+.ch-nav-section { 
+    padding-top: 30px; 
+    position: relative;
+    z-index: 5;
+    background: transparent;
+}
+
+.tabs-wrapper { 
+    display: flex; justify-content: center; gap: 8px; 
+    max-width: 800px; margin: 0 auto; padding: 0 20px; 
+    overflow-x: auto; scrollbar-width: none;
+    align-items: center; 
+}
+.tabs-wrapper::-webkit-scrollbar { display: none; }
+
+.tab-btn { 
+    display: flex; align-items: center; justify-content: center; gap: 8px; 
+    padding: 12px 28px; 
+    font-size: 1.05rem; font-weight: 600; 
+    color: var(--text-muted); 
+    cursor: pointer; 
+    white-space: nowrap; 
+    border: 3px solid var(--border-color);
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+    background: var(--bg-main);
+    box-shadow: inset 0 0 0 2px var(--surface-color), inset 0 0 0 3px var(--border-color);
+    transition: all 0.3s;
+    position: relative;
+    top: 3px; 
+}
+
+.tab-btn.active { 
+    background: var(--surface-color); 
+    color: var(--ch-primary); 
+    border-color: var(--ch-primary);
+    box-shadow: inset 0 0 0 2px var(--ch-bg-soft), inset 0 0 0 4px var(--ch-primary);
+    z-index: 2;
+    padding-bottom: 15px; 
+}
+
+.tab-btn:hover:not(.active) { 
+    color: var(--ch-primary); 
+    background: var(--ch-bg-soft);
+}
+
+/* Sub Tabs */
+.cq-sub-tabs-wrapper { 
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; 
+    margin-bottom: 30px; 
+}
+.cq-sub-tab-btn { 
+    padding: 8px 24px; 
+    color: var(--text-muted); font-weight: 600; font-size: 1.05rem; 
+    cursor: pointer;
+}
+.cq-sub-tab-btn.active { 
+    background: var(--ch-bg-soft); 
+    color: var(--ch-primary); 
+    border-color: var(--ch-primary); 
+}
+.cq-sub-tab-btn.active::after {
+    border-color: var(--ch-primary);
+    border-style: solid;
+}
+
+/* =========================================
+   CONTENT SECTION & "TISSUE LAYER" CARDS
+   ========================================= */
+.ch-content-section { max-width: 950px; margin: 0 auto; padding: 40px 20px 80px; min-height: 60vh; }
+.tab-content { display: none; opacity: 0; transform: translateY(10px); transition: all 0.4s ease; }
+.tab-content.active { display: block; opacity: 1; transform: translateY(0); }
+
+/* The Academic Card (Concentric Layers) */
+.cell-layer { 
+    padding: 30px; 
+    margin-bottom: 30px; 
+    transition: transform 0.3s ease; 
+    position: relative;
+    overflow-wrap: break-word;
+    
+    background: var(--surface-color);
+    border: 3px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 4px var(--bg-main), inset 0 0 0 6px var(--ch-bg-soft), var(--shadow-tissue);
+}
+
+.cell-layer:hover { 
+    transform: translateY(-4px); 
+    border-color: var(--ch-primary);
+    box-shadow: inset 0 0 0 4px var(--bg-main), inset 0 0 0 6px var(--ch-bg-soft), 0 10px 25px rgba(216, 67, 21, 0.15);
+}
+[data-theme="dark"] .cell-layer:hover {
+    box-shadow: inset 0 0 0 4px var(--bg-main), inset 0 0 0 6px var(--ch-bg-soft), 0 10px 25px rgba(0, 0, 0, 0.8);
+}
+
+.cell-layer img, .cell-layer video, .cell-layer iframe {
+    max-width: 100% !important;
+    height: auto !important;
+    border: 3px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2px;
+    background: var(--bg-main);
+}
+
+/* Lecture Specifc */
+.lecture-header { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 3px double var(--border-color); text-align: center;}
+.lecture-header h3 { font-size: 1.8rem; color: var(--ch-primary); font-weight: 700; }
+.lecture-viewer { line-height: 1.8; color: var(--text-dark); font-size: 1.15rem; min-height: 400px; }
+
+.loader { display: flex; align-items: center; justify-content: center; gap: 10px; height: 300px; color: var(--ch-primary); font-weight: 600; font-size: 1.2rem; }
+.spin { animation: spin 1s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* Pagination Buttons */
+.lecture-pagination { 
+    display: flex; justify-content: space-between; align-items: center; 
+    margin-top: 30px; padding: 15px 0; 
+}
+.page-btn { 
+    display: flex; align-items: center; gap: 8px; 
+    padding: 10px 24px; 
+    color: var(--ch-primary); 
+    font-weight: 600; cursor: pointer;
+}
+.page-btn:hover:not(:disabled) { 
+    background: var(--ch-primary); color: #fff;
+}
+.page-btn:hover:not(:disabled)::after {
+    border-color: #fff;
+}
+.page-btn:disabled { 
+    opacity: 0.5; color: var(--text-muted); cursor: not-allowed; 
+}
+.page-indicator { font-weight: 600; color: var(--text-muted); padding: 8px 24px; }
+.page-indicator::after { border-color: transparent; }
+
+/* =========================================
+   CONCENTRIC FILTER TOOLBAR
+   ========================================= */
+.filter-toolbar { 
+    display: flex; flex-direction: column; gap: 15px; 
+    margin-bottom: 30px; padding: 20px; 
+}
+
+@media (min-width: 800px) {
+    .filter-toolbar { flex-direction: row; align-items: center; }
+}
+
+.search-box { flex: 1 1 auto; width: 100%; position: relative; }
+.search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted); width: 18px; z-index: 2; }
+.search-box input { 
+    width: 100%; 
+    padding: 12px 15px 12px 45px; 
+    color: var(--text-dark); 
+    font-size: 1.05rem; 
+}
+
+.filters-grid {
+    display: flex; flex-wrap: wrap; gap: 10px; flex: 2 1 auto; width: 100%;
+}
+.filters-grid select { 
+    flex: 1 1 140px; 
+    padding: 12px 15px; 
+    color: var(--text-dark); 
+    font-size: 1rem; 
+    cursor: pointer; 
+    max-width: 100%;
+}
+
+/* Academic Card Specifics (MCQ & CQ) */
+.card-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+.card-badge-item {
+    padding: 5px 14px; 
+    color: var(--ch-primary); font-weight: 600; font-size: 0.9rem;
+}
+.card-badge-item::after { border-style: solid; border-color: var(--ch-primary); opacity: 0.3;}
+
+.mcq-question {
+    font-size: 1.25rem; font-weight: 600; color: var(--text-dark);
+    margin-bottom: 20px; line-height: 1.6;
+}
+
+.mcq-option-label {
+    display: flex; align-items: center; padding: 12px 18px; margin-top: 10px;
+    cursor: pointer; color: var(--text-dark); font-weight: 500;
+    word-break: break-word;
+}
+.mcq-option-label:hover { transform: translateX(4px); }
+
+/* Action Button */
+.check-ans-btn {
+    margin-top: 20px; padding: 12px 30px; 
+    color: var(--ch-primary); 
+    cursor: pointer; 
+    font-weight: 600; font-size: 1rem;
+}
+.check-ans-btn:hover { background: var(--ch-primary); color: #fff; }
+.check-ans-btn:hover::after { border-color: #fff; border-style: solid; }
+
+.feedback-box {
+    margin-top: 15px; padding: 18px; 
+    font-size: 1.05rem; 
+    color: var(--text-dark); display: none; line-height: 1.6;
+}
+.feedback-box::after { border-color: var(--ch-accent); border-style: solid; }
+
+/* Double-Wall Accordion */
+.accordion-item {
+    margin-bottom: 12px; 
+}
+.accordion-header {
+    padding: 16px 20px; background: transparent; cursor: pointer;
+    font-weight: 600; color: var(--text-dark); display: flex; 
+    justify-content: space-between; align-items: center; transition: 0.3s ease;
+}
+.accordion-header:hover { color: var(--ch-primary); }
+.accordion-body {
+    padding: 0 20px; max-height: 0; overflow: hidden; 
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.search-highlight { background-color: rgba(216, 67, 21, 0.2); color: var(--ch-primary); border: 1px solid var(--ch-primary); border-radius: 4px; padding: 0 4px; font-weight: bold;}
+
+@media (max-width: 768px) {
+    .ch-hero { padding: 120px 15px 50px; }
+    .ch-title { font-size: 2.4rem; }
+    
+    .tabs-wrapper { justify-content: flex-start; padding: 0 10px; gap: 4px;}
+    .tab-btn { padding: 10px 18px; font-size: 1rem; }
+    
+    .cell-layer { padding: 20px 15px; }
+    
+    .lecture-pagination { flex-direction: column; gap: 15px; padding: 15px 0; }
+    .page-btn { width: 100%; justify-content: center; }
+    .cq-sub-tab-btn { flex: 1 1 auto; text-align: center; }
+} 

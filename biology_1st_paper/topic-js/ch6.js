@@ -8,14 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
 
-    // Get last active tab from localStorage, default to lecture
     const savedTab = localStorage.getItem('ch6_active_tab') || 'lecture';
 
     const switchTab = (targetId) => {
         tabBtns.forEach(b => b.classList.remove('active'));
         tabContents.forEach(c => {
             c.classList.remove('active');
-            c.style.display = 'none'; // FIX: Explicitly hide previous tabs
+            c.style.display = 'none'; 
         });
         
         const btn = document.querySelector(`.tab-btn[data-tab="${targetId}"]`);
@@ -53,49 +52,100 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 3. Lecture Pagination System
+    // 3. Smart Lecture Pagination & Memory Cache System
     let lecturePages = [];
-    let currentPageIndex = 0;
+    let lectureCache = {}; // Packet loading memory store
+    
+    // Resume exactly where the user left off
+    let currentPageIndex = parseInt(localStorage.getItem('ch6_lecture_page') || '0', 10);
     
     const viewer = document.getElementById('lecture-viewer');
     const pageTitle = document.getElementById('lecture-page-title');
-    const btnPrev = document.getElementById('btn-prev');
-    const btnNext = document.getElementById('btn-next');
-    const currentNumSpan = document.getElementById('current-page-num');
-    const totalNumSpan = document.getElementById('total-page-num');
+    const btnPrevs = document.querySelectorAll('.btn-prev');
+    const btnNexts = document.querySelectorAll('.btn-next');
+    const currentNumSpans = document.querySelectorAll('.current-page-num');
+    const totalNumSpans = document.querySelectorAll('.total-page-num');
 
-    // Fetch the lecture JSON
+    // Silent Background Pre-fetcher
+    const preloadLectures = () => {
+        lecturePages.forEach((page, index) => {
+            if(index !== currentPageIndex) { // Skip the one we are already showing
+                fetch(`../topic-data/ch6/${page.file}`)
+                    .then(res => res.ok ? res.text() : null)
+                    .then(html => { if(html) lectureCache[index] = html; })
+                    .catch(() => {}); // Fail silently in background
+            }
+        });
+    };
+
+    // Fetch the lecture JSON metadata
     fetch('../topic-data/ch6/lecture.json')
         .then(response => response.json())
         .then(data => {
             lecturePages = data;
-            totalNumSpan.textContent = lecturePages.length;
-            loadLecturePage(0);
+            
+            // Safety check if localStorage index out of bounds
+            if(currentPageIndex >= lecturePages.length) currentPageIndex = 0;
+            
+            totalNumSpans.forEach(span => span.textContent = lecturePages.length);
+            loadLecturePage(currentPageIndex);
+            
+            // Start background fetching (Packet Loading)
+            setTimeout(preloadLectures, 1000); 
         })
         .catch(err => {
             viewer.innerHTML = `<div style="color:var(--ch-accent); text-align:center; padding: 40px;" class="bn-text">লেকচার ডেটা লোড করতে সমস্যা হয়েছে!</div>`;
         });
 
-    function loadLecturePage(index) {
+    function renderContent(htmlContent) {
+        viewer.innerHTML = htmlContent;
+        // Optimization: Only run lucide inside the viewer, not the whole document
+        if (typeof lucide !== 'undefined') {
+            const icons = viewer.querySelectorAll('[data-lucide]');
+            icons.forEach(icon => {
+                const name = icon.getAttribute('data-lucide');
+                if (lucide.icons[name]) {
+                    const svg = lucide.createElement(lucide.icons[name]);
+                    icon.parentNode.replaceChild(svg, icon);
+                }
+            });
+        }
+        if (typeof gsap !== 'undefined') gsap.fromTo(viewer, {opacity: 0, y: 10}, {opacity: 1, y: 0, duration: 0.3});
+    }
+
+    function loadLecturePage(index, shouldScroll = false) {
         if (index < 0 || index >= lecturePages.length) return;
         currentPageIndex = index;
+        localStorage.setItem('ch6_lecture_page', currentPageIndex); // Save State
+        
         const pageData = lecturePages[index];
         
         pageTitle.textContent = pageData.title;
-        currentNumSpan.textContent = pageData.page;
+        currentNumSpans.forEach(span => span.textContent = pageData.page);
+        
+        // Control button states
+        btnPrevs.forEach(btn => btn.disabled = (currentPageIndex === 0));
+        btnNexts.forEach(btn => btn.disabled = (currentPageIndex === lecturePages.length - 1));
+
+        if (shouldScroll) {
+            window.scrollTo({ top: document.getElementById('lecture-tab').offsetTop - 80, behavior: 'smooth' }); 
+        }
+
+        // Instant load from cache if available!
+        if(lectureCache[index]) {
+            renderContent(lectureCache[index]);
+            return;
+        }
+
+        // Fallback to fetching
         viewer.innerHTML = `<div class="loader bn-text"><i data-lucide="loader-2" class="spin"></i> লোড হচ্ছে...</div>`;
         if (typeof lucide !== 'undefined') lucide.createIcons();
-
-        // Control button states
-        btnPrev.disabled = (currentPageIndex === 0);
-        btnNext.disabled = (currentPageIndex === lecturePages.length - 1);
 
         fetch(`../topic-data/ch6/${pageData.file}`)
             .then(res => { if(!res.ok) throw new Error("File not found"); return res.text(); })
             .then(htmlContent => {
-                viewer.innerHTML = htmlContent;
-                if (typeof lucide !== 'undefined') lucide.createIcons(); 
-                if (typeof gsap !== 'undefined') gsap.fromTo(viewer, {opacity: 0, y: 10}, {opacity: 1, y: 0, duration: 0.4});
+                lectureCache[index] = htmlContent; // Save to cache
+                renderContent(htmlContent);
             })
             .catch(err => {
                 viewer.innerHTML = `<div style="color:var(--text-muted); text-align:center; padding: 60px 20px;">
@@ -107,18 +157,17 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     }
 
-    btnPrev.addEventListener('click', () => {
-        if (currentPageIndex > 0) { 
-            loadLecturePage(currentPageIndex - 1); 
-            window.scrollTo({ top: document.querySelector('.ch-nav-section').offsetTop - 20, behavior: 'smooth' }); 
-        }
+    // Attach listeners to ALL pagination buttons (Top & Bottom)
+    btnPrevs.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (currentPageIndex > 0) loadLecturePage(currentPageIndex - 1, true); 
+        });
     });
 
-    btnNext.addEventListener('click', () => {
-        if (currentPageIndex < lecturePages.length - 1) { 
-            loadLecturePage(currentPageIndex + 1); 
-            window.scrollTo({ top: document.querySelector('.ch-nav-section').offsetTop - 20, behavior: 'smooth' }); 
-        }
+    btnNexts.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (currentPageIndex < lecturePages.length - 1) loadLecturePage(currentPageIndex + 1, true); 
+        });
     });
 
     // 4. Smooth Hero Animations

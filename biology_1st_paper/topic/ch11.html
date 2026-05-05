@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>অধ্যায় ১১: জীবপ্রযুক্তি | জীববিজ্ঞান ১ম পত্র</title>
+    
+    <!-- Fonts: Elegant Academic English + Bangla -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.maateen.me/bangla/font.css" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../topic-css/ch11.css">
+</head>
+<body class="biotech-mesh-bg">
+    
+    <div id="navbar-placeholder"></div>
+
+    <main class="chapter-main">
+        <!-- Holographic Biotech Hero Section -->
+        <header class="ch-hero glass-hero">
+            <div class="ch-hero-overlay"></div>
+            <div class="ch-hero-content">
+                <div class="ch-badge bn-text"><i data-lucide="fingerprint"></i> জেনেটিক ইঞ্জিনিয়ারিং</div>
+                <h1 class="ch-title bn-text">জীবপ্রযুক্তি</h1>
+                <p class="ch-subtitle bn-text">
+                    টিস্যু কালচার, রিকম্বিন্যান্ট ডিএনএ প্রযুক্তি, জিনোম সিকোয়েন্সিং এবং আধুনিক কৃষিতে জীবপ্রযুক্তির অসামান্য অবদান।
+                </p>
+            </div>
+        </header>
+
+        <!-- Frosted Glass Tabs Navigation -->
+        <section class="ch-nav-section">
+            <div class="tabs-wrapper">
+                <button class="tab-btn active bn-text" data-tab="lecture"><i data-lucide="book-open"></i> লেকচার</button>
+                <button class="tab-btn bn-text" data-tab="mcq"><i data-lucide="cpu"></i> ডাটাবেস (MCQ)</button>
+                <button class="tab-btn bn-text" data-tab="cq"><i data-lucide="network"></i> অ্যানালাইসিস (CQ)</button>
+            </div>
+        </section>
+
+        <section class="ch-content-section">
+            
+            <!-- 1. LECTURE TAB -->
+            <div class="tab-content active" id="lecture-tab">
+                
+                <!-- TOP Pagination -->
+                <div class="lecture-pagination glass-panel bn-text" style="margin-top: 0; margin-bottom: 20px;">
+                    <button class="page-btn btn-prev bn-text" disabled><i data-lucide="arrow-left"></i> পূর্ববর্তী ডাটা</button>
+                    <div class="page-indicator">লগ <span class="current-page-num en-text">1</span> / <span class="total-page-num en-text">--</span></div>
+                    <button class="page-btn btn-next bn-text">পরবর্তী ডাটা <i data-lucide="arrow-right"></i></button>
+                </div>
+
+                <div class="academic-card glass-panel">
+                    <div class="lecture-header">
+                        <h3 id="lecture-page-title" class="bn-text">ডিক্রিপ্ট হচ্ছে...</h3>
+                    </div>
+                    <div class="lecture-viewer bn-text" id="lecture-viewer">
+                        <div class="loader"><i data-lucide="loader-2" class="spin"></i> ডিএনএ সিকোয়েন্সিং চলছে...</div>
+                    </div>
+                </div>
+                
+                <!-- BOTTOM Pagination -->
+                <div class="lecture-pagination glass-panel bn-text">
+                    <button class="page-btn btn-prev bn-text" disabled><i data-lucide="arrow-left"></i> পূর্ববর্তী ডাটা</button>
+                    <div class="page-indicator">লগ <span class="current-page-num en-text">1</span> / <span class="total-page-num en-text">--</span></div>
+                    <button class="page-btn btn-next bn-text">পরবর্তী ডাটা <i data-lucide="arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- 2. MCQ TAB -->
+            <div class="tab-content" id="mcq-tab">
+                <!-- Glass Filter Toolbar -->
+                <div class="filter-toolbar glass-panel">
+                    <div class="search-box">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="mcq-search" class="bn-text" placeholder="ডাটাবেস স্ক্যান করুন...">
+                    </div>
+                    <div class="filters-grid">
+                        <select id="mcq-board-filter" class="bn-text"><option value="all">সব সোর্স</option></select>
+                        <select id="mcq-year-filter" class="bn-text"><option value="all">সব সাল</option></select>
+                        <select id="mcq-type-filter" class="bn-text"><option value="all">সব টপিক</option></select>
+                        <select id="mcq-mode-select" class="bn-text">
+                            <option value="study">স্টাডি মোড (দৃশ্যমান)</option>
+                            <option value="exam">এক্সাম মোড (লুকানো)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="dynamic-mcq-container" class="bn-text"></div>
+            </div>
+
+            <!-- 3. CQ TAB -->
+            <div class="tab-content" id="cq-tab">
+                <!-- Holographic Sub Tabs for CQ -->
+                <div class="cq-sub-tabs-wrapper">
+                    <button class="cq-sub-tab-btn active bn-text" data-cq="ka">জ্ঞানমূলক (ক)</button>
+                    <button class="cq-sub-tab-btn bn-text" data-cq="kha">অনুধাবন (খ)</button>
+                    <button class="cq-sub-tab-btn bn-text" data-cq="ga-gha">প্রয়োগ ও উচ্চতর (গ-ঘ)</button>
+                </div>
+
+                <!-- Glass Filter Toolbar -->
+                <div class="filter-toolbar glass-panel">
+                    <div class="search-box">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="cq-search" class="bn-text" placeholder="অ্যানালাইসিস খুঁজুন...">
+                    </div>
+                    <div class="filters-grid">
+                        <select id="cq-board-filter" class="bn-text"><option value="all">সব সোর্স</option></select>
+                        <select id="cq-year-filter" class="bn-text"><option value="all">সব সাল</option></select>
+                        <select id="cq-type-filter" class="bn-text"><option value="all">সব টপিক</option></select>
+                    </div>
+                </div>
+
+                <div id="cq-container" class="bn-text"></div>
+            </div>
+
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="../js/include-navbar.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/include-footer.js"></script>
+    <script src="../js/footer.js"></script>
+    
+    <script src="../topic-js/ch11.js"></script>
+    <script src="../topic-data/ch11/scripts/mcq-function.js"></script>
+    <script src="../topic-data/ch11/scripts/cq-function.js"></script>
+</body>
+</html>

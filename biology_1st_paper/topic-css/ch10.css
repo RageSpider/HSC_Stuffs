@@ -1,0 +1,424 @@
+/* topic-css/ch10.css */
+
+/* Global Box Sizing Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden; 
+    max-width: 100vw;
+}
+
+:root {
+    /* Floral Reproduction Palette (Nectar & Pollen) */
+    --ch-primary: #e65100;       /* Deep Nectarine Orange */
+    --ch-primary-hover: #bf360c; 
+    --ch-accent: #ffb300;        /* Bright Pollen Gold */
+    --ch-bg-soft: #fff8e1;       /* Very soft amber */
+    
+    --bg-main: #fffdfa;          
+    --surface-color: #ffffff;    
+    
+    --text-dark: #2e1505;        
+    --text-muted: #6d4c41;       
+    --border-color: #ffccbc; 
+    --border-focus: #e65100;
+    
+    --shadow-floral: 0 8px 25px rgba(230, 81, 0, 0.08);
+}
+
+[data-theme="dark"] {
+    /* Night-Blooming System Theme */
+    --ch-primary: #ff8a65;       /* Glowing Coral */
+    --ch-primary-hover: #ffab91; 
+    --ch-accent: #ffff00;        /* Neon Pollen Yellow */
+    --ch-bg-soft: #1f110a;       
+    
+    --bg-main: #0d0603;          
+    --surface-color: #170b06;    
+    
+    --text-dark: #fff3e0;        
+    --text-muted: #ffccbc;       
+    --border-color: #3e1f12; 
+    --border-focus: #ff8a65;
+    
+    --shadow-floral: 0 8px 25px rgba(255, 138, 101, 0.12);
+}
+
+/* PERFORMANCE FIX: Hardware Accelerated Fixed Background */
+.flora-bg {
+    position: relative;
+    z-index: 0;
+    background-color: var(--bg-main);
+}
+
+/* Floating Pollen Specks SVG Pattern */
+.flora-bg::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='3' fill='%23e65100' fill-opacity='0.05'/%3E%3Ccircle cx='70' cy='40' r='2' fill='%23ffb300' fill-opacity='0.08'/%3E%3Ccircle cx='30' cy='80' r='4' fill='%23e65100' fill-opacity='0.04'/%3E%3Cpath d='M80 80 Q85 75 90 80 Q85 85 80 80' fill='%23ffb300' fill-opacity='0.05'/%3E%3C/svg%3E");
+    z-index: -1;
+    pointer-events: none;
+    will-change: transform;
+}
+
+[data-theme="dark"] .flora-bg::before { 
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='3' fill='%23ff8a65' fill-opacity='0.1'/%3E%3Ccircle cx='70' cy='40' r='2' fill='%23ffff00' fill-opacity='0.15'/%3E%3Ccircle cx='30' cy='80' r='4' fill='%23ff8a65' fill-opacity='0.08'/%3E%3Cpath d='M80 80 Q85 75 90 80 Q85 85 80 80' fill='%23ffff00' fill-opacity='0.1'/%3E%3C/svg%3E");
+}
+
+/* Enforce Fonts Strictly */
+.bn-text, .bn-text * { font-family: 'Bangla', sans-serif !important; }
+.en-text, .en-text * { font-family: 'Lora', Georgia, serif !important; }
+p, span, div, h1, h2, h3, h4, h5, h6, button, input, select {
+    font-family: 'Bangla', 'Lora', Georgia, serif;
+}
+
+/* =========================================
+   REPRODUCTION HERO SECTION
+   ========================================= */
+.ch-hero {
+    position: relative;
+    padding: 150px 20px 70px;
+    background: linear-gradient(135deg, var(--ch-primary), #d84315);
+    text-align: center;
+    overflow: hidden;
+    /* Zigzag/Petal bottom line */
+    border-bottom: 6px dashed var(--ch-accent);
+}
+[data-theme="dark"] .ch-hero {
+    background: linear-gradient(135deg, #70260e, #3e1204);
+}
+
+.ch-hero-overlay {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at center, rgba(255, 179, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%);
+    z-index: 1;
+}
+
+.ch-hero-content { position: relative; z-index: 3; max-width: 850px; margin: 0 auto; }
+
+/* The Core Shape Language: "The Asymmetric Leaf" (NO PILLS) */
+.floral-leaf {
+    border-radius: 0 24px 0 24px;
+}
+
+/* The Floral Badge */
+.ch-badge { 
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; 
+    padding: 10px 28px; 
+    background: rgba(255,255,255,0.1); 
+    backdrop-filter: blur(5px);
+    border: 2px solid rgba(255,255,255,0.3); 
+    
+    color: #ffffff; 
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 25px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.ch-badge i { width: 16px; height: 16px; color: var(--ch-accent); }
+
+.ch-title { 
+    font-size: 3.5rem; 
+    font-weight: 700; 
+    margin-bottom: 15px; 
+    color: #ffffff; 
+    text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.ch-subtitle { 
+    font-size: 1.25rem; 
+    color: rgba(255,255,255,0.95); 
+    line-height: 1.6; 
+}
+
+/* =========================================
+   OVERLAPPING PETAL TABS NAVIGATION
+   ========================================= */
+.ch-nav-section { 
+    padding-top: 35px; 
+    position: relative;
+    z-index: 5;
+    background: transparent;
+}
+
+.tabs-wrapper { 
+    display: flex; justify-content: center; gap: 10px; 
+    max-width: 800px; margin: 0 auto; padding: 0 20px; 
+    overflow-x: auto; scrollbar-width: none;
+    align-items: flex-end; 
+    border-bottom: 2px solid var(--ch-primary);
+}
+.tabs-wrapper::-webkit-scrollbar { display: none; }
+
+/* Half-Leaf Tabs */
+.tab-btn { 
+    display: flex; align-items: center; justify-content: center; gap: 8px; 
+    padding: 14px 30px; 
+    font-size: 1.05rem; font-weight: 600; 
+    color: var(--text-muted); 
+    cursor: pointer; 
+    white-space: nowrap; 
+    background: var(--bg-main);
+    border: 2px solid var(--border-color);
+    border-bottom: none;
+    
+    /* Top Right rounded heavily, Top Left sharp */
+    border-radius: 0 24px 0 0;
+    
+    transition: all 0.3s;
+    position: relative;
+    top: 2px; 
+}
+
+.tab-btn.active { 
+    color: var(--ch-primary); 
+    background: var(--surface-color);
+    border-color: var(--ch-primary);
+    box-shadow: inset -4px 4px 0 var(--ch-bg-soft); 
+    z-index: 2;
+    padding-bottom: 16px; 
+}
+
+.tab-btn:hover:not(.active) { 
+    color: var(--ch-primary); 
+    background: var(--ch-bg-soft);
+}
+
+/* Leaf Sub Tabs */
+.cq-sub-tabs-wrapper { 
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; 
+    margin-bottom: 30px; 
+}
+.cq-sub-tab-btn { 
+    padding: 10px 24px; 
+    color: var(--text-muted); font-weight: 600; font-size: 1.05rem; 
+    cursor: pointer;
+    background: transparent;
+    border: 2px solid var(--border-color);
+    transition: 0.3s;
+}
+.cq-sub-tab-btn.active { 
+    background: var(--ch-bg-soft); 
+    color: var(--ch-primary); 
+    border-color: var(--ch-primary); 
+}
+.cq-sub-tab-btn:hover:not(.active) {
+    border-color: var(--ch-primary);
+}
+
+/* =========================================
+   CONTENT SECTION & "POLLEN NODE" CARDS
+   ========================================= */
+.ch-content-section { max-width: 950px; margin: 0 auto; padding: 40px 20px 80px; min-height: 60vh; }
+.tab-content { display: none; opacity: 0; transform: scale(0.95); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.tab-content.active { display: block; opacity: 1; transform: scale(1); }
+
+/* The Asymmetric Floral Card */
+.floral-card { 
+    padding: 35px 30px; 
+    margin-bottom: 35px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    position: relative;
+    overflow-wrap: break-word;
+    
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-left: 2px solid var(--ch-primary);
+    
+    /* 0 40px 0 40px */
+    border-radius: 0 40px 0 40px;
+    
+    box-shadow: var(--shadow-floral);
+}
+
+/* The Glowing Pollen Node (Attached to the sharp top-left corner) */
+.floral-card::before {
+    content: '';
+    position: absolute;
+    top: -6px; left: -6px;
+    width: 14px; height: 14px;
+    background: var(--ch-accent);
+    border-radius: 50%; /* Only place a circle is used */
+    box-shadow: 0 0 10px var(--ch-accent);
+    border: 2px solid var(--surface-color);
+    z-index: 2;
+}
+
+.floral-card:hover { 
+    transform: translateY(-4px); 
+    box-shadow: 0 12px 30px rgba(230, 81, 0, 0.15);
+}
+[data-theme="dark"] .floral-card:hover { box-shadow: 0 12px 30px rgba(255, 138, 101, 0.2); }
+
+.floral-card img, .floral-card video, .floral-card iframe {
+    max-width: 100% !important;
+    height: auto !important;
+    border: 1px solid var(--border-color);
+    border-radius: 0 20px 0 20px;
+}
+
+/* Lecture Specifc */
+.lecture-header { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px solid var(--ch-bg-soft); text-align: left;}
+
+.lecture-header h3 { font-size: 1.8rem; color: var(--ch-primary); font-weight: 700; }
+.lecture-viewer { line-height: 1.8; color: var(--text-dark); font-size: 1.15rem; min-height: 400px; }
+
+.loader { display: flex; align-items: center; justify-content: center; gap: 10px; height: 300px; color: var(--ch-primary); font-weight: 600; font-size: 1.2rem; }
+.spin { animation: spin 1s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* Leaf Pagination Buttons */
+.lecture-pagination { 
+    display: flex; justify-content: space-between; align-items: center; 
+    margin-top: 30px; padding: 15px 0; 
+}
+.page-btn { 
+    display: flex; align-items: center; gap: 8px; 
+    padding: 12px 26px; 
+    color: var(--ch-primary); 
+    font-weight: 600; cursor: pointer;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.page-btn:hover:not(:disabled) { 
+    background: var(--ch-primary); color: #fff;
+    border-color: var(--ch-primary);
+    transform: translateY(-2px);
+}
+
+.page-btn:disabled { 
+    opacity: 0.5; color: var(--text-muted); border-color: var(--border-color); background: transparent; cursor: not-allowed; box-shadow: none; transform: none;
+}
+.page-indicator { font-weight: 600; color: var(--text-muted); padding: 8px 24px; border: 1px dashed var(--border-color); background: var(--surface-color); }
+
+/* =========================================
+   FLORAL FILTER TOOLBAR
+   ========================================= */
+.filter-toolbar { 
+    display: flex; flex-direction: column; gap: 15px; 
+    margin-bottom: 30px; padding: 25px; 
+}
+
+@media (min-width: 800px) {
+    .filter-toolbar { flex-direction: row; align-items: center; }
+}
+
+.search-box { flex: 1 1 auto; width: 100%; position: relative; }
+.search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--ch-primary); width: 18px; z-index: 2; }
+
+/* Leaf Inputs */
+.search-box input { 
+    width: 100%; 
+    padding: 14px 15px 14px 45px; 
+    color: var(--text-dark); 
+    font-size: 1.05rem; 
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    transition: 0.3s;
+}
+.search-box input:focus { outline: none; border-color: var(--ch-primary); box-shadow: 0 0 0 3px rgba(230, 81, 0, 0.1); }
+
+.filters-grid {
+    display: flex; flex-wrap: wrap; gap: 10px; flex: 2 1 auto; width: 100%;
+}
+.filters-grid select { 
+    flex: 1 1 140px; 
+    padding: 14px 15px; 
+    cursor: pointer; 
+    max-width: 100%;
+    color: var(--text-dark); 
+    font-size: 1rem; 
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    transition: 0.3s;
+}
+.filters-grid select:focus { outline: none; border-color: var(--ch-primary); }
+
+/* Academic Card Specifics (MCQ & CQ) */
+.card-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.card-badge-item {
+    padding: 6px 16px; 
+    color: var(--ch-primary); font-weight: 600; font-size: 0.9rem;
+    background: var(--ch-bg-soft);
+    border: 1px solid var(--border-color);
+    border-radius: 0 12px 0 12px; /* Mini leaf */
+}
+
+.mcq-question {
+    font-size: 1.25rem; font-weight: 600; color: var(--text-dark);
+    margin-bottom: 20px; line-height: 1.6;
+}
+
+.mcq-option-label {
+    display: flex; align-items: center; padding: 14px 18px; margin-top: 10px;
+    cursor: pointer; color: var(--text-dark); font-weight: 500;
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 0 16px 0 16px;
+    transition: 0.3s;
+    word-break: break-word;
+}
+.mcq-option-label:hover { background: var(--ch-bg-soft); border-color: var(--ch-primary); transform: scale(1.01); }
+
+/* Pollen Button */
+.check-ans-btn {
+    margin-top: 25px; padding: 14px 35px; 
+    color: #fff; background: var(--ch-primary);
+    cursor: pointer; border: none;
+    font-weight: 600; font-size: 1rem;
+    border-radius: 0 20px 0 20px;
+    box-shadow: 0 4px 15px rgba(230, 81, 0, 0.2);
+    transition: 0.3s;
+}
+.check-ans-btn:hover { background: var(--ch-primary-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(230, 81, 0, 0.3); }
+
+.feedback-box {
+    margin-top: 15px; padding: 20px; 
+    font-size: 1.05rem; background: var(--ch-bg-soft);
+    color: var(--text-dark); display: none; line-height: 1.6;
+    border-radius: 0 20px 0 20px;
+    border-left: 4px solid var(--ch-accent);
+}
+
+/* Floral Accordion */
+.accordion-item {
+    margin-bottom: 15px; 
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0 20px 0 20px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+.accordion-item:hover { border-color: var(--ch-primary); }
+.accordion-header {
+    padding: 18px 20px; background: var(--bg-main); cursor: pointer;
+    font-weight: 600; color: var(--text-dark); display: flex; 
+    justify-content: space-between; align-items: center; transition: 0.3s ease;
+}
+.accordion-header:hover { color: var(--ch-primary); background: var(--ch-bg-soft); }
+.accordion-body {
+    padding: 0 20px; max-height: 0; overflow: hidden; 
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.search-highlight { background-color: rgba(255, 179, 0, 0.3); color: var(--text-dark); border-radius: 2px; padding: 0 4px; font-weight: bold;}
+
+@media (max-width: 768px) {
+    .ch-hero { padding: 120px 15px 50px; }
+    .ch-title { font-size: 2.4rem; }
+    
+    .tabs-wrapper { justify-content: flex-start; padding: 0 10px; gap: 4px;}
+    .tab-btn { padding: 10px 22px; font-size: 1rem; border-radius: 0 16px 0 0; }
+    
+    .floral-card { padding: 25px 20px; border-radius: 0 30px 0 30px; }
+    
+    .lecture-pagination { flex-direction: column; gap: 15px; padding: 15px 0; }
+    .page-btn { width: 100%; justify-content: center; }
+    .cq-sub-tab-btn { flex: 1 1 auto; text-align: center; }
+}
