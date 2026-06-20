@@ -25,15 +25,30 @@
     <div id="navbar-placeholder"></div>
 
     <main class="chapter-main">
-        <!-- Rebellious/Youth Hero Section -->
+        
+        <!-- AURA & GRID HERO SECTION -->
         <header class="ch-hero">
-            <div class="ch-hero-overlay"></div>
+            <!-- Aura Background Elements -->
+            <div class="hero-grid-overlay"></div>
+            <div class="hero-aura-blue"></div>
+            <div class="hero-aura-amber"></div>
+            
             <div class="ch-hero-content">
-                <div class="ch-badge bn-text"><i data-lucide="flame"></i> গদ্য (প্রবন্ধ)</div>
+                <!-- Sleek Glowing Pulse Badge -->
+                <div class="ch-custom-badge bn-text">
+                    <span class="pulse-dot"></span>
+                    গদ্য (প্রবন্ধ)
+                </div>
+                
                 <h1 class="ch-title bn-text">যৌবনের গান</h1>
-                <h3 class="ch-author bn-text">কাজী নজরুল ইসলাম</h3>
+                
+                <div class="ch-author-wrapper bn-text">
+                    <span class="author-line"></span>
+                    <h3 class="ch-author">কাজী নজরুল ইসলাম</h3>
+                </div>
+                
                 <p class="ch-subtitle bn-text">
-                    তারুণ্যের শক্তি, অজেয় সাহস এবং প্রথাবিরোধী চেতনার এক অমর উদ্‌যাপন। মূল পাঠ, সৃজনশীল ও বহুনির্বাচনি প্রশ্নোত্তর।
+                    তারুণ্যের অজেয় শক্তি, সত্য প্রতিষ্ঠার সাহস এবং প্রথাবিরোধী চেতনার এক অমর উদ্‌যাপন। 
                 </p>
             </div>
         </header>
@@ -41,11 +56,13 @@
         <!-- Unified Workspace (Merged Nav and Content) -->
         <section class="unified-workspace">
             
-            <!-- Sleek Tabs Navigation -->
-            <div class="tabs-wrapper">
-                <button class="tab-btn active bn-text" data-tab="prose"><i data-lucide="book-open"></i> মূল পাঠ</button>
-                <button class="tab-btn bn-text" data-tab="mcq"><i data-lucide="check-square"></i> বহুনির্বাচনি</button>
-                <button class="tab-btn bn-text" data-tab="cq"><i data-lucide="pen-tool"></i> সৃজনশীল</button>
+            <!-- Enhanced Inset Pill Tabs Navigation -->
+            <div style="text-align: left;">
+                <div class="tabs-wrapper">
+                    <button class="tab-btn active bn-text" data-tab="prose"><i data-lucide="book-open"></i> মূল পাঠ</button>
+                    <button class="tab-btn bn-text" data-tab="mcq"><i data-lucide="check-square"></i> বহুনির্বাচনি</button>
+                    <button class="tab-btn bn-text" data-tab="cq"><i data-lucide="pen-tool"></i> সৃজনশীল</button>
+                </div>
             </div>
 
             <div class="tab-contents-container">
@@ -65,7 +82,7 @@
                         </div>
                         <!-- The viewer specifically styled for 1:1 book formatting -->
                         <div class="prose-viewer bn-text" id="prose-viewer">
-                            <div class="loader"><i data-lucide="flame" class="pulse-flame"></i> পাঠ্যবই লোড হচ্ছে...</div>
+                            <div class="loader"><i data-lucide="sun" class="pulse-flame"></i> পাঠ্যবই লোড হচ্ছে...</div>
                         </div>
                     </div>
                     
@@ -101,7 +118,7 @@
 
                 <!-- 3. CQ TAB -->
                 <div class="tab-content" id="cq-tab">
-                    <!-- Angular Sub Tabs for CQ -->
+                    <!-- Clean Outline Sub Tabs for CQ -->
                     <div class="cq-sub-tabs-wrapper">
                         <button class="cq-sub-tab-btn active bn-text" data-cq="ka">জ্ঞানমূলক (ক)</button>
                         <button class="cq-sub-tab-btn bn-text" data-cq="kha">অনুধাবন (খ)</button>

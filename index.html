@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bn" data-theme="light">
+<html lang="bn" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,649 +8,647 @@
     <!-- Premium Bangla Font -->
     <link href="https://fonts.maateen.me/bangla/font.css" rel="stylesheet">
     
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        bangla: ['Bangla', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        // Warm, grounded Stone/Taupe palette
+                        academic: {
+                            50: '#fafaf9',  // Warm off-white
+                            100: '#f5f5f4', // Very light stone
+                            200: '#e7e5e4', // Soft border
+                            300: '#d6d3d1', 
+                            400: '#a8a29e', // Muted text
+                            500: '#78716c',
+                            600: '#57534e', // Body text
+                            700: '#44403c', 
+                            800: '#292524', // Surface dark (Warm espresso/charcoal)
+                            900: '#1c1917', // Background dark
+                            950: '#0c0a09', // Deep contrast
+                        },
+                        // Fresh, vibrant Emerald/Teal accent
+                        accent: {
+                            light: '#047857', // Emerald 700
+                            dark: '#34d399',  // Emerald 400
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Theme Initialization Script -->
+    <script>
+        if (localStorage.getItem('hsc-theme') === 'dark' || (!('hsc-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    
     <style>
         /* =========================================
-           THEME VARIABLES (Academic & Minimal)
+           CUSTOM CSS & ANIMATIONS
            ========================================= */
-        :root {
-            /* Light Theme - Crisp, Paper-like, Formal */
-            --bg-main: #FCFCFD;
-            --bg-surface: #FFFFFF;
-            --bg-hover: #F3F4F6;
-            
-            --text-heading: #111827;
-            --text-body: #4B5563;
-            --text-muted: #9CA3AF;
-            
-            --border-color: #E5E7EB;
-            --border-hover: #D1D5DB;
-            
-            --accent-primary: #1E3A8A; /* Academic Navy */
-            --accent-secondary: #991B1B; /* Harvard Crimson */
-            
-            --nav-bg: rgba(252, 252, 253, 0.85);
-        }
-
-        [data-theme="dark"] {
-            /* Dark Theme - Sleek, Slate, Easy on eyes */
-            --bg-main: #0A0A0A;
-            --bg-surface: #121212;
-            --bg-hover: #1A1A1A;
-            
-            --text-heading: #F9FAFB;
-            --text-body: #D1D5DB;
-            --text-muted: #6B7280;
-            
-            --border-color: #262626;
-            --border-hover: #404040;
-            
-            --accent-primary: #60A5FA; /* Soft Blue */
-            --accent-secondary: #F87171; /* Soft Crimson */
-            
-            --nav-bg: rgba(10, 10, 10, 0.85);
-        }
-
-        /* =========================================
-           RESET & TYPOGRAPHY
-           ========================================= */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Bangla', ui-sans-serif, system-ui, sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-body);
-            line-height: 1.6;
-            transition: background-color 0.4s ease, color 0.4s ease;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* =========================================
-           NAVIGATION
-           ========================================= */
-        .navbar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            height: 80px;
-            background: var(--nav-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            transition: all 0.4s ease;
-        }
-
-        .nav-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .nav-brand {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-heading);
-            letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .nav-brand svg {
-            width: 24px; height: 24px;
-            fill: none;
-            stroke: var(--accent-primary);
-            stroke-width: 2;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 1.05rem;
-            font-weight: 500;
-            color: var(--text-body);
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-primary);
-        }
-
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--border-color);
+        /* Ambient Background Glow */
+        .ambient-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(52, 211, 153, 0.12) 0%, rgba(0,0,0,0) 70%);
             border-radius: 50%;
-            width: 40px; height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-heading);
-            cursor: pointer;
-            transition: all 0.2s ease;
+            pointer-events: none;
+            z-index: -1;
+            filter: blur(60px);
+            opacity: 0.6;
+            top: -100px;
+            right: -100px;
+            will-change: transform;
+        }
+        
+        .dark .ambient-glow {
+            background: radial-gradient(circle, rgba(4, 120, 87, 0.15) 0%, rgba(0,0,0,0) 70%);
         }
 
-        .theme-toggle:hover {
-            background: var(--bg-hover);
-            border-color: var(--border-hover);
+        /* Glassmorphism Navbar */
+        .glass-nav {
+            background: rgba(250, 250, 249, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .dark .glass-nav {
+            background: rgba(28, 25, 23, 0.95);
         }
 
-        .theme-toggle svg {
-            width: 18px; height: 18px;
-            fill: currentColor;
-        }
-
-        /* =========================================
-           HERO SECTION (Editorial Header)
-           ========================================= */
-        .hero {
-            padding: 180px 0 100px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .hero-tag {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--accent-secondary);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            display: block;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            font-weight: 800;
-            color: var(--text-heading);
-            line-height: 1.15;
-            margin-bottom: 30px;
-            max-width: 900px;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-body);
-            max-width: 700px;
-            line-height: 1.8;
-        }
-
-        /* =========================================
-           CURRICULUM INDEX (The Core Concept)
-           ========================================= */
-        .curriculum {
-            padding: 80px 0 120px;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid var(--text-heading);
-        }
-
-        .section-header h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-heading);
-        }
-
-        .section-header span {
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        /* Index Row Layout */
-        .index-list {
-            display: flex;
-            flex-direction: column;
-        }
-
+        /* Modern Card Styling */
         .index-row {
-            display: grid;
-            grid-template-columns: 80px 250px 1fr auto;
-            gap: 30px;
-            align-items: center;
-            padding: 40px 20px;
-            border-bottom: 1px solid var(--border-color);
-            transition: background-color 0.3s ease;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            will-change: transform, opacity;
+        }
+        .index-row::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(to bottom right, var(--tw-colors-academic-200), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            transition: background 0.4s ease;
+            z-index: 2;
+        }
+        .dark .index-row::before {
+            background: linear-gradient(to bottom right, var(--tw-colors-academic-700), transparent);
+        }
+        .index-row:hover::before {
+            background: linear-gradient(to bottom right, var(--tw-colors-accent-dark), transparent);
         }
 
-        .index-row:hover {
-            background-color: var(--bg-hover);
-        }
-
-        .row-num {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-        }
-
-        .row-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text-heading);
-        }
-
-        .row-desc {
-            font-size: 1.1rem;
-            color: var(--text-body);
-            max-width: 500px;
-            line-height: 1.6;
-        }
-
-        /* Elegant Paper Links */
-        .row-actions {
-            display: flex;
-            gap: 16px;
-        }
-
+        /* Paper Link (Uniform Buttons) */
         .paper-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--text-heading);
-            transition: all 0.2s ease;
-        }
-
-        .paper-link:hover {
-            border-color: var(--accent-primary);
-            color: var(--accent-primary);
-            background: var(--bg-main);
-        }
-
-        .paper-link svg {
-            width: 16px; height: 16px;
-            fill: none; stroke: currentColor; stroke-width: 2;
-            transition: transform 0.2s ease;
-        }
-
-        .paper-link:hover svg {
-            transform: translateX(4px);
-        }
-
-        .category-spacer {
-            height: 60px;
-        }
-
-        /* =========================================
-           FOOTER (Scholarly & Clean)
-           ========================================= */
-        .footer {
-            background-color: var(--bg-surface);
-            border-top: 1px solid var(--border-color);
-            padding: 80px 0 40px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 60px;
-        }
-
-        .footer-brand h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-heading);
-            margin-bottom: 16px;
-        }
-
-        .footer-brand p {
-            color: var(--text-body);
-            max-width: 350px;
-        }
-
-        .footer-col h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-heading);
-            margin-bottom: 24px;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-col ul a {
-            color: var(--text-body);
-            transition: color 0.2s ease;
-        }
-
-        .footer-col ul a:hover {
-            color: var(--accent-primary);
-        }
-
-        .footer-bottom {
+            position: relative;
+            overflow: hidden;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding-top: 30px;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 0.95rem;
+            height: 3rem; /* Fixed height for uniformity */
+            width: 100%;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
+        }
+        
+        /* Active Link Hover Glow */
+        .paper-link.active-link:hover {
+            box-shadow: 0 8px 20px -5px rgba(4, 120, 87, 0.3);
+            transform: translateY(-2px);
         }
 
-        /* =========================================
-           RESPONSIVE DESIGN
-           ========================================= */
-        @media (max-width: 1024px) {
-            .index-row {
-                grid-template-columns: 60px 1fr auto;
-                gap: 20px;
-            }
-            .row-desc {
-                display: none; /* Hide desc on tablets to keep it clean */
-            }
+        /* Coming Soon Warning Tape (Centered & Fixed) */
+        .paper-link.coming-soon {
+            pointer-events: none;
+            opacity: 0.85;
+            background: repeating-linear-gradient(
+                -45deg,
+                var(--tw-colors-academic-100),
+                var(--tw-colors-academic-100) 10px,
+                var(--tw-colors-academic-200) 10px,
+                var(--tw-colors-academic-200) 20px
+            );
+        }
+        .dark .paper-link.coming-soon {
+            background: repeating-linear-gradient(
+                -45deg,
+                var(--tw-colors-academic-800),
+                var(--tw-colors-academic-800) 10px,
+                var(--tw-colors-academic-700) 10px,
+                var(--tw-colors-academic-700) 20px
+            );
+        }
+        .paper-link.coming-soon::after {
+            content: "COMING SOON";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%; /* Extra width to cover corners diagonally */
+            transform: translate(-50%, -50%) rotate(-10deg);
+            background-color: #f59e0b; /* Amber-500 */
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 6px 0;
+            text-align: center;
+            letter-spacing: 2.5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            z-index: 2;
         }
 
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none; /* Mobile menu needed for production */
-            }
-            .hero {
-                padding: 140px 0 80px;
-            }
-            .index-row {
-                grid-template-columns: 1fr;
-                padding: 30px 0;
-            }
-            .row-num {
-                display: none;
-            }
-            .row-actions {
-                flex-direction: column;
-                width: 100%;
-            }
-            .paper-link {
-                width: 100%;
-                justify-content: space-between;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .footer-bottom {
-                flex-direction: column;
-                gap: 16px;
-                text-align: center;
-            }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #a8a29e;
+            border-radius: 20px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background-color: #57534e;
         }
     </style>
 </head>
-<body>
+<body class="bg-academic-50 dark:bg-academic-900 text-academic-600 dark:text-academic-300 font-bangla transition-colors duration-500 min-h-screen flex flex-col relative overflow-x-hidden">
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="container nav-inner">
-            <a href="index.html" class="nav-brand">
-                <svg viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                HSC Stuffs
+    <!-- Ambient Glow Effect -->
+    <div class="ambient-glow"></div>
+
+    <!-- NAVIGATION -->
+    <nav class="fixed top-0 left-0 right-0 h-20 glass-nav border-b border-academic-200 dark:border-academic-800 z-50 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 text-2xl font-bold text-academic-900 dark:text-academic-50 tracking-tight group">
+                <!-- Book Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-7 h-7 fill-none stroke-accent-light dark:stroke-accent-dark stroke-2 transition-transform duration-300 group-hover:-translate-y-1">
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                HSC Archive
             </a>
             
-            <ul class="nav-links">
-                <li><a href="#">প্রচ্ছদ</a></li>
-                <li><a href="#curriculum">সিলেবাস সূচি</a></li>
-                <li><a href="#">প্রশ্নব্যাংক</a></li>
-                <li><a href="#">আমাদের সম্পর্কে</a></li>
+            <ul class="hidden md:flex gap-10 list-none">
+                <li><a href="#" class="text-lg font-medium hover:text-accent-light dark:hover:text-accent-dark transition-colors">প্রচ্ছদ</a></li>
+                <li><a href="#curriculum" class="text-lg font-medium hover:text-accent-light dark:hover:text-accent-dark transition-colors">সিলেবাস সূচি</a></li>
+                <li><a href="#" class="text-lg font-medium hover:text-accent-light dark:hover:text-accent-dark transition-colors">প্রশ্নব্যাংক</a></li>
             </ul>
 
-            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Light/Dark Theme">
-                <!-- Icon injected by JS based on theme -->
-                <svg id="theme-icon" viewBox="0 0 24 24"></svg>
+            <button id="theme-toggle" class="p-2.5 rounded-full bg-white dark:bg-academic-800 border border-academic-200 dark:border-academic-700 text-academic-700 dark:text-academic-300 hover:shadow-md transition-all duration-300 hover:scale-105" aria-label="Toggle Theme">
+                <svg id="theme-icon" viewBox="0 0 24 24" class="w-5 h-5 fill-current"></svg>
             </button>
         </div>
     </nav>
 
-    <!-- EDITORIAL HERO -->
-    <header class="hero">
-        <div class="container">
-            <span class="hero-tag">উচ্চমাধ্যমিক ও আলিম শিক্ষাক্রম</span>
-            <h1>এইচএসসি মাস্টার গাইড</h1>
-            <p>সম্পূর্ণ সিলেবাস, অধ্যায়ভিত্তিক লেকচার এবং বোর্ড পরীক্ষার নির্ভুল প্রস্তুতি— বিজ্ঞান, মানবিক ও ব্যবসায় শিক্ষা শাখার শিক্ষার্থীদের জন্য একটি সুশৃঙ্খল এবং নির্ভরযোগ্য একাডেমিক আর্কাইভ।</p>
+    <!-- HERO SECTION -->
+    <header class="pt-48 pb-24 border-b border-academic-200 dark:border-academic-800 transition-colors duration-500 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 hero-content">
+            <!-- Simple Green Text Badge -->
+            <div class="mb-5 hero-badge">
+                <span class="text-lg md:text-xl font-bold text-accent-light dark:text-accent-dark tracking-wider">উচ্চমাধ্যমিক ও আলিম শিক্ষাক্রম</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-8 tracking-tight max-w-5xl hero-title">
+                <!-- Using inline span for gradient to prevent WebKit opacity animation bugs -->
+                <span class="bg-gradient-to-br from-academic-900 to-accent-light dark:from-white dark:to-accent-dark bg-clip-text text-transparent">
+                    এইচএসসি মাস্টার গাইড
+                </span>
+            </h1>
+            <p class="text-xl md:text-2xl text-academic-600 dark:text-academic-300 max-w-3xl leading-relaxed hero-text">
+                সম্পূর্ণ সিলেবাস, অধ্যায়ভিত্তিক লেকচার এবং বোর্ড পরীক্ষার নির্ভুল প্রস্তুতি— সকল শাখার শিক্ষার্থীদের জন্য একটি সুশৃঙ্খল ও প্রিমিয়াম একাডেমিক আর্কাইভ।
+            </p>
         </div>
     </header>
 
     <!-- CURRICULUM INDEX -->
-    <main class="curriculum" id="curriculum">
-        <div class="container">
-            
-            <!-- Compulsory Subjects -->
-            <div class="section-header">
-                <h2>আবশ্যিক বিষয়সমূহ</h2>
-                <span>সকল শাখা</span>
+    <main class="py-24 md:py-32 flex-grow relative z-10" id="curriculum">
+        <div class="max-w-7xl mx-auto px-6 space-y-32">
+
+            <!-- ================= COMPULSORY SUBJECTS ================= -->
+            <div class="subject-section">
+                <div class="flex justify-between items-end mb-10 pb-4 border-b-2 border-academic-300 dark:border-academic-700 section-header">
+                    <h2 class="text-3xl md:text-4xl font-bold text-academic-900 dark:text-academic-50">আবশ্যিক বিষয়সমূহ</h2>
+                    <span class="text-lg font-bold text-academic-500 dark:text-academic-400 bg-academic-200 dark:bg-academic-800 px-3 py-1 rounded-md">সকল শাখা</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Bangla -->
+                    <article class="index-row group flex flex-col h-full p-8 rounded-2xl bg-white dark:bg-academic-800 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex-1 flex flex-col relative z-10">
+                            <div class="flex flex-col items-start gap-3 mb-4">
+                                <h3 class="text-2xl md:text-3xl font-bold text-academic-900 dark:text-academic-50">বাংলা</h3>
+                                <span class="px-2.5 py-1 rounded text-sm font-bold bg-academic-100 dark:bg-academic-900 text-academic-700 dark:text-academic-300 border border-academic-200 dark:border-academic-700">কোড: ১০১, ১০২</span>
+                            </div>
+                            <p class="text-lg leading-relaxed text-academic-600 dark:text-academic-400">গল্প, কবিতা এবং নাটকের মূলভাব থেকে শুরু করে ব্যাকরণ ও নির্মিতির গঠনমূলক আলোচনা।</p>
+                        </div>
+                        <div class="flex gap-4 w-full mt-auto pt-6 relative z-10">
+                            <a href="bangla_1st_paper/index.html" class="paper-link active-link bg-academic-900 dark:bg-white text-white dark:text-academic-900 hover:bg-accent-light dark:hover:bg-accent-dark hover:text-white">১ম পত্র</a>
+                            <a href="bangla_2nd_paper/index.html" class="paper-link active-link bg-academic-900 dark:bg-white text-white dark:text-academic-900 hover:bg-accent-light dark:hover:bg-accent-dark hover:text-white">২য় পত্র</a>
+                        </div>
+                    </article>
+
+                    <!-- English -->
+                    <article class="index-row group flex flex-col h-full p-8 rounded-2xl bg-white dark:bg-academic-800 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex-1 flex flex-col relative z-10">
+                            <div class="flex flex-col items-start gap-3 mb-4">
+                                <h3 class="text-2xl md:text-3xl font-bold text-academic-900 dark:text-academic-50">English</h3>
+                                <span class="px-2.5 py-1 rounded text-sm font-bold bg-academic-100 dark:bg-academic-900 text-academic-700 dark:text-academic-300 border border-academic-200 dark:border-academic-700">কোড: ১০৭, ১০৮</span>
+                            </div>
+                            <p class="text-lg leading-relaxed text-academic-600 dark:text-academic-400">টেক্সটবুক অ্যানালাইসিস, গ্রামার রুলস এবং রাইটিং স্কিলস ডেভেলপমেন্টের পূর্ণাঙ্গ দিকনির্দেশনা।</p>
+                        </div>
+                        <div class="flex gap-4 w-full mt-auto pt-6 relative z-10">
+                            <span class="paper-link coming-soon text-academic-500">1st Paper</span>
+                            <span class="paper-link coming-soon text-academic-500">2nd Paper</span>
+                        </div>
+                    </article>
+
+                    <!-- ICT -->
+                    <article class="index-row group flex flex-col h-full p-8 rounded-2xl bg-white dark:bg-academic-800 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex-1 flex flex-col relative z-10">
+                            <div class="flex flex-col items-start gap-3 mb-4">
+                                <h3 class="text-2xl md:text-3xl font-bold text-academic-900 dark:text-academic-50">তথ্য ও যোগাযোগ প্রযুক্তি</h3>
+                                <span class="px-2.5 py-1 rounded text-sm font-bold bg-academic-100 dark:bg-academic-900 text-academic-700 dark:text-academic-300 border border-academic-200 dark:border-academic-700">কোড: ২৭৫</span>
+                            </div>
+                            <p class="text-lg leading-relaxed text-academic-600 dark:text-academic-400">লজিক গেট, সি-প্রোগ্রামিং, ওয়েব ডিজাইন এবং ডেটাবেস ম্যানেজমেন্টের ব্যবহারিক ধারণা।</p>
+                        </div>
+                        <div class="flex gap-4 w-full mt-auto pt-6 relative z-10">
+                            <span class="paper-link coming-soon text-academic-500">সম্পূর্ণ গাইড</span>
+                        </div>
+                    </article>
+                </div>
             </div>
 
-            <div class="index-list">
-                
-                <article class="index-row">
-                    <div class="row-num">01</div>
-                    <div class="row-title">বাংলা</div>
-                    <div class="row-desc">গল্প, কবিতা এবং নাটকের মূলভাব থেকে শুরু করে ব্যাকরণ ও নির্মিতির গঠনমূলক আলোচনা।</div>
-                    <div class="row-actions">
-                        <a href="bangla_1st_paper/index.html" class="paper-link">
-                            ১ম পত্র
-                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                        <a href="bangla_2nd_paper/index.html" class="paper-link">
-                            ২য় পত্র
-                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                    </div>
-                </article>
+            <!-- ================= SCIENCE SUBJECTS ================= -->
+            <div class="subject-section">
+                <div class="flex justify-between items-end mb-10 pb-4 border-b-2 border-academic-300 dark:border-academic-700 section-header">
+                    <h2 class="text-3xl md:text-4xl font-bold text-academic-900 dark:text-academic-50">বিজ্ঞান বিভাগ</h2>
+                </div>
 
-                <article class="index-row">
-                    <div class="row-num">02</div>
-                    <div class="row-title">English</div>
-                    <div class="row-desc">টেক্সটবুক অ্যানালাইসিস, গ্রামার রুলস এবং রাইটিং স্কিলস ডেভেলপমেন্টের পূর্ণাঙ্গ দিকনির্দেশনা।</div>
-                    <div class="row-actions">
-                        <a href="english_1st_paper/index.html" class="paper-link">
-                            1st Paper
-                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                        <a href="english_2nd_paper/index.html" class="paper-link">
-                            2nd Paper
-                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                    </div>
-                </article>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                    <!-- Physics -->
+                    <article class="index-row group flex flex-col h-full p-8 rounded-2xl bg-white dark:bg-academic-800 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex-1 flex flex-col relative z-10">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                                <h3 class="text-2xl font-bold text-academic-900 dark:text-academic-50">পদার্থবিজ্ঞান</h3>
+                                <span class="px-2 py-0.5 rounded text-xs font-bold bg-academic-100 dark:bg-academic-900 text-academic-700 dark:text-academic-300 border border-academic-200 dark:border-academic-700 w-fit">কোড: ১৭৪, ১৭৫</span>
+                            </div>
+                            <p class="text-md leading-relaxed text-academic-600 dark:text-academic-400 mb-2">বলবিদ্যা থেকে কোয়ান্টাম ফিজিক্স— গাণিতিক সূত্রাবলি এবং সৃজনশীল সমস্যার গঠনমূলক সমাধান।</p>
+                        </div>
+                        <div class="flex gap-4 w-full mt-auto pt-6 relative z-10">
+                            <a href="physics_1st_paper/index.html" class="paper-link active-link bg-academic-900 dark:bg-white text-white dark:text-academic-900 hover:bg-accent-light dark:hover:bg-accent-dark hover:text-white">১ম পত্র</a>
+                            <span class="paper-link coming-soon text-academic-500">২য় পত্র</span>
+                        </div>
+                    </article>
 
-                <article class="index-row">
-                    <div class="row-num">03</div>
-                    <div class="row-title">আইসিটি</div>
-                    <div class="row-desc">লজিক গেট, সি-প্রোগ্রামিং এবং ডেটাবেস ম্যানেজমেন্টের তাত্ত্বিক ও ব্যবহারিক ধারণা।</div>
-                    <div class="row-actions">
-                        <a href="ict/index.html" class="paper-link">
-                            সম্পূর্ণ গাইড
-                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                    </div>
-                </article>
+                    <!-- Biology -->
+                    <article class="index-row group flex flex-col h-full p-8 rounded-2xl bg-white dark:bg-academic-800 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex-1 flex flex-col relative z-10">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                                <h3 class="text-2xl font-bold text-academic-900 dark:text-academic-50">জীববিজ্ঞান</h3>
+                                <span class="px-2 py-0.5 rounded text-xs font-bold bg-academic-100 dark:bg-academic-900 text-academic-700 dark:text-academic-300 border border-academic-200 dark:border-academic-700 w-fit">কোড: ১৭৮, ১৭৯</span>
+                            </div>
+                            <p class="text-md leading-relaxed text-academic-600 dark:text-academic-400 mb-2">কোষীয় স্তর থেকে মানবদেহ, জেনেটিক্স এবং বিবর্তনের বিজ্ঞানসম্মত আলোচনা ও চিত্রভিত্তিক ব্যাখ্যা।</p>
+                        </div>
+                        <div class="flex gap-4 w-full mt-auto pt-6 relative z-10">
+                            <a href="biology_1st_paper/index.html" class="paper-link active-link bg-academic-900 dark:bg-white text-white dark:text-academic-900 hover:bg-accent-light dark:hover:bg-accent-dark hover:text-white">১ম পত্র</a>
+                            <span class="paper-link coming-soon text-academic-500">২য় পত্র</span>
+                        </div>
+                    </article>
 
+                    <!-- Chemistry -->
+                    <article class="index-row group flex flex-col h-full p-8 rounded-2xl bg-white dark:bg-academic-800 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex-1 flex flex-col relative z-10">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                                <h3 class="text-2xl font-bold text-academic-900 dark:text-academic-50">রসায়ন</h3>
+                                <span class="px-2 py-0.5 rounded text-xs font-bold bg-academic-100 dark:bg-academic-900 text-academic-700 dark:text-academic-300 border border-academic-200 dark:border-academic-700 w-fit">কোড: ১৭৬, ১৭৭</span>
+                            </div>
+                            <p class="text-md leading-relaxed text-academic-600 dark:text-academic-400 mb-2">অণুর গঠন, রাসায়নিক বিক্রিয়া এবং জৈব রসায়নের সহজবোধ্য ব্যাখ্যা ও মেকানিজম।</p>
+                        </div>
+                        <div class="flex gap-4 w-full mt-auto pt-6 relative z-10">
+                            <span class="paper-link coming-soon text-academic-500">১ম পত্র</span>
+                            <span class="paper-link coming-soon text-academic-500">২য় পত্র</span>
+                        </div>
+                    </article>
+
+                    <!-- Higher Math -->
+                    <article class="index-row group flex flex-col h-full p-8 rounded-2xl bg-white dark:bg-academic-800 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex-1 flex flex-col relative z-10">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                                <h3 class="text-2xl font-bold text-academic-900 dark:text-academic-50">উচ্চতর গণিত</h3>
+                                <span class="px-2 py-0.5 rounded text-xs font-bold bg-academic-100 dark:bg-academic-900 text-academic-700 dark:text-academic-300 border border-academic-200 dark:border-academic-700 w-fit">কোড: ২৬৫, ২৬৬</span>
+                            </div>
+                            <p class="text-md leading-relaxed text-academic-600 dark:text-academic-400 mb-2">ক্যালকুলাস, ত্রিকোণমিতি এবং কনিকের জটিল থিওরি ও গাণিতিক সমস্যার ধাপে ধাপে সমাধান।</p>
+                        </div>
+                        <div class="flex gap-4 w-full mt-auto pt-6 relative z-10">
+                            <span class="paper-link coming-soon text-academic-500">১ম পত্র</span>
+                            <span class="paper-link coming-soon text-academic-500">২য় পত্র</span>
+                        </div>
+                    </article>
+                </div>
             </div>
 
-            <div class="category-spacer"></div>
+            <!-- ================= HUMANITIES SUBJECTS ================= -->
+            <div class="subject-section">
+                <div class="flex justify-between items-end mb-10 pb-4 border-b-2 border-academic-300 dark:border-academic-700 section-header">
+                    <h2 class="text-3xl md:text-4xl font-bold text-academic-900 dark:text-academic-50">মানবিক বিভাগ</h2>
+                </div>
 
-            <!-- Science Subjects -->
-            <div class="section-header">
-                <h2>বিজ্ঞান বিভাগ</h2>
-                <span>শাখাভিত্তিক সূচি</span>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- History -->
+                    <article class="index-row group flex flex-col h-full p-8 rounded-2xl bg-white dark:bg-academic-800 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex-1 flex flex-col relative z-10">
+                            <div class="flex flex-col items-start gap-2 mb-4">
+                                <h3 class="text-xl font-bold text-academic-900 dark:text-academic-50">ইতিহাস</h3>
+                                <span class="px-2 py-0.5 rounded text-xs font-bold bg-academic-100 dark:bg-academic-900 text-academic-700 dark:text-academic-300 border border-academic-200 dark:border-academic-700 w-fit">কোড: ৩০৪, ৩০৫</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 w-full mt-auto pt-4 relative z-10">
+                            <span class="paper-link coming-soon text-academic-500">১ম পত্র</span>
+                            <span class="paper-link coming-soon text-academic-500">২য় পত্র</span>
+                        </div>
+                    </article>
+                    
+                    <!-- Islamic History -->
+                    <article class="index-row group flex flex-col h-full p-8 rounded-2xl bg-white dark:bg-academic-800 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex-1 flex flex-col relative z-10">
+                            <div class="flex flex-col items-start gap-2 mb-4">
+                                <h3 class="text-xl font-bold text-academic-900 dark:text-academic-50">ইসলামের ইতিহাস</h3>
+                                <span class="px-2 py-0.5 rounded text-xs font-bold bg-academic-100 dark:bg-academic-900 text-academic-700 dark:text-academic-300 border border-academic-200 dark:border-academic-700 w-fit">কোড: ২৬৭, ২৬৮</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 w-full mt-auto pt-4 relative z-10">
+                            <span class="paper-link coming-soon text-academic-500">১ম পত্র</span>
+                            <span class="paper-link coming-soon text-academic-500">২য় পত্র</span>
+                        </div>
+                    </article>
+
+                    <!-- Civics -->
+                    <article class="index-row group flex flex-col h-full p-8 rounded-2xl bg-white dark:bg-academic-800 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex-1 flex flex-col relative z-10">
+                            <div class="flex flex-col items-start gap-2 mb-4">
+                                <h3 class="text-xl font-bold text-academic-900 dark:text-academic-50">পৌরনীতি ও সুশাসন</h3>
+                                <span class="px-2 py-0.5 rounded text-xs font-bold bg-academic-100 dark:bg-academic-900 text-academic-700 dark:text-academic-300 border border-academic-200 dark:border-academic-700 w-fit">কোড: ২৬৯, ২৭০</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 w-full mt-auto pt-4 relative z-10">
+                            <span class="paper-link coming-soon text-academic-500">১ম পত্র</span>
+                            <span class="paper-link coming-soon text-academic-500">২য় পত্র</span>
+                        </div>
+                    </article>
+
+                    <!-- Economics -->
+                    <article class="index-row group flex flex-col h-full p-8 rounded-2xl bg-white dark:bg-academic-800 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex-1 flex flex-col relative z-10">
+                            <div class="flex flex-col items-start gap-2 mb-4">
+                                <h3 class="text-xl font-bold text-academic-900 dark:text-academic-50">অর্থনীতি</h3>
+                                <span class="px-2 py-0.5 rounded text-xs font-bold bg-academic-100 dark:bg-academic-900 text-academic-700 dark:text-academic-300 border border-academic-200 dark:border-academic-700 w-fit">কোড: ১০৯, ১১০</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 w-full mt-auto pt-4 relative z-10">
+                            <span class="paper-link coming-soon text-academic-500">১ম পত্র</span>
+                            <span class="paper-link coming-soon text-academic-500">২য় পত্র</span>
+                        </div>
+                    </article>
+
+                    <!-- Logic -->
+                    <article class="index-row group flex flex-col h-full p-8 rounded-2xl bg-white dark:bg-academic-800 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex-1 flex flex-col relative z-10">
+                            <div class="flex flex-col items-start gap-2 mb-4">
+                                <h3 class="text-xl font-bold text-academic-900 dark:text-academic-50">যুক্তিবিদ্যা</h3>
+                                <span class="px-2 py-0.5 rounded text-xs font-bold bg-academic-100 dark:bg-academic-900 text-academic-700 dark:text-academic-300 border border-academic-200 dark:border-academic-700 w-fit">কোড: ১২১, ১২২</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 w-full mt-auto pt-4 relative z-10">
+                            <span class="paper-link coming-soon text-academic-500">১ম পত্র</span>
+                            <span class="paper-link coming-soon text-academic-500">২য় পত্র</span>
+                        </div>
+                    </article>
+                </div>
             </div>
 
-            <div class="index-list">
+            <!-- ================= BUSINESS STUDIES SUBJECTS ================= -->
+            <div class="subject-section">
+                <div class="flex justify-between items-end mb-10 pb-4 border-b-2 border-academic-300 dark:border-academic-700 section-header">
+                    <h2 class="text-3xl md:text-4xl font-bold text-academic-900 dark:text-academic-50">ব্যবসায় শিক্ষা শাখা</h2>
+                </div>
 
-                <article class="index-row">
-                    <div class="row-num">04</div>
-                    <div class="row-title">পদার্থবিজ্ঞান</div>
-                    <div class="row-desc">বলবিদ্যা থেকে কোয়ান্টাম ফিজিক্স— গাণিতিক সূত্রাবলি এবং সৃজনশীল সমস্যার গঠনমূলক সমাধান।</div>
-                    <div class="row-actions">
-                        <a href="physics_1st_paper/index.html" class="paper-link">
-                            ১ম পত্র
-                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                        <a href="physics_2nd_paper/index.html" class="paper-link">
-                            ২য় পত্র
-                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                    </div>
-                </article>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                    <!-- Accounting -->
+                    <article class="index-row group flex flex-col h-full p-8 rounded-2xl bg-white dark:bg-academic-800 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex-1 flex flex-col relative z-10">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                                <h3 class="text-2xl font-bold text-academic-900 dark:text-academic-50">হিসাববিজ্ঞান</h3>
+                                <span class="px-2 py-0.5 rounded text-xs font-bold bg-academic-100 dark:bg-academic-900 text-academic-700 dark:text-academic-300 border border-academic-200 dark:border-academic-700 w-fit">কোড: ২৫৩, ২৫৪</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 w-full mt-auto pt-6 relative z-10">
+                            <span class="paper-link coming-soon text-academic-500">১ম পত্র</span>
+                            <span class="paper-link coming-soon text-academic-500">২য় পত্র</span>
+                        </div>
+                    </article>
 
-                <article class="index-row">
-                    <div class="row-num">05</div>
-                    <div class="row-title">রসায়ন</div>
-                    <div class="row-desc">অণুর গঠন, রাসায়নিক বিক্রিয়া এবং জৈব রসায়নের (Organic Chemistry) সহজবোধ্য ব্যাখ্যা।</div>
-                    <div class="row-actions">
-                        <a href="chemistry_1st_paper/index.html" class="paper-link">
-                            ১ম পত্র
-                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                        <a href="chemistry_2nd_paper/index.html" class="paper-link">
-                            ২য় পত্র
-                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                    </div>
-                </article>
+                    <!-- Business Org -->
+                    <article class="index-row group flex flex-col h-full p-8 rounded-2xl bg-white dark:bg-academic-800 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex-1 flex flex-col relative z-10">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                                <h3 class="text-2xl font-bold text-academic-900 dark:text-academic-50">ব্যবসায় সংগঠন</h3>
+                                <span class="px-2 py-0.5 rounded text-xs font-bold bg-academic-100 dark:bg-academic-900 text-academic-700 dark:text-academic-300 border border-academic-200 dark:border-academic-700 w-fit">কোড: ২৭৭, ২৭৮</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 w-full mt-auto pt-6 relative z-10">
+                            <span class="paper-link coming-soon text-academic-500">১ম পত্র</span>
+                            <span class="paper-link coming-soon text-academic-500">২য় পত্র</span>
+                        </div>
+                    </article>
 
-                <article class="index-row">
-                    <div class="row-num">06</div>
-                    <div class="row-title">উচ্চতর গণিত</div>
-                    <div class="row-desc">ক্যালকুলাস, ত্রিকোণমিতি এবং কনিকের জটিল থিওরি ও গাণিতিক সমস্যার ধাপে ধাপে সমাধান।</div>
-                    <div class="row-actions">
-                        <a href="higher_math_1st_paper/index.html" class="paper-link">
-                            ১ম পত্র
-                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                        <a href="higher_math_2nd_paper/index.html" class="paper-link">
-                            ২য় পত্র
-                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                    </div>
-                </article>
+                    <!-- Finance -->
+                    <article class="index-row group flex flex-col h-full p-8 rounded-2xl bg-white dark:bg-academic-800 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex-1 flex flex-col relative z-10">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                                <h3 class="text-2xl font-bold text-academic-900 dark:text-academic-50">ফিন্যান্স, ব্যাংকিং ও বিমা</h3>
+                                <span class="px-2 py-0.5 rounded text-xs font-bold bg-academic-100 dark:bg-academic-900 text-academic-700 dark:text-academic-300 border border-academic-200 dark:border-academic-700 w-fit">কোড: ২৯২, ২৯৩</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 w-full mt-auto pt-6 relative z-10">
+                            <span class="paper-link coming-soon text-academic-500">১ম পত্র</span>
+                            <span class="paper-link coming-soon text-academic-500">২য় পত্র</span>
+                        </div>
+                    </article>
 
-                <article class="index-row">
-                    <div class="row-num">07</div>
-                    <div class="row-title">জীববিজ্ঞান</div>
-                    <div class="row-desc">কোষীয় স্তর থেকে মানবদেহ, জেনেটিক্স এবং বিবর্তনের বিজ্ঞানসম্মত আলোচনা ও চিত্রভিত্তিক ব্যাখ্যা।</div>
-                    <div class="row-actions">
-                        <a href="biology_1st_paper/index.html" class="paper-link">
-                            ১ম পত্র (উদ্ভিদ)
-                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                        <a href="biology_2nd_paper/index.html" class="paper-link">
-                            ২য় পত্র (প্রাণি)
-                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                    </div>
-                </article>
-
+                    <!-- Production Mgt -->
+                    <article class="index-row group flex flex-col h-full p-8 rounded-2xl bg-white dark:bg-academic-800 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex-1 flex flex-col relative z-10">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                                <h3 class="text-2xl font-bold text-academic-900 dark:text-academic-50">উৎপাদন ব্যবস্থাপনা</h3>
+                                <span class="px-2 py-0.5 rounded text-xs font-bold bg-academic-100 dark:bg-academic-900 text-academic-700 dark:text-academic-300 border border-academic-200 dark:border-academic-700 w-fit">কোড: ২৮৬, ২৮৭</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 w-full mt-auto pt-6 relative z-10">
+                            <span class="paper-link coming-soon text-academic-500">১ম পত্র</span>
+                            <span class="paper-link coming-soon text-academic-500">২য় পত্র</span>
+                        </div>
+                    </article>
+                </div>
             </div>
+
         </div>
     </main>
 
     <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3>HSC Stuffs</h3>
-                    <p>উচ্চমাধ্যমিক শিক্ষার্থীদের জন্য একটি মানসম্মত ও নির্ভরযোগ্য শিক্ষামূলক প্ল্যাটফর্ম। শিক্ষার উৎকর্ষ সাধনে আমরা নিবেদিত।</p>
+    <footer class="bg-white dark:bg-academic-950 border-t border-academic-200 dark:border-academic-800 pt-20 pb-10 transition-colors duration-500 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 fill-none stroke-accent-light dark:stroke-accent-dark stroke-2">
+                            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                        <h3 class="text-2xl font-bold text-academic-900 dark:text-academic-50 tracking-tight">HSC Archive</h3>
+                    </div>
+                    <p class="text-academic-600 dark:text-academic-400 max-w-md leading-relaxed text-lg">
+                        উচ্চমাধ্যমিক শিক্ষার্থীদের জন্য একটি মানসম্মত ও নির্ভরযোগ্য শিক্ষামূলক প্ল্যাটফর্ম। শিক্ষার উৎকর্ষ সাধনে আমরা নিবেদিত।
+                    </p>
                 </div>
-                <div class="footer-col">
-                    <h4>গুরুত্বপূর্ণ সূচি</h4>
-                    <ul>
-                        <li><a href="#curriculum">সিলেবাস ও লেকচার</a></li>
-                        <li><a href="#">বিগত বছরের প্রশ্ন</a></li>
-                        <li><a href="#">পরীক্ষার রুটিন</a></li>
-                        <li><a href="#">একাডেমিক গাইডলাইন</a></li>
+                <div>
+                    <h4 class="text-xl font-bold text-academic-900 dark:text-academic-50 mb-6">গুরুত্বপূর্ণ সূচি</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#curriculum" class="text-academic-600 dark:text-academic-400 hover:text-accent-light dark:hover:text-accent-dark transition-colors font-bold">সিলেবাস ও লেকচার</a></li>
+                        <li><a href="#" class="text-academic-600 dark:text-academic-400 hover:text-accent-light dark:hover:text-accent-dark transition-colors font-bold">বিগত বছরের প্রশ্ন</a></li>
+                        <li><a href="#" class="text-academic-600 dark:text-academic-400 hover:text-accent-light dark:hover:text-accent-dark transition-colors font-bold">পরীক্ষার রুটিন</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>প্রাতিষ্ঠানিক</h4>
-                    <ul>
-                        <li><a href="#">আমাদের সম্পর্কে</a></li>
-                        <li><a href="#">যোগাযোগ করুন</a></li>
-                        <li><a href="#">ব্যবহারের শর্তাবলি</a></li>
-                        <li><a href="#">প্রাইভেসি পলিসি</a></li>
+                <div>
+                    <h4 class="text-xl font-bold text-academic-900 dark:text-academic-50 mb-6">প্রাতিষ্ঠানিক</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-academic-600 dark:text-academic-400 hover:text-accent-light dark:hover:text-accent-dark transition-colors font-bold">আমাদের সম্পর্কে</a></li>
+                        <li><a href="#" class="text-academic-600 dark:text-academic-400 hover:text-accent-light dark:hover:text-accent-dark transition-colors font-bold">যোগাযোগ করুন</a></li>
+                        <li><a href="#" class="text-academic-600 dark:text-academic-400 hover:text-accent-light dark:hover:text-accent-dark transition-colors font-bold">প্রাইভেসি পলিসি</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="year"></span> HSC Stuffs. সর্বস্বত্ব সংরক্ষিত।</p>
-                <p>Designed for Academic Excellence.</p>
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-academic-200 dark:border-academic-800 text-academic-500 text-sm gap-4">
+                <p>&copy; <span id="year"></span> HSC Archive. সর্বস্বত্ব সংরক্ষিত।</p>
+                <p class="tracking-wider text-xs font-bold text-academic-400 dark:text-academic-600" style="font-family: ui-monospace, SFMono-Regular, monospace;">DESIGNED FOR EXCELLENCE.</p>
             </div>
         </div>
     </footer>
 
-    <!-- INTERACTIVITY -->
+    <!-- INTERACTIVITY & ANIMATION SCRIPT -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Setup Dynamic Year in Footer
+            
+            // 1. Setup Dynamic Year
             document.getElementById('year').textContent = new Date().getFullYear();
 
-            // Theme Toggle Logic
+            // 2. Theme Toggle Logic
             const htmlEl = document.documentElement;
             const themeBtn = document.getElementById('theme-toggle');
             const themeIcon = document.getElementById('theme-icon');
 
-            // SVGs for the button
             const moonSvg = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
             const sunSvg = `<circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/><line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"/><line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"/><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"/><line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"/>`;
 
-            // Check system preference or saved preference
-            const savedTheme = localStorage.getItem('hsc-theme');
-            if (savedTheme) {
-                setTheme(savedTheme);
-            } else {
-                // Default to light for an academic site, but respect system preference if dark
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                setTheme(prefersDark ? 'dark' : 'light');
-            }
+            const updateIcon = () => {
+                themeIcon.innerHTML = htmlEl.classList.contains('dark') ? sunSvg : moonSvg;
+            };
+            updateIcon();
 
             themeBtn.addEventListener('click', () => {
-                const currentTheme = htmlEl.getAttribute('data-theme');
-                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                setTheme(newTheme);
+                htmlEl.classList.toggle('dark');
+                const isDark = htmlEl.classList.contains('dark');
+                localStorage.setItem('hsc-theme', isDark ? 'dark' : 'light');
+                updateIcon();
             });
 
-            function setTheme(theme) {
-                htmlEl.setAttribute('data-theme', theme);
-                localStorage.setItem('hsc-theme', theme);
-                themeIcon.innerHTML = theme === 'dark' ? sunSvg : moonSvg;
-            }
+            // 3. GSAP Animations Setup
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hero Section Animation
+            const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+            heroTl.from(".hero-badge", { y: -20, opacity: 0, duration: 0.8, delay: 0.2 })
+                  .from(".hero-title", { y: 30, opacity: 0, duration: 1 }, "-=0.4")
+                  .from(".hero-text", { y: 20, opacity: 0, duration: 0.8 }, "-=0.6");
+
+            // Optimizing the scroll reveals so they NEVER break or hide items permanently.
+            // Animating them per-element instead of staggering a massive block.
+            gsap.utils.toArray('.section-header').forEach(header => {
+                gsap.from(header, {
+                    scrollTrigger: {
+                        trigger: header,
+                        start: "top 90%", // Trigger slightly earlier
+                        toggleActions: "play none none none"
+                    },
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.6,
+                    ease: "power2.out"
+                });
+            });
+
+            gsap.utils.toArray('.index-row').forEach(row => {
+                gsap.from(row, {
+                    scrollTrigger: {
+                        trigger: row,
+                        start: "top 90%", // Trigger exactly when row hits lower 10% of viewport
+                        toggleActions: "play none none none"
+                    },
+                    y: 35,
+                    opacity: 0,
+                    duration: 0.7,
+                    ease: "power2.out"
+                });
+            });
+
+            // Parallax Ambient Glow
+            const glow = document.querySelector('.ambient-glow');
+            let requestRef;
+            let targetX = 0, targetY = 0;
+            let currentX = 0, currentY = 0;
+
+            window.addEventListener('mousemove', (e) => {
+                targetX = (e.clientX / window.innerWidth) * 100;
+                targetY = (e.clientY / window.innerHeight) * 100;
+            });
+
+            // Smooth hardware-accelerated follow
+            const updateGlow = () => {
+                currentX += (targetX - currentX) * 0.05;
+                currentY += (targetY - currentY) * 0.05;
+                glow.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+                requestRef = requestAnimationFrame(updateGlow);
+            };
+            requestRef = requestAnimationFrame(updateGlow);
         });
     </script>
 </body>

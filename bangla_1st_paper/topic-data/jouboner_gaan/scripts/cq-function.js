@@ -29,41 +29,55 @@ window.loadCQ = function() {
     };
 
     const populateFilters = (dataObj) => {
-        const boards = new Set();
-        const years = new Set();
-        const topics = new Set();
+        const boardSet = new Set();
+        const yearSet = new Set();
+        const topicSet = new Set();
         
         const allData = [...dataObj['ka'], ...dataObj['kha'], ...dataObj['ga-gha']];
         allData.forEach(item => {
-            if(item.topic) topics.add(item.topic);
+            if(item.topic) topicSet.add(item.topic);
             
-            // Extract Board/Year Strings across different JSON structures
-            let boardStrs = [];
-            if (item.board) boardStrs.push(item.board);
-            if (item.year) boardStrs.push(item.year);
-            if (item.questions) {
-                if (item.questions.ga && item.questions.ga.board) boardStrs.push(item.questions.ga.board);
-                if (item.questions.ga && item.questions.ga.year) boardStrs.push(item.questions.ga.year);
-                if (item.questions.gha && item.questions.gha.board) boardStrs.push(item.questions.gha.board);
-                if (item.questions.gha && item.questions.gha.year) boardStrs.push(item.questions.gha.year);
-            }
+            let boardStrings = [];
+            if (item.board) boardStrings.push(item.board);
+            if (item.questions?.ga?.board) boardStrings.push(item.questions.ga.board);
+            if (item.questions?.gha?.board) boardStrings.push(item.questions.gha.board);
 
-            boardStrs.forEach(boardStr => {
-                const bMatch = boardStr.match(/([A-Za-z\u0980-\u09FF\s]+)\s*(?:Board|বোর্ড)/i);
-                if(bMatch) boards.add(bMatch[1].trim());
-                const yMatch = boardStr.match(/\b(20\d{2}|২০\d{2})\b/);
-                if(yMatch) years.add(yMatch[1]);
+            boardStrings.forEach(bStr => {
+                const parts = bStr.split(',');
+                parts.forEach(part => {
+                    // Fix: Regex that properly captures Bengali and English digits without failing on word boundaries
+                    const yearMatch = part.match(/(20[0-9]{2}|২০[০-৯]{2})/);
+                    if(yearMatch) yearSet.add(yearMatch[1]);
+
+                    // Fix: Strip the captured year to isolate the board name
+                    const boardName = part.replace(/(20[0-9]{2}|২০[০-৯]{2})/g, '').trim();
+                    if(boardName) boardSet.add(boardName);
+                });
             });
         });
 
         // Clear existing
-        boardFilter.innerHTML = '<option value="all">সব বোর্ড</option>';
-        yearFilter.innerHTML = '<option value="all">সব সাল</option>';
-        typeFilter.innerHTML = '<option value="all">সব টপিক</option>';
+        if (boardFilter) boardFilter.innerHTML = '<option value="all">সব বোর্ড</option>';
+        if (yearFilter) yearFilter.innerHTML = '<option value="all">সব সাল</option>';
+        if (typeFilter) typeFilter.innerHTML = '<option value="all">সব টপিক</option>';
 
-        boards.forEach(b => { const opt = document.createElement('option'); opt.value = b; opt.textContent = b + " বোর্ড"; opt.className='bn-text'; boardFilter.appendChild(opt); });
-        Array.from(years).sort((a,b)=>b-a).forEach(y => { const opt = document.createElement('option'); opt.value = y; opt.textContent = y; opt.className='en-text'; yearFilter.appendChild(opt); });
-        topics.forEach(t => { const opt = document.createElement('option'); opt.value = t; opt.textContent = t; opt.className='bn-text'; typeFilter.appendChild(opt); });
+        Array.from(boardSet).sort().forEach(b => { 
+            const opt = document.createElement('option'); 
+            opt.value = b; opt.textContent = b; opt.className='bn-text'; 
+            if (boardFilter) boardFilter.appendChild(opt); 
+        });
+
+        Array.from(yearSet).sort((a,b) => b.localeCompare(a)).forEach(y => { 
+            const opt = document.createElement('option'); 
+            opt.value = y; opt.textContent = y; opt.className='en-text'; 
+            if (yearFilter) yearFilter.appendChild(opt); 
+        });
+        
+        topicSet.forEach(t => { 
+            const opt = document.createElement('option'); 
+            opt.value = t; opt.textContent = t; opt.className='bn-text'; 
+            if (typeFilter) typeFilter.appendChild(opt); 
+        });
     };
 
     Promise.all([
@@ -76,7 +90,7 @@ window.loadCQ = function() {
         cachedData['ga-gha'] = gagha || [];
         populateFilters(cachedData);
         renderCQs();
-    }).catch(err => { container.innerHTML = '<div style="color:var(--ch-primary); text-align:center; padding: 40px; font-weight: bold;" class="bn-text rebel-cut">ডেটা লোড করতে ব্যর্থ হয়েছে।</div>'; });
+    }).catch(err => { if(container) container.innerHTML = '<div style="color:var(--ch-primary); text-align:center; padding: 40px; font-weight: bold;" class="bn-text">ডেটা লোড করতে ব্যর্থ হয়েছে।</div>'; });
 
     const createAccordion = (q, a, typeLabel) => {
         const item = document.createElement('div');
@@ -101,42 +115,48 @@ window.loadCQ = function() {
     };
 
     function renderCQs() {
+        if(!container) return;
         container.innerHTML = '';
         let data = cachedData[currentType];
         
-        const searchTerm = searchInput.value.toLowerCase().trim();
+        const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
         const banSearchTerm = banglishToBangla(searchTerm);
+        
+        const bVal = boardFilter ? boardFilter.value : 'all';
+        const yVal = yearFilter ? yearFilter.value : 'all';
+        const tVal = typeFilter ? typeFilter.value : 'all';
 
-        // Smart Intersection Filter
         if (searchTerm) {
             data = data.filter(m => {
                 const targetText = currentType === 'ga-gha' ? m.stem : m.question;
                 return targetText.toLowerCase().includes(searchTerm) || targetText.includes(banSearchTerm);
             });
         }
-        if (boardFilter.value !== 'all') {
+        
+        // Strict Intersection Filter (AND Logic)
+        if (bVal !== 'all' || yVal !== 'all') {
             data = data.filter(m => {
-                let bStr = m.board || '';
-                if (m.questions) {
-                    if (m.questions.ga && m.questions.ga.board) bStr += ' ' + m.questions.ga.board;
-                    if (m.questions.gha && m.questions.gha.board) bStr += ' ' + m.questions.gha.board;
-                }
-                return bStr.toLowerCase().includes(boardFilter.value.toLowerCase().replace(' বোর্ড',''));
+                let boardStrings = [];
+                if (m.board) boardStrings.push(m.board);
+                if (m.questions?.ga?.board) boardStrings.push(m.questions.ga.board);
+                if (m.questions?.gha?.board) boardStrings.push(m.questions.gha.board);
+
+                if (boardStrings.length === 0) return false;
+
+                // Does ANY string in the array contain a comma-separated part that satisfies BOTH conditions?
+                return boardStrings.some(bStr => {
+                    const parts = bStr.split(',');
+                    return parts.some(part => {
+                        const matchesBoard = bVal === 'all' || part.includes(bVal);
+                        const matchesYear = yVal === 'all' || part.includes(yVal);
+                        return matchesBoard && matchesYear;
+                    });
+                });
             });
         }
-        if (yearFilter.value !== 'all') {
-            data = data.filter(m => {
-                let yStr = m.year || '';
-                if (m.board) yStr += ' ' + m.board;
-                if (m.questions) {
-                    if (m.questions.ga && m.questions.ga.year) yStr += ' ' + m.questions.ga.year;
-                    if (m.questions.gha && m.questions.gha.year) yStr += ' ' + m.questions.gha.year;
-                }
-                return yStr.includes(yearFilter.value);
-            });
-        }
-        if (typeFilter.value !== 'all') {
-            data = data.filter(m => m.topic === typeFilter.value);
+        
+        if (tVal !== 'all') {
+            data = data.filter(m => m.topic === tVal);
         }
 
         if (data.length === 0) {
@@ -150,8 +170,20 @@ window.loadCQ = function() {
             block.id = item.id;
 
             let badgeHtml = '';
-            if(item.board) badgeHtml += `<span class="card-badge-item bn-text">${item.board}</span>`;
-            if(item.year) badgeHtml += `<span class="card-badge-item en-text" style="background:var(--bg-main); color:var(--ch-primary); border: 1px solid var(--border-color);">${item.year}</span>`;
+            let rootBoard = item.board;
+            if(!rootBoard && currentType === 'ga-gha' && item.questions) {
+                rootBoard = item.questions.ga?.board || item.questions.gha?.board;
+            }
+
+            if(rootBoard) {
+                const parts = rootBoard.split(',');
+                parts.forEach(part => {
+                    badgeHtml += `<span class="card-badge-item bn-text">${part.trim()}</span>`;
+                });
+            }
+            if(item.topic) {
+                badgeHtml += `<span class="card-badge-item bn-text" style="background:var(--bg-main); color:var(--text-dark); border: 1px solid var(--border-color);">${item.topic}</span>`;
+            }
             
             if (badgeHtml) {
                 block.innerHTML = `<div class="card-badges">${badgeHtml}</div>`;
@@ -164,7 +196,6 @@ window.loadCQ = function() {
                 stemDiv.innerHTML = `<strong>উদ্দীপক ${index+1}:</strong><br><br>${hlStem}`;
                 block.appendChild(stemDiv);
 
-                // Handling ga-gha Object structure specifically
                 if (item.questions && item.questions.ga) {
                     block.appendChild(createAccordion(item.questions.ga.question, item.questions.ga.answer || 'উত্তর যুক্ত করা হয়নি।', '(গ)'));
                 }
@@ -175,7 +206,7 @@ window.loadCQ = function() {
                 const hlQ = highlightMatch(item.question, searchTerm, banSearchTerm);
                 block.appendChild(createAccordion(hlQ, item.answer || 'উত্তর যুক্ত করা হয়নি।', `Q${index+1}:`));
             }
-            container.appendChild(block);
+            if (container) container.appendChild(block);
         });
 
         if (typeof lucide !== 'undefined') lucide.createIcons();
@@ -190,6 +221,11 @@ window.loadCQ = function() {
         });
     });
 
-    let t; searchInput.addEventListener('input', () => { clearTimeout(t); t = setTimeout(renderCQs, 300); });
-    [boardFilter, yearFilter, typeFilter].forEach(el => el.addEventListener('change', renderCQs));
+    if (searchInput) {
+        let t; searchInput.addEventListener('input', () => { clearTimeout(t); t = setTimeout(renderCQs, 300); });
+    }
+    
+    [boardFilter, yearFilter, typeFilter].forEach(el => {
+        if (el) el.addEventListener('change', renderCQs);
+    });
 };

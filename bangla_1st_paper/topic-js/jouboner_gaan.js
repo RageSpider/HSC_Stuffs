@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. Initialize Icons
     if (typeof lucide !== 'undefined') lucide.createIcons();
 
-    // 2. Tab Switching Logic (Fierce GSAP Entry)
+    // 2. Tab Switching Logic
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
 
@@ -25,9 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.classList.add('active');
             content.style.display = 'block';
             
-            // "Spark/Strike" entry animation suitable for Nazrul's theme
+            // Clean, professional fade and slide-up animation
             if (typeof gsap !== 'undefined') {
-                gsap.fromTo(content, {opacity: 0, y: 20, skewX: 2}, {opacity: 1, y: 0, skewX: 0, duration: 0.4, ease: "power3.out"});
+                gsap.fromTo(content, {opacity: 0, y: 15}, {opacity: 1, y: 0, duration: 0.4, ease: "power2.out"});
             } else {
                 setTimeout(() => { content.classList.add('active'); }, 50);
             }
@@ -35,11 +35,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Initialize specific tab logic securely
             if (targetId === 'mcq' && !window.mcqLoaded_joubon) {
-                if(typeof loadMCQ === 'function') loadMCQ();
+                try {
+                    if(typeof loadMCQ === 'function') loadMCQ();
+                } catch (e) {
+                    console.error("MCQ script error:", e);
+                }
                 window.mcqLoaded_joubon = true;
             }
             if (targetId === 'cq' && !window.cqLoaded_joubon) {
-                if(typeof loadCQ === 'function') loadCQ();
+                try {
+                    if(typeof loadCQ === 'function') loadCQ();
+                } catch (e) {
+                    console.error("CQ script error:", e);
+                }
                 window.cqLoaded_joubon = true;
             }
         }
@@ -93,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(preloadProse, 1000); 
         })
         .catch(err => {
-            viewer.innerHTML = `<div style="color:var(--ch-primary); text-align:center; padding: 40px; font-weight: bold;" class="bn-text rebel-cut">মূল পাঠ লোড করতে সমস্যা হয়েছে!</div>`;
+            viewer.innerHTML = `<div style="color:var(--ch-primary); text-align:center; padding: 40px; font-weight: bold;" class="bn-text">মূল পাঠ লোড করতে সমস্যা হয়েছে!</div>`;
         });
 
     function renderContent(htmlContent) {
@@ -133,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        viewer.innerHTML = `<div class="loader bn-text"><i data-lucide="flame" class="pulse-flame"></i> পাঠ্যবই লোড হচ্ছে...</div>`;
+        viewer.innerHTML = `<div class="loader bn-text"><i data-lucide="sun" class="pulse-flame"></i> পাঠ্যবই লোড হচ্ছে...</div>`;
         if (typeof lucide !== 'undefined') lucide.createIcons();
 
         fetch(`../topic-data/jouboner_gaan/${pageData.file}`)
@@ -143,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 renderContent(htmlContent);
             })
             .catch(err => {
-                viewer.innerHTML = `<div style="color:var(--text-muted); text-align:center; padding: 60px 20px; background: var(--bg-main);" class="rebel-cut">
+                viewer.innerHTML = `<div style="color:var(--text-muted); text-align:center; padding: 60px 20px; background: var(--bg-main);">
                     <i data-lucide="file-warning" style="width: 48px; height: 48px; margin-bottom: 15px; opacity: 0.5;"></i>
                     <h3 class="bn-text" style="font-size: 1.5rem; margin-bottom: 10px;">দুঃখিত!</h3>
                     <p class="bn-text">এই পৃষ্ঠার কনটেন্ট (${pageData.file}) এখনও যুক্ত করা হয়নি।</p>

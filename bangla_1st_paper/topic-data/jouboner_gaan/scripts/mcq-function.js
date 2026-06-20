@@ -10,7 +10,6 @@ window.loadMCQ = function() {
 
     let allMcqData = [];
 
-    // Banglish to Bangla Mapper for intuitive searching
     const banglishToBangla = (text) => {
         const map = { 'kh':'খ','gh':'ঘ','chh':'ছ','ch':'চ','jh':'ঝ','th':'থ','dh':'ধ','ph':'ফ','bh':'ভ','sh':'শ','ng':'ঙ', 'k':'ক','g':'গ','c':'চ','j':'জ','t':'ট','d':'ড','n':'ন','p':'প','f':'ফ','b':'ব','m':'ম', 'z':'য','y':'য়','r':'র','l':'ল','s':'স','h':'হ','a':'া','i':'ি','u':'ু','e':'ে','o':'ো' };
         let out = text.toLowerCase();
@@ -18,7 +17,6 @@ window.loadMCQ = function() {
         return out;
     };
 
-    // Safe Highlighter
     const highlightMatch = (text, term1, term2) => {
         if (!term1 && !term2) return text;
         let terms = [];
@@ -29,35 +27,50 @@ window.loadMCQ = function() {
         return text.replace(regex, '<span class="search-highlight bn-text">$1</span>');
     };
 
-    // Dynamic Options Extractor
     const populateFilters = (data) => {
-        const boards = new Set();
-        const years = new Set();
-        const topics = new Set();
+        const boardSet = new Set();
+        const yearSet = new Set();
+        const topicSet = new Set();
         
         data.forEach(item => {
-            if(item.topic) topics.add(item.topic); // Handled 'topic' key based on provided JSON
+            if(item.topic) topicSet.add(item.topic); 
+            
             if(item.board) {
                 const parts = item.board.split(',');
-                parts.forEach(p => {
-                    const bMatch = p.match(/([A-Za-z\u0980-\u09FF\s]+)\s*(?:Board|বোর্ড)/i);
-                    if(bMatch) boards.add(bMatch[1].trim());
-                    else if (p.toLowerCase().includes('medical') || p.toLowerCase().includes('dental')) boards.add('Medical/Dental');
-                    
-                    const yMatch = p.match(/\b(20\d{2}|২০\d{2})\b/);
-                    if(yMatch) years.add(yMatch[1]);
+                parts.forEach(part => {
+                    // Fix: Regex that properly captures Bengali and English digits without failing on word boundaries
+                    const yearMatch = part.match(/(20[0-9]{2}|২০[০-৯]{2})/);
+                    if(yearMatch) yearSet.add(yearMatch[1]);
+
+                    // Fix: Strip the captured year to isolate the board name
+                    const boardName = part.replace(/(20[0-9]{2}|২০[০-৯]{2})/g, '').trim();
+                    if(boardName) boardSet.add(boardName);
                 });
             }
         });
 
-        // Clear existing (except "All")
-        boardFilter.innerHTML = '<option value="all">সব বোর্ড</option>';
-        yearFilter.innerHTML = '<option value="all">সব সাল</option>';
-        typeFilter.innerHTML = '<option value="all">সব টপিক</option>';
+        // Clear existing
+        if (boardFilter) boardFilter.innerHTML = '<option value="all">সব বোর্ড</option>';
+        if (yearFilter) yearFilter.innerHTML = '<option value="all">সব সাল</option>';
+        if (typeFilter) typeFilter.innerHTML = '<option value="all">সব টপিক</option>';
 
-        boards.forEach(b => { const opt = document.createElement('option'); opt.value = b; opt.textContent = b + " বোর্ড"; opt.className = 'bn-text'; boardFilter.appendChild(opt); });
-        Array.from(years).sort((a,b)=>b-a).forEach(y => { const opt = document.createElement('option'); opt.value = y; opt.textContent = y; opt.className = 'en-text'; yearFilter.appendChild(opt); });
-        topics.forEach(t => { const opt = document.createElement('option'); opt.value = t; opt.textContent = t; opt.className = 'bn-text'; typeFilter.appendChild(opt); });
+        Array.from(boardSet).sort().forEach(b => { 
+            const opt = document.createElement('option'); 
+            opt.value = b; opt.textContent = b; opt.className = 'bn-text'; 
+            if (boardFilter) boardFilter.appendChild(opt); 
+        });
+
+        Array.from(yearSet).sort((a,b) => b.localeCompare(a)).forEach(y => { 
+            const opt = document.createElement('option'); 
+            opt.value = y; opt.textContent = y; opt.className = 'en-text'; 
+            if (yearFilter) yearFilter.appendChild(opt); 
+        });
+        
+        topicSet.forEach(t => { 
+            const opt = document.createElement('option'); 
+            opt.value = t; opt.textContent = t; opt.className = 'bn-text'; 
+            if (typeFilter) typeFilter.appendChild(opt); 
+        });
     };
 
     fetch('../topic-data/jouboner_gaan/mcq.json')
@@ -67,26 +80,40 @@ window.loadMCQ = function() {
             populateFilters(data);
             renderMCQs(); 
         })
-        .catch(err => { container.innerHTML = '<div style="color:var(--ch-primary); text-align:center; padding: 40px; font-weight: bold;" class="bn-text rebel-cut">ডেটা লোড করতে সমস্যা হয়েছে!</div>'; });
+        .catch(err => { if(container) container.innerHTML = '<div style="color:var(--ch-primary); text-align:center; padding: 40px; font-weight: bold;" class="bn-text">ডেটা লোড করতে সমস্যা হয়েছে!</div>'; });
 
     function renderMCQs() {
+        if (!container) return;
         container.innerHTML = '';
         let filtered = allMcqData;
-        const searchTerm = searchInput.value.trim().toLowerCase();
+        
+        const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : '';
         const banSearchTerm = banglishToBangla(searchTerm);
 
-        // Smart Intersection Filter
+        const bVal = boardFilter ? boardFilter.value : 'all';
+        const yVal = yearFilter ? yearFilter.value : 'all';
+        const tVal = typeFilter ? typeFilter.value : 'all';
+
         if (searchTerm) {
             filtered = filtered.filter(m => m.question.toLowerCase().includes(searchTerm) || m.question.includes(banSearchTerm));
         }
-        if (boardFilter.value !== 'all') {
-            filtered = filtered.filter(m => m.board && m.board.toLowerCase().includes(boardFilter.value.toLowerCase().replace('/dental','').replace(' বোর্ড','')));
+        
+        // Strict Intersection Filter (AND Logic)
+        if (bVal !== 'all' || yVal !== 'all') {
+            filtered = filtered.filter(m => {
+                if (!m.board) return false;
+                const parts = m.board.split(',');
+                // Does ANY single comma-separated tag satisfy BOTH Board and Year?
+                return parts.some(part => {
+                    const matchesBoard = bVal === 'all' || part.includes(bVal);
+                    const matchesYear = yVal === 'all' || part.includes(yVal);
+                    return matchesBoard && matchesYear;
+                });
+            });
         }
-        if (yearFilter.value !== 'all') {
-            filtered = filtered.filter(m => m.board && (m.board.includes(yearFilter.value) || (m.year && m.year.includes(yearFilter.value))));
-        }
-        if (typeFilter.value !== 'all') {
-            filtered = filtered.filter(m => m.topic === typeFilter.value);
+        
+        if (tVal !== 'all') {
+            filtered = filtered.filter(m => m.topic === tVal);
         }
 
         if (filtered.length === 0) {
@@ -94,7 +121,7 @@ window.loadMCQ = function() {
             return;
         }
 
-        const isStudyMode = modeSelect.value === 'study';
+        const isStudyMode = modeSelect ? modeSelect.value === 'study' : true;
 
         filtered.forEach((mcq, index) => {
             const card = document.createElement('div');
@@ -103,9 +130,16 @@ window.loadMCQ = function() {
             const hlQuestion = highlightMatch(mcq.question, searchTerm, banSearchTerm);
 
             let badgeHtml = '';
-            if(mcq.board) badgeHtml += `<span class="card-badge-item bn-text">${mcq.board}</span>`;
-            if(mcq.year) badgeHtml += `<span class="card-badge-item en-text" style="background:var(--bg-main); color:var(--ch-primary); border: 1px solid var(--border-color);">${mcq.year}</span>`;
-            if(mcq.topic) badgeHtml += `<span class="card-badge-item bn-text" style="background:var(--bg-main); color:var(--text-dark); border: 1px solid var(--border-color);">${mcq.topic}</span>`;
+            if(mcq.board) {
+                const parts = mcq.board.split(',');
+                parts.forEach(part => {
+                    // This puts EXACTLY "ঢাকা বোর্ড ২০২৩" into the tag visually
+                    badgeHtml += `<span class="card-badge-item bn-text">${part.trim()}</span>`;
+                });
+            }
+            if(mcq.topic) {
+                badgeHtml += `<span class="card-badge-item bn-text" style="background:var(--bg-main); color:var(--text-dark); border: 1px solid var(--border-color);">${mcq.topic}</span>`;
+            }
 
             let optionsHtml = '';
             mcq.options.forEach((opt, oIndex) => {
@@ -151,15 +185,21 @@ window.loadMCQ = function() {
                     btn.style.display = 'none';
                 });
             } else {
-                card.querySelector('.check-ans-btn').style.display = 'none';
+                const checkBtn = card.querySelector('.check-ans-btn');
+                if (checkBtn) checkBtn.style.display = 'none';
                 const labels = card.querySelectorAll('label');
-                labels[mcq.correctIndex].classList.add('correct');
+                if (labels[mcq.correctIndex]) labels[mcq.correctIndex].classList.add('correct');
             }
 
-            container.appendChild(card);
+            if (container) container.appendChild(card);
         });
     }
 
-    let t; searchInput.addEventListener('input', () => { clearTimeout(t); t = setTimeout(renderMCQs, 300); });
-    [boardFilter, yearFilter, typeFilter, modeSelect].forEach(el => el.addEventListener('change', renderMCQs));
+    if (searchInput) {
+        let t; searchInput.addEventListener('input', () => { clearTimeout(t); t = setTimeout(renderMCQs, 300); });
+    }
+    
+    [boardFilter, yearFilter, typeFilter, modeSelect].forEach(el => {
+        if (el) el.addEventListener('change', renderMCQs);
+    });
 };
